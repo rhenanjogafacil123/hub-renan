@@ -1048,7 +1048,7 @@
           </div>
           <div class="flex items-center gap-2 bg-white border border-slate-200 px-3 py-0.5 rounded-md text-[11px] font-bold text-slate-800 shadow-2xs">
             <i data-lucide="lock" class="size-3 text-emerald-600"></i>
-            <span>https://juca.automatech.tech</span>
+            <span id="preview-address">https://juca.automatech.tech</span>
             <span class="text-[9px] text-slate-400 font-mono font-semibold">16:9 Desktop View</span>
           </div>
           <div class="flex items-center gap-1.5 text-slate-500 text-xs">
@@ -3091,8 +3091,16 @@
       const previewPath = isHamburguer ? "/showroom/hamburguerias.html" : "/juca/index.html";
       if (btnOpen) btnOpen.href = `${previewPath}?hero=${id}`;
 
+      // Identificação da moldura: apenas H01–H05 usam a demonstração isolada.
+      const previewAddress = document.getElementById('preview-address');
+      if (previewAddress) previewAddress.textContent = isHamburguer
+        ? 'Showroom · Hamburguerias · ' + id
+        : 'https://juca.automatech.tech';
       // Disparar postMessage para o iframe
       const iframe = document.getElementById('store-iframe');
+      if (iframe) iframe.title = isHamburguer
+        ? 'Demonstração de Hamburgueria ' + id
+        : 'Loja Oficial Pizza do Juca em 16:9 Real';
       if (iframe && iframe.contentWindow) {
         const currentPath = new URL(iframe.src, location.href).pathname;
         if (currentPath !== previewPath) iframe.src = `${previewPath}?hero=${id}`;
