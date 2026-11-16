@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>Showroom de Templates | Teixo Hub</title>
-  <meta name="description" content="Showroom oficial de identidades visuais e heros modulares para delivery de comida.">
+  <meta name="description" content="Showroom oficial de identidades visuais e heros modulares para delivery e negócios locais.">
   <link rel="icon" href="/favicon.ico">
   
   <!-- Base Hub Fonts -->
@@ -73,6 +73,21 @@
     }
     
     .trans-all { transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+
+    /* Custom thin scrollbar */
+    .niche-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .niche-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .niche-scroll::-webkit-scrollbar-thumb {
+      background: #e2e8f0;
+      border-radius: 10px;
+    }
+    .niche-scroll::-webkit-scrollbar-thumb:hover {
+      background: #cbd5e1;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased selection:bg-orange-600 selection:text-white">
@@ -80,12 +95,14 @@
   <!-- BACKDROP OVERLAY DO MENU LATERAL (APENAS MOBILE) -->
   <div id="hub-sidebar-backdrop" onclick="toggleHubSidebar()" class="lg:hidden fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
-  <!-- ==================== MENU LATERAL DA ESQUERDA (ESTRUTURA OFICIAL E 100% CLARA DO TEIXO HUB) ==================== -->
-  <aside id="hub-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-52 max-w-[85vw] lg:max-w-none flex-col justify-between border-r border-slate-200/90 bg-white transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none">
+  <!-- ==================== MENU LATERAL DA ESQUERDA (25 PASTAS DE NICHOS ORGANIZADAS) ==================== -->
+  <aside id="hub-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-72 max-w-[85vw] flex-col justify-between border-r border-slate-200/90 bg-white transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none">
     
     <!-- TOPO DO MENU LATERAL -->
-    <div>
-      <div class="flex items-center justify-between border-b border-slate-200/80 p-3 bg-slate-50/80">
+    <div class="flex flex-col h-full min-h-0">
+      
+      <!-- Cabeçalho Teixo Hub -->
+      <div class="flex items-center justify-between border-b border-slate-200/80 p-3 bg-slate-50/80 shrink-0">
         <a href="/" class="flex items-center gap-2 group">
           <div class="grid h-8 w-8 place-items-center rounded-xl bg-orange-600 text-white font-black shadow-xs group-hover:scale-105 transition">
             <i data-lucide="layers" class="h-4 w-4"></i>
@@ -100,74 +117,74 @@
         </button>
       </div>
 
-      <!-- SEÇÕES DO MENU LATERAL (MANTÉM 1. HUB, 2. PLANILHA, 3. SHOWROOM) -->
-      <div class="p-2.5 space-y-3.5 overflow-y-auto max-h-[calc(100vh-120px)]">
+      <!-- SEÇÕES FIXAS DO MENU LATERAL (1. HUB, 2. PLANILHA, 3. SHOWROOM) -->
+      <div class="p-2.5 pb-1 space-y-2 shrink-0 border-b border-slate-100">
         
         <!-- 1. HUB -->
-        <div>
-          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
-            <span>1. Hub</span>
-            <span class="size-1.5 rounded-full bg-orange-500"></span>
+        <a href="/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-orange-50 border border-slate-200/80 hover:border-orange-200 px-2.5 py-1.5 text-left transition group shadow-xs">
+          <div class="grid h-6 w-6 shrink-0 place-items-center rounded-lg bg-orange-600 text-white font-black shadow-xs">
+            <i data-lucide="layout-grid" class="h-3 w-3"></i>
           </div>
-          
-          <a href="/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-orange-50 border border-slate-200/80 hover:border-orange-200 px-2.5 py-2 text-left transition group shadow-xs">
-            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-orange-600 text-white font-black shadow-xs group-hover:scale-105 transition">
-              <i data-lucide="layout-grid" class="h-3.5 w-3.5"></i>
-            </div>
-            <span class="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition whitespace-nowrap">Hub de Clientes</span>
-          </a>
-        </div>
+          <span class="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition whitespace-nowrap">1. Hub de Clientes</span>
+        </a>
 
         <!-- 2. PLANILHA -->
-        <div>
-          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
-            <span>2. Planilha</span>
-            <span class="size-1.5 rounded-full bg-emerald-500"></span>
+        <a href="/painel/planilha/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200/80 hover:border-emerald-300 px-2.5 py-1.5 text-left transition group shadow-xs">
+          <div class="grid h-6 w-6 shrink-0 place-items-center rounded-lg bg-emerald-600 text-white font-black shadow-xs">
+            <i data-lucide="file-spreadsheet" class="h-3 w-3"></i>
           </div>
+          <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition whitespace-nowrap">2. Planilha Comercial</span>
+        </a>
 
-          <a href="/painel/planilha/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200/80 hover:border-emerald-300 px-2.5 py-2 text-left transition group shadow-xs">
-            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-emerald-600 text-white font-black shadow-xs group-hover:scale-105 transition">
-              <i data-lucide="file-spreadsheet" class="h-3.5 w-3.5"></i>
-            </div>
-            <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition whitespace-nowrap">Planilha de Clientes</span>
-          </a>
-        </div>
-
-        <!-- 3. SHOWROOM (ABA ATIVA - 100% CLARA) -->
-        <div>
-          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-amber-600 flex items-center justify-between">
-            <span>3. Showroom</span>
-            <span class="size-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+        <!-- 3. SHOWROOM HEADER -->
+        <div class="flex items-center justify-between px-2 pt-1">
+          <div class="flex items-center gap-1.5 text-xs font-black text-amber-950">
+            <i data-lucide="sparkles" class="h-3.5 w-3.5 text-amber-600"></i>
+            <span>3. Showroom Templates</span>
           </div>
-
-          <a href="/showroom/" class="flex items-center gap-2 rounded-xl bg-amber-50 border border-amber-300 px-2.5 py-2 text-left transition shadow-xs">
-            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-amber-500 text-black font-black shadow-xs">
-              <i data-lucide="sparkles" class="h-3.5 w-3.5"></i>
-            </div>
-            <div>
-              <span class="text-xs font-black text-amber-950 block">Showroom Templates</span>
-              <span class="text-[9px] text-amber-700 font-semibold">25 Modelos de Delivery</span>
-            </div>
-          </a>
+          <span class="px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[9px] font-black uppercase">25 Nichos</span>
         </div>
 
       </div>
-    </div>
 
-    <!-- RODAPÉ DO MENU LATERAL -->
-    <div class="border-t border-slate-200 p-2.5 bg-slate-50 text-xs">
-      <div class="flex items-center justify-between text-slate-500">
-        <span class="font-bold text-[10px]">Teixo Hub</span>
-        <span class="text-[9px] text-emerald-600 flex items-center gap-1 font-bold">
-          <span class="size-1.5 rounded-full bg-emerald-500"></span> Online
-        </span>
+      <!-- ÁREA DE NAVEGAÇÃO LATERAL: 25 PASTAS DE NICHOS (ÁREA CIRCULADA PELO USUÁRIO) -->
+      <div class="flex-1 min-h-0 flex flex-col p-2.5 pt-2">
+        
+        <!-- Campo de busca rápida de nichos -->
+        <div class="relative mb-2 shrink-0">
+          <i data-lucide="search" class="size-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+          <input 
+            type="text" 
+            id="niche-search-input" 
+            oninput="filterNiches(this.value)" 
+            placeholder="Buscar entre os 25 nichos..." 
+            class="w-full pl-8 pr-2.5 py-1.5 text-xs bg-slate-50 hover:bg-white focus:bg-white border border-slate-200/90 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-400 transition placeholder:text-slate-400"
+          />
+        </div>
+
+        <!-- Lista sanfonada rolável com as 25 pastas -->
+        <div id="niches-list" class="flex-1 overflow-y-auto niche-scroll pr-1 space-y-1">
+          <!-- Renderizado via JavaScript -->
+        </div>
+
       </div>
+
+      <!-- RODAPÉ DO MENU LATERAL -->
+      <div class="border-t border-slate-200 p-2.5 bg-slate-50 text-xs shrink-0">
+        <div class="flex items-center justify-between text-slate-500">
+          <span class="font-bold text-[10px]">25 Pastas • 125 Modelos</span>
+          <span class="text-[9px] text-emerald-600 flex items-center gap-1 font-bold">
+            <span class="size-1.5 rounded-full bg-emerald-500"></span> Online
+          </span>
+        </div>
+      </div>
+
     </div>
 
   </aside>
 
-  <!-- ==================== CONTAINER PRINCIPAL (À DIREITA DA SIDEBAR FIXA) ==================== -->
-  <div class="lg:pl-52 flex min-h-screen flex-col justify-between">
+  <!-- ==================== CONTAINER PRINCIPAL (À DIREITA DA SIDEBAR FIXA DE 72) ==================== -->
+  <div class="lg:pl-72 flex min-h-screen flex-col justify-between">
 
     <!-- ==================== HEADER SUPERIOR DO HUB (100% CLARO) ==================== -->
     <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
@@ -187,9 +204,9 @@
           <div>
             <div class="flex items-center gap-2">
               <span class="text-sm sm:text-base font-black tracking-tight text-slate-950">Showroom de Templates</span>
-              <span class="rounded-full bg-amber-50 border border-amber-300 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-amber-800">Food Delivery</span>
+              <span id="active-niche-badge" class="rounded-full bg-amber-50 border border-amber-300 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-amber-800">Hamburguerias</span>
             </div>
-            <div class="text-[11px] font-bold text-slate-500">Motor Real Pizza do Juca • Variação Modular Exclusiva da Hero</div>
+            <div class="text-[11px] font-bold text-slate-500">Navegue pelas 25 pastas na barra lateral e escolha o modelo</div>
           </div>
         </div>
 
@@ -216,37 +233,9 @@
     <div class="sticky top-[57px] z-20 bg-white/95 backdrop-blur-md border-b border-slate-200 px-3 sm:px-6 py-2.5 shadow-xs">
       <div class="max-w-7xl mx-auto flex flex-col xl:flex-row items-center justify-between gap-3">
         
-        <!-- SELETOR DE TEMPLATES (P01 + H01 A H05) -->
-        <div class="flex items-center gap-1.5 overflow-x-auto w-full xl:w-auto scrollbar-none py-0.5">
-          <button onclick="switchTemplate('P01')" id="tab-P01" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200 hover:text-slate-900">
-            <span>🍕 P01</span>
-            <span class="font-medium">Juca Original</span>
-          </button>
-
-          <button onclick="switchTemplate('H01')" id="tab-H01" class="tab-btn px-3 py-1.5 text-xs font-black rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-amber-500 text-slate-950 border-amber-400 shadow-sm">
-            <span>⚡ H01</span>
-            <span class="font-bold">Smash Urban</span>
-          </button>
-          
-          <button onclick="switchTemplate('H02')" id="tab-H02" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200 hover:text-slate-900">
-            <span>🪵 H02</span>
-            <span class="font-medium">Vintage Smoke</span>
-          </button>
-          
-          <button onclick="switchTemplate('H03')" id="tab-H03" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200 hover:text-slate-900">
-            <span>👑 H03</span>
-            <span class="font-medium">Dark Angus</span>
-          </button>
-          
-          <button onclick="switchTemplate('H04')" id="tab-H04" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200 hover:text-slate-900">
-            <span>🥤 H04</span>
-            <span class="font-medium">Retro Diner</span>
-          </button>
-          
-          <button onclick="switchTemplate('H05')" id="tab-H05" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200 hover:text-slate-900">
-            <span>🌱 H05</span>
-            <span class="font-medium">Brioche Fresh</span>
-          </button>
+        <!-- SELETOR DE TEMPLATES DA PASTA ATIVA -->
+        <div id="models-quick-pills" class="flex items-center gap-1.5 overflow-x-auto w-full xl:w-auto scrollbar-none py-0.5">
+          <!-- Preenchido dinamicamente conforme o nicho ativo -->
         </div>
 
         <!-- SELETOR DOS 3 MODOS DE VISUALIZAÇÃO OFICIAIS (PC + MOBILE 2 + MOBILE 1) -->
@@ -297,18 +286,367 @@
 
   </div>
 
-  <!-- SCRIPT DE CONTROLE DO SHOWROOM -->
+  <!-- SCRIPT DE CONTROLE DAS 25 PASTAS E DO SHOWROOM -->
   <script>
-    const TEMPLATES_INFO = {
-      P01: { id: 'P01', name: 'Pizza do Juca (Original)', fonts: 'Fraunces + Plus Jakarta Sans' },
-      H01: { id: 'H01', name: 'H01 — Smash Urban', fonts: 'Bebas Neue + Inter' },
-      H02: { id: 'H02', name: 'H02 — Vintage Smoke', fonts: 'Oswald + Plus Jakarta Sans' },
-      H03: { id: 'H03', name: 'H03 — Dark Angus', fonts: 'Fraunces + Plus Jakarta Sans' },
-      H04: { id: 'H04', name: 'H04 — Retro Diner', fonts: 'Righteous + Outfit' },
-      H05: { id: 'H05', name: 'H05 — Brioche Fresh', fonts: 'Outfit + Plus Jakarta Sans' }
-    };
+    // As 25 pastas oficiais da operação Teixo
+    const NICHES_DATA = [
+      // 5 Nichos de Gastronomia & Delivery
+      {
+        id: 'hamburguerias',
+        name: 'Hamburguerias',
+        icon: '🍔',
+        badge: '5 modelos',
+        open: true,
+        models: [
+          { id: 'H01', code: '⚡ H01', name: 'Smash Urban', fonts: 'Bebas Neue + Inter', active: true },
+          { id: 'H02', code: '🪵 H02', name: 'Vintage Smoke', fonts: 'Oswald + Plus Jakarta Sans' },
+          { id: 'H03', code: '👑 H03', name: 'Dark Angus', fonts: 'Fraunces + Plus Jakarta Sans' },
+          { id: 'H04', code: '🥤 H04', name: 'Retro Diner', fonts: 'Righteous + Outfit' },
+          { id: 'H05', code: '🌱 H05', name: 'Brioche Fresh', fonts: 'Outfit + Plus Jakarta Sans' }
+        ]
+      },
+      {
+        id: 'pizzarias',
+        name: 'Pizzarias',
+        icon: '🍕',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'P01', code: '🍕 P01', name: 'Juca Original', fonts: 'Fraunces + Plus Jakarta Sans' },
+          { id: 'P02', code: '🍅 P02', name: 'Napoletana Gourmet', fonts: 'Playfair Display + Inter' },
+          { id: 'P03', code: '🪵 P03', name: 'Forno a Lenha Rústica', fonts: 'Cinzel + Plus Jakarta Sans' },
+          { id: 'P04', code: '🧀 P04', name: 'Romana Al Taglio', fonts: 'Montserrat + Inter' },
+          { id: 'P05', code: '🗽 P05', name: 'New York Slice', fonts: 'Bebas Neue + Roboto' }
+        ]
+      },
+      {
+        id: 'acaiterias',
+        name: 'Açaiterias',
+        icon: '🍧',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'A01', code: '🍇 A01', name: 'Tropical Energy', fonts: 'Syne + Plus Jakarta Sans' },
+          { id: 'A02', code: '🍓 A02', name: 'Topping Supreme', fonts: 'Poppins + Inter' },
+          { id: 'A03', code: '🥥 A03', name: 'Fit & Organic', fonts: 'Outfit + Inter' },
+          { id: 'A04', code: '🫐 A04', name: 'Dark Purple Gourmet', fonts: 'Plus Jakarta Sans' },
+          { id: 'A05', code: '🌴 A05', name: 'Beachside Vibe', fonts: 'Righteous + Quicksand' }
+        ]
+      },
+      {
+        id: 'sorveterias',
+        name: 'Sorveterias & Gelaterias',
+        icon: '🍦',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'G01', code: '🍨 G01', name: 'Gelato Italiano', fonts: 'Fraunces + Inter' },
+          { id: 'G02', code: '🧁 G02', name: 'Candy Pastel', fonts: 'Fredoka + Poppins' },
+          { id: 'G03', code: '🥛 G03', name: 'Panna Crema', fonts: 'Outfit + Plus Jakarta Sans' },
+          { id: 'G04', code: '🍒 G04', name: 'Frutas do Bosque', fonts: 'Playfair Display + Inter' },
+          { id: 'G05', code: '🎠 G05', name: 'Artesanal Kids', fonts: 'Comfortaa + Nunito' }
+        ]
+      },
+      {
+        id: 'japonesa',
+        name: 'Comida Japonesa',
+        icon: '🍣',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'J01', code: '🍱 J01', name: 'Tokyo Zen', fonts: 'Shippori Mincho + Inter' },
+          { id: 'J02', code: '🥢 J02', name: 'Cyber Neon', fonts: 'Teko + Plus Jakarta Sans' },
+          { id: 'J03', code: '✨ J03', name: 'Omakase Premium', fonts: 'Cormorant Garamond + Inter' },
+          { id: 'J04', code: '🐟 J04', name: 'Fresh Salmon', fonts: 'Outfit + Inter' },
+          { id: 'J05', code: '🏮 J05', name: 'Izakaya Tradicional', fonts: 'Cinzel + Plus Jakarta Sans' }
+        ]
+      },
 
-    let currentTemplate = 'H01';
+      // Os 20 Nichos Oficiais
+      {
+        id: 'mini-entulhos',
+        name: 'Mini entulhos e caçambas',
+        icon: '🚚',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'ME01', code: 'ME01', name: 'Disk Caçamba Rápido', fonts: 'Barlow + Inter' },
+          { id: 'ME02', code: 'ME02', name: 'Gestão de Obras & Reformas', fonts: 'Oswald + Inter' },
+          { id: 'ME03', code: 'ME03', name: 'Coleta Sustentável', fonts: 'Outfit + Plus Jakarta Sans' },
+          { id: 'ME04', code: 'ME04', name: 'Locação Diária Express', fonts: 'Bebas Neue + Inter' },
+          { id: 'ME05', code: 'ME05', name: 'Caçambas Estacionárias', fonts: 'Plus Jakarta Sans' }
+        ]
+      },
+      {
+        id: 'revenda-veiculos',
+        name: 'Revenda de veículos',
+        icon: '🚗',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'RV01', code: 'RV01', name: 'Estoque Prime Seminovos', fonts: 'Syne + Inter' },
+          { id: 'RV02', code: 'RV02', name: 'Auto Boutique & Blindados', fonts: 'Fraunces + Plus Jakarta Sans' },
+          { id: 'RV03', code: 'RV03', name: 'Financiamento 100% Online', fonts: 'Plus Jakarta Sans' },
+          { id: 'RV04', code: 'RV04', name: 'Vitrine Multimarcas', fonts: 'Outfit + Inter' },
+          { id: 'RV05', code: 'RV05', name: 'Motors & Performance', fonts: 'Oswald + Inter' }
+        ]
+      },
+      {
+        id: 'comercio-personalizado',
+        name: 'Comércio / operação personalizada',
+        icon: '🏪',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'CP01', code: 'CP01', name: 'Catálogo Sob Medida', fonts: 'Plus Jakarta Sans' },
+          { id: 'CP02', code: 'CP02', name: 'Pedido Direto no Balcão', fonts: 'Inter + Outfit' },
+          { id: 'CP03', code: 'CP03', name: 'Operação B2B Atacado', fonts: 'Barlow + Inter' },
+          { id: 'CP04', code: 'CP04', name: 'Showroom de Fábrica', fonts: 'Syne + Plus Jakarta Sans' },
+          { id: 'CP05', code: 'CP05', name: 'Distribuidora Regional', fonts: 'Oswald + Inter' }
+        ]
+      },
+      {
+        id: 'delivery-restaurante',
+        name: 'Delivery e restaurante',
+        icon: '🍽️',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'DR01', code: 'DR01', name: 'Mesa, Comanda & Balcão', fonts: 'Fraunces + Inter' },
+          { id: 'DR02', code: 'DR02', name: 'Almoço Executivo Express', fonts: 'Plus Jakarta Sans' },
+          { id: 'DR03', code: 'DR03', name: 'Bistrô & Alta Cozinha', fonts: 'Playfair Display + Inter' },
+          { id: 'DR04', code: 'DR04', name: 'Comida Caseira Raiz', fonts: 'Outfit + Inter' },
+          { id: 'DR05', code: 'DR05', name: 'Gourmet Noturno', fonts: 'Bebas Neue + Plus Jakarta Sans' }
+        ]
+      },
+      {
+        id: 'varejo-ecommerce',
+        name: 'Varejo e e-commerce',
+        icon: '🛍️',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'VE01', code: 'VE01', name: 'Vitrine Fashion & Moda', fonts: 'Syne + Inter' },
+          { id: 'VE02', code: 'VE02', name: 'Checkout 1-Clique Express', fonts: 'Plus Jakarta Sans' },
+          { id: 'VE03', code: 'VE03', name: 'Mega Store Promoções', fonts: 'Bebas Neue + Inter' },
+          { id: 'VE04', code: 'VE04', name: 'Boutique Minimalista', fonts: 'Fraunces + Plus Jakarta Sans' },
+          { id: 'VE05', code: 'VE05', name: 'Cosméticos & Acessórios', fonts: 'Outfit + Inter' }
+        ]
+      },
+      {
+        id: 'prestacao-servicos',
+        name: 'Prestação de serviços',
+        icon: '🛠️',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'PS01', code: 'PS01', name: 'Orçamento com 1-Toque', fonts: 'Plus Jakarta Sans' },
+          { id: 'PS02', code: 'PS02', name: 'Equipe Técnica & Laudo', fonts: 'Inter + Barlow' },
+          { id: 'PS03', code: 'PS03', name: 'Plantão 24h Especializado', fonts: 'Oswald + Inter' },
+          { id: 'PS04', code: 'PS04', name: 'Manutenção Preventiva', fonts: 'Outfit + Plus Jakarta Sans' },
+          { id: 'PS05', code: 'PS05', name: 'Consultoria Empresarial', fonts: 'Fraunces + Inter' }
+        ]
+      },
+      {
+        id: 'imobiliaria',
+        name: 'Imobiliária',
+        icon: '🏢',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'IM01', code: 'IM01', name: 'Imóveis de Alto Padrão', fonts: 'Fraunces + Inter' },
+          { id: 'IM02', code: 'IM02', name: 'Lançamentos na Planta', fonts: 'Syne + Plus Jakarta Sans' },
+          { id: 'IM03', code: 'IM03', name: 'Locação Rápida Sem Fiador', fonts: 'Plus Jakarta Sans' },
+          { id: 'IM04', code: 'IM04', name: 'Casas & Condomínios', fonts: 'Outfit + Inter' },
+          { id: 'IM05', code: 'IM05', name: 'Corretor Digital 360', fonts: 'Inter + Barlow' }
+        ]
+      },
+      {
+        id: 'clinica-geral',
+        name: 'Clínica geral e consultórios',
+        icon: '🩺',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'CG01', code: 'CG01', name: 'Agendamento Online Integrado', fonts: 'Plus Jakarta Sans' },
+          { id: 'CG02', code: 'CG02', name: 'Corpo Clínico & Especialistas', fonts: 'Outfit + Inter' },
+          { id: 'CG03', code: 'CG03', name: 'Checkup & Medicina Preventiva', fonts: 'Inter + Plus Jakarta Sans' },
+          { id: 'CG04', code: 'CG04', name: 'Consultório Humanizado', fonts: 'Fraunces + Inter' },
+          { id: 'CG05', code: 'CG05', name: 'Espaço Saúde & Bem-Estar', fonts: 'Syne + Plus Jakarta Sans' }
+        ]
+      },
+      {
+        id: 'estetica-dermatologia',
+        name: 'Estética e dermatologia',
+        icon: '✨',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'ED01', code: 'ED01', name: 'Glow Facial & Rejuvenescimento', fonts: 'Fraunces + Plus Jakarta Sans' },
+          { id: 'ED02', code: 'ED02', name: 'Dermatologia Clínica Avançada', fonts: 'Playfair Display + Inter' },
+          { id: 'ED03', code: 'ED03', name: 'Laser, Botox & Preenchimento', fonts: 'Syne + Inter' },
+          { id: 'ED04', code: 'ED04', name: 'Protocolos de Emagrecimento', fonts: 'Outfit + Plus Jakarta Sans' },
+          { id: 'ED05', code: 'ED05', name: 'Spa Urbano & Harmonização', fonts: 'Cormorant + Inter' }
+        ]
+      },
+      {
+        id: 'odontologia',
+        name: 'Odontologia e ortodontia',
+        icon: '🦷',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'OD01', code: 'OD01', name: 'Alinhadores Invisíveis', fonts: 'Plus Jakarta Sans' },
+          { id: 'OD02', code: 'OD02', name: 'Implantes & Lentes de Contato', fonts: 'Outfit + Inter' },
+          { id: 'OD03', code: 'OD03', name: 'Clareamento a Laser Express', fonts: 'Syne + Inter' },
+          { id: 'OD04', code: 'OD04', name: 'Odontopediatria Especializada', fonts: 'Fredoka + Poppins' },
+          { id: 'OD05', code: 'OD05', name: 'Centro de Reabilitação Oral', fonts: 'Fraunces + Plus Jakarta Sans' }
+        ]
+      },
+      {
+        id: 'pediatria',
+        name: 'Pediatria',
+        icon: '👶',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'PD01', code: 'PD01', name: 'Puericultura com Acolhimento', fonts: 'Outfit + Plus Jakarta Sans' },
+          { id: 'PD02', code: 'PD02', name: 'Calendário de Vacinas', fonts: 'Inter + Nunito' },
+          { id: 'PD03', code: 'PD03', name: 'Espaço Lúdico Sem Medo', fonts: 'Comfortaa + Poppins' },
+          { id: 'PD04', code: 'PD04', name: 'Emergência Infantil', fonts: 'Plus Jakarta Sans' },
+          { id: 'PD05', code: 'PD05', name: 'Desenvolvimento do Bebê', fonts: 'Fraunces + Inter' }
+        ]
+      },
+      {
+        id: 'psicologia',
+        name: 'Psicologia e psiquiatria',
+        icon: '🧠',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'PSI01', code: 'PSI01', name: 'Terapia Cognitivo-Comportamental', fonts: 'Plus Jakarta Sans' },
+          { id: 'PSI02', code: 'PSI02', name: 'Psicoterapia Online Sigilosa', fonts: 'Inter + Outfit' },
+          { id: 'PSI03', code: 'PSI03', name: 'Terapia de Casal e Família', fonts: 'Fraunces + Inter' },
+          { id: 'PSI04', code: 'PSI04', name: 'Acolhimento de Ansiedade', fonts: 'Outfit + Plus Jakarta Sans' },
+          { id: 'PSI05', code: 'PSI05', name: 'Saúde Mental & Psiquiatria', fonts: 'Playfair Display + Inter' }
+        ]
+      },
+      {
+        id: 'ortopedia',
+        name: 'Ortopedia e fisioterapia',
+        icon: '🦴',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'ORT01', code: 'ORT01', name: 'Reabilitação de Coluna', fonts: 'Barlow + Inter' },
+          { id: 'ORT02', code: 'ORT02', name: 'Fisioterapia Esportiva', fonts: 'Oswald + Plus Jakarta Sans' },
+          { id: 'ORT03', code: 'ORT03', name: 'Pilates Clínico Personal', fonts: 'Outfit + Inter' },
+          { id: 'ORT04', code: 'ORT04', name: 'Traumatologia e Articulações', fonts: 'Plus Jakarta Sans' },
+          { id: 'ORT05', code: 'ORT05', name: 'Fisioterapia Domiciliar', fonts: 'Inter + Barlow' }
+        ]
+      },
+      {
+        id: 'oftalmologia',
+        name: 'Oftalmologia',
+        icon: '👁️',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'OFT01', code: 'OFT01', name: 'Exame de Grau Computadorizado', fonts: 'Plus Jakarta Sans' },
+          { id: 'OFT02', code: 'OFT02', name: 'Cirurgia Refrativa a Laser', fonts: 'Outfit + Inter' },
+          { id: 'OFT03', code: 'OFT03', name: 'Adaptação de Lentes de Contato', fonts: 'Inter + Plus Jakarta Sans' },
+          { id: 'OFT04', code: 'OFT04', name: 'Tratamento de Catarata & Glaucoma', fonts: 'Fraunces + Inter' },
+          { id: 'OFT05', code: 'OFT05', name: 'Centro Oftalmológico Completo', fonts: 'Syne + Plus Jakarta Sans' }
+        ]
+      },
+      {
+        id: 'nutricao',
+        name: 'Nutrição',
+        icon: '🥗',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'NUT01', code: 'NUT01', name: 'Emagrecimento Sem Dietas Malucas', fonts: 'Outfit + Plus Jakarta Sans' },
+          { id: 'NUT02', code: 'NUT02', name: 'Nutrição Esportiva & Performance', fonts: 'Bebas Neue + Inter' },
+          { id: 'NUT03', code: 'NUT03', name: 'Bioimpedância & Acompanhamento', fonts: 'Plus Jakarta Sans' },
+          { id: 'NUT04', code: 'NUT04', name: 'Nutrição Materno-Infantil', fonts: 'Fraunces + Inter' },
+          { id: 'NUT05', code: 'NUT05', name: 'Reeducação Alimentar Consciente', fonts: 'Syne + Inter' }
+        ]
+      },
+      {
+        id: 'ginecologia',
+        name: 'Ginecologia e obstetrícia',
+        icon: '🌸',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'GIN01', code: 'GIN01', name: 'Pré-Natal & Parto Humanizado', fonts: 'Fraunces + Inter' },
+          { id: 'GIN02', code: 'GIN02', name: 'Exames Preventivos & Checkup', fonts: 'Plus Jakarta Sans' },
+          { id: 'GIN03', code: 'GIN03', name: 'DIU & Planejamento Familiar', fonts: 'Outfit + Inter' },
+          { id: 'GIN04', code: 'GIN04', name: 'Menopausa & Longevidade', fonts: 'Playfair Display + Inter' },
+          { id: 'GIN05', code: 'GIN05', name: 'Espaço Materno & Cuidados', fonts: 'Syne + Plus Jakarta Sans' }
+        ]
+      },
+      {
+        id: 'cardiologia',
+        name: 'Cardiologia',
+        icon: '❤️',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'CAR01', code: 'CAR01', name: 'Checkup Cardiológico Preventivo', fonts: 'Plus Jakarta Sans' },
+          { id: 'CAR02', code: 'CAR02', name: 'Eletrocardiograma & MAPA 24h', fonts: 'Outfit + Inter' },
+          { id: 'CAR03', code: 'CAR03', name: 'Ecocardiograma com Doppler', fonts: 'Inter + Barlow' },
+          { id: 'CAR04', code: 'CAR04', name: 'Cardiologia Esportiva', fonts: 'Oswald + Inter' },
+          { id: 'CAR05', code: 'CAR05', name: 'Centro de Saúde Cardiovascular', fonts: 'Fraunces + Inter' }
+        ]
+      },
+      {
+        id: 'laboratorio-exames',
+        name: 'Laboratório e exames',
+        icon: '🔬',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'LAB01', code: 'LAB01', name: 'Resultados Rápidos Online', fonts: 'Plus Jakarta Sans' },
+          { id: 'LAB02', code: 'LAB02', name: 'Coleta Domiciliar Gratuita', fonts: 'Outfit + Inter' },
+          { id: 'LAB03', code: 'LAB03', name: 'Painel de Exames de Sangue', fonts: 'Inter + Plus Jakarta Sans' },
+          { id: 'LAB04', code: 'LAB04', name: 'Testes Genéticos & Alergias', fonts: 'Syne + Inter' },
+          { id: 'LAB05', code: 'LAB05', name: 'Laboratório de Análises Clínicas', fonts: 'Barlow + Inter' }
+        ]
+      },
+      {
+        id: 'clinica-multidisciplinar',
+        name: 'Clínica multidisciplinar',
+        icon: '🏥',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'CMD01', code: 'CMD01', name: 'Centro Médico Todas Especialidades', fonts: 'Plus Jakarta Sans' },
+          { id: 'CMD02', code: 'CMD02', name: 'Pronto Atendimento & Consultas', fonts: 'Outfit + Inter' },
+          { id: 'CMD03', code: 'CMD03', name: 'Estrutura Completa com Exames', fonts: 'Inter + Barlow' },
+          { id: 'CMD04', code: 'CMD04', name: 'Convênios & Particular Popular', fonts: 'Oswald + Inter' },
+          { id: 'CMD05', code: 'CMD05', name: 'Saúde Integrada da Família', fonts: 'Fraunces + Inter' }
+        ]
+      },
+      {
+        id: 'clinica-veterinaria',
+        name: 'Clínica veterinária',
+        icon: '🐾',
+        badge: '5 modelos',
+        open: false,
+        models: [
+          { id: 'VET01', code: 'VET01', name: 'Plantão Veterinário 24 Horas', fonts: 'Plus Jakarta Sans' },
+          { id: 'VET02', code: 'VET02', name: 'Cirurgias & Vacinas para Cães e Gatos', fonts: 'Outfit + Inter' },
+          { id: 'VET03', code: 'VET03', name: 'Banho & Tosa com Estética Pet', fonts: 'Comfortaa + Poppins' },
+          { id: 'VET04', code: 'VET04', name: 'Internação & Monitoramento', fonts: 'Inter + Barlow' },
+          { id: 'VET05', code: 'VET05', name: 'Pet Center & Farmácia Completa', fonts: 'Syne + Plus Jakarta Sans' }
+        ]
+      }
+    ];
+
+    let currentNicheId = 'hamburguerias';
+    let currentTemplateId = 'H01';
 
     function toggleHubSidebar() {
       const sidebar = document.getElementById('hub-sidebar');
@@ -324,12 +662,155 @@
       }
     }
 
-    function switchTemplate(id) {
-      if (!TEMPLATES_INFO[id]) return;
-      currentTemplate = id;
-      const t = TEMPLATES_INFO[id];
+    function toggleNicheFolder(nicheId) {
+      const niche = NICHES_DATA.find(n => n.id === nicheId);
+      if (!niche) return;
+      niche.open = !niche.open;
+      renderNichesList();
+    }
 
-      // Atualizar botões de abas (estilo claro)
+    function selectNiche(nicheId) {
+      const niche = NICHES_DATA.find(n => n.id === nicheId);
+      if (!niche) return;
+      currentNicheId = nicheId;
+      niche.open = true;
+
+      // Atualizar badge no header superior
+      document.getElementById('active-niche-badge').textContent = niche.name;
+
+      // Atualizar barra de pílulas rápidas
+      renderQuickPills(niche);
+
+      // Se tiver modelos, selecionar o primeiro
+      if (niche.models && niche.models.length > 0) {
+        switchTemplate(niche.models[0].id);
+      } else {
+        renderNichesList();
+      }
+    }
+
+    function renderNichesList(filterTerm = '') {
+      const container = document.getElementById('niches-list');
+      if (!container) return;
+
+      const term = filterTerm.toLowerCase().trim();
+      const filtered = NICHES_DATA.filter(n => {
+        if (!term) return true;
+        const matchNiche = n.name.toLowerCase().includes(term);
+        const matchModel = n.models.some(m => m.name.toLowerCase().includes(term) || m.id.toLowerCase().includes(term));
+        return matchNiche || matchModel;
+      });
+
+      container.innerHTML = filtered.map(niche => {
+        const isCurrentNiche = niche.id === currentNicheId;
+        const isOpen = niche.open || term.length > 0;
+
+        return `
+          <div class="rounded-xl border ${isCurrentNiche ? 'border-amber-300 bg-amber-50/40' : 'border-slate-200/70 bg-white'} overflow-hidden transition shadow-2xs">
+            
+            <!-- Botão da Pasta do Nicho -->
+            <button 
+              type="button" 
+              onclick="toggleNicheFolder('${niche.id}')" 
+              class="w-full px-2.5 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+            >
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="text-sm shrink-0">${niche.icon}</span>
+                <span class="text-xs font-bold ${isCurrentNiche ? 'text-amber-950 font-black' : 'text-slate-800'} truncate group-hover:text-amber-800 transition">
+                  ${niche.name}
+                </span>
+              </div>
+
+              <div class="flex items-center gap-1.5 shrink-0 ml-1">
+                <span class="text-[9px] font-bold px-1.5 py-0.2 rounded-md ${isCurrentNiche ? 'bg-amber-200 text-amber-900' : 'bg-slate-100 text-slate-500'}">
+                  ${niche.models.length}
+                </span>
+                <svg class="size-3.5 text-slate-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-slate-700' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </button>
+
+            <!-- Sub-lista de modelos da pasta (quando aberta) -->
+            ${isOpen ? `
+              <div class="border-t border-slate-100/90 bg-slate-50/60 p-1.5 space-y-1">
+                ${niche.models.map(m => {
+                  const isActive = m.id === currentTemplateId;
+                  return `
+                    <button 
+                      type="button" 
+                      onclick="selectModelFromSidebar('${niche.id}', '${m.id}')" 
+                      class="w-full px-2 py-1.5 rounded-lg text-left text-xs flex items-center justify-between transition ${isActive ? 'bg-amber-500 text-slate-950 font-black shadow-xs' : 'text-slate-700 hover:bg-slate-200/70 hover:text-slate-900'}"
+                    >
+                      <div class="flex items-center gap-1.5 truncate">
+                        <span class="text-[10px] font-mono opacity-80">${m.code}</span>
+                        <span class="truncate">${m.name.replace(/^[A-Z0-9]+ — /, '')}</span>
+                      </div>
+                      ${isActive ? '<span class="size-1.5 rounded-full bg-slate-950 shrink-0"></span>' : ''}
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+            ` : ''}
+
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function renderQuickPills(niche) {
+      const container = document.getElementById('models-quick-pills');
+      if (!container || !niche || !niche.models) return;
+
+      container.innerHTML = niche.models.map(m => {
+        const isActive = m.id === currentTemplateId;
+        return `
+          <button 
+            onclick="switchTemplate('${m.id}')" 
+            id="tab-${m.id}" 
+            class="tab-btn px-3 py-1.5 text-xs rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap ${isActive ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-sm font-black' : 'bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200 hover:text-slate-900 font-medium'}"
+          >
+            <span>${m.code}</span>
+            <span class="font-bold">${m.name.replace(/^[A-Z0-9]+ — /, '')}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectModelFromSidebar(nicheId, modelId) {
+      const niche = NICHES_DATA.find(n => n.id === nicheId);
+      if (niche) {
+        currentNicheId = nicheId;
+        document.getElementById('active-niche-badge').textContent = niche.name;
+        renderQuickPills(niche);
+      }
+      switchTemplate(modelId);
+    }
+
+    function switchTemplate(id) {
+      currentTemplateId = id;
+
+      // Buscar modelo nos dados
+      let foundModel = null;
+      let foundNiche = null;
+      for (const n of NICHES_DATA) {
+        const m = n.models.find(x => x.id === id);
+        if (m) {
+          foundModel = m;
+          foundNiche = n;
+          break;
+        }
+      }
+
+      if (foundNiche && foundNiche.id !== currentNicheId) {
+        currentNicheId = foundNiche.id;
+        document.getElementById('active-niche-badge').textContent = foundNiche.name;
+        renderQuickPills(foundNiche);
+      }
+
+      // Atualizar pílulas rápidas
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('bg-amber-500', 'text-slate-950', 'border-amber-400', 'shadow-sm', 'font-black');
         btn.classList.add('bg-slate-100', 'text-slate-700', 'border-slate-200/80', 'font-medium');
@@ -340,11 +821,16 @@
         activeBtn.classList.add('bg-amber-500', 'text-slate-950', 'border-amber-400', 'shadow-sm', 'font-black');
       }
 
-      // Atualizar ficha técnica
-      document.getElementById('spec-name').textContent = t.name;
-      document.getElementById('spec-fonts').textContent = t.fonts;
+      // Atualizar lista da barra lateral
+      renderNichesList(document.getElementById('niche-search-input')?.value || '');
 
-      // Atualizar botão de link externo
+      // Atualizar ficha técnica
+      if (foundModel) {
+        document.getElementById('spec-name').textContent = `${foundModel.code} — ${foundModel.name}`;
+        document.getElementById('spec-fonts').textContent = foundModel.fonts || 'Plus Jakarta Sans';
+      }
+
+      // Atualizar link externo
       const btnOpen = document.getElementById('btn-open-store');
       if (btnOpen) btnOpen.href = `/juca/?hero=${id}`;
 
@@ -353,6 +839,10 @@
       if (iframe && iframe.contentWindow) {
         iframe.contentWindow.postMessage({ type: 'switchHero', template: id }, '*');
       }
+    }
+
+    function filterNiches(value) {
+      renderNichesList(value);
     }
 
     function setViewMode(mode) {
@@ -387,10 +877,14 @@
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
 
+      const initialNiche = NICHES_DATA.find(n => n.id === 'hamburguerias');
+      renderQuickPills(initialNiche);
+      renderNichesList();
+
       const iframe = document.getElementById('store-iframe');
       if (iframe) {
         iframe.addEventListener('load', () => {
-          iframe.contentWindow.postMessage({ type: 'switchHero', template: currentTemplate }, '*');
+          iframe.contentWindow.postMessage({ type: 'switchHero', template: currentTemplateId }, '*');
         });
       }
     });
