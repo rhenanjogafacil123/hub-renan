@@ -1,0 +1,39 @@
+{
+  "id": "H04",
+  "name": "Retro American Diner",
+  "segment": "Hamburgueria",
+  "mood": "Nostálgico anos 50/80, festivo, acolhedor, familiar, alegre e pop",
+  "commercialTarget": "Combos família, casais, batatas especiais com cheddar/bacon e milkshakes generosos",
+  "ticketFocus": "Combos & Volume Familiar (R$ 35 - R$ 52)",
+  "badge": "🥤 Receita Tradicional Diner · O Clássico que Nunca Erra",
+  "title": "O VERDADEIRO AMERICAN BURGER DOS SEUS SONHOS",
+  "subtitle": "Cheeseburgers suculentos com muito cheddar derretido, batatas fininhas super crocantes e milkshakes artesanais batidos na hora.",
+  "ctaText": "Pedir o Combo Completo",
+  "ctaSecondary": "Ver Milkshakes & Sobremesas",
+  "microcopy": "🍟 Combo com batata crocante e bebida geladíssima",
+  "theme": {
+    "primary": "#E63946",
+    "primaryHover": "#C1121F",
+    "accent": "#0096C7",
+    "accentHover": "#0077B6",
+    "bgHero": "#FFFBF5",
+    "bgHeroSecondary": "#F5EBE0",
+    "textHero": "#1D2D44",
+    "textMuted": "#4A5568",
+    "badgeBg": "rgba(230, 57, 70, 0.10)",
+    "badgeText": "#C1121F",
+    "badgeBorder": "rgba(230, 57, 70, 0.25)",
+    "surfaceGlow": "rgba(230, 57, 70, 0.10)"
+  },
+  "typography": {
+    "displayFont": "Righteous",
+    "baseFont": "Poppins",
+    "displayWeight": "400",
+    "displayLetterSpacing": "0.02em",
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Righteous&family=Poppins:wght@400;500;600;700&display=swap"
+  },
+  "heroLayout": "retro-banner",
+  "heroImage": "assets/h04-diner.jpg",
+  "heroImageAlt": "Combo diner completo com cheeseburger suculento e batatas douradas",
+  "promptMidjourney": "Vintage 1950s American diner setup, double cheeseburger with red foil wrap, basket of golden crispy shoestring french fries, tall strawberry milkshake with whipped cream and cherry on top, soft warm pastel diner background with chrome accents, bright joyful commercial lighting, appetizing food commercial photography --ar 1:1 --v 6.0"
+}

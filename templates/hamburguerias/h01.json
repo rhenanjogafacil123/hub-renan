@@ -1,0 +1,39 @@
+{
+  "id": "H01",
+  "name": "Smash Urban",
+  "segment": "Hamburgueria",
+  "mood": "Agressivo, urbano, jovem, street e de alta energia",
+  "commercialTarget": "Giro rápido, delivery noturno, pedidos por impulso (18-35 anos)",
+  "ticketFocus": "Volume & Giro Rápido (R$ 28 - R$ 45)",
+  "badge": "⚡ Prensado na Chapa · Crosta Perfeita",
+  "title": "O VERDADEIRO SMASH CROCANTE & SUCULENTO",
+  "subtitle": "Carne fresca prensada na chapa fervendo, queijo cheddar derretendo em cascata e nossa maionese secreta no pão brioche tostado.",
+  "ctaText": "Pedir Meu Smash Agora",
+  "ctaSecondary": "Ver Combos da Noite",
+  "microcopy": "🚀 Entrega rápida · Quentinho na sua porta",
+  "theme": {
+    "primary": "#E63946",
+    "primaryHover": "#C1121F",
+    "accent": "#FFB703",
+    "accentHover": "#FFAA00",
+    "bgHero": "#111114",
+    "bgHeroSecondary": "#18181D",
+    "textHero": "#FFFFFF",
+    "textMuted": "#A1A1AA",
+    "badgeBg": "rgba(255, 183, 3, 0.14)",
+    "badgeText": "#FFB703",
+    "badgeBorder": "rgba(255, 183, 3, 0.35)",
+    "surfaceGlow": "rgba(230, 57, 70, 0.18)"
+  },
+  "typography": {
+    "displayFont": "Bebas Neue",
+    "baseFont": "Inter",
+    "displayWeight": "400",
+    "displayLetterSpacing": "0.04em",
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap"
+  },
+  "heroLayout": "split-dynamic",
+  "heroImage": "assets/h01-smash.jpg",
+  "heroImageAlt": "Double smash burger prensado com queijo cheddar derretido",
+  "promptMidjourney": "Ultra-realistic commercial food photography of a double smash burger with lacy crispy edges, melting American cheddar cheese oozing between two beef patties, glossy butter-toasted potato bun, dark charcoal asphalt background with subtle warm neon backlights, moody studio lighting, 8k resolution, cinematic depth of field, appetizing, high-end fast-casual style --ar 1:1 --v 6.0"
+}

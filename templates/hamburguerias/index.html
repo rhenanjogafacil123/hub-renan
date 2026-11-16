@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showroom de Templates — Hamburguerias (H01 a H05) | Teixo & Automatech</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Base System Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Bebas+Neue&family=Oswald:wght@600;700&family=Syne:wght@700;800&family=Righteous&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+            'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
+            'outfit': ['Outfit', 'sans-serif'],
+            'poppins': ['Poppins', 'sans-serif'],
+            'bebas': ['Bebas Neue', 'sans-serif'],
+            'oswald': ['Oswald', 'sans-serif'],
+            'syne': ['Syne', 'sans-serif'],
+            'righteous': ['Righteous', 'sans-serif'],
+            'barlow-condensed': ['Barlow Condensed', 'sans-serif'],
+          },
+          keyframes: {
+            girar: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' }
+            },
+            fadeSlide: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            }
+          },
+          animation: {
+            'girar-lento': 'girar 35s linear infinite',
+            'fade-slide': 'fadeSlide 0.35s ease-out forwards'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Transições suaves */
+    .trans-all { transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    
+    /* Molduras de Simulação Mobile (Padrão Triplo do Editor Hub Automatech) */
+    .mobile-frame-sm {
+      max-width: 390px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      border-radius: 40px !important;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75), 0 0 0 10px #1c212a !important;
+      overflow-x: hidden !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .mobile-frame-lg {
+      max-width: 480px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      border-radius: 36px !important;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75), 0 0 0 10px #1c212a !important;
+      overflow-x: hidden !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    /* Padrão de textura sutil */
+    .bg-grid-pattern {
+      background-size: 24px 24px;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-[#0c0d10] text-[#e4e4e7] min-h-screen antialiased font-sans selection:bg-amber-500 selection:text-black">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE CONTROLE DO SHOWROOM (FIXA NO TOPO - AMBIENTE DE DEMONSTRAÇÃO)   -->
+  <!-- ========================================================================= -->
+  <aside id="showroom-bar" class="sticky top-0 z-50 bg-[#14151b]/95 backdrop-blur-md border-b border-white/10 px-3 py-2.5 shadow-2xl">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      
+      <!-- Identificação Teixo / Showroom -->
+      <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
+        <div class="flex items-center gap-2">
+          <span class="size-3 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-xs uppercase font-extrabold tracking-widest text-amber-400">Showroom TeixoOS</span>
+          <span class="text-xs text-zinc-500">| Hamburguerias</span>
+        </div>
+
+        <!-- Seletor 3 Modos de Visualização (Padrão Oficial do Editor do Hub: PC + 2 Mobiles) -->
+        <div class="flex items-center bg-zinc-800/90 rounded-lg p-0.5 border border-white/10 shrink-0">
+          <button id="btn-view-desktop" onclick="setViewMode('desktop')" title="Visualização PC / Desktop (100% Tela Cheia)" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-amber-500 text-black shadow trans-all flex items-center gap-1.5">
+            <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span class="font-bold">PC</span>
+          </button>
+
+          <button id="btn-view-mobile-lg" onclick="setViewMode('mobile-lg')" title="Visualização Mobile 2: Celular Plus / Amplo (480px)" class="px-2.5 py-1 text-xs font-semibold rounded-md text-zinc-300 hover:text-white trans-all flex items-center gap-1.5">
+            <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <span>Mobile 2 <span class="text-[10px] text-zinc-400 font-mono hidden sm:inline">(480px)</span></span>
+          </button>
+
+          <button id="btn-view-mobile-sm" onclick="setViewMode('mobile-sm')" title="Visualização Mobile 1: Celular Padrão / Compacto (390px)" class="px-2.5 py-1 text-xs font-semibold rounded-md text-zinc-300 hover:text-white trans-all flex items-center gap-1.5">
+            <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <span>Mobile 1 <span class="text-[10px] text-zinc-400 font-mono hidden sm:inline">(390px)</span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- BOTÕES DE ALTERNÂNCIA H01 a H05 -->
+      <nav class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto py-1 px-1 scrollbar-none" aria-label="Templates de Hamburgueria">
+        <button onclick="switchTemplate('H01')" id="tab-H01" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-amber-500 text-black border-amber-400 shadow-lg shadow-amber-500/20">
+          <span>⚡ H01</span>
+          <span class="hidden lg:inline font-medium">Smash Urban</span>
+        </button>
+        
+        <button onclick="switchTemplate('H02')" id="tab-H02" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-zinc-800 text-zinc-300 border-white/5 hover:border-white/20 hover:text-white">
+          <span>🪵 H02</span>
+          <span class="hidden lg:inline font-medium">Vintage Smoke</span>
+        </button>
+        
+        <button onclick="switchTemplate('H03')" id="tab-H03" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-zinc-800 text-zinc-300 border-white/5 hover:border-white/20 hover:text-white">
+          <span>👑 H03</span>
+          <span class="hidden lg:inline font-medium">Dark Angus</span>
+        </button>
+        
+        <button onclick="switchTemplate('H04')" id="tab-H04" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-zinc-800 text-zinc-300 border-white/5 hover:border-white/20 hover:text-white">
+          <span>🥤 H04</span>
+          <span class="hidden lg:inline font-medium">Retro Diner</span>
+        </button>
+        
+        <button onclick="switchTemplate('H05')" id="tab-H05" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-zinc-800 text-zinc-300 border-white/5 hover:border-white/20 hover:text-white">
+          <span>🌱 H05</span>
+          <span class="hidden lg:inline font-medium">Brioche Fresh</span>
+        </button>
+      </nav>
+
+      <!-- Ficha Rápida do Template Ativo -->
+      <div id="template-quick-spec" class="hidden xl:flex items-center gap-3 text-xs bg-zinc-900/90 border border-white/10 px-3 py-1.5 rounded-lg">
+        <span id="spec-name" class="font-bold text-white">H01 — Smash Urban</span>
+        <span class="text-zinc-500">|</span>
+        <span id="spec-ticket" class="text-zinc-400">Giro Rápido (R$ 28-45)</span>
+        <span class="text-zinc-500">|</span>
+        <span id="spec-fonts" class="text-amber-400 font-mono">Bebas Neue + Inter</span>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- CONTAINER PRINCIPAL DO SITE DE DELIVERY (CANVAS RESPONSIVO / SIMULADOR)   -->
+  <!-- ========================================================================= -->
+  <main id="store-canvas" class="min-h-screen bg-[#0e0f12] trans-all pb-24">
+    
+    <!-- ======================================================================= -->
+    <!-- 1. TOPO / CABEÇALHO DO SISTEMA (INTOCÁVEL - PADRÃO OPERACIONAL TEIXO)    -->
+    <!-- ======================================================================= -->
+    <header id="store-header" class="bg-[#141418] border-b border-white/10 sticky top-[53px] z-40 transition-colors duration-200">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        
+        <!-- Marca / Logo da Loja -->
+        <div class="flex items-center gap-3">
+          <div class="size-10 rounded-xl bg-gradient-to-tr from-amber-600 to-red-600 flex items-center justify-center text-white font-black text-xl shadow-md shadow-red-900/30">
+            🍔
+          </div>
+          <div>
+            <h1 class="text-base font-bold text-white leading-tight flex items-center gap-2">
+              <span id="brand-name-display">The Smash Bros</span>
+              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Oficial</span>
+            </h1>
+            <!-- Status com Ping Verde Ativo -->
+            <div class="flex items-center gap-1.5 text-xs text-zinc-400 mt-0.5">
+              <span class="relative flex size-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full size-2 bg-emerald-500"></span>
+              </span>
+              <span>Aberto agora · Fecha às 00:00</span>
+              <span class="text-zinc-600">·</span>
+              <span class="text-zinc-400">🛵 30-45 min</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botão Carrinho / Sacola de Pedidos (Intocável) -->
+        <button onclick="alert('Botão de Pedido 100% Funcional no Checkout Integrado!')" class="flex items-center gap-2.5 bg-zinc-800 hover:bg-zinc-700 text-white px-3.5 py-2 rounded-xl text-xs font-semibold border border-white/10 shadow-sm trans-all active:scale-95">
+          <svg class="size-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="hidden sm:inline">Sacola</span>
+          <span class="bg-amber-500 text-black font-extrabold px-1.5 py-0.2 rounded-md text-[11px]">0</span>
+        </button>
+
+      </div>
+    </header>
+
+    <!-- ======================================================================= -->
+    <!-- 2. CAMADA HERO DINÂMICA (SUBSTITUIÇÃO CONTROLADA H01 A H05)               -->
+    <!-- ======================================================================= -->
+    <div id="hero-mount" class="trans-all">
+      <!-- O conteúdo do Hero é injetado aqui dinamicamente pelo motor JS -->
+    </div>
+
+    <!-- ======================================================================= -->
+    <!-- 3. BARRA DE CATEGORIAS DO CARDÁPIO (INTOCÁVEL - PADRÃO OPERACIONAL)     -->
+    <!-- ======================================================================= -->
+    <section id="cardapio-nav" class="sticky top-[109px] z-30 bg-[#121316]/95 backdrop-blur-md border-y border-white/5 py-2.5 px-4 shadow-sm">
+      <div class="max-w-6xl mx-auto flex items-center gap-2 overflow-x-auto scrollbar-none">
+        <button class="px-4 py-1.5 rounded-full text-xs font-bold bg-amber-500 text-black shrink-0 shadow-sm">
+          🔥 Mais Pedidos
+        </button>
+        <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-zinc-800/90 text-zinc-300 hover:text-white shrink-0 border border-white/5">
+          🥩 Smashes Especiais
+        </button>
+        <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-zinc-800/90 text-zinc-300 hover:text-white shrink-0 border border-white/5">
+          🍔 Linha Artesanal
+        </button>
+        <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-zinc-800/90 text-zinc-300 hover:text-white shrink-0 border border-white/5">
+          🍟 Acompanhamentos
+        </button>
+        <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-zinc-800/90 text-zinc-300 hover:text-white shrink-0 border border-white/5">
+          🥤 Bebidas & Shakes
+        </button>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 4. GRID DE PRODUTOS / CARDÁPIO (INTOCÁVEL - MOTOR DE VENDAS DO SISTEMA)  -->
+    <!-- ======================================================================= -->
+    <section id="cardapio-produtos" class="max-w-6xl mx-auto px-4 py-8">
+      
+      <!-- Cabeçalho da Seção com Aviso de Isolamento -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-white/10 mb-6 gap-2">
+        <div>
+          <h2 class="text-xl font-extrabold text-white flex items-center gap-2">
+            🔥 Mais Pedidos da Semana
+          </h2>
+          <p class="text-xs text-zinc-400 mt-0.5">Os favoritos da chapa direto para a sua casa</p>
+        </div>
+        <div class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2.5 py-1 rounded-lg">
+          <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          Área de Cardápio Blindada (Estilos Isolados)
+        </div>
+      </div>
+
+      <!-- Grid de Cards de Produtos (Intocáveis) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <!-- Card 1 -->
+        <article class="bg-[#18191f] border border-white/5 rounded-2xl p-4 flex flex-col justify-between hover:border-white/15 trans-all group">
+          <div class="flex gap-4">
+            <div class="flex-1">
+              <span class="text-[10px] uppercase font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full">Campeão</span>
+              <h3 class="text-base font-bold text-white mt-1.5 group-hover:text-amber-400 trans-all">Double Bacon Cheddar</h3>
+              <p class="text-xs text-zinc-400 mt-1 line-clamp-2 leading-relaxed">
+                Dois burgers 140g prensados na chapa, queijo cheddar inglês derretido, tiras de bacon crocante e maionese defumada no pão brioche.
+              </p>
+            </div>
+            <div class="size-24 rounded-xl overflow-hidden bg-zinc-800 shrink-0 relative">
+              <img src="assets/h01-smash.jpg" alt="Double Bacon Cheddar" class="size-full object-cover group-hover:scale-105 trans-all duration-300">
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-4 mt-3 border-t border-white/5">
+            <div>
+              <span class="text-[10px] text-zinc-500 block">A partir de</span>
+              <span class="text-base font-black text-white">R$ 36,90</span>
+            </div>
+            <button class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs px-3.5 py-2 rounded-xl trans-all flex items-center gap-1 active:scale-95 shadow-sm">
+              <span>+ Adicionar</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="bg-[#18191f] border border-white/5 rounded-2xl p-4 flex flex-col justify-between hover:border-white/15 trans-all group">
+          <div class="flex gap-4">
+            <div class="flex-1">
+              <span class="text-[10px] uppercase font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">Smash Clássico</span>
+              <h3 class="text-base font-bold text-white mt-1.5 group-hover:text-amber-400 trans-all">Smash Salad Special</h3>
+              <p class="text-xs text-zinc-400 mt-1 line-clamp-2 leading-relaxed">
+                Burger 120g smash ultrafino com crostinha crocante, queijo prato derretido, alface americana fresca, picles artesanal e molho da casa.
+              </p>
+            </div>
+            <div class="size-24 rounded-xl overflow-hidden bg-zinc-800 shrink-0 relative">
+              <img src="assets/h05-brioche.jpg" alt="Smash Salad Special" class="size-full object-cover group-hover:scale-105 trans-all duration-300">
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-4 mt-3 border-t border-white/5">
+            <div>
+              <span class="text-[10px] text-zinc-500 block">A partir de</span>
+              <span class="text-base font-black text-white">R$ 29,90</span>
+            </div>
+            <button class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs px-3.5 py-2 rounded-xl trans-all flex items-center gap-1 active:scale-95 shadow-sm">
+              <span>+ Adicionar</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="bg-[#18191f] border border-white/5 rounded-2xl p-4 flex flex-col justify-between hover:border-white/15 trans-all group">
+          <div class="flex gap-4">
+            <div class="flex-1">
+              <span class="text-[10px] uppercase font-bold text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full">Defumado</span>
+              <h3 class="text-base font-bold text-white mt-1.5 group-hover:text-amber-400 trans-all">Monster Smoke BBQ</h3>
+              <p class="text-xs text-zinc-400 mt-1 line-clamp-2 leading-relaxed">
+                Burger 180g angus defumado na lenha, cebola crispy em abundância, queijo gouda maçaricado e molho barbecue rústico de goiabada.
+              </p>
+            </div>
+            <div class="size-24 rounded-xl overflow-hidden bg-zinc-800 shrink-0 relative">
+              <img src="assets/h02-smoke.jpg" alt="Monster Smoke BBQ" class="size-full object-cover group-hover:scale-105 trans-all duration-300">
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-4 mt-3 border-t border-white/5">
+            <div>
+              <span class="text-[10px] text-zinc-500 block">A partir de</span>
+              <span class="text-base font-black text-white">R$ 42,90</span>
+            </div>
+            <button class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs px-3.5 py-2 rounded-xl trans-all flex items-center gap-1 active:scale-95 shadow-sm">
+              <span>+ Adicionar</span>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 5. RODAPÉ DO SISTEMA (INTOCÁVEL - PADRÃO OPERACIONAL AUTOMATECH/TEIXO)   -->
+    <!-- ======================================================================= -->
+    <footer id="store-footer" class="bg-[#101115] border-t border-white/10 pt-10 pb-8 px-4 text-xs text-zinc-400">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="text-center md:text-left">
+          <h4 class="text-sm font-bold text-white mb-1">Horário de Atendimento</h4>
+          <p>Terça a Domingo: 18:00 às 00:00 · Sexta e Sábado até 01:00</p>
+          <p class="text-[11px] text-zinc-500 mt-0.5">Pagamento 100% online seguro via Mercado Pago (PIX ou Cartão)</p>
+        </div>
+
+        <!-- Assinatura Obrigatória da Automatech com WhatsApp Oficial -->
+        <div class="text-center md:text-right flex flex-col items-center md:items-end gap-2">
+          <div class="text-[11px] text-zinc-500">
+            Plataforma de Delivery Próprio sem Comissões Abusivas
+          </div>
+          <a href="https://wa.me/555199735892?text=Ol%C3%A1!%20Vim%20pelo%20delivery%20e%20gostaria%20de%20um%20card%C3%A1pio%20digital%20para%20minha%20loja" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-900 border border-white/10 hover:border-emerald-500/50 text-zinc-300 hover:text-white trans-all group">
+            <span class="size-2 rounded-full bg-emerald-500"></span>
+            <span>Desenvolvido pela <strong class="text-white group-hover:text-emerald-400 trans-all">Automatech</strong></span>
+            <span class="text-[10px] text-zinc-500 font-mono">(51) 9973-5892</span>
+          </a>
+        </div>
+
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MOTOR JAVASCRIPT DO SHOWROOM (VANILLA JS - ZERO DEPENDÊNCIAS EXTERNAS)     -->
+  <!-- ========================================================================= -->
+  <script>
+    // DADOS COMPLETOS DOS 5 TEMPLATES H01 A H05 (EMBARCADOS LOCALMENTE)
+    const TEMPLATES_DATA = {
+      H01: {
+        id: "H01",
+        name: "Smash Urban",
+        segment: "Hamburgueria",
+        commercialTarget: "Giro rápido, delivery noturno, jovens (18-35 anos)",
+        ticketFocus: "Volume & Giro Rápido (R$ 28 - R$ 45)",
+        badge: "⚡ Prensado na Chapa · Crosta Perfeita",
+        title: "O VERDADEIRO SMASH CROCANTE & SUCULENTO",
+        subtitle: "Carne fresca prensada na chapa fervendo, queijo cheddar derretendo em cascata e nossa maionese secreta no pão brioche tostado.",
+        ctaText: "Pedir Meu Smash Agora",
+        ctaSecondary: "Ver Combos da Noite",
+        microcopy: "🚀 Entrega rápida · Quentinho na sua porta",
+        theme: {
+          primary: "#E63946",
+          primaryHover: "#C1121F",
+          accent: "#FFB703",
+          bgHero: "#111114",
+          bgHeroSecondary: "#18181D",
+          textHero: "#FFFFFF",
+          textMuted: "#A1A1AA",
+          badgeBg: "rgba(255, 183, 3, 0.14)",
+          badgeText: "#FFB703",
+          badgeBorder: "rgba(255, 183, 3, 0.35)",
+          surfaceGlow: "rgba(230, 57, 70, 0.22)"
+        },
+        typography: {
+          displayFont: "'Bebas Neue', sans-serif",
+          baseFont: "'Inter', sans-serif",
+          displayLetterSpacing: "0.04em",
+          displayClass: "font-bebas text-5xl md:text-7xl lg:text-8xl leading-[0.95] uppercase tracking-wider"
+        },
+        heroImage: "assets/h01-smash.jpg",
+        heroImageAlt: "Double smash burger prensado com queijo cheddar derretido",
+        layoutType: "split-urban"
+      },
+
+      H02: {
+        id: "H02",
+        name: "Vintage Smoke & BBQ",
+        segment: "Hamburgueria",
+        commercialTarget: "Ticket médio alto, combos com bacon rústico e famílias",
+        ticketFocus: "Ticket Médio & Valor Agregado (R$ 38 - R$ 56)",
+        badge: "🪵 Defumação Lenta em Lenha · 100% Angus",
+        title: "SABOR DE BRASA VIVA & DEFUMAÇÃO ARTESANAL",
+        subtitle: "Blends selecionados de Angus preparados no ponto correto, bacon rústico caramelizado e molho barbecue artesanal defumado por horas.",
+        ctaText: "Explorar Cardápio da Brasa",
+        ctaSecondary: "Ver Cortes Especiais",
+        microcopy: "🔥 Feito na brasa de verdade · Ingredientes nobres",
+        theme: {
+          primary: "#C85A17",
+          primaryHover: "#A9440D",
+          accent: "#F4A261",
+          bgHero: "#181310",
+          bgHeroSecondary: "#241C17",
+          textHero: "#FAF0E6",
+          textMuted: "#B8A89A",
+          badgeBg: "rgba(244, 162, 97, 0.14)",
+          badgeText: "#F4A261",
+          badgeBorder: "rgba(244, 162, 97, 0.35)",
+          surfaceGlow: "rgba(200, 90, 23, 0.25)"
+        },
+        typography: {
+          displayFont: "'Oswald', sans-serif",
+          baseFont: "'Plus Jakarta Sans', sans-serif",
+          displayLetterSpacing: "0.02em",
+          displayClass: "font-oswald text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] uppercase tracking-wide"
+        },
+        heroImage: "assets/h02-smoke.jpg",
+        heroImageAlt: "Burger artesanal defumado com bacon grosso e molho barbecue",
+        layoutType: "center-monumental"
+      },
+
+      H03: {
+        id: "H03",
+        name: "Dark Black Angus",
+        segment: "Hamburgueria",
+        commercialTarget: "Ticket alto (R$ 48 a R$ 75), alta gastronomia, casais",
+        ticketFocus: "Ticket Alto & Experiência Premium (R$ 48 - R$ 75)",
+        badge: "👑 Blends Nobres Certificados · Padrão Alta Gastronomia",
+        title: "A ALTA GASTRONOMIA EM FORMA DE BURGER",
+        subtitle: "Cortes nobres moídos diariamente, queijo brie maçaricado, cebola caramelizada e finalização com azeite trufado em pão artesanal de fermentação lenta.",
+        ctaText: "Viver Essa Experiência",
+        ctaSecondary: "Conhecer a Seleção Black",
+        microcopy: "✨ Embalagens térmicas premium · Padrão restaurante em casa",
+        theme: {
+          primary: "#D4AF37",
+          primaryHover: "#B89628",
+          accent: "#E5C158",
+          bgHero: "#0B0B0D",
+          bgHeroSecondary: "#141418",
+          textHero: "#F5F5F7",
+          textMuted: "#9CA3AF",
+          badgeBg: "rgba(212, 175, 55, 0.12)",
+          badgeText: "#E5C158",
+          badgeBorder: "rgba(212, 175, 55, 0.35)",
+          surfaceGlow: "rgba(212, 175, 55, 0.18)"
+        },
+        typography: {
+          displayFont: "'Syne', sans-serif",
+          baseFont: "'Outfit', sans-serif",
+          displayLetterSpacing: "-0.01em",
+          displayClass: "font-syne text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1]"
+        },
+        heroImage: "assets/h03-angus.jpg",
+        heroImageAlt: "Burger gourmet black angus com ponto suculento",
+        layoutType: "spotlight-card"
+      },
+
+      H04: {
+        id: "H04",
+        name: "Retro American Diner",
+        segment: "Hamburgueria",
+        commercialTarget: "Combos família, milkshakes generosos, alegria e nostalgia",
+        ticketFocus: "Combos & Volume Familiar (R$ 35 - R$ 52)",
+        badge: "🥤 Receita Tradicional Diner · O Clássico que Nunca Erra",
+        title: "O VERDADEIRO AMERICAN BURGER DOS SEUS SONHOS",
+        subtitle: "Cheeseburgers suculentos com muito cheddar derretido, batatas fininhas super crocantes e milkshakes artesanais batidos na hora.",
+        ctaText: "Pedir o Combo Completo",
+        ctaSecondary: "Ver Milkshakes & Sobremesas",
+        microcopy: "🍟 Combo com batata crocante e bebida geladíssima",
+        theme: {
+          primary: "#E63946",
+          primaryHover: "#C1121F",
+          accent: "#0096C7",
+          bgHero: "#FFFBF5",
+          bgHeroSecondary: "#F5EBE0",
+          textHero: "#1D2D44",
+          textMuted: "#4A5568",
+          badgeBg: "rgba(230, 57, 70, 0.10)",
+          badgeText: "#C1121F",
+          badgeBorder: "rgba(230, 57, 70, 0.25)",
+          surfaceGlow: "rgba(230, 57, 70, 0.12)"
+        },
+        typography: {
+          displayFont: "'Righteous', cursive",
+          baseFont: "'Poppins', sans-serif",
+          displayLetterSpacing: "0.02em",
+          displayClass: "font-righteous text-3xl md:text-5xl lg:text-6xl leading-[1.15]"
+        },
+        heroImage: "assets/h04-diner.jpg",
+        heroImageAlt: "Combo diner com cheeseburger suculento e batatas douradas",
+        layoutType: "retro-banner"
+      },
+
+      H05: {
+        id: "H05",
+        name: "Brioche Gold & Fresh",
+        segment: "Hamburgueria",
+        commercialTarget: "Almoço e jantar, equilíbrio entre frescor e suculência",
+        ticketFocus: "Equilíbrio & Alta Frequência (R$ 32 - R$ 48)",
+        badge: "🌱 Pão Brioche Selado na Manteiga · Carnes Nobres Diárias",
+        title: "SUCULÊNCIA & FRESCOR EM CADA MORDIDA",
+        subtitle: "Pão brioche fofinho dourado na manteiga de garrafa, hambúrguer grelhado no fogo, alface americana estalando de fresca e nosso molho da casa.",
+        ctaText: "Montar Meu Pedido",
+        ctaSecondary: "Conhecer Nossos Ingredientes",
+        microcopy: "🧀 Queijo derretido no ponto exato · Ingredientes frescos do dia",
+        theme: {
+          primary: "#E05A47",
+          primaryHover: "#C84330",
+          accent: "#2A9D8F",
+          bgHero: "#FAF7F2",
+          bgHeroSecondary: "#F0EAE1",
+          textHero: "#264653",
+          textMuted: "#4A6B6C",
+          badgeBg: "rgba(42, 157, 143, 0.12)",
+          badgeText: "#1E7268",
+          badgeBorder: "rgba(42, 157, 143, 0.28)",
+          surfaceGlow: "rgba(224, 90, 71, 0.12)"
+        },
+        typography: {
+          displayFont: "'Barlow Condensed', sans-serif",
+          baseFont: "'Plus Jakarta Sans', sans-serif",
+          displayLetterSpacing: "0.01em",
+          displayClass: "font-barlow-condensed text-5xl md:text-7xl lg:text-8xl font-extrabold uppercase leading-[0.95]"
+        },
+        heroImage: "assets/h05-brioche.jpg",
+        heroImageAlt: "Burger suculento com pão brioche dourado e alface fresca",
+        layoutType: "fresh-split"
+      }
+    };
+
+    let activeTemplateId = "H01";
+    let currentViewMode = "desktop";
+
+    // RENDERIZADOR DO HERO CONFORME O LAYOUT ESPECÍFICO DE CADA MODELO
+    function renderHeroHtml(t) {
+      // 1. H01 - SMASH URBAN (LAYOUT STREETWEAR / ALTA ENERGIA)
+      if (t.layoutType === "split-urban") {
+        return `
+          <section id="hero-scoped" class="relative isolate overflow-hidden pt-12 pb-16 lg:py-24 animate-fade-slide" style="background-color: ${t.theme.bgHero}; color: ${t.theme.textHero};">
+            <!-- Glows e Textura de Fundo Urbana -->
+            <div class="pointer-events-none absolute -top-40 right-0 size-96 rounded-full blur-[140px] opacity-40" style="background-color: ${t.theme.primary};"></div>
+            <div class="pointer-events-none absolute bottom-0 left-10 size-80 rounded-full blur-[120px] opacity-25" style="background-color: ${t.theme.accent};"></div>
+            <div class="pointer-events-none absolute inset-0 bg-grid-pattern opacity-10"></div>
+
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Coluna de Texto & CTA (7 colunas) -->
+                <div class="lg:col-span-7 flex flex-col items-start">
+                  
+                  <!-- Badge Selo de Qualidade -->
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-5 border backdrop-blur-md shadow-sm" style="background-color: ${t.theme.badgeBg}; color: ${t.theme.badgeText}; border-color: ${t.theme.badgeBorder};">
+                    <span>${t.badge}</span>
+                  </div>
+
+                  <!-- Título Display Impactante -->
+                  <h2 class="${t.typography.displayClass} tracking-wide text-white drop-shadow-md">
+                    ${t.title}
+                  </h2>
+
+                  <!-- Subtítulo Suculento -->
+                  <p class="mt-4 text-base md:text-lg leading-relaxed max-w-xl" style="color: ${t.theme.textMuted}; font-family: ${t.typography.baseFont};">
+                    ${t.subtitle}
+                  </p>
+
+                  <!-- Botões de Conversão Imediata -->
+                  <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
+                    <a href="#cardapio-nav" class="px-7 py-3.5 rounded-xl font-bold text-sm text-black shadow-lg shadow-amber-500/20 text-center trans-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2" style="background-color: ${t.theme.accent};">
+                      <span>${t.ctaText}</span>
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                    <a href="#cardapio-nav" class="px-6 py-3.5 rounded-xl font-semibold text-sm border text-center trans-all hover:bg-white/5 active:scale-95 text-white/90 border-white/15">
+                      ${t.ctaSecondary}
+                    </a>
+                  </div>
+
+                  <!-- Microcopy de Confiança -->
+                  <div class="mt-6 flex items-center gap-2 text-xs" style="color: ${t.theme.textMuted};">
+                    <span>${t.microcopy}</span>
+                  </div>
+
+                </div>
+
+                <!-- Coluna da Foto Hero (5 colunas) -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                  <div class="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
+                    <img src="${t.heroImage}" alt="${t.heroImageAlt}" class="size-full object-cover group-hover:scale-105 trans-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    
+                    <!-- Selo Flutuante -->
+                    <div class="absolute bottom-4 left-4 right-4 bg-black/75 backdrop-blur-md border border-white/10 p-3 rounded-2xl flex items-center justify-between">
+                      <div>
+                        <span class="text-[10px] uppercase font-bold text-amber-400 block">Destaque da Chapa</span>
+                        <span class="text-xs font-bold text-white">Smash Duplo com Crosta</span>
+                      </div>
+                      <span class="text-sm font-black text-amber-400">R$ 34,90</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+        `;
+      }
+
+      // 2. H02 - VINTAGE SMOKE & BBQ (CENTRALIZADO MONUMENTAL / RÚSTICO)
+      if (t.layoutType === "center-monumental") {
+        return `
+          <section id="hero-scoped" class="relative isolate overflow-hidden pt-14 pb-16 lg:py-24 animate-fade-slide text-center" style="background-color: ${t.theme.bgHero}; color: ${t.theme.textHero};">
+            <!-- Glow de Brasa & Calor -->
+            <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[500px] rounded-full blur-[160px] opacity-35" style="background-color: ${t.theme.primary};"></div>
+
+            <div class="max-w-4xl mx-auto px-4 relative z-10 flex flex-col items-center">
+              
+              <!-- Selo Rústico com Ícone de Lenha -->
+              <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 border shadow-md" style="background-color: ${t.theme.badgeBg}; color: ${t.theme.badgeText}; border-color: ${t.theme.badgeBorder};">
+                <span>${t.badge}</span>
+              </div>
+
+              <!-- Título Display Monumental -->
+              <h2 class="${t.typography.displayClass} text-[#FAF0E6] drop-shadow-lg max-w-3xl">
+                ${t.title}
+              </h2>
+
+              <!-- Subtítulo -->
+              <p class="mt-4 text-base md:text-lg leading-relaxed max-w-2xl" style="color: ${t.theme.textMuted}; font-family: ${t.typography.baseFont};">
+                ${t.subtitle}
+              </p>
+
+              <!-- Imagem Hero Centralizada com Destaque de Brasa -->
+              <div class="mt-8 relative w-full max-w-lg aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-amber-900/40 group">
+                <img src="${t.heroImage}" alt="${t.heroImageAlt}" class="size-full object-cover group-hover:scale-105 trans-all duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                
+                <!-- Tag de Defumação -->
+                <div class="absolute top-4 left-4 bg-orange-950/80 backdrop-blur-md border border-orange-500/30 px-3 py-1 rounded-full text-[11px] font-bold text-orange-300">
+                  Defumação 6h em Macieira
+                </div>
+              </div>
+
+              <!-- Botões de Ação -->
+              <div class="mt-8 flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
+                <a href="#cardapio-nav" class="px-8 py-3.5 rounded-xl font-bold text-sm text-black shadow-lg text-center trans-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2" style="background-color: ${t.theme.accent};">
+                  <span>${t.ctaText}</span>
+                  <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+                <a href="#cardapio-nav" class="px-6 py-3.5 rounded-xl font-semibold text-sm border text-center trans-all hover:bg-white/5 active:scale-95 text-[#FAF0E6] border-white/15">
+                  ${t.ctaSecondary}
+                </a>
+              </div>
+
+              <div class="mt-5 text-xs" style="color: ${t.theme.textMuted};">
+                ${t.microcopy}
+              </div>
+
+            </div>
+          </section>
+        `;
+      }
+
+      // 3. H03 - DARK BLACK ANGUS (SPOTLIGHT LUXURY / ALTA GASTRONOMIA)
+      if (t.layoutType === "spotlight-card") {
+        return `
+          <section id="hero-scoped" class="relative isolate overflow-hidden pt-12 pb-16 lg:py-24 animate-fade-slide" style="background-color: ${t.theme.bgHero}; color: ${t.theme.textHero};">
+            <!-- Iluminação Focal Zenital (Spotlight dourado) -->
+            <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 size-[650px] rounded-full blur-[170px] opacity-25" style="background-color: ${t.theme.primary};"></div>
+
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Coluna de Texto Fina & Sofisticada (6 colunas) -->
+                <div class="lg:col-span-6 flex flex-col items-start">
+                  
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold mb-6 border tracking-wide" style="background-color: ${t.theme.badgeBg}; color: ${t.theme.badgeText}; border-color: ${t.theme.badgeBorder}; font-family: ${t.typography.baseFont};">
+                    <span>${t.badge}</span>
+                  </div>
+
+                  <h2 class="${t.typography.displayClass} text-white tracking-tight">
+                    ${t.title}
+                  </h2>
+
+                  <p class="mt-5 text-base md:text-lg leading-relaxed" style="color: ${t.theme.textMuted}; font-family: ${t.typography.baseFont};">
+                    ${t.subtitle}
+                  </p>
+
+                  <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+                    <a href="#cardapio-nav" class="px-8 py-3.5 rounded-xl font-bold text-sm text-black shadow-xl text-center trans-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2" style="background-color: ${t.theme.primary};">
+                      <span>${t.ctaText}</span>
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                    <a href="#cardapio-nav" class="px-6 py-3.5 rounded-xl font-semibold text-sm border text-center trans-all hover:bg-white/5 active:scale-95 text-zinc-300 border-white/15">
+                      ${t.ctaSecondary}
+                    </a>
+                  </div>
+
+                  <div class="mt-6 flex items-center gap-2 text-xs" style="color: ${t.theme.textMuted};">
+                    <span>${t.microcopy}</span>
+                  </div>
+
+                </div>
+
+                <!-- Coluna do Card Gourmet Escuro (6 colunas) -->
+                <div class="lg:col-span-6 relative flex justify-center">
+                  <div class="relative w-full max-w-lg aspect-square rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-amber-500/20 group bg-zinc-900/50">
+                    <img src="${t.heroImage}" alt="${t.heroImageAlt}" class="size-full object-cover group-hover:scale-105 trans-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+                    
+                    <div class="absolute bottom-6 left-6 right-6">
+                      <span class="text-xs uppercase font-bold tracking-widest text-amber-400 block mb-1">Corte Selecionado</span>
+                      <h4 class="text-lg font-bold text-white">Blend Black Angus 200g</h4>
+                      <p class="text-xs text-zinc-400 mt-0.5">Acompanha queijo brie trufado e brioche artesanal</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+        `;
+      }
+
+      // 4. H04 - RETRO AMERICAN DINER (VINTAGE 50s / FESTIVO & POP)
+      if (t.layoutType === "retro-banner") {
+        return `
+          <section id="hero-scoped" class="relative isolate overflow-hidden pt-12 pb-16 lg:py-20 animate-fade-slide" style="background-color: ${t.theme.bgHero}; color: ${t.theme.textHero};">
+            <!-- Detalhe decorativo Diner sutil -->
+            <div class="pointer-events-none absolute -bottom-20 -right-20 size-80 rounded-full blur-[120px] opacity-25" style="background-color: ${t.theme.primary};"></div>
+
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Coluna de Texto Diner Pop (7 colunas) -->
+                <div class="lg:col-span-7 flex flex-col items-start">
+                  
+                  <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 border shadow-sm" style="background-color: ${t.theme.badgeBg}; color: ${t.theme.badgeText}; border-color: ${t.theme.badgeBorder}; font-family: ${t.typography.baseFont};">
+                    <span>${t.badge}</span>
+                  </div>
+
+                  <h2 class="${t.typography.displayClass} text-[#C1121F] drop-shadow-sm">
+                    ${t.title}
+                  </h2>
+
+                  <p class="mt-4 text-base md:text-lg leading-relaxed max-w-xl font-medium" style="color: ${t.theme.textMuted}; font-family: ${t.typography.baseFont};">
+                    ${t.subtitle}
+                  </p>
+
+                  <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
+                    <a href="#cardapio-nav" class="px-7 py-3.5 rounded-2xl font-bold text-sm text-white shadow-xl text-center trans-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2" style="background-color: ${t.theme.primary};">
+                      <span>${t.ctaText}</span>
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                    <a href="#cardapio-nav" class="px-6 py-3.5 rounded-2xl font-bold text-sm border text-center trans-all hover:bg-black/5 active:scale-95 text-[#1D2D44] border-black/15">
+                      ${t.ctaSecondary}
+                    </a>
+                  </div>
+
+                  <div class="mt-5 text-xs font-semibold" style="color: ${t.theme.textMuted};">
+                    ${t.microcopy}
+                  </div>
+
+                </div>
+
+                <!-- Foto do Combo Diner (5 colunas) -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                  <div class="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden shadow-xl border-4 border-white group">
+                    <img src="${t.heroImage}" alt="${t.heroImageAlt}" class="size-full object-cover group-hover:scale-105 trans-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                    
+                    <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl shadow font-bold text-xs text-[#C1121F]">
+                      🍟 Combo Clássico Americano
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+        `;
+      }
+
+      // 5. H05 - BRIOCHE GOLD & FRESH (FRESH BISTRO / SUCULÊNCIA DIURNA)
+      if (t.layoutType === "fresh-split") {
+        return `
+          <section id="hero-scoped" class="relative isolate overflow-hidden pt-12 pb-16 lg:py-24 animate-fade-slide" style="background-color: ${t.theme.bgHero}; color: ${t.theme.textHero};">
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Coluna de Texto Fresca (7 colunas) -->
+                <div class="lg:col-span-7 flex flex-col items-start">
+                  
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-4 border shadow-sm" style="background-color: ${t.theme.badgeBg}; color: ${t.theme.badgeText}; border-color: ${t.theme.badgeBorder}; font-family: ${t.typography.baseFont};">
+                    <span>${t.badge}</span>
+                  </div>
+
+                  <h2 class="${t.typography.displayClass} text-[#264653] tracking-tight">
+                    ${t.title}
+                  </h2>
+
+                  <p class="mt-4 text-base md:text-lg leading-relaxed max-w-xl font-medium" style="color: ${t.theme.textMuted}; font-family: ${t.typography.baseFont};">
+                    ${t.subtitle}
+                  </p>
+
+                  <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
+                    <a href="#cardapio-nav" class="px-7 py-3.5 rounded-xl font-bold text-sm text-white shadow-lg text-center trans-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2" style="background-color: ${t.theme.primary};">
+                      <span>${t.ctaText}</span>
+                      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                    <a href="#cardapio-nav" class="px-6 py-3.5 rounded-xl font-semibold text-sm border text-center trans-all hover:bg-black/5 active:scale-95 text-[#264653] border-black/15">
+                      ${t.ctaSecondary}
+                    </a>
+                  </div>
+
+                  <div class="mt-5 text-xs font-medium" style="color: ${t.theme.textMuted};">
+                    ${t.microcopy}
+                  </div>
+
+                </div>
+
+                <!-- Foto Fresh Brioche (5 colunas) -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                  <div class="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden shadow-xl border border-stone-200 group">
+                    <img src="${t.heroImage}" alt="${t.heroImageAlt}" class="size-full object-cover group-hover:scale-105 trans-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                    
+                    <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl shadow text-xs font-bold text-emerald-800 flex items-center gap-1.5">
+                      <span class="size-2 rounded-full bg-emerald-500"></span>
+                      Pão Brioche Selado na Hora
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+        `;
+      }
+    }
+
+    // ALTERNADOR DE TEMPLATES
+    function switchTemplate(id) {
+      if (!TEMPLATES_DATA[id]) return;
+      activeTemplateId = id;
+      const t = TEMPLATES_DATA[id];
+
+      // Atualiza botões da barra do showroom
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-amber-500', 'text-black', 'border-amber-400', 'shadow-lg', 'shadow-amber-500/20');
+        btn.classList.add('bg-zinc-800', 'text-zinc-300', 'border-white/5');
+      });
+      const activeBtn = document.getElementById(`tab-${id}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-zinc-800', 'text-zinc-300', 'border-white/5');
+        activeBtn.classList.add('bg-amber-500', 'text-black', 'border-amber-400', 'shadow-lg', 'shadow-amber-500/20');
+      }
+
+      // Atualiza Ficha Técnica na barra
+      document.getElementById('spec-name').textContent = `${t.id} — ${t.name}`;
+      document.getElementById('spec-ticket').textContent = t.ticketFocus;
+      document.getElementById('spec-fonts').textContent = `${t.typography.displayFont.replace(/'/g, '').split(',')[0]} + ${t.typography.baseFont.replace(/'/g, '').split(',')[0]}`;
+
+      // Injeta o Hero renderizado
+      const mount = document.getElementById('hero-mount');
+      mount.innerHTML = renderHeroHtml(t);
+    }
+
+    // ALTERNADOR DE MODO DE VISUALIZAÇÃO (PADRÃO TRIPLO DO HUB: PC + MOBILE 1 + MOBILE 2)
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      const canvas = document.getElementById('store-canvas');
+      const btnDesktop = document.getElementById('btn-view-desktop');
+      const btnMobileLg = document.getElementById('btn-view-mobile-lg');
+      const btnMobileSm = document.getElementById('btn-view-mobile-sm');
+
+      // Limpa classes dos botões
+      [btnDesktop, btnMobileLg, btnMobileSm].forEach(b => {
+        b.classList.remove('bg-amber-500', 'text-black', 'shadow');
+        b.classList.add('text-zinc-300');
+      });
+
+      // Limpa molduras do canvas
+      canvas.classList.remove('mobile-frame-sm', 'mobile-frame-lg', 'my-8');
+
+      if (mode === 'mobile-sm') {
+        canvas.classList.add('mobile-frame-sm', 'my-8');
+        btnMobileSm.classList.add('bg-amber-500', 'text-black', 'shadow');
+        btnMobileSm.classList.remove('text-zinc-300');
+      } else if (mode === 'mobile-lg') {
+        canvas.classList.add('mobile-frame-lg', 'my-8');
+        btnMobileLg.classList.add('bg-amber-500', 'text-black', 'shadow');
+        btnMobileLg.classList.remove('text-zinc-300');
+      } else {
+        // Desktop / PC (100%)
+        btnDesktop.classList.add('bg-amber-500', 'text-black', 'shadow');
+        btnDesktop.classList.remove('text-zinc-300');
+      }
+    }
+
+    // ATALHOS DE TECLADO
+    // Teclas 1 a 5: Troca os templates H01 a H05
+    // Teclas D (PC), M (Mobile 1 - 390px), L (Mobile 2 - 480px)
+    window.addEventListener('keydown', (e) => {
+      // Ignora se estiver digitando em campo de texto
+      if (['input', 'textarea'].includes(document.activeElement.tagName.toLowerCase())) return;
+
+      if (e.key === '1') switchTemplate('H01');
+      if (e.key === '2') switchTemplate('H02');
+      if (e.key === '3') switchTemplate('H03');
+      if (e.key === '4') switchTemplate('H04');
+      if (e.key === '5') switchTemplate('H05');
+      if (e.key.toLowerCase() === 'd') setViewMode('desktop');
+      if (e.key.toLowerCase() === 'm') setViewMode('mobile-sm');
+      if (e.key.toLowerCase() === 'l') setViewMode('mobile-lg');
+    });
+
+    // Inicializa com H01 Smash Urban
+    document.addEventListener('DOMContentLoaded', () => {
+      switchTemplate('H01');
+    });
+  </script>
+
+</body>
+</html>

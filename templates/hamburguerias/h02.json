@@ -1,0 +1,39 @@
+{
+  "id": "H02",
+  "name": "Vintage Smoke & BBQ",
+  "segment": "Hamburgueria",
+  "mood": "Rústico, artesanal, defumado em lenha, brasa e maturidade",
+  "commercialTarget": "Ticket médio mais alto, combos com bacon rústico, cervejas artesanais e famílias",
+  "ticketFocus": "Ticket Médio & Valor Agregado (R$ 38 - R$ 56)",
+  "badge": "🪵 Defumação Lenta em Lenha · 100% Angus",
+  "title": "SABOR DE BRASA VIVA & DEFUMAÇÃO ARTESANAL",
+  "subtitle": "Blends selecionados de Angus preparados no ponto correto, bacon rústico caramelizado e molho barbecue artesanal defumado por horas.",
+  "ctaText": "Explorar Cardápio da Brasa",
+  "ctaSecondary": "Ver Cortes Especiais",
+  "microcopy": "🔥 Feito na brasa de verdade · Ingredientes selecionados",
+  "theme": {
+    "primary": "#C85A17",
+    "primaryHover": "#A9440D",
+    "accent": "#F4A261",
+    "accentHover": "#E76F51",
+    "bgHero": "#181310",
+    "bgHeroSecondary": "#241C17",
+    "textHero": "#FAF0E6",
+    "textMuted": "#B8A89A",
+    "badgeBg": "rgba(244, 162, 97, 0.14)",
+    "badgeText": "#F4A261",
+    "badgeBorder": "rgba(244, 162, 97, 0.35)",
+    "surfaceGlow": "rgba(200, 90, 23, 0.22)"
+  },
+  "typography": {
+    "displayFont": "Oswald",
+    "baseFont": "Plus Jakarta Sans",
+    "displayWeight": "700",
+    "displayLetterSpacing": "0.02em",
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+  },
+  "heroLayout": "center-monumental",
+  "heroImage": "assets/h02-smoke.jpg",
+  "heroImageAlt": "Burger artesanal defumado com bacon grosso e molho barbecue",
+  "promptMidjourney": "Artisanal gourmet burger served on a dark rustic wooden board, thick 200g smoked angus beef patty with grill marks, thick-cut crispy bacon strips dripping with glossy homemade BBQ sauce, melted smoked provolone cheese, subtle wood smoke rising in background, dark moody warm lighting, macro shot, food magazine cover quality --ar 1:1 --v 6.0"
+}

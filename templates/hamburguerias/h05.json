@@ -1,0 +1,39 @@
+{
+  "id": "H05",
+  "name": "Brioche Gold & Fresh",
+  "segment": "Hamburgueria",
+  "mood": "Fresco, suculento, brioche selado na manteiga, queijo derretido e apetite natural",
+  "commercialTarget": "Almoço e jantar, público amplo que busca burger saboroso sem parecer pesado",
+  "ticketFocus": "Equilíbrio & Alta Frequência (R$ 32 - R$ 48)",
+  "badge": "🌱 Pão Brioche Selado na Manteiga · Carnes Nobres Diárias",
+  "title": "SUCULÊNCIA & FRESCOR EM CADA MORDIDA",
+  "subtitle": "Pão brioche fofinho dourado na manteiga de garrafa, hambúrguer grelhado no fogo, alface americana estalando de fresca e nosso molho da casa.",
+  "ctaText": "Montar Meu Pedido",
+  "ctaSecondary": "Conhecer Nossos Ingredientes",
+  "microcopy": "🧀 Queijo derretido no ponto exato · Ingredientes frescos do dia",
+  "theme": {
+    "primary": "#E05A47",
+    "primaryHover": "#C84330",
+    "accent": "#2A9D8F",
+    "accentHover": "#21867A",
+    "bgHero": "#FAF7F2",
+    "bgHeroSecondary": "#F0EAE1",
+    "textHero": "#264653",
+    "textMuted": "#4A6B6C",
+    "badgeBg": "rgba(42, 157, 143, 0.12)",
+    "badgeText": "#1E7268",
+    "badgeBorder": "rgba(42, 157, 143, 0.28)",
+    "surfaceGlow": "rgba(224, 90, 71, 0.12)"
+  },
+  "typography": {
+    "displayFont": "Barlow Condensed",
+    "baseFont": "Plus Jakarta Sans",
+    "displayWeight": "800",
+    "displayLetterSpacing": "0.01em",
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+  },
+  "heroLayout": "fresh-split",
+  "heroImage": "assets/h05-brioche.jpg",
+  "heroImageAlt": "Burger suculento com pão brioche dourado, alface fresca e queijo derretido",
+  "promptMidjourney": "Appetizing fresh gourmet burger on a clean bright marble surface, perfectly golden glossy brioche bun with sesame seeds, crisp bright green lettuce, ripe red tomato slices, melting yellow cheddar draping down a juicy grilled beef patty, bright natural daylight studio lighting, mouthwatering, vibrant colors, premium bistro quality --ar 1:1 --v 6.0"
+}

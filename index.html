@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Teixo Hub | Hub de Clientes</title>
+  <meta name="description" content="Central de gestão de todos os clientes, sites, cardápios e painéis da Teixo Assessoria de Crescimento.">
+  <link rel="icon" href="/favicon.ico">
+  <script>
+    // Limpeza de qualquer Service Worker antigo da raiz
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        for (let r of regs) r.unregister();
+      });
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            teixo: {
+              black: '#0f172a',
+              accent: '#f97316',
+              green: '#10b981',
+              blue: '#0284c7',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Estilização suave de scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  </style>
+</head>
+<body class="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased selection:bg-orange-600 selection:text-white">
+  
+  <!-- BACKDROP OVERLAY DO MENU LATERAL (APENAS MOBILE) -->
+  <div id="hub-sidebar-backdrop" onclick="toggleHubSidebar()" class="lg:hidden fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- MENU LATERAL DA ESQUERDA (FIXO NO DESKTOP, GAVETA NO MOBILE) -->
+  <aside id="hub-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-52 max-w-[85vw] lg:max-w-none flex-col justify-between border-r border-slate-200/90 bg-white transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none">
+    
+    <!-- TOPO DO MENU LATERAL -->
+    <div>
+      <div class="flex items-center justify-between border-b border-slate-200/80 p-3 bg-slate-50/80">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="grid h-8 w-8 place-items-center rounded-xl bg-slate-950 text-white font-black shadow-xs group-hover:scale-105 transition">
+            <i data-lucide="layers" class="h-4 w-4 text-orange-500"></i>
+          </div>
+          <div>
+            <div class="text-xs font-black text-slate-950 group-hover:text-orange-600 transition">Teixo Hub</div>
+            <div class="text-[9px] font-semibold text-slate-500">Menu de Operações</div>
+          </div>
+        </a>
+        <button onclick="toggleHubSidebar()" class="lg:hidden rounded-xl p-2 text-slate-400 hover:bg-slate-200/60 hover:text-slate-700 transition" title="Fechar Menu">
+          <i data-lucide="x" class="h-5 w-5"></i>
+        </button>
+      </div>
+
+      <!-- SEÇÕES DO MENU LATERAL -->
+      <div class="p-2.5 space-y-3.5 overflow-y-auto max-h-[calc(100vh-120px)]">
+        
+        <!-- 1. HUB -->
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+            <span>1. Hub</span>
+            <span class="size-1.5 rounded-full bg-orange-500"></span>
+          </div>
+          
+          <a href="/" class="flex items-center gap-2 rounded-xl bg-orange-50 border border-orange-200/90 px-2.5 py-2 text-left transition group shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-orange-600 text-white font-black shadow-xs">
+              <i data-lucide="layout-grid" class="h-3.5 w-3.5"></i>
+            </div>
+            <span class="text-xs font-black text-orange-950 group-hover:text-orange-600 transition whitespace-nowrap">Hub de Clientes</span>
+          </a>
+        </div>
+
+        <!-- 2. PLANILHA -->
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+            <span>2. Planilha</span>
+            <span class="size-1.5 rounded-full bg-emerald-500"></span>
+          </div>
+
+          <a href="/painel/planilha/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200/80 hover:border-emerald-300 px-2.5 py-2 text-left transition group shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-emerald-600 text-white font-black shadow-xs group-hover:scale-105 transition">
+              <i data-lucide="file-spreadsheet" class="h-3.5 w-3.5"></i>
+            </div>
+            <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition whitespace-nowrap">Planilha de Clientes</span>
+          </a>
+        </div>
+
+        <!-- 3. TEMPLATES / SHOWROOM -->
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+            <span>3. Showroom</span>
+            <span class="size-1.5 rounded-full bg-amber-500"></span>
+          </div>
+
+          <a href="/templates/hamburguerias/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-amber-50 border border-slate-200/80 hover:border-amber-300 px-2.5 py-2 text-left transition group shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-amber-500 text-black font-black shadow-xs group-hover:scale-105 transition">
+              <i data-lucide="sparkles" class="h-3.5 w-3.5"></i>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-slate-800 group-hover:text-amber-800 transition block">Showroom Hamburguerias</span>
+              <span class="text-[9px] text-zinc-500 font-medium">H01 a H05 (3 Telas)</span>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RODAPÉ DO MENU LATERAL -->
+    <div class="border-t border-slate-200 p-2.5 bg-slate-50 text-xs">
+      <div class="flex items-center justify-between text-slate-500">
+        <span class="font-bold text-[10px]">Teixo Hub</span>
+        <span class="text-[9px] text-emerald-600 flex items-center gap-1 font-bold">
+          <span class="size-1.5 rounded-full bg-emerald-500"></span> Online
+        </span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ==================== CONTAINER PRINCIPAL (À DIREITA DA SIDEBAR FIXA) ==================== -->
+  <div class="lg:pl-52 flex min-h-screen flex-col justify-between">
+
+    <!-- ==================== HEADER SUPERIOR ==================== -->
+    <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
+      <div class="flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        
+        <!-- LADO ESQUERDO: BOTÃO MOBILE E TÍTULO -->
+        <div class="flex items-center gap-3">
+          
+          <!-- BOTÃO MOBILE (APENAS TELAS PEQUENAS) -->
+          <button 
+            id="btn-toggle-hub-sidebar" 
+            type="button" 
+            onclick="toggleHubSidebar()" 
+            title="Abrir Menu Lateral" 
+            class="lg:hidden grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-950 transition active:scale-95 shadow-xs"
+          >
+            <i data-lucide="menu" class="h-5 w-5 text-slate-800"></i>
+          </button>
+
+          <div class="flex items-center gap-3">
+            <div class="lg:hidden grid h-9 w-9 place-items-center rounded-xl bg-slate-950 text-white font-black shadow-xs">
+              <i data-lucide="layers" class="h-4 w-4 text-orange-500"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm sm:text-base font-black tracking-tight text-slate-950">Hub de Clientes</span>
+                <span class="rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-emerald-700">Online</span>
+              </div>
+              <div class="text-[11px] font-bold text-slate-500">Central Oficial Teixo • Sites, Cardápios e Painéis</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- LADO DIREITO: BOTÃO DA PLANILHA E ATALHOS -->
+        <div class="flex items-center gap-2.5">
+          <a 
+            href="/templates/hamburguerias/" 
+            class="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black px-3.5 py-2 text-xs font-black transition shadow-xs"
+          >
+            <i data-lucide="sparkles" class="h-4 w-4"></i>
+            <span class="hidden sm:inline">Showroom</span> Templates
+          </a>
+
+          <a 
+            href="/painel/planilha/" 
+            class="inline-flex items-center gap-2 rounded-xl bg-emerald-50 border border-emerald-200/90 px-3.5 py-2 text-xs font-extrabold text-emerald-800 hover:bg-emerald-100 transition shadow-xs"
+          >
+            <i data-lucide="file-spreadsheet" class="h-4 w-4 text-emerald-600"></i>
+            <span class="hidden sm:inline">Planilha</span>
+          </a>
+
+          <a 
+            href="/hub/" 
+            class="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition"
+          >
+            <i data-lucide="server" class="h-4 w-4 text-slate-500"></i>
+            <span>Deploys VPS</span>
+          </a>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ==================== CONTEÚDO PRINCIPAL ==================== -->
+    <main class="px-4 py-8 sm:px-6 sm:py-8 lg:px-8 w-full flex-1 max-w-7xl mx-auto">
+    
+    <!-- HERO HEADER DO TEIXO HUB -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200/80">
+      <div class="max-w-2xl">
+        <h1 class="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+          Hub de Clientes
+        </h1>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="flex items-center gap-3 self-start md:self-auto shrink-0 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-xs">
+        <div class="px-3 border-r border-slate-100">
+          <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Em Produção</div>
+          <div class="text-base font-black text-slate-900" id="stat-total-clientes">...</div>
+        </div>
+        <div class="px-3 border-r border-slate-100">
+          <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Já Recebido</div>
+          <div class="text-base font-black text-emerald-600" id="stat-recebido">R$ 150,00</div>
+        </div>
+        <div class="px-3">
+          <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Status Infra</div>
+          <div class="text-base font-black text-emerald-600 text-xs flex items-center gap-1.5" id="stat-infra">
+            <span class="size-2 rounded-full bg-emerald-500"></span> Online
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANNER DESTAQUE: SHOWROOM DE TEMPLATES FOOD DELIVERY -->
+    <div class="mt-6 p-5 rounded-2xl bg-gradient-to-r from-slate-950 via-zinc-900 to-amber-950 text-white border border-amber-500/30 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-400/20 text-amber-300 border border-amber-400/30 mb-2">
+          ⚡ 25 Identidades Visuais · Food Delivery
+        </div>
+        <h3 class="text-lg md:text-xl font-black text-white">Catálogo de Templates & Showrooms Interativos</h3>
+        <p class="text-xs text-zinc-300 mt-1 max-w-2xl leading-relaxed">
+          Modelos profissionais prontos para o lojista escolher. Teste os 5 modelos de Hamburgueria (H01 a H05) com alternância instantânea nos 3 modos de tela oficiais: PC, Mobile 2 (480px) e Mobile 1 (390px).
+        </p>
+      </div>
+      <a href="/templates/hamburguerias/" class="shrink-0 px-5 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs flex items-center gap-2 shadow-md hover:scale-105 active:scale-95 transition">
+        <span>Abrir Showroom Hamburguerias</span>
+        <i data-lucide="arrow-right" class="size-4"></i>
+      </a>
+    </div>
+
+    <!-- BARRA DE FILTROS E BUSCA EM TEMPO REAL -->
+    <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+      
+      <!-- Input de Busca -->
+      <div class="relative flex-1 max-w-md">
+        <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400"></i>
+        <input 
+          type="text" 
+          id="busca-clientes-hub" 
+          placeholder="Buscar cliente por nome, nicho ou contato..." 
+          oninput="filtrarClientesHub()"
+          class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white border border-slate-200 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition shadow-xs"
+        >
+      </div>
+
+      <!-- Filtros Rápidos de Categoria -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0" id="filtros-categoria">
+        <button onclick="filtrarCategoria('todos', this)" class="cat-btn active px-3.5 py-2 rounded-xl text-xs font-extrabold bg-slate-900 text-white transition shadow-xs">
+          Todos os Clientes (<span id="cat-count-todos">0</span>)
+        </button>
+        <button onclick="filtrarCategoria('gastronomia', this)" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition">
+          Gastronomia & Delivery (<span id="cat-count-gastro">0</span>)
+        </button>
+        <button onclick="filtrarCategoria('varejo', this)" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition">
+          Mercados & Varejo (<span id="cat-count-varejo">0</span>)
+        </button>
+        <button onclick="filtrarCategoria('turismo', this)" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition">
+          Serviços & Outros (<span id="cat-count-outros">0</span>)
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ==================== VITRINE DE CLIENTES (GRID DE CARDS DINÂMICOS) ==================== -->
+    <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="grid-clientes-hub">
+      <!-- Cards renderizados dinamicamente pelo JavaScript a partir da fonte única de clientes -->
+    </div>
+
+    <!-- MENSAGEM QUANDO A BUSCA NÃO ENCONTRA NADA -->
+    <div id="no-results-hub" class="hidden my-12 rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-xs">
+      <div class="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-slate-100 text-slate-400 mb-3">
+        <i data-lucide="search-x" class="size-6"></i>
+      </div>
+      <h3 class="text-base font-bold text-slate-900">Nenhum cliente encontrado</h3>
+      <p class="text-xs text-slate-500 mt-1">Tente buscar por outro termo ou selecione "Todos os Clientes".</p>
+    </div>
+
+  </main>
+
+  <!-- ==================== RODAPÉ INSTITUCIONAL ==================== -->
+  <footer class="mt-12 border-t border-slate-200/80 bg-white py-6">
+    <div class="mx-auto flex max-w-7xl flex-col sm:flex-row items-center justify-between gap-3 px-4 text-xs font-medium text-slate-500 sm:px-6">
+      <div class="flex items-center gap-2">
+        <span class="font-black text-slate-900">Teixo Hub</span>
+        <span>•</span>
+        <span>Rio de Janeiro / RJ</span>
+      </div>
+      <div class="flex items-center gap-2 text-slate-400">
+        <span class="text-[11px] text-slate-600">Teixo Hub • VPS Online</span>
+        <span>•</span>
+        <span>Porta 22022</span>
+        <span>•</span>
+        <span>Nginx + SQLite WAL</span>
+      </div>
+    </div>
+  </footer>
+
+  </div> <!-- Fim do container com lg:pl-52 -->
+
+  <!-- ==================== SCRIPTS INTERATIVOS & SINCRONIZAÇÃO DINÂMICA ==================== -->
+  <script>
+    // Inicializar ícones Lucide
+    lucide.createIcons();
+
+    const STORAGE_KEY = 'teixo_automatech_clientes_v10';
+    const STORAGE_LAST_SYNC = 'teixo_automatech_last_sync_v10';
+    const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/1aRIqEG8HzKYCuxWrVvpW87WOqb7eL5WHjidmgf91lu8/gviz/tq?tqx=out:csv&sheet=Clientes";
+
+    // 13 CLIENTES OFICIAIS COMO FALLBACK ROBUSTO
+    const CLIENTES_INICIAIS = [
+      { id: 'cli-2', nome: 'Pizza do Juca', ramo: 'Pizzaria Artesanal • Paciência, RJ', solucao: 'Site + Painel', contato: 'Juca', fase: 'Em Produção', status: 'producao', setup: 300, setupPago: 150, recorrencia: 150, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-4', nome: 'Moraes Sorveteria', ramo: 'Sorvetes & Açaí • Paciência, RJ', solucao: 'Site + Painel', contato: '@moraessorveteria01', fase: 'Em Produção', status: 'producao', setup: 0, setupPago: 0, recorrencia: 50, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-1', nome: 'Sítio Hostel Natureza', ramo: 'Turismo & Eventos • Guaratiba / RJ', solucao: 'Combo', contato: '@sitiohostelnatureza', fase: 'Em aguardo', status: 'aguardo', setup: 1500, setupPago: 0, recorrencia: 750, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-3', nome: 'Açaí com Resenha', ramo: 'Açaiteria & Lanches', solucao: 'Site + Painel', contato: '@acaicomresenharj', fase: 'Em aguardo', status: 'aguardo', setup: 200, setupPago: 0, recorrencia: 50, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-5', nome: 'Russo Cachorro Quente', ramo: 'Lanchonete & Hot-dog', solucao: 'Site + Painel', contato: '@cacho_rroquentedorusso', fase: 'Em aguardo', status: 'aguardo', setup: 300, setupPago: 0, recorrencia: 150, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-6', nome: 'Maluco do Preço Baixo', ramo: 'Distribuidora & Comércio', solucao: 'Automação + Painel', contato: '@malucodoprecobaixo22', fase: 'Em aguardo', status: 'aguardo', setup: 200, setupPago: 0, recorrencia: 100, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-7', nome: 'SuperMercado Sernor', ramo: 'Supermercado & Varejo', solucao: 'Automação + Painel', contato: '@mercadosernor', fase: 'Em aguardo', status: 'aguardo', setup: 1000, setupPago: 0, recorrencia: 500, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-8', nome: 'Loja de Roupas 1', ramo: 'Moda / Vestuário', solucao: 'Combo', contato: 'Rafael anchieta', fase: 'Em aguardo', status: 'aguardo', setup: 1200, setupPago: 0, recorrencia: 100, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-9', nome: 'Restaurante sem nome', ramo: 'Gastronomia & Delivery', solucao: 'Site + Painel', contato: 'Nem PE', fase: 'Em aguardo', status: 'aguardo', setup: 400, setupPago: 0, recorrencia: 150, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-10', nome: 'Supermercado 2 sem nome', ramo: 'Supermercado & Varejo', solucao: 'Automação + Painel', contato: 'parente larissa', fase: 'Em aguardo', status: 'aguardo', setup: 1500, setupPago: 0, recorrencia: 750, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-11', nome: 'Supermercado 3 sem nome', ramo: 'Supermercado & Varejo', solucao: 'Automação + Painel', contato: 'parente larissa', fase: 'Em aguardo', status: 'aguardo', setup: 1500, setupPago: 0, recorrencia: 750, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-12', nome: 'Loja de Roupas 2', ramo: 'Moda / Vestuário', solucao: 'Combo', contato: 'Roupa cosmos tiago', fase: 'Em aguardo', status: 'aguardo', setup: 1500, setupPago: 0, recorrencia: 750, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-13', nome: 'Supermercado 4', ramo: 'Supermercado & Varejo', solucao: 'Automação + Painel', contato: 'Edimar / Tiago', fase: 'Declinado', status: 'declinado', setup: 0, setupPago: 0, recorrencia: 0, recorrenciaPaga: 0, comissao2pct: 0 }
+    ];
+
+    let clientesHub = [];
+    let categoriaAtual = 'todos';
+
+    function formatarMoeda(val) {
+      return Number(val || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function parseCSV(text) {
+      const lines = [];
+      let currentLine = [];
+      let currentField = '';
+      let insideQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const nextChar = text[i + 1];
+        if (char === '"') {
+          if (insideQuotes && nextChar === '"') {
+            currentField += '"';
+            i++;
+          } else {
+            insideQuotes = !insideQuotes;
+          }
+        } else if (char === ',' && !insideQuotes) {
+          currentLine.push(currentField);
+          currentField = '';
+        } else if ((char === '\r' || char === '\n') && !insideQuotes) {
+          if (char === '\r' && nextChar === '\n') i++;
+          currentLine.push(currentField);
+          if (currentLine.some(f => f.trim() !== '')) lines.push(currentLine);
+          currentLine = [];
+          currentField = '';
+        } else {
+          currentField += char;
+        }
+      }
+      if (currentField || currentLine.length > 0) {
+        currentLine.push(currentField);
+        if (currentLine.some(f => f.trim() !== '')) lines.push(currentLine);
+      }
+      return lines;
+    }
+
+    function parseNumber(val) {
+      if (typeof val === 'number') return val;
+      if (!val) return 0;
+      const clean = String(val).replace(/R\$/g, '').replace(/\./g, '').replace(/,/g, '.').trim();
+      const num = parseFloat(clean);
+      return isNaN(num) ? 0 : num;
+    }
+
+    function mapearStatus(fase, empresa) {
+      const e = (empresa || '').toLowerCase();
+      if (e.includes('supermercado 4')) return 'declinado';
+      const f = (fase || '').toLowerCase();
+      if (f.includes('produ') || f.includes('fechad')) return 'producao';
+      if (f.includes('declin') || f.includes('rejeit') || f.includes('recus') || f.includes('cancel')) return 'declinado';
+      return 'aguardo';
+    }
+
+    function mapearSolucao(prodRaw) {
+      const p = (prodRaw || '').toLowerCase();
+      if (p.includes('site') && p.includes('automação')) return 'Combo';
+      if (p.includes('automação')) return 'Automação + Painel';
+      return 'Site + Painel';
+    }
+
+    function mapearCategoria(ramo, solucao, nome) {
+      const text = ((ramo || '') + ' ' + (solucao || '') + ' ' + (nome || '')).toLowerCase();
+      if (text.includes('hostel') || text.includes('hotel') || text.includes('pousada') || text.includes('turismo') || text.includes('viagem') || text.includes('imobili')) {
+        return 'turismo';
+      }
+      if (text.includes('pizza') || text.includes('lanch') || text.includes('açaí') || text.includes('acai') || text.includes('sorvet') || text.includes('gastro') || text.includes('restaur') || text.includes('marmit') || text.includes('alimento') || text.includes('cesta') || text.includes('hamburg') || text.includes('hot-dog') || text.includes('cachorro') || text.includes('doce')) {
+        return 'gastronomia';
+      }
+      if (text.includes('mercado') || text.includes('supermercado') || text.includes('varejo') || text.includes('distribuid') || text.includes('roupa') || text.includes('moda') || text.includes('vestu')) {
+        return 'varejo';
+      }
+      return 'turismo';
+    }
+
+    // CARREGAR DADOS (LOCALSTORAGE + BACKGROUND REFRESH DO GOOGLE SHEETS)
+    async function carregarClientesHub() {
+      const salvo = localStorage.getItem(STORAGE_KEY);
+      if (salvo) {
+        try {
+          clientesHub = JSON.parse(salvo);
+          renderizarGridHub();
+        } catch (e) {
+          console.warn('Erro ao ler localStorage do Hub:', e);
+        }
+      } else {
+        clientesHub = [...CLIENTES_INICIAIS];
+        renderizarGridHub();
+      }
+
+      // Background Fetch do Google Sheets
+      try {
+        const response = await fetch(GOOGLE_SHEETS_CSV_URL + '&_t=' + Date.now());
+        if (!response.ok) return;
+
+        const csvText = await response.text();
+        const rows = parseCSV(csvText);
+        const ignoreEmpresas = ['INSTALAÇÃO', 'RECORRÊNCIA MENSAL', 'LOJAS COM COMISSÃO'];
+
+        const parsed = [];
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const empresa = (row[0] || '').replace(/""/g, '').trim();
+          if (!empresa || ignoreEmpresas.some(ign => empresa.toUpperCase().includes(ign))) continue;
+
+          const ramo = (row[1] || '').replace(/""/g, '').trim();
+          const contato = row[3] || '';
+          const fase = row[4] || 'Em aguardo';
+          const status = mapearStatus(fase, empresa);
+          const setup = parseNumber(row[5]);
+          const recorrencia = parseNumber(row[6]);
+
+          const existente = clientesHub.find(c => c.nome.toLowerCase() === empresa.toLowerCase());
+          let setupPago = (row[13] !== undefined && String(row[13]).trim() !== '') ? parseNumber(row[13]) : (existente ? (existente.setupPago || 0) : 0);
+          let recorrenciaPaga = (row[14] !== undefined && String(row[14]).trim() !== '') ? parseNumber(row[14]) : (existente ? (existente.recorrenciaPaga || 0) : 0);
+          let comissao2pct = (row[15] !== undefined && String(row[15]).trim() !== '') ? ((String(row[15]).toUpperCase() === 'TRUE' || parseNumber(row[15]) > 0) ? parseNumber(row[15]) : 0) : (existente ? (existente.comissao2pct || 0) : 0);
+
+          parsed.push({
+            id: existente ? existente.id : ('cli-' + i),
+            nome: empresa,
+            ramo: ramo || (existente ? existente.ramo : 'Gastronomia / Comércio'),
+            solucao: mapearSolucao(row[2]) || (existente ? existente.solucao : 'Site + Painel'),
+            contato: contato || (existente ? existente.contato : ''),
+            fase,
+            status,
+            setup,
+            setupPago,
+            recorrencia,
+            recorrenciaPaga,
+            comissao2pct
+          });
+        }
+
+        if (parsed.length > 0) {
+          clientesHub = parsed;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(clientesHub));
+          renderizarGridHub();
+        }
+      } catch (err) {
+        console.warn('Sync background do Sheets no Hub falhou (usando cache local):', err);
+      }
+    }
+
+    // RENDERIZAR GRID DINÂMICO
+    function renderizarGridHub() {
+      const total = clientesHub.length;
+      const producao = clientesHub.filter(c => c.status === 'producao');
+      let dinheiroJaRecebido = 0;
+
+      clientesHub.forEach(c => {
+        dinheiroJaRecebido += (c.setupPago || 0) + (c.recorrenciaPaga || 0) + (c.comissao2pct || 0);
+      });
+
+      // Atualiza métricas do topo
+      const elStatTotal = document.getElementById('stat-total-clientes');
+      if (elStatTotal) elStatTotal.innerText = `${producao.length}/${total} Lojas`;
+
+      const elStatRecebido = document.getElementById('stat-recebido');
+      if (elStatRecebido) elStatRecebido.innerText = 'R$ ' + formatarMoeda(dinheiroJaRecebido);
+
+      // Atualiza contadores dos filtros
+      let countGastro = 0, countVarejo = 0, countOutros = 0;
+      clientesHub.forEach(c => {
+        const cat = mapearCategoria(c.ramo, c.solucao, c.nome);
+        if (cat === 'gastronomia') countGastro++;
+        else if (cat === 'varejo') countVarejo++;
+        else countOutros++;
+      });
+
+      const elCatTodos = document.getElementById('cat-count-todos');
+      if (elCatTodos) elCatTodos.innerText = total;
+      const elCatGastro = document.getElementById('cat-count-gastro');
+      if (elCatGastro) elCatGastro.innerText = countGastro;
+      const elCatVarejo = document.getElementById('cat-count-varejo');
+      if (elCatVarejo) elCatVarejo.innerText = countVarejo;
+      const elCatOutros = document.getElementById('cat-count-outros');
+      if (elCatOutros) elCatOutros.innerText = countOutros;
+
+      const grid = document.getElementById('grid-clientes-hub');
+      if (!grid) return;
+
+      // Ordenação prioritária: Lojas em Produção sempre aparecem no topo
+      const ordenados = [...clientesHub].sort((a, b) => {
+        if (a.status === 'producao' && b.status !== 'producao') return -1;
+        if (a.status !== 'producao' && b.status === 'producao') return 1;
+        return 0;
+      });
+
+      let html = '';
+
+      ordenados.forEach(c => {
+        const cat = mapearCategoria(c.ramo, c.solucao, c.nome);
+        const buscaStr = `${c.nome} ${c.ramo} ${c.contato} ${c.solucao}`.toLowerCase();
+
+        // Status Badge Oficial
+        let statusBadge = '';
+        if (c.status === 'producao') {
+          statusBadge = `
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/90 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-emerald-800 shrink-0">
+              <span class="size-1.5 rounded-full bg-emerald-500"></span> Em Produção
+            </span>
+          `;
+        } else if (c.status === 'declinado') {
+          statusBadge = `
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-rose-50 border border-rose-200/90 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-rose-800 shrink-0">
+              <span class="size-1.5 rounded-full bg-rose-500"></span> Declinado
+            </span>
+          `;
+        } else {
+          statusBadge = `
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-50 border border-amber-200/90 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-amber-800 shrink-0">
+              <span class="size-1.5 rounded-full bg-amber-500"></span> Em aguardo
+            </span>
+          `;
+        }
+
+        // Avatar / Logo
+        let logoHtml = '';
+        if (c.nome.toLowerCase().includes('pizza do juca')) {
+          logoHtml = `
+            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-orange-50 border border-orange-100 p-1">
+              <img src="/pizzadojuca/logo_juca.png" alt="Pizza do Juca" class="h-10 w-10 object-contain" onerror="this.src='/logo.png'">
+            </div>
+          `;
+        } else {
+          const initials = c.nome.split(' ').filter(w => w.length > 0).slice(0, 2).map(w => w[0].toUpperCase()).join('') || 'TC';
+          let bgClass = 'bg-slate-100 border-slate-200 text-slate-700';
+          if (cat === 'gastronomia') bgClass = 'bg-orange-50 border-orange-100 text-orange-700';
+          else if (cat === 'varejo') bgClass = 'bg-indigo-50 border-indigo-100 text-indigo-700';
+          else bgClass = 'bg-teal-50 border-teal-100 text-teal-700';
+
+          logoHtml = `
+            <div class="grid h-12 w-12 place-items-center rounded-2xl ${bgClass} border font-black text-sm shadow-2xs">
+              ${initials}
+            </div>
+          `;
+        }
+
+        // Setup Pill
+        let setupPill = '';
+        if (c.setup === 0) {
+          setupPill = `<span class="rounded-md bg-slate-100 text-slate-600 px-2.5 py-1 font-bold" title="Setup Isento">R$ 0 Isento</span>`;
+        } else if (c.setupPago >= c.setup && c.setup > 0) {
+          setupPill = `<span class="rounded-md bg-emerald-100 text-emerald-900 border border-emerald-200 px-2.5 py-1 font-black" title="Setup 100% Pago">R$ ${c.setupPago}/${c.setup} Pago</span>`;
+        } else if (c.setupPago > 0) {
+          setupPill = `<span class="rounded-md bg-amber-100 text-amber-900 border border-amber-200 px-2.5 py-1 font-black" title="Setup Parcial">R$ ${c.setupPago}/${c.setup}</span>`;
+        } else {
+          setupPill = `<span class="rounded-md bg-slate-100 text-slate-700 px-2.5 py-1 font-bold" title="Setup">R$ ${formatarMoeda(c.setup)}</span>`;
+        }
+
+        // Links de Botão Inteligentes e Sem Duplicações
+        let btnSite = '';
+        let btnPainel = '';
+
+        if (c.nome.toLowerCase().includes('pizza do juca')) {
+          btnSite = `<a href="/pizzadojuca/" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-orange-600 py-2.5 px-3 text-xs font-black text-white hover:bg-orange-700 transition shadow-xs active:scale-95"><i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Site</span></a>`;
+          btnPainel = `<a href="/pizzadojuca/painel/" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i><span>Painel</span></a>`;
+        } else if (c.nome.toLowerCase().includes('hostel')) {
+          btnSite = `<a href="/sitio-hostel-natureza/" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-teal-600 py-2.5 px-3 text-xs font-black text-white hover:bg-teal-700 transition shadow-xs active:scale-95"><i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Site</span></a>`;
+          btnPainel = `<a href="/sitio-hostel-natureza/painel.html" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i><span>Painel</span></a>`;
+        } else if (c.nome.toLowerCase().includes('moraes')) {
+          btnSite = `<a href="/moraessorveteria/" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-pink-600 py-2.5 px-3 text-xs font-black text-white hover:bg-pink-700 transition shadow-xs active:scale-95"><i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Site</span></a>`;
+          btnPainel = `<a href="/moraessorveteria/painel/" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i><span>Painel</span></a>`;
+        } else if (c.nome.toLowerCase().includes('matago')) {
+          btnSite = `<a href="/matago/" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-red-600 py-2.5 px-3 text-xs font-black text-white hover:bg-red-700 transition shadow-xs active:scale-95"><i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Site</span></a>`;
+          btnPainel = `<a href="/matago/painel/" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i><span>Painel</span></a>`;
+        } else if (c.status === 'producao') {
+          btnSite = `<a href="/cardapio/?c=${c.id}" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 py-2.5 px-3 text-xs font-black text-white hover:bg-emerald-700 transition shadow-xs active:scale-95"><i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Site</span></a>`;
+          btnPainel = `<a href="/painel/planilha/" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i><span>Painel</span></a>`;
+        } else {
+          const contato = (c.contato || '').trim();
+          const numWhats = contato.replace(/\D/g, '');
+          
+          if (contato.startsWith('@')) {
+            const igHandle = contato.replace('@', '');
+            btnSite = `<a href="https://instagram.com/${igHandle}" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl border border-pink-200 bg-pink-50/70 py-2.5 px-3 text-xs font-bold text-pink-700 hover:bg-pink-100 transition shadow-xs active:scale-95"><i data-lucide="instagram" class="w-3.5 h-3.5 text-pink-600"></i><span class="truncate">${contato}</span></a>`;
+          } else if (numWhats.length >= 8) {
+            btnSite = `<a href="https://wa.me/55${numWhats}" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl border border-emerald-200 bg-emerald-50/70 py-2.5 px-3 text-xs font-bold text-emerald-700 hover:bg-emerald-100 transition shadow-xs active:scale-95"><i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-600"></i><span>WhatsApp</span></a>`;
+          } else if (contato.length > 0) {
+            btnSite = `<a href="/painel/planilha/" class="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 py-2.5 px-3 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-xs active:scale-95"><i data-lucide="user" class="w-3.5 h-3.5 text-slate-500"></i><span class="truncate">${contato}</span></a>`;
+          } else {
+            btnSite = `<a href="/painel/planilha/" class="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white py-2.5 px-3 text-xs font-bold text-slate-600 hover:bg-slate-50 transition shadow-xs active:scale-95"><i data-lucide="eye" class="w-3.5 h-3.5 text-slate-400"></i><span>Detalhes</span></a>`;
+          }
+
+          btnPainel = `<a href="/painel/planilha/" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-emerald-400"></i><span>Planilha</span></a>`;
+        }
+
+        html += `
+          <div class="card-cliente flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-6 shadow-xs hover:-translate-y-1 hover:border-orange-400 hover:shadow-xl transition-all duration-200" data-cat="${cat}" data-busca="${buscaStr}">
+            <div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  ${logoHtml}
+                  <div>
+                    <h2 class="text-base font-black text-slate-950">${c.nome}</h2>
+                    <div class="text-[11px] font-bold text-slate-500">${c.ramo}</div>
+                  </div>
+                </div>
+                ${statusBadge}
+              </div>
+
+              <div class="mt-4 flex flex-wrap items-center gap-1.5 text-[10px] font-bold">
+                ${setupPill}
+                <span class="rounded-md bg-blue-50 text-blue-800 px-2.5 py-1 font-bold" title="Recorrência Fixa">R$ ${formatarMoeda(c.recorrencia)}/mês</span>
+                <span class="rounded-md bg-purple-50 text-purple-800 px-2.5 py-1 font-bold" title="Comissão sobre Pedidos">2%</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100">
+              <div class="grid grid-cols-2 gap-2.5">
+                ${btnSite}
+                ${btnPainel}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      // Card Adicionar / Clonar Novo Cliente no final
+      html += `
+        <div class="flex flex-col justify-between rounded-3xl border-2 border-dashed border-slate-300 bg-white/60 p-6 text-center hover:border-orange-500 hover:bg-orange-50/20 transition-all duration-200">
+          <div>
+            <div class="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-orange-100 text-orange-600 mb-4">
+              <i data-lucide="store" class="size-7"></i>
+            </div>
+            <h3 class="text-base font-black text-slate-950">Novo Cliente ou Loja</h3>
+            <p class="mt-2 text-xs leading-relaxed text-slate-500 font-medium">
+              Suba uma nova hamburgueria, pizzaria ou restaurante na VPS em segundos com a matriz validada da Teixo.
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-200/80 space-y-2">
+            <a href="/painel/planilha/" class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 text-xs font-black text-white hover:bg-orange-600 transition shadow-sm">
+              <i data-lucide="file-spreadsheet" class="size-4"></i>
+              <span>Abrir Planilha de Clientes</span>
+            </a>
+          </div>
+        </div>
+      `;
+
+      grid.innerHTML = html;
+      lucide.createIcons();
+    }
+
+    // Controle do Menu Lateral (Drawer no Mobile)
+    function toggleHubSidebar() {
+      const sidebar = document.getElementById('hub-sidebar');
+      const backdrop = document.getElementById('hub-sidebar-backdrop');
+      if (!sidebar) return;
+      const isClosed = sidebar.classList.contains('-translate-x-full');
+
+      if (isClosed) {
+        sidebar.classList.remove('-translate-x-full');
+        if (backdrop) {
+          backdrop.classList.remove('opacity-0', 'pointer-events-none');
+          backdrop.classList.add('opacity-100', 'pointer-events-auto');
+        }
+        document.body.classList.add('overflow-hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        if (backdrop) {
+          backdrop.classList.add('opacity-0', 'pointer-events-none');
+          backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+        }
+        document.body.classList.remove('overflow-hidden');
+      }
+      lucide.createIcons();
+    }
+
+    // Fechar ao pressionar tecla ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const sidebar = document.getElementById('hub-sidebar');
+        if (sidebar && !sidebar.classList.contains('-translate-x-full')) {
+          toggleHubSidebar();
+        }
+      }
+    });
+
+    // Filtro de Busca em Tempo Real
+    function filtrarClientesHub() {
+      const termo = document.getElementById('busca-clientes-hub').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.card-cliente');
+      let visiveis = 0;
+
+      cards.forEach(card => {
+        const dados = card.getAttribute('data-busca') || '';
+        const cat = card.getAttribute('data-cat') || '';
+        const matchTermo = dados.includes(termo);
+        const matchCat = (categoriaAtual === 'todos' || cat === categoriaAtual);
+
+        if (matchTermo && matchCat) {
+          card.style.display = '';
+          visiveis++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const noRes = document.getElementById('no-results-hub');
+      if (visiveis === 0) {
+        noRes.classList.remove('hidden');
+      } else {
+        noRes.classList.add('hidden');
+      }
+    }
+
+    // Filtros por Categoria de Solução
+    function filtrarCategoria(cat, btn) {
+      categoriaAtual = cat;
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.className = 'cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition';
+      });
+      if (btn) {
+        btn.className = 'cat-btn active px-3.5 py-2 rounded-xl text-xs font-extrabold bg-slate-900 text-white transition shadow-xs';
+      }
+
+      filtrarClientesHub();
+    }
+
+    // Sincronização automática entre abas: qualquer alteração feita na Planilha atualiza o Hub na hora!
+    window.addEventListener('storage', (e) => {
+      if (e.key === STORAGE_KEY) {
+        carregarClientesHub();
+      }
+    });
+
+    window.addEventListener('teixo_data_updated', () => {
+      carregarClientesHub();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      carregarClientesHub();
+    });
+  </script>
+</body>
+</html>

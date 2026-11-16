@@ -1,0 +1,39 @@
+{
+  "id": "H03",
+  "name": "Dark Black Angus",
+  "segment": "Hamburgueria",
+  "mood": "Exclusivo, sóbrio, requintado, alta gastronomia e iluminação dramática",
+  "commercialTarget": "Ticket alto (R$ 48 a R$ 75), casais, momentos especiais e apreciadores de carnes nobres",
+  "ticketFocus": "Ticket Alto & Experiência Premium (R$ 48 - R$ 75)",
+  "badge": "👑 Blends Nobres Certificados · Padrão Alta Gastronomia",
+  "title": "A ALTA GASTRONOMIA EM FORMA DE BURGER",
+  "subtitle": "Cortes nobres moídos diariamente, queijo brie maçaricado, cebola caramelizada e finalização com azeite trufado em pão artesanal de fermentação lenta.",
+  "ctaText": "Viver Essa Experiência",
+  "ctaSecondary": "Conhecer a Seleção Black",
+  "microcopy": "✨ Embalagens térmicas premium · Experiência de restaurante em casa",
+  "theme": {
+    "primary": "#D4AF37",
+    "primaryHover": "#B89628",
+    "accent": "#E5C158",
+    "accentHover": "#F3D478",
+    "bgHero": "#0B0B0D",
+    "bgHeroSecondary": "#141418",
+    "textHero": "#F5F5F7",
+    "textMuted": "#9CA3AF",
+    "badgeBg": "rgba(212, 175, 55, 0.12)",
+    "badgeText": "#E5C158",
+    "badgeBorder": "rgba(212, 175, 55, 0.35)",
+    "surfaceGlow": "rgba(212, 175, 55, 0.15)"
+  },
+  "typography": {
+    "displayFont": "Syne",
+    "baseFont": "Outfit",
+    "displayWeight": "700",
+    "displayLetterSpacing": "-0.01em",
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@400;500;600;700&display=swap"
+  },
+  "heroLayout": "spotlight-card",
+  "heroImage": "assets/h03-angus.jpg",
+  "heroImageAlt": "Burger gourmet black angus com ponto suculento e queijo nobre",
+  "promptMidjourney": "Luxury gourmet black angus burger cut in half showing perfect medium-rare juicy pink center, melted brie cheese, caramelized onion compote, brioche bun with gold leaf flakes, isolated on a sleek matte black slate with dramatic spotlight lighting from above, minimalist high-end Michelin guide aesthetic --ar 1:1 --v 6.0"
+}
