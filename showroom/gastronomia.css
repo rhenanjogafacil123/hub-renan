@@ -64,6 +64,49 @@ body.dark .contact-item {
   border-color: #2e3846;
 }
 
+/* Modo Ambiente Escuro Nativo do Modelo (ex: Red Dragon, Maré Alta, After Dark) */
+body.is-ambient-dark .topbar {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+}
+
+body.is-ambient-dark .theme {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+body.is-ambient-dark .brand-text small {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.is-ambient-dark .subtitle {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+body.is-ambient-dark .metadata {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+body.is-ambient-dark .metadata .rating {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+body.is-ambient-dark .hero-btn.secondary {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.is-ambient-dark .hero-btn.secondary:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+body.is-ambient-dark .disclaimer {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 /* Header Topbar */
 .topbar {
   height: 64px;

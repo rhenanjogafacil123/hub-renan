@@ -6,84 +6,617 @@ const $$ = s => [...document.querySelectorAll(s)];
 // Catálogo Global carregado de catalogo.js
 const CATALOG = Array.isArray(window.SHOWROOM_CATALOG) ? window.SHOWROOM_CATALOG : [];
 
-// Títulos e Subtítulos fiéis às referências do Drive
+// Títulos e Subtítulos 100% fiéis às referências do Drive (OCR de alta fidelidade)
 const TITLES_DB = {
-  // Nicho 06 (Marmitarias & Comida Caseira)
-  '06.01': ['Comida de casa. Carinho em cada prato.', 'Arroz, feijão e aquele tempero que abraça. Escolha sua marmita.'],
-  '06.02': ['Seu almoço. Completo de verdade.', 'Uma refeição caprichada para acompanhar seu dia.'],
-  '06.03': ['Seu almoço, sem complicação.', 'Escolha sua refeição e siga o seu dia.'],
-  '06.04': ['O sabor que traz boas lembranças.', 'Comida caseira e receitas para acolher o seu dia.'],
-  '06.05': ['Comer bem pode ser simples.', 'Comida caseira, cuidado no preparo e uma pausa para saborear.'],
+  "06.01": [
+    "Comida de casa. Carinho em cada prato.",
+    "Arroz, feijão e aquele tempero que abraça. Escolha sua marmita."
+  ],
+  "06.02": [
+    "Seu almoço. Completo de verdade.",
+    "Uma refeição caprichada para acompanhar seu dia."
+  ],
+  "06.03": [
+    "Seu almoço, sem complicação.",
+    "Escolha sua refeição e siga o seu dia."
+  ],
+  "06.04": [
+    "O sabor que traz boas lembranças.",
+    "Comida caseira e receitas para acolher o seu dia."
+  ],
+  "06.05": [
+    "Comer bem pode ser simples.",
+    "Comida caseira, cuidado no preparo e uma pausa para saborear."
+  ],
+  "16.01": [
+    "Seu lanche, do seu jeito.",
+    "Escolha seu favorito e complete o pedido."
+  ],
+  "16.02": [
+    "Seu ponto de encontro com o sabor.",
+    "Escolha seu lanche e faça uma pausa gostosa."
+  ],
+  "16.03": [
+    "O clássico mata a saudade.",
+    "Escolha seu lanche e reviva o sabor."
+  ],
+  "16.04": [
+    "Camadas de novas ideias.",
+    "Escolha seu sanduba e experimente a combinação."
+  ],
+  "16.05": [
+    "Seu sabor favorito tem endereço.",
+    "Escolha seu lanche artesanal e aproveite a pausa."
+  ],
+  "17.01": [
+    "Uma pausa com sabor de Itália.",
+    "Escolha sua massa e traga a trattoria para a mesa."
+  ],
+  "17.02": [
+    "Uma nova forma de apreciar a massa.",
+    "Explore o cardápio e escolha seu próximo prato."
+  ],
+  "17.03": [
+    "Sabor que reúne a família.",
+    "Escolha sua massa e leve esse carinho à mesa."
+  ],
+  "17.04": [
+    "Mais massa, mais amore.",
+    "Escolha seu prato e deixe o sabor acontecer."
+  ],
+  "17.05": [
+    "O cuidado está em cada dobra.",
+    "Descubra nossas massas e escolha seu próximo prato."
+  ],
+  "18.01": [
+    "Sabor intenso em cada encontro.",
+    "Escolha seu prato e descubra sua combinação favorita."
+  ],
+  "18.02": [
+    "O sabor ganha movimento.",
+    "Escolha seu wok e encontre sua combinação."
+  ],
+  "18.03": [
+    "Dê um giro no seu sabor.",
+    "Escolha seus noodles e encontre seu favorito."
+  ],
+  "18.04": [
+    "Sabores em perfeito encontro.",
+    "Explore o cardápio e escolha seu próximo prato."
+  ],
+  "18.05": [
+    "Seu próximo sabor está aqui.",
+    "Explore os pratos e escolha sua combinação."
+  ],
+  "19.01": [
+    "Um convite para celebrar o sabor.",
+    "Escolha seus tacos e leve mais cor à mesa."
+  ],
+  "19.02": [
+    "Acenda a vontade de provar.",
+    "Escolha seu taco e encontre sua intensidade."
+  ],
+  "19.03": [
+    "A mesa fica melhor compartilhada.",
+    "Escolha seus favoritos e reúna os sabores."
+  ],
+  "19.04": [
+    "Uma explosão de cor e sabor.",
+    "Escolha seu taco e descubra sua combinação."
+  ],
+  "19.05": [
+    "Do milho à mesa, um novo sabor.",
+    "Conheça nossos pratos e escolha seu favorito."
+  ],
+  "20.01": [
+    "Raiz brasileira. Sabor que acolhe.",
+    "Escolha sua tapioca e encontre seu recheio favorito."
+  ],
+  "20.02": [
+    "Uma pausa com sabor de Paris.",
+    "Escolha seu crepe e transforme o momento."
+  ],
+  "20.03": [
+    "Dobre a pausa. Adoce o dia.",
+    "Escolha seu crepe e descubra sua combinação favorita."
+  ],
+  "20.04": [
+    "Simplicidade que dá vontade.",
+    "Escolha sua tapioca e descubra novos sabores."
+  ],
+  "20.05": [
+    "Novas camadas de sabor.",
+    "Explore combinações e monte seu crepe do seu jeito."
+  ],
+  "21.01": [
+    "O mar inspira. O sabor convida.",
+    "Explore nossos pratos e escolha seu favorito."
+  ],
+  "21.02": [
+    "Do mar ao prato, com todo o frescor.",
+    "Escolha seu pescado e sinta a leveza da costa."
+  ],
+  "21.03": [
+    "O sabor do mar começa aqui.",
+    "Conheça nossas opções e escolha seu pescado."
+  ],
+  "21.04": [
+    "O mar em sua forma mais delicada.",
+    "Descubra sabores e escolha seu próximo prato."
+  ],
+  "21.05": [
+    "Frescor que faz a diferença.",
+    "Escolha seu pescado e descubra novas combinações."
+  ],
+  "22.01": [
+    "Sabor de boteco, do nosso jeito.",
+    "Escolha sua porção e aproveite cada encontro."
+  ],
+  "22.02": [
+    "A noite pede algo especial.",
+    "Explore drinks e petiscos para o seu momento."
+  ],
+  "22.03": [
+    "Boa conversa começa à mesa.",
+    "Escolha seus petiscos e faça do encontro um momento especial."
+  ],
+  "22.04": [
+    "Seu encontro tem mais sabor.",
+    "Escolha suas porções e entre no clima."
+  ],
+  "22.05": [
+    "Petiscos que aproximam.",
+    "Sabores brasileiros para compartilhar bons momentos."
+  ],
+  "23.01": [
+    "O sabor das nossas raízes.",
+    "Escolha seu prato e sinta o aconchego do Nordeste."
+  ],
+  "23.02": [
+    "Tradição com um novo olhar.",
+    "Descubra sabores do Nordeste e escolha seu favorito."
+  ],
+  "23.03": [
+    "Tem sabor de casa.",
+    "Baião, carinho e uma mesa cheia de boas escolhas."
+  ],
+  "23.04": [
+    "Um sol de sabores.",
+    "Receitas do Nordeste para iluminar o seu dia."
+  ],
+  "23.05": [
+    "A essência do sertão.",
+    "Ingredientes da nossa terra, em uma experiência singular."
+  ],
+  "24.01": [
+    "Dourado por fora. Irresistível por dentro.",
+    "Salgados fresquinhos para deixar seu dia mais gostoso."
+  ],
+  "24.02": [
+    "Seu novo crush crocante.",
+    "Recheio cremoso, massa dourada e vontade de repetir."
+  ],
+  "24.03": [
+    "Feito à mão, com afeto.",
+    "Receitas de família para saborear os pequenos momentos."
+  ],
+  "24.04": [
+    "Bateu a fome? Vai de salgado.",
+    "Salgados quentinhos e crocantes para qualquer hora do dia."
+  ],
+  "24.05": [
+    "Pequenos detalhes. Grandes sabores.",
+    "Massa delicada e recheios especiais, feitos com cuidado."
+  ],
+  "25.01": [
+    "Um bowl de boas energias.",
+    "Salmão, frutas e frescor em cada combinação."
+  ],
+  "25.02": [
+    "Leveza em cada escolha.",
+    "Ingredientes frescos em combinações que fazem sentido."
+  ],
+  "25.03": [
+    "Frescor que vem da ilha.",
+    "Frutas, vegetais e sabores para colorir seu bowl."
+  ],
+  "25.04": [
+    "O Pacífico à sua mesa.",
+    "Poke gourmet, ingredientes frescos e um toque especial."
+  ],
+  "25.05": [
+    "Seu bowl, sua vibe.",
+    "Combinações criativas para sair do básico."
+  ]
+};
 
-  // Nicho 16 (Lanchonetes Tradicionais)
-  '16.01': ['Seu lanche, do seu jeito.', 'Escolha seu favorito e complete o pedido.'],
-  '16.02': ['Seu ponto de encontro com o sabor.', 'Escolha seu lanche e faça uma pausa gostosa.'],
-  '16.03': ['O clássico que nunca sai de moda.', 'Nostalgia e sabor artesanal em cada mordida.'],
-  '16.04': ['Experiências que reinventam o lanche.', 'Combinações ousadas e ingredientes selecionados.'],
-  '16.05': ['O toque gourmet na sua esquina.', 'Lanches premium preparados com carinho e técnica.'],
-
-  // Nicho 17 (Massas / Comida Italiana)
-  '17.01': ['Uma pausa com sabor de Itália.', 'Escolha sua massa e traga a trattoria para a mesa.'],
-  '17.02': ['Receitas de família, feitas com alma.', 'Massas frescas, molhos lentos e afeto em cada prato.'],
-  '17.03': ['A arte da pasta artesanal.', 'Tradição italiana com ingredientes nobres e paixão.'],
-  '17.04': ['Clássicos italianos que abraçam.', 'Do pomodoro ao alfredo, o sabor autêntico de Roma.'],
-  '17.05': ['O melhor da cucina mediterrânea.', 'Massas leves, azeites nobres e aromas inesquecíveis.'],
-
-  // Nicho 18 (Comida Chinesa / Yakisoba)
-  '18.01': ['Sabor intenso em cada encontro.', 'Escolha seu prato e descubra sua combinação favorita.'],
-  '18.02': ['O verdadeiro fogo da wok oriental.', 'Yakisobas fumegantes e legumes no ponto perfeito.'],
-  '18.03': ['Tradição imperial na sua mesa.', 'Receitas ancestrais com tempero marcante e equilíbrio.'],
-  '18.04': ['Culinária chinesa viva e aromática.', 'Pratos fartos e molhos agridoces artesanais.'],
-  '18.05': ['Rapidez e sabor na medida certa.', 'O melhor da culinária asiática para seu dia a dia.'],
-
-  // Nicho 19 (Comida Mexicana)
-  '19.01': ['Um convite para celebrar o sabor.', 'Escolha seus tacos e leve mais cor à mesa.'],
-  '19.02': ['Cores vivas e tempero picante na medida.', 'Burritos recheados e guacamole fresco feito na hora.'],
-  '19.03': ['A autêntica fiesta mexicana.', 'Nachos crocantes, queijos fundidos e carnes suculentas.'],
-  '19.04': ['Sabores de Oaxaca e Jalisco.', 'Tacos de rua artesanais com tortillas frescas feitas à mão.'],
-  '19.05': ['Energia e tempero em cada mordida.', 'Quesadillas douradas e salsas especiais da casa.'],
-
-  // Nicho 20 (Creperias e Tapiocarias)
-  '20.01': ['Leveza e sabor que se dobram a você.', 'Tapiocas macias e crepes finos feitos no capricho.'],
-  '20.02': ['Tradição brasileira com recheio generoso.', 'Goma fresca selecionada e queijo coalho tostado na chapa.'],
-  '20.03': ['Crepes franceses de massa finíssima.', 'Receitas doces e salgadas com elegância e equilíbrio.'],
-  '20.04': ['Uma pausa leve para o seu dia.', 'Combinações saudáveis, frescas e deliciosas.'],
-  '20.05': ['Doce ou salgado, o aconchego perfeito.', 'Recheios nobres e finalização com manteiga de garrafa.'],
-
-  // Nicho 21 (Peixarias e Frutos do Mar)
-  '21.01': ['O melhor encontro com o mar.', 'Peixes frescos grelhados e moquecas aromáticas da costa.'],
-  '21.02': ['Frescor direto do porto à sua mesa.', 'Camarões selecionados e frutos do mar preparados na brasa.'],
-  '21.03': ['Tradição praiana com tempero caseiro.', 'Casquinhas de siri, lulas crocantes e peixadas completas.'],
-  '21.04': ['Sabor marítimo em alta gastronomia.', 'Cortes nobres de salmão, robalo e vieiras suculentas.'],
-  '21.05': ['Banquete das águas para compartilhar.', 'Porções fartas de frutos do mar com limão e ervas frescas.'],
-
-  // Nicho 22 (Bares, Petiscos e Porções)
-  '22.01': ['Boa conversa pede bons sabores.', 'Torresmo crocante, bolinhos dourados e petiscos de boteco.'],
-  '22.02': ['O melhor boteco de bairro da cidade.', 'Picanha aperitivo na chapa com queijo e farofa da casa.'],
-  '22.03': ['Petiscos de raiz com cerveja gelada.', 'Pasteizinhos artesanais e clássicos da boemia carioca.'],
-  '22.04': ['Porções fartas para curtir com amigos.', 'Tábua de frios, batatas especiais e tiras de frango empanadas.'],
-  '22.05': ['Sabor de confraternização e alegria.', 'Petiscos de estufa e releituras modernas de comida de bar.'],
-
-  // Nicho 23 (Restaurantes Nordestinos)
-  '23.01': ['Raízes que dão sabor e abraçam.', 'Baião de dois, carne de sol e o melhor tempero do sertão.'],
-  '23.02': ['A fartura da culinária do sertão.', 'Macaxeira frita na manteiga de garrafa e queijo de coalho assado.'],
-  '23.03': ['Tradição nordestina feita com carinho.', 'Escondidinho de carne seca, sarapatel e feijão de corda.'],
-  '23.04': ['Cultura e sabor em cada prato.', 'Paneladas aromáticas, rabada com agrião e farofas crocantes.'],
-  '23.05': ['O aconchego da comida de terra firme.', 'Comida forte, acolhedora e cheia de história e afeto.'],
-
-  // Nicho 24 (Salgaderias)
-  '24.01': ['Pequenos detalhes. Grandes sabores.', 'Coxinhas douradas, empadas derretendo e massas artesanais.'],
-  '24.02': ['Massa crocante por fora, cremosa por dentro.', 'Recheios fartos de frango com catupiry, camarão e queijo.'],
-  '24.03': ['O salgado perfeito a qualquer hora.', 'Kibes recheados, esfihas folhadas e mini-salgados para festa.'],
-  '24.04': ['Salgados artesanais assados e fritos.', 'Receitas de família com padrão de ouro e tempero marcante.'],
-  '24.05': ['A pausa mais gostosa do seu dia.', 'Salgados sempre quentinhos saindo do forno direto pra você.'],
-
-  // Nicho 25 (Poke e Culinária Havaiana)
-  '25.01': ['Um bowl de boas energias.', 'Salmão, frutas e frescor em cada combinação.'],
-  '25.02': ['O sabor tropical do Havaí na sua tigela.', 'Atum fresco marinado, manga, edamame e molho ponzu especial.'],
-  '25.03': ['Cores vivas, saúde e sabor autêntico.', 'Bowls personalizados com arroz japonês e chips de batata doce.'],
-  '25.04': ['Frescor que renova seu dia.', 'Saladas marinadas, abacate fatiado e crocantes de gergelim torrado.'],
-  '25.05': ['A experiência do pacífico na mesa.', 'Receitas tropicais leves, equilibradas e ricas em nutrientes.']
+// Configurações de Ambientação e Cores de Fundo Fiéis às Referências
+const THEMES_CONFIG = {
+  "06.01": {
+    "title": "Comida de casa. Carinho em cada prato.",
+    "subtitle": "Arroz, feijão e aquele tempero que abraça. Escolha sua marmita.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "06.02": {
+    "title": "Seu almoço. Completo de verdade.",
+    "subtitle": "Uma refeição caprichada para acompanhar seu dia.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "06.03": {
+    "title": "Seu almoço, sem complicação.",
+    "subtitle": "Escolha sua refeição e siga o seu dia.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "06.04": {
+    "title": "O sabor que traz boas lembranças.",
+    "subtitle": "Comida caseira e receitas para acolher o seu dia.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "06.05": {
+    "title": "Comer bem pode ser simples.",
+    "subtitle": "Comida caseira, cuidado no preparo e uma pausa para saborear.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "16.01": {
+    "title": "Seu lanche, do seu jeito.",
+    "subtitle": "Escolha seu favorito e complete o pedido.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "16.02": {
+    "title": "Seu ponto de encontro com o sabor.",
+    "subtitle": "Escolha seu lanche e faça uma pausa gostosa.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "16.03": {
+    "title": "O clássico mata a saudade.",
+    "subtitle": "Escolha seu lanche e reviva o sabor.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "16.04": {
+    "title": "Camadas de novas ideias.",
+    "subtitle": "Escolha seu sanduba e experimente a combinação.",
+    "bg": "#121212",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "16.05": {
+    "title": "Seu sabor favorito tem endereço.",
+    "subtitle": "Escolha seu lanche artesanal e aproveite a pausa.",
+    "bg": "#fafafa",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "17.01": {
+    "title": "Uma pausa com sabor de Itália.",
+    "subtitle": "Escolha sua massa e traga a trattoria para a mesa.",
+    "bg": "#fcf8f2",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "17.02": {
+    "title": "Uma nova forma de apreciar a massa.",
+    "subtitle": "Explore o cardápio e escolha seu próximo prato.",
+    "bg": "#111111",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "17.03": {
+    "title": "Sabor que reúne a família.",
+    "subtitle": "Escolha sua massa e leve esse carinho à mesa.",
+    "bg": "#fbf5ed",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "17.04": {
+    "title": "Mais massa, mais amore.",
+    "subtitle": "Escolha seu prato e deixe o sabor acontecer.",
+    "bg": "#153e20",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "17.05": {
+    "title": "O cuidado está em cada dobra.",
+    "subtitle": "Descubra nossas massas e escolha seu próximo prato.",
+    "bg": "#fbf7f0",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "18.01": {
+    "title": "Sabor intenso em cada encontro.",
+    "subtitle": "Escolha seu prato e descubra sua combinação favorita.",
+    "bg": "#360907",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "18.02": {
+    "title": "O sabor ganha movimento.",
+    "subtitle": "Escolha seu wok e encontre sua combinação.",
+    "bg": "#111010",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "18.03": {
+    "title": "Dê um giro no seu sabor.",
+    "subtitle": "Escolha seus noodles e encontre seu favorito.",
+    "bg": "#fbf5eb",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "18.04": {
+    "title": "Sabores em perfeito encontro.",
+    "subtitle": "Explore o cardápio e escolha seu próximo prato.",
+    "bg": "#f9f3ec",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "18.05": {
+    "title": "Seu próximo sabor está aqui.",
+    "subtitle": "Explore os pratos e escolha sua combinação.",
+    "bg": "#07162c",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "19.01": {
+    "title": "Um convite para celebrar o sabor.",
+    "subtitle": "Escolha seus tacos e leve mais cor à mesa.",
+    "bg": "#ee577a",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "19.02": {
+    "title": "Acenda a vontade de provar.",
+    "subtitle": "Escolha seu taco e encontre sua intensidade.",
+    "bg": "#fff8f0",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "19.03": {
+    "title": "A mesa fica melhor compartilhada.",
+    "subtitle": "Escolha seus favoritos e reúna os sabores.",
+    "bg": "#22110a",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "19.04": {
+    "title": "Uma explosão de cor e sabor.",
+    "subtitle": "Escolha seu taco e descubra sua combinação.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "19.05": {
+    "title": "Do milho à mesa, um novo sabor.",
+    "subtitle": "Conheça nossos pratos e escolha seu favorito.",
+    "bg": "#fbf0e2",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "20.01": {
+    "title": "Raiz brasileira. Sabor que acolhe.",
+    "subtitle": "Escolha sua tapioca e encontre seu recheio favorito.",
+    "bg": "#fbf3e6",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "20.02": {
+    "title": "Uma pausa com sabor de Paris.",
+    "subtitle": "Escolha seu crepe e transforme o momento.",
+    "bg": "#fbf4ee",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "20.03": {
+    "title": "Dobre a pausa. Adoce o dia.",
+    "subtitle": "Escolha seu crepe e descubra sua combinação favorita.",
+    "bg": "#522b21",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "20.04": {
+    "title": "Simplicidade que dá vontade.",
+    "subtitle": "Escolha sua tapioca e descubra novos sabores.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "20.05": {
+    "title": "Novas camadas de sabor.",
+    "subtitle": "Explore combinações e monte seu crepe do seu jeito.",
+    "bg": "#1e201f",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "21.01": {
+    "title": "O mar inspira. O sabor convida.",
+    "subtitle": "Explore nossos pratos e escolha seu favorito.",
+    "bg": "#072438",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "21.02": {
+    "title": "Do mar ao prato, com todo o frescor.",
+    "subtitle": "Escolha seu pescado e sinta a leveza da costa.",
+    "bg": "#0a424a",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "21.03": {
+    "title": "O sabor do mar começa aqui.",
+    "subtitle": "Conheça nossas opções e escolha seu pescado.",
+    "bg": "#fbf4ed",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "21.04": {
+    "title": "O mar em sua forma mais delicada.",
+    "subtitle": "Descubra sabores e escolha seu próximo prato.",
+    "bg": "#16222f",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "21.05": {
+    "title": "Frescor que faz a diferença.",
+    "subtitle": "Escolha seu pescado e descubra novas combinações.",
+    "bg": "#f4f8fa",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "22.01": {
+    "title": "Sabor de boteco, do nosso jeito.",
+    "subtitle": "Escolha sua porção e aproveite cada encontro.",
+    "bg": "#fdf4df",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "22.02": {
+    "title": "A noite pede algo especial.",
+    "subtitle": "Explore drinks e petiscos para o seu momento.",
+    "bg": "#0f0e0d",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "22.03": {
+    "title": "Boa conversa começa à mesa.",
+    "subtitle": "Escolha seus petiscos e faça do encontro um momento especial.",
+    "bg": "#12261f",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "22.04": {
+    "title": "Seu encontro tem mais sabor.",
+    "subtitle": "Escolha suas porções e entre no clima.",
+    "bg": "#fbf4e8",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "22.05": {
+    "title": "Petiscos que aproximam.",
+    "subtitle": "Sabores brasileiros para compartilhar bons momentos.",
+    "bg": "#434720",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "23.01": {
+    "title": "O sabor das nossas raízes.",
+    "subtitle": "Escolha seu prato e sinta o aconchego do Nordeste.",
+    "bg": "#fbf1e4",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "23.02": {
+    "title": "Tradição com um novo olhar.",
+    "subtitle": "Descubra sabores do Nordeste e escolha seu favorito.",
+    "bg": "#fbf0e2",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "23.03": {
+    "title": "Tem sabor de casa.",
+    "subtitle": "Baião, carinho e uma mesa cheia de boas escolhas.",
+    "bg": "#fdf3e7",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "23.04": {
+    "title": "Um sol de sabores.",
+    "subtitle": "Receitas do Nordeste para iluminar o seu dia.",
+    "bg": "#055482",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "23.05": {
+    "title": "A essência do sertão.",
+    "subtitle": "Ingredientes da nossa terra, em uma experiência singular.",
+    "bg": "#120806",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "24.01": {
+    "title": "Dourado por fora. Irresistível por dentro.",
+    "subtitle": "Salgados fresquinhos para deixar seu dia mais gostoso.",
+    "bg": "#fef4e2",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "24.02": {
+    "title": "Seu novo crush crocante.",
+    "subtitle": "Recheio cremoso, massa dourada e vontade de repetir.",
+    "bg": "#fdf0e7",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "24.03": {
+    "title": "Feito à mão, com afeto.",
+    "subtitle": "Receitas de família para saborear os pequenos momentos.",
+    "bg": "#fcf2ea",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "24.04": {
+    "title": "Bateu a fome? Vai de salgado.",
+    "subtitle": "Salgados quentinhos e crocantes para qualquer hora do dia.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "24.05": {
+    "title": "Pequenos detalhes. Grandes sabores.",
+    "subtitle": "Massa delicada e recheios especiais, feitos com cuidado.",
+    "bg": "#192b21",
+    "ink": "#ffffff",
+    "isDark": true
+  },
+  "25.01": {
+    "title": "Um bowl de boas energias.",
+    "subtitle": "Salmão, frutas e frescor em cada combinação.",
+    "bg": "#ffffff",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "25.02": {
+    "title": "Leveza em cada escolha.",
+    "subtitle": "Ingredientes frescos em combinações que fazem sentido.",
+    "bg": "#e7ebd8",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "25.03": {
+    "title": "Frescor que vem da ilha.",
+    "subtitle": "Frutas, vegetais e sabores para colorir seu bowl.",
+    "bg": "#fdfbf4",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "25.04": {
+    "title": "O Pacífico à sua mesa.",
+    "subtitle": "Poke gourmet, ingredientes frescos e um toque especial.",
+    "bg": "#fbf3ed",
+    "ink": "#0f172a",
+    "isDark": false
+  },
+  "25.05": {
+    "title": "Seu bowl, sua vibe.",
+    "subtitle": "Combinações criativas para sair do básico.",
+    "bg": "#6d45a6",
+    "ink": "#ffffff",
+    "isDark": true
+  }
 };
 
 // Cardápios demonstrativos para o modal de Cardápio
@@ -168,7 +701,6 @@ function getModelData(id) {
   const m = CATALOG.find(x => x.id === id || x.code === id);
   if (m) return m;
 
-  // Fallback
   return {
     id: id || '16.01',
     code: id || '16.01',
@@ -185,15 +717,21 @@ function setModel(id) {
   const code = m.code || m.id;
   const n = code.split('.')[0].padStart(2, '0');
 
-  // 1. Paleta de Cores
+  // 1. Configuração de Ambientação e Paleta
+  const cfg = THEMES_CONFIG[code] || {};
   const colors = (m.palette || []).filter(c => /^#[0-9a-f]{6}$/i.test(c));
   const p = colors.length ? colors : ['#ffffff', '#0f172a', '#d97706', '#292929'];
-  const sorted = [...p].sort((a, b) => luminance(a) - luminance(b));
 
-  const bg = sorted.at(-1); // Cor mais clara como fundo
-  const ink = luminance(bg) < 140 ? '#ffffff' : sorted[0];
-  const accent = p.find(c => c !== bg && luminance(c) > 60 && luminance(c) < 210) || p[0] || '#d97706';
-  const button = accent;
+  const bg = cfg.bg || '#ffffff';
+  const isDark = luminance(bg) < 130;
+  const ink = isDark ? '#ffffff' : '#0f172a';
+  
+  // Acento e Botão
+  const accent = p.find(c => c !== bg && luminance(c) > 50 && luminance(c) < 220) || p[0] || '#d97706';
+  let button = p.find(c => c !== bg && luminance(c) > 60 && luminance(c) < 200) || accent;
+  if (luminance(button) < 40 && isDark) {
+    button = p.find(c => luminance(c) > 120) || '#eab308';
+  }
   const buttonInk = contrastInk(button);
 
   document.body.style.setProperty('--bg', bg);
@@ -202,19 +740,30 @@ function setModel(id) {
   document.body.style.setProperty('--button', button);
   document.body.style.setProperty('--button-ink', buttonInk);
 
+  if (isDark) {
+    document.body.classList.add('is-ambient-dark');
+  } else {
+    document.body.classList.remove('is-ambient-dark');
+  }
+
   // 2. Tipografia
   const fonts = m.fonts || 'Plus Jakarta Sans';
-  const families = ['Fraunces', 'Montserrat', 'Playfair Display', 'Space Grotesk', 'Poppins', 'Fredoka', 'Bebas Neue', 'Oswald', 'Righteous', 'Plus Jakarta Sans', 'Inter'];
+  const families = [
+    'Libre Baskerville', 'Noto Serif', 'Bricolage Grotesque', 'Roboto Slab',
+    'Archivo Black', 'DM Serif Display', 'Playfair Display', 'Fraunces',
+    'Montserrat', 'Space Grotesk', 'Poppins', 'Fredoka', 'Bebas Neue',
+    'Oswald', 'Righteous', 'Plus Jakarta Sans', 'Inter'
+  ];
   const displayFont = families.find(f => fonts.includes(f)) || 'Plus Jakarta Sans';
   document.body.style.setProperty('--display', `'${displayFont}', sans-serif`);
 
-  // 3. Atualizar Título e Branding
+  // 3. Branding
   document.title = `${m.name} • Showroom Automatech`;
   $('#topbar-brand').textContent = m.name;
   $('#topbar-tagline').textContent = (m.nicheName || 'Gastronomia').replace(/^\d+\.\s*/, '').toUpperCase();
   $('#hero-brand').textContent = m.name;
 
-  // Monograma da Marca
+  // Monograma
   const mono = m.name.replace(/[^\p{L}\p{N}\s]/gu, '').split(/\s+/).filter(Boolean).map(x => x[0]).slice(0, 2).join('').toUpperCase() || 'TX';
   $('#brand-mark').textContent = mono;
   $('#hero-mark').textContent = mono;
@@ -225,7 +774,6 @@ function setModel(id) {
     m.concept || 'Uma experiência gastronômica artesanal feita para você.'
   ];
 
-  // Adicionar destaque na última palavra do título
   const titleWords = titles[0].split(' ');
   if (titleWords.length > 2) {
     const lastWord = titleWords.pop();
@@ -236,7 +784,7 @@ function setModel(id) {
 
   $('#hero-subtitle').textContent = titles[1];
 
-  // 5. Imagem do Prato em #dish-img
+  // 5. Imagem do Prato em #dish-img (Fotografia recortada de alta fidelidade)
   let dishSrc = '';
   if (n === '06') {
     dishSrc = `/showroom/assets/gastronomia/${code}.webp`;
@@ -248,7 +796,6 @@ function setModel(id) {
   dishImg.src = dishSrc;
   dishImg.alt = `${m.name} • Fotografia do prato`;
 
-  // Fallback se a imagem não carregar
   dishImg.onerror = () => {
     dishImg.src = `/showroom/assets/gastronomia/16.01.png`;
   };
