@@ -257,7 +257,7 @@
                         01.02
                       </span>
                       <span class="text-[11px] font-extrabold text-slate-900 truncate">
-                        Vintage Smoke
+                        Smoke & BBQ
                       </span>
                     </div>
                     
@@ -1099,7 +1099,7 @@
       {
         "id": "H02",
         "code": "01.02",
-        "name": "Vintage Smoke",
+        "name": "Smoke & BBQ",
         "fonts": "Oswald + Plus Jakarta Sans",
         "concept": "Burger defumado lentamente na lenha com queijo colby",
         "palette": [
@@ -3117,7 +3117,7 @@
       const btnOpen = document.getElementById('btn-open-store');
       const isHamburguer = /^H0[1-5]$/.test(id);
       const isPilot = !isHamburguer;
-      const previewPath = id === "H01" ? "/showroom/modelos/01-01/index.html" : id === "H02" ? "/showroom/modelos/01-02/index.html" : id === "P01" ? "/showroom/modelos/02-01/index.html" : id === "P02" ? "/showroom/modelos/02-02/index.html" : id === "P03" ? "/showroom/modelos/02-03/index.html" : id === "P04" ? "/showroom/modelos/02-04/index.html" : id === "10.01" ? "/showroom/modelos/10-01/index.html" : id === "10.05" ? "/showroom/modelos/10-05/index.html" : id === "14.01" ? "/showroom/modelos/14-01/index.html" : id === "14.02" ? "/showroom/modelos/14-02/index.html" : id === "14.03" ? "/showroom/modelos/14-03/index.html" : id === "14.04" ? "/showroom/modelos/14-04/index.html" : isHamburguer ? "/showroom/hamburguerias.html" : "/showroom/gastronomia.html";
+      const previewPath = id === "H01" ? "/showroom/modelos/01-01/index.html" : id === "H02" ? "/showroom/modelos/01-02/index.html" : id === "P01" ? "/showroom/modelos/02-01/index.html" : id === "P02" ? "/showroom/modelos/02-02/index.html" : id === "P03" ? "/showroom/modelos/02-03/index.html" : id === "P04" ? "/showroom/modelos/02-04/index.html" : id === "10.01" ? "/showroom/modelos/10-01/index.html" : id === "10.05" ? "/showroom/modelos/10-05/index.html" : id === "14.01" ? "/showroom/modelos/14-01/index.html" : id === "14.02" ? "/showroom/modelos/14-02/index.html" : id === "14.03" ? "/showroom/modelos/14-03/index.html" : id === "14.04" ? "/showroom/modelos/14-04/index.html" : isHamburguer ? "/showroom/hamburguerias.html" : (/^[PASJ]/.test(id) || parseInt(id, 10) <= 15) ? "/showroom/legacy-01-15.html" : "/showroom/gastronomia.html";
       if (btnOpen) btnOpen.href = `${previewPath}?hero=${id}`;
 
       // Identificação da moldura: apenas H01–H05 usam a demonstração isolada.
@@ -3197,7 +3197,7 @@
 
         const isHamburguer = /^H0[1-5]$/.test(initialModel.id);
         const isPilot = !isHamburguer;
-        const previewPath = initialModel.id === "H01" ? "/showroom/modelos/01-01/index.html" : initialModel.id === "H02" ? "/showroom/modelos/01-02/index.html" : initialModel.id === "P01" ? "/showroom/modelos/02-01/index.html" : initialModel.id === "P02" ? "/showroom/modelos/02-02/index.html" : initialModel.id === "P03" ? "/showroom/modelos/02-03/index.html" : initialModel.id === "P04" ? "/showroom/modelos/02-04/index.html" : initialModel.id === "10.01" ? "/showroom/modelos/10-01/index.html" : initialModel.id === "10.05" ? "/showroom/modelos/10-05/index.html" : initialModel.id === "14.01" ? "/showroom/modelos/14-01/index.html" : initialModel.id === "14.02" ? "/showroom/modelos/14-02/index.html" : initialModel.id === "14.03" ? "/showroom/modelos/14-03/index.html" : initialModel.id === "14.04" ? "/showroom/modelos/14-04/index.html" : isHamburguer ? "/showroom/hamburguerias.html" : "/showroom/gastronomia.html";
+        const previewPath = initialModel.id === "H01" ? "/showroom/modelos/01-01/index.html" : initialModel.id === "H02" ? "/showroom/modelos/01-02/index.html" : initialModel.id === "P01" ? "/showroom/modelos/02-01/index.html" : initialModel.id === "P02" ? "/showroom/modelos/02-02/index.html" : initialModel.id === "P03" ? "/showroom/modelos/02-03/index.html" : initialModel.id === "P04" ? "/showroom/modelos/02-04/index.html" : initialModel.id === "10.01" ? "/showroom/modelos/10-01/index.html" : initialModel.id === "10.05" ? "/showroom/modelos/10-05/index.html" : initialModel.id === "14.01" ? "/showroom/modelos/14-01/index.html" : initialModel.id === "14.02" ? "/showroom/modelos/14-02/index.html" : initialModel.id === "14.03" ? "/showroom/modelos/14-03/index.html" : initialModel.id === "14.04" ? "/showroom/modelos/14-04/index.html" : isHamburguer ? "/showroom/hamburguerias.html" : (/^[PASJ]/.test(initialModel.id) || parseInt(initialModel.id, 10) <= 15) ? "/showroom/legacy-01-15.html" : "/showroom/gastronomia.html";
 
         const btnOpen = document.getElementById('btn-open-store');
         if (btnOpen) btnOpen.href = `${previewPath}?hero=${initialModel.id}`;
