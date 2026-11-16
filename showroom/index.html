@@ -342,337 +342,1859 @@
   <script>
     // As 25 pastas oficiais da operação Teixo
     const NICHES_DATA = [
-      // 5 Nichos de Gastronomia & Delivery
+  {
+    "id": "hamburguerias",
+    "code": "01",
+    "name": "01 — Hamburguerias",
+    "icon": "🍔",
+    "open": true,
+    "models": [
       {
-        id: 'hamburguerias',
-        name: 'Hamburguerias',
-        icon: '🍔',
-        open: true,
-        models: [
-          { id: 'H01', code: '⚡ H01', name: 'Smash Urban', fonts: 'Bebas Neue + Inter', active: true },
-          { id: 'H02', code: '🪵 H02', name: 'Vintage Smoke', fonts: 'Oswald + Plus Jakarta Sans' },
-          { id: 'H03', code: '👑 H03', name: 'Dark Angus', fonts: 'Fraunces + Plus Jakarta Sans' },
-          { id: 'H04', code: '🥤 H04', name: 'Retro Diner', fonts: 'Righteous + Outfit' },
-          { id: 'H05', code: '🌱 H05', name: 'Brioche Fresh', fonts: 'Outfit + Plus Jakarta Sans' }
+        "id": "H01",
+        "code": "01.01",
+        "name": "Smash Urban",
+        "fonts": "Bebas Neue + Inter",
+        "active": true,
+        "concept": "Smash burger prensado com crostinha e molho especial",
+        "palette": [
+          "#171717",
+          "#EAB308",
+          "#FFFFFF",
+          "#451A03"
         ]
       },
       {
-        id: 'pizzarias',
-        name: 'Pizzarias',
-        icon: '🍕',
-        open: false,
-        models: [
-          { id: 'P01', code: '🍕 P01', name: 'Juca Original', fonts: 'Fraunces + Plus Jakarta Sans' },
-          { id: 'P02', code: '🍅 P02', name: 'Napoletana Gourmet', fonts: 'Playfair Display + Inter' },
-          { id: 'P03', code: '🪵 P03', name: 'Forno a Lenha Rústica', fonts: 'Cinzel + Plus Jakarta Sans' },
-          { id: 'P04', code: '🧀 P04', name: 'Romana Al Taglio', fonts: 'Montserrat + Inter' },
-          { id: 'P05', code: '🗽 P05', name: 'New York Slice', fonts: 'Bebas Neue + Roboto' }
+        "id": "H02",
+        "code": "01.02",
+        "name": "Vintage Smoke",
+        "fonts": "Oswald + Plus Jakarta Sans",
+        "concept": "Burger defumado lentamente na lenha com queijo colby",
+        "palette": [
+          "#431407",
+          "#EA580C",
+          "#FFF7ED",
+          "#7C2D12"
         ]
       },
       {
-        id: 'acaiterias',
-        name: 'Açaiterias',
-        icon: '🍧',
-        open: false,
-        models: [
-          { id: 'A01', code: '🍇 A01', name: 'Tropical Energy', fonts: 'Syne + Plus Jakarta Sans' },
-          { id: 'A02', code: '🍓 A02', name: 'Topping Supreme', fonts: 'Poppins + Inter' },
-          { id: 'A03', code: '🥥 A03', name: 'Fit & Organic', fonts: 'Outfit + Inter' },
-          { id: 'A04', code: '🫐 A04', name: 'Dark Purple Gourmet', fonts: 'Plus Jakarta Sans' },
-          { id: 'A05', code: '🌴 A05', name: 'Beachside Vibe', fonts: 'Righteous + Quicksand' }
+        "id": "H03",
+        "code": "01.03",
+        "name": "Dark Angus",
+        "fonts": "Fraunces + Plus Jakarta Sans",
+        "concept": "A nobreza do Angus certificado com maionese trufada",
+        "palette": [
+          "#1E293B",
+          "#B45309",
+          "#F8FAFC",
+          "#334155"
         ]
       },
       {
-        id: 'sorveterias',
-        name: 'Sorveterias & Gelaterias',
-        icon: '🍦',
-        open: false,
-        models: [
-          { id: 'G01', code: '🍨 G01', name: 'Gelato Italiano', fonts: 'Fraunces + Inter' },
-          { id: 'G02', code: '🧁 G02', name: 'Candy Pastel', fonts: 'Fredoka + Poppins' },
-          { id: 'G03', code: '🥛 G03', name: 'Panna Crema', fonts: 'Outfit + Plus Jakarta Sans' },
-          { id: 'G04', code: '🍒 G04', name: 'Frutas do Bosque', fonts: 'Playfair Display + Inter' },
-          { id: 'G05', code: '🎠 G05', name: 'Artesanal Kids', fonts: 'Comfortaa + Nunito' }
+        "id": "H04",
+        "code": "01.04",
+        "name": "Retro Diner",
+        "fonts": "Righteous + Outfit",
+        "concept": "Clássicos americanos com shake e bacon crocante",
+        "palette": [
+          "#881337",
+          "#E11D48",
+          "#FFF1F2",
+          "#9F1239"
         ]
       },
       {
-        id: 'japonesa',
-        name: 'Comida Japonesa',
-        icon: '🍣',
-        open: false,
-        models: [
-          { id: 'J01', code: '🍱 J01', name: 'Tokyo Zen', fonts: 'Shippori Mincho + Inter' },
-          { id: 'J02', code: '🥢 J02', name: 'Cyber Neon', fonts: 'Teko + Plus Jakarta Sans' },
-          { id: 'J03', code: '✨ J03', name: 'Omakase Premium', fonts: 'Cormorant Garamond + Inter' },
-          { id: 'J04', code: '🐟 J04', name: 'Fresh Salmon', fonts: 'Outfit + Inter' },
-          { id: 'J05', code: '🏮 J05', name: 'Izakaya Tradicional', fonts: 'Cinzel + Plus Jakarta Sans' }
-        ]
-      },
-
-      // Os 20 Nichos Oficiais das Imagens
-      {
-        id: 'mini-entulhos',
-        name: 'Mini entulhos & caçambas',
-        icon: '🚚',
-        open: false,
-        models: [
-          { id: 'ME01', code: 'ME01', name: 'Disk Caçamba Rápido', fonts: 'Barlow + Inter' },
-          { id: 'ME02', code: 'ME02', name: 'Gestão de Obras & Reformas', fonts: 'Oswald + Inter' },
-          { id: 'ME03', code: 'ME03', name: 'Coleta Sustentável', fonts: 'Outfit + Plus Jakarta Sans' },
-          { id: 'ME04', code: 'ME04', name: 'Locação Diária Express', fonts: 'Bebas Neue + Inter' },
-          { id: 'ME05', code: 'ME05', name: 'Caçambas Estacionárias', fonts: 'Plus Jakarta Sans' }
-        ]
-      },
-      {
-        id: 'revenda-veiculos',
-        name: 'Revenda de veículos',
-        icon: '🚗',
-        open: false,
-        models: [
-          { id: 'RV01', code: 'RV01', name: 'Estoque Prime Seminovos', fonts: 'Syne + Inter' },
-          { id: 'RV02', code: 'RV02', name: 'Auto Boutique & Blindados', fonts: 'Fraunces + Plus Jakarta Sans' },
-          { id: 'RV03', code: 'RV03', name: 'Financiamento 100% Online', fonts: 'Plus Jakarta Sans' },
-          { id: 'RV04', code: 'RV04', name: 'Vitrine Multimarcas', fonts: 'Outfit + Inter' },
-          { id: 'RV05', code: 'RV05', name: 'Motors & Performance', fonts: 'Oswald + Inter' }
-        ]
-      },
-      {
-        id: 'comercio-personalizado',
-        name: 'Comércio personalizado',
-        icon: '🏪',
-        open: false,
-        models: [
-          { id: 'CP01', code: 'CP01', name: 'Catálogo Sob Medida', fonts: 'Plus Jakarta Sans' },
-          { id: 'CP02', code: 'CP02', name: 'Pedido Direto no Balcão', fonts: 'Inter + Outfit' },
-          { id: 'CP03', code: 'CP03', name: 'Operação B2B Atacado', fonts: 'Barlow + Inter' },
-          { id: 'CP04', code: 'CP04', name: 'Showroom de Fábrica', fonts: 'Syne + Plus Jakarta Sans' },
-          { id: 'CP05', code: 'CP05', name: 'Distribuidora Regional', fonts: 'Oswald + Inter' }
-        ]
-      },
-      {
-        id: 'delivery-restaurante',
-        name: 'Delivery e restaurante',
-        icon: '🍽️',
-        open: false,
-        models: [
-          { id: 'DR01', code: 'DR01', name: 'Mesa, Comanda & Balcão', fonts: 'Fraunces + Inter' },
-          { id: 'DR02', code: 'DR02', name: 'Almoço Executivo Express', fonts: 'Plus Jakarta Sans' },
-          { id: 'DR03', code: 'DR03', name: 'Bistrô & Alta Cozinha', fonts: 'Playfair Display + Inter' },
-          { id: 'DR04', code: 'DR04', name: 'Comida Caseira Raiz', fonts: 'Outfit + Inter' },
-          { id: 'DR05', code: 'DR05', name: 'Gourmet Noturno', fonts: 'Bebas Neue + Plus Jakarta Sans' }
-        ]
-      },
-      {
-        id: 'varejo-ecommerce',
-        name: 'Varejo e e-commerce',
-        icon: '🛍️',
-        open: false,
-        models: [
-          { id: 'VE01', code: 'VE01', name: 'Vitrine Fashion & Moda', fonts: 'Syne + Inter' },
-          { id: 'VE02', code: 'VE02', name: 'Checkout 1-Clique Express', fonts: 'Plus Jakarta Sans' },
-          { id: 'VE03', code: 'VE03', name: 'Mega Store Promoções', fonts: 'Bebas Neue + Inter' },
-          { id: 'VE04', code: 'VE04', name: 'Boutique Minimalista', fonts: 'Fraunces + Plus Jakarta Sans' },
-          { id: 'VE05', code: 'VE05', name: 'Cosméticos & Acessórios', fonts: 'Outfit + Inter' }
-        ]
-      },
-      {
-        id: 'prestacao-servicos',
-        name: 'Prestação de serviços',
-        icon: '🛠️',
-        open: false,
-        models: [
-          { id: 'PS01', code: 'PS01', name: 'Orçamento com 1-Toque', fonts: 'Plus Jakarta Sans' },
-          { id: 'PS02', code: 'PS02', name: 'Equipe Técnica & Laudo', fonts: 'Inter + Barlow' },
-          { id: 'PS03', code: 'PS03', name: 'Plantão 24h Especializado', fonts: 'Oswald + Inter' },
-          { id: 'PS04', code: 'PS04', name: 'Manutenção Preventiva', fonts: 'Outfit + Plus Jakarta Sans' },
-          { id: 'PS05', code: 'PS05', name: 'Consultoria Empresarial', fonts: 'Fraunces + Inter' }
-        ]
-      },
-      {
-        id: 'imobiliaria',
-        name: 'Imobiliária',
-        icon: '🏢',
-        open: false,
-        models: [
-          { id: 'IM01', code: 'IM01', name: 'Imóveis de Alto Padrão', fonts: 'Fraunces + Inter' },
-          { id: 'IM02', code: 'IM02', name: 'Lançamentos na Planta', fonts: 'Syne + Plus Jakarta Sans' },
-          { id: 'IM03', code: 'IM03', name: 'Locação Rápida Sem Fiador', fonts: 'Plus Jakarta Sans' },
-          { id: 'IM04', code: 'IM04', name: 'Casas & Condomínios', fonts: 'Outfit + Inter' },
-          { id: 'IM05', code: 'IM05', name: 'Corretor Digital 360', fonts: 'Inter + Barlow' }
-        ]
-      },
-      {
-        id: 'clinica-geral',
-        name: 'Clínica geral & médicos',
-        icon: '🩺',
-        open: false,
-        models: [
-          { id: 'CG01', code: 'CG01', name: 'Agendamento Online Integrado', fonts: 'Plus Jakarta Sans' },
-          { id: 'CG02', code: 'CG02', name: 'Corpo Clínico & Especialistas', fonts: 'Outfit + Inter' },
-          { id: 'CG03', code: 'CG03', name: 'Checkup & Medicina Preventiva', fonts: 'Inter + Plus Jakarta Sans' },
-          { id: 'CG04', code: 'CG04', name: 'Consultório Humanizado', fonts: 'Fraunces + Inter' },
-          { id: 'CG05', code: 'CG05', name: 'Espaço Saúde & Bem-Estar', fonts: 'Syne + Plus Jakarta Sans' }
-        ]
-      },
-      {
-        id: 'estetica-dermatologia',
-        name: 'Estética e dermatologia',
-        icon: '✨',
-        open: false,
-        models: [
-          { id: 'ED01', code: 'ED01', name: 'Glow Facial & Rejuvenescimento', fonts: 'Fraunces + Plus Jakarta Sans' },
-          { id: 'ED02', code: 'ED02', name: 'Dermatologia Clínica Avançada', fonts: 'Playfair Display + Inter' },
-          { id: 'ED03', code: 'ED03', name: 'Laser, Botox & Preenchimento', fonts: 'Syne + Inter' },
-          { id: 'ED04', code: 'ED04', name: 'Protocolos de Emagrecimento', fonts: 'Outfit + Plus Jakarta Sans' },
-          { id: 'ED05', code: 'ED05', name: 'Spa Urbano & Harmonização', fonts: 'Cormorant + Inter' }
-        ]
-      },
-      {
-        id: 'odontologia',
-        name: 'Odontologia e ortodontia',
-        icon: '🦷',
-        open: false,
-        models: [
-          { id: 'OD01', code: 'OD01', name: 'Alinhadores Invisíveis', fonts: 'Plus Jakarta Sans' },
-          { id: 'OD02', code: 'OD02', name: 'Implantes & Lentes de Contato', fonts: 'Outfit + Inter' },
-          { id: 'OD03', code: 'OD03', name: 'Clareamento a Laser Express', fonts: 'Syne + Inter' },
-          { id: 'OD04', code: 'OD04', name: 'Odontopediatria Especializada', fonts: 'Fredoka + Poppins' },
-          { id: 'OD05', code: 'OD05', name: 'Centro de Reabilitação Oral', fonts: 'Fraunces + Plus Jakarta Sans' }
-        ]
-      },
-      {
-        id: 'pediatria',
-        name: 'Pediatria',
-        icon: '👶',
-        open: false,
-        models: [
-          { id: 'PD01', code: 'PD01', name: 'Puericultura com Acolhimento', fonts: 'Outfit + Plus Jakarta Sans' },
-          { id: 'PD02', code: 'PD02', name: 'Calendário de Vacinas', fonts: 'Inter + Nunito' },
-          { id: 'PD03', code: 'PD03', name: 'Espaço Lúdico Sem Medo', fonts: 'Comfortaa + Poppins' },
-          { id: 'PD04', code: 'PD04', name: 'Emergência Infantil', fonts: 'Plus Jakarta Sans' },
-          { id: 'PD05', code: 'PD05', name: 'Desenvolvimento do Bebê', fonts: 'Fraunces + Inter' }
-        ]
-      },
-      {
-        id: 'psicologia',
-        name: 'Psicologia e psiquiatria',
-        icon: '🧠',
-        open: false,
-        models: [
-          { id: 'PSI01', code: 'PSI01', name: 'Terapia Cognitivo-Comportamental', fonts: 'Plus Jakarta Sans' },
-          { id: 'PSI02', code: 'PSI02', name: 'Psicoterapia Online Sigilosa', fonts: 'Inter + Outfit' },
-          { id: 'PSI03', code: 'PSI03', name: 'Terapia de Casal e Família', fonts: 'Fraunces + Inter' },
-          { id: 'PSI04', code: 'PSI04', name: 'Acolhimento de Ansiedade', fonts: 'Outfit + Plus Jakarta Sans' },
-          { id: 'PSI05', code: 'PSI05', name: 'Saúde Mental & Psiquiatria', fonts: 'Playfair Display + Inter' }
-        ]
-      },
-      {
-        id: 'ortopedia',
-        name: 'Ortopedia e fisioterapia',
-        icon: '🦴',
-        open: false,
-        models: [
-          { id: 'ORT01', code: 'ORT01', name: 'Reabilitação de Coluna', fonts: 'Barlow + Inter' },
-          { id: 'ORT02', code: 'ORT02', name: 'Fisioterapia Esportiva', fonts: 'Oswald + Plus Jakarta Sans' },
-          { id: 'ORT03', code: 'ORT03', name: 'Pilates Clínico Personal', fonts: 'Outfit + Inter' },
-          { id: 'ORT04', code: 'ORT04', name: 'Traumatologia e Articulações', fonts: 'Plus Jakarta Sans' },
-          { id: 'ORT05', code: 'ORT05', name: 'Fisioterapia Domiciliar', fonts: 'Inter + Barlow' }
-        ]
-      },
-      {
-        id: 'oftalmologia',
-        name: 'Oftalmologia',
-        icon: '👁️',
-        open: false,
-        models: [
-          { id: 'OFT01', code: 'OFT01', name: 'Exame de Grau Computadorizado', fonts: 'Plus Jakarta Sans' },
-          { id: 'OFT02', code: 'OFT02', name: 'Cirurgia Refrativa a Laser', fonts: 'Outfit + Inter' },
-          { id: 'OFT03', code: 'OFT03', name: 'Adaptação de Lentes de Contato', fonts: 'Inter + Plus Jakarta Sans' },
-          { id: 'OFT04', code: 'OFT04', name: 'Tratamento de Catarata & Glaucoma', fonts: 'Fraunces + Inter' },
-          { id: 'OFT05', code: 'OFT05', name: 'Centro Oftalmológico Completo', fonts: 'Syne + Plus Jakarta Sans' }
-        ]
-      },
-      {
-        id: 'nutricao',
-        name: 'Nutrição',
-        icon: '🥗',
-        open: false,
-        models: [
-          { id: 'NUT01', code: 'NUT01', name: 'Emagrecimento Sem Dietas Malucas', fonts: 'Outfit + Plus Jakarta Sans' },
-          { id: 'NUT02', code: 'NUT02', name: 'Nutrição Esportiva & Performance', fonts: 'Bebas Neue + Inter' },
-          { id: 'NUT03', code: 'NUT03', name: 'Bioimpedância & Acompanhamento', fonts: 'Plus Jakarta Sans' },
-          { id: 'NUT04', code: 'NUT04', name: 'Nutrição Materno-Infantil', fonts: 'Fraunces + Inter' },
-          { id: 'NUT05', code: 'NUT05', name: 'Reeducação Alimentar Consciente', fonts: 'Syne + Inter' }
-        ]
-      },
-      {
-        id: 'ginecologia',
-        name: 'Ginecologia & obstetrícia',
-        icon: '🌸',
-        open: false,
-        models: [
-          { id: 'GIN01', code: 'GIN01', name: 'Pré-Natal & Parto Humanizado', fonts: 'Fraunces + Inter' },
-          { id: 'GIN02', code: 'GIN02', name: 'Exames Preventivos & Checkup', fonts: 'Plus Jakarta Sans' },
-          { id: 'GIN03', code: 'GIN03', name: 'DIU & Planejamento Familiar', fonts: 'Outfit + Inter' },
-          { id: 'GIN04', code: 'GIN04', name: 'Menopausa & Longevidade', fonts: 'Playfair Display + Inter' },
-          { id: 'GIN05', code: 'GIN05', name: 'Espaço Materno & Cuidados', fonts: 'Syne + Plus Jakarta Sans' }
-        ]
-      },
-      {
-        id: 'cardiologia',
-        name: 'Cardiologia',
-        icon: '❤️',
-        open: false,
-        models: [
-          { id: 'CAR01', code: 'CAR01', name: 'Checkup Cardiológico Preventivo', fonts: 'Plus Jakarta Sans' },
-          { id: 'CAR02', code: 'CAR02', name: 'Eletrocardiograma & MAPA 24h', fonts: 'Outfit + Inter' },
-          { id: 'CAR03', code: 'CAR03', name: 'Ecocardiograma com Doppler', fonts: 'Inter + Barlow' },
-          { id: 'CAR04', code: 'CAR04', name: 'Cardiologia Esportiva', fonts: 'Oswald + Inter' },
-          { id: 'CAR05', code: 'CAR05', name: 'Centro de Saúde Cardiovascular', fonts: 'Fraunces + Inter' }
-        ]
-      },
-      {
-        id: 'laboratorio-exames',
-        name: 'Laboratório e exames',
-        icon: '🔬',
-        open: false,
-        models: [
-          { id: 'LAB01', code: 'LAB01', name: 'Resultados Rápidos Online', fonts: 'Plus Jakarta Sans' },
-          { id: 'LAB02', code: 'LAB02', name: 'Coleta Domiciliar Gratuita', fonts: 'Outfit + Inter' },
-          { id: 'LAB03', code: 'LAB03', name: 'Painel de Exames de Sangue', fonts: 'Inter + Plus Jakarta Sans' },
-          { id: 'LAB04', code: 'LAB04', name: 'Testes Genéticos & Alergias', fonts: 'Syne + Inter' },
-          { id: 'LAB05', code: 'LAB05', name: 'Laboratório de Análises Clínicas', fonts: 'Barlow + Inter' }
-        ]
-      },
-      {
-        id: 'clinica-multidisciplinar',
-        name: 'Clínica multidisciplinar',
-        icon: '🏥',
-        open: false,
-        models: [
-          { id: 'CMD01', code: 'CMD01', name: 'Centro Médico Todas Especialidades', fonts: 'Plus Jakarta Sans' },
-          { id: 'CMD02', code: 'CMD02', name: 'Pronto Atendimento & Consultas', fonts: 'Outfit + Inter' },
-          { id: 'CMD03', code: 'CMD03', name: 'Estrutura Completa com Exames', fonts: 'Inter + Barlow' },
-          { id: 'CMD04', code: 'CMD04', name: 'Convênios & Particular Popular', fonts: 'Oswald + Inter' },
-          { id: 'CMD05', code: 'CMD05', name: 'Saúde Integrada da Família', fonts: 'Fraunces + Inter' }
-        ]
-      },
-      {
-        id: 'clinica-veterinaria',
-        name: 'Clínica veterinária',
-        icon: '🐾',
-        open: false,
-        models: [
-          { id: 'VET01', code: 'VET01', name: 'Plantão Veterinário 24 Horas', fonts: 'Plus Jakarta Sans' },
-          { id: 'VET02', code: 'VET02', name: 'Cirurgias & Vacinas Cães e Gatos', fonts: 'Outfit + Inter' },
-          { id: 'VET03', code: 'VET03', name: 'Banho & Tosa com Estética Pet', fonts: 'Comfortaa + Poppins' },
-          { id: 'VET04', code: 'VET04', name: 'Internação & Monitoramento', fonts: 'Inter + Barlow' },
-          { id: 'VET05', code: 'VET05', name: 'Pet Center & Farmácia Completa', fonts: 'Syne + Plus Jakarta Sans' }
+        "id": "H05",
+        "code": "01.05",
+        "name": "Brioche Fresh",
+        "fonts": "Outfit + Plus Jakarta Sans",
+        "concept": "Pão brioche artesanal com ingredientes frescos da horta",
+        "palette": [
+          "#064E3B",
+          "#059669",
+          "#ECFDF5",
+          "#065F46"
         ]
       }
-    ];
+    ]
+  },
+  {
+    "id": "pizzarias",
+    "code": "02",
+    "name": "02 — Pizzarias",
+    "icon": "🍕",
+    "open": false,
+    "models": [
+      {
+        "id": "P01",
+        "code": "02.01",
+        "name": "Juca Original",
+        "fonts": "Fraunces + Plus Jakarta Sans",
+        "concept": "Pizza artesanal tradicional forno a lenha desde 2001",
+        "palette": [
+          "#2F4A32",
+          "#B23A26",
+          "#F4EAD8",
+          "#EAB308"
+        ]
+      },
+      {
+        "id": "P02",
+        "code": "02.02",
+        "name": "Napoletana Gourmet",
+        "fonts": "Playfair Display + Inter",
+        "concept": "Massa de fermentação 48h, borda alta e fior di latte",
+        "palette": [
+          "#1C1917",
+          "#DC2626",
+          "#FEF2F2",
+          "#78350F"
+        ]
+      },
+      {
+        "id": "P03",
+        "code": "02.03",
+        "name": "Forno a Lenha Rústica",
+        "fonts": "Cinzel + Plus Jakarta Sans",
+        "concept": "Tradição rústica com queijo derretido e lenha nobre",
+        "palette": [
+          "#451A03",
+          "#D97706",
+          "#FFFBEB",
+          "#78350F"
+        ]
+      },
+      {
+        "id": "P04",
+        "code": "02.04",
+        "name": "Romana Al Taglio",
+        "fonts": "Montserrat + Inter",
+        "concept": "Pizza romana crocante em fatias e ingredientes premium",
+        "palette": [
+          "#0F172A",
+          "#0284C7",
+          "#F0F9FF",
+          "#334155"
+        ]
+      },
+      {
+        "id": "P05",
+        "code": "02.05",
+        "name": "New York Slice",
+        "fonts": "Bebas Neue + Roboto",
+        "concept": "Fatias nova-iorquinas gigantes dobráveis e pepperoni",
+        "palette": [
+          "#7F1D1D",
+          "#EF4444",
+          "#FEF2F2",
+          "#18181B"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "acaiterias",
+    "code": "03",
+    "name": "03 — Açaiterias",
+    "icon": "🍧",
+    "open": false,
+    "models": [
+      {
+        "id": "A01",
+        "code": "03.01",
+        "name": "Tropical Energy",
+        "fonts": "Syne + Plus Jakarta Sans",
+        "concept": "Açaí puro batido na hora com guaraná e frutas frescas",
+        "palette": [
+          "#581C87",
+          "#9333EA",
+          "#FAF5FF",
+          "#FACC15"
+        ]
+      },
+      {
+        "id": "A02",
+        "code": "03.02",
+        "name": "Topping Supreme",
+        "fonts": "Poppins + Inter",
+        "concept": "Taças montadas com cremes artesanais e chocolates nobres",
+        "palette": [
+          "#3B0764",
+          "#C084FC",
+          "#FDF4FF",
+          "#E11D48"
+        ]
+      },
+      {
+        "id": "A03",
+        "code": "03.03",
+        "name": "Fit & Organic",
+        "fonts": "Outfit + Inter",
+        "concept": "Açaí 100% orgânico sem xarope com frutas e granola artesanal",
+        "palette": [
+          "#14532D",
+          "#22C55E",
+          "#F0FDF4",
+          "#581C87"
+        ]
+      },
+      {
+        "id": "A04",
+        "code": "03.04",
+        "name": "Dark Purple Gourmet",
+        "fonts": "Plus Jakarta Sans",
+        "concept": "Açaí cremoso de alta densidade servido em cerâmica escura",
+        "palette": [
+          "#1E1B4B",
+          "#6366F1",
+          "#EEF2FF",
+          "#818CF8"
+        ]
+      },
+      {
+        "id": "A05",
+        "code": "03.05",
+        "name": "Beachside Vibe",
+        "fonts": "Righteous + Quicksand",
+        "concept": "O sabor da praia com coco ralado, mel e frutas tropicais",
+        "palette": [
+          "#0369A1",
+          "#06B6D4",
+          "#ECFEFF",
+          "#FBBF24"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sorveterias",
+    "code": "04",
+    "name": "04 — Sorveterias & Gelaterias",
+    "icon": "🍦",
+    "open": false,
+    "models": [
+      {
+        "id": "G01",
+        "code": "04.01",
+        "name": "Gelato Italiano",
+        "fonts": "Fraunces + Inter",
+        "concept": "Mestres gelatiers com pistache di Bronte e avelã Piemonte",
+        "palette": [
+          "#1C1917",
+          "#EAB308",
+          "#FEFCE8",
+          "#78350F"
+        ]
+      },
+      {
+        "id": "G02",
+        "code": "04.02",
+        "name": "Candy Pastel",
+        "fonts": "Fredoka + Poppins",
+        "concept": "Sorvetes artesanais lúdicos, casquinhas coloridas e alegria",
+        "palette": [
+          "#BE185D",
+          "#F472B6",
+          "#FDF2F8",
+          "#38BDF8"
+        ]
+      },
+      {
+        "id": "G03",
+        "code": "04.03",
+        "name": "Panna Crema",
+        "fonts": "Outfit + Plus Jakarta Sans",
+        "concept": "Cremas aveludadas à base de leite fresco da fazenda",
+        "palette": [
+          "#431407",
+          "#D97706",
+          "#FFFBEB",
+          "#9A3412"
+        ]
+      },
+      {
+        "id": "G04",
+        "code": "04.04",
+        "name": "Frutas do Bosque",
+        "fonts": "Playfair Display + Inter",
+        "concept": "Sorbets 100% fruta natural com framboesas e mirtilos",
+        "palette": [
+          "#831843",
+          "#DB2777",
+          "#FDF2F8",
+          "#BE123C"
+        ]
+      },
+      {
+        "id": "G05",
+        "code": "04.05",
+        "name": "Artesanal Kids",
+        "fonts": "Comfortaa + Nunito",
+        "concept": "Sabores divertidos de infância com confeitos crocantes",
+        "palette": [
+          "#0284C7",
+          "#38BDF8",
+          "#F0F9FF",
+          "#F43F5E"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "japonesa",
+    "code": "05",
+    "name": "05 — Comida Japonesa",
+    "icon": "🍣",
+    "open": false,
+    "models": [
+      {
+        "id": "J01",
+        "code": "05.01",
+        "name": "Tokyo Zen",
+        "fonts": "Shippori Mincho + Inter",
+        "concept": "Tradição milenar em sushi artesanal e cortes nobres",
+        "palette": [
+          "#09090B",
+          "#DC2626",
+          "#FAFAFA",
+          "#71717A"
+        ]
+      },
+      {
+        "id": "J02",
+        "code": "05.02",
+        "name": "Cyber Neon",
+        "fonts": "Teko + Plus Jakarta Sans",
+        "concept": "Sushi contemporâneo com toques trufados e neon urbano",
+        "palette": [
+          "#020617",
+          "#EC4899",
+          "#06B6D4",
+          "#F8FAFC"
+        ]
+      },
+      {
+        "id": "J03",
+        "code": "05.03",
+        "name": "Omakase Premium",
+        "fonts": "Cormorant Garamond + Inter",
+        "concept": "Experiência exclusiva servida pelo itamae em cerâmica escura",
+        "palette": [
+          "#18181B",
+          "#D4AF37",
+          "#F4F4F5",
+          "#27272A"
+        ]
+      },
+      {
+        "id": "J04",
+        "code": "05.04",
+        "name": "Fresh Salmon",
+        "fonts": "Outfit + Inter",
+        "concept": "Salmão fresco selecionado, sashimis espessos e niguiris",
+        "palette": [
+          "#431407",
+          "#F97316",
+          "#FFF7ED",
+          "#EA580C"
+        ]
+      },
+      {
+        "id": "J05",
+        "code": "05.05",
+        "name": "Izakaya Tradicional",
+        "fonts": "Cinzel + Plus Jakarta Sans",
+        "concept": "Petiscos e pratos quentes das tabernas japonesas tradicionais",
+        "palette": [
+          "#1C1917",
+          "#B91C1C",
+          "#FEF2F2",
+          "#A16207"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "marmitarias",
+    "code": "06",
+    "name": "06 — Marmitarias & Caseira",
+    "icon": "🍱",
+    "open": false,
+    "models": [
+      {
+        "id": "06.01",
+        "code": "06.01",
+        "name": "Tempero de Casa",
+        "fonts": "DM Sans + Fraunces",
+        "concept": "Comida feita com carinho, como uma refeição preparada em família",
+        "palette": [
+          "#FFF4E6",
+          "#BB6044",
+          "#68764D",
+          "#422D25"
+        ]
+      },
+      {
+        "id": "06.02",
+        "code": "06.02",
+        "name": "Prato do Dia",
+        "fonts": "Poppins Bold + Inter",
+        "concept": "Refeição prática, completa, saborosa e acessível para o cotidiano",
+        "palette": [
+          "#237B4B",
+          "#FFC83D",
+          "#FFFFFF",
+          "#252B27"
+        ]
+      },
+      {
+        "id": "06.03",
+        "code": "06.03",
+        "name": "Marmita Express",
+        "fonts": "Manrope + Inter",
+        "concept": "Velocidade, conveniência e eficiência para quem precisa almoçar sem perder tempo",
+        "palette": [
+          "#102F55",
+          "#FF792C",
+          "#FFFFFF",
+          "#F2F5F8"
+        ]
+      },
+      {
+        "id": "06.04",
+        "code": "06.04",
+        "name": "Sabor da Vó",
+        "fonts": "Libre Baskerville + Nunito Sans",
+        "concept": "Tradição, memória afetiva e receitas familiares de panela de barro",
+        "palette": [
+          "#713B45",
+          "#F4E7D2",
+          "#D5A348",
+          "#49362D"
+        ]
+      },
+      {
+        "id": "06.05",
+        "code": "06.05",
+        "name": "Mesa Boa",
+        "fonts": "Plus Jakarta Sans + Playfair Display",
+        "concept": "Comida caseira contemporânea, simples, minimalista e elegante",
+        "palette": [
+          "#59654C",
+          "#FAF9F4",
+          "#E7DAC9",
+          "#282B25"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pastelarias",
+    "code": "07",
+    "name": "07 — Pastelarias",
+    "icon": "🥟",
+    "open": false,
+    "models": [
+      {
+        "id": "07.01",
+        "code": "07.01",
+        "name": "Pastel da Feira",
+        "fonts": "Archivo Black + DM Sans",
+        "concept": "Tradição das feiras brasileiras, crocância de ouro e caldo de cana",
+        "palette": [
+          "#F9C62B",
+          "#257A46",
+          "#D94635",
+          "#FFF8DF"
+        ]
+      },
+      {
+        "id": "07.02",
+        "code": "07.02",
+        "name": "Crocante Club",
+        "fonts": "Space Grotesk + Inter",
+        "concept": "Pastelaria jovem, urbana e irreverente com queijo puxando",
+        "palette": [
+          "#FF681C",
+          "#151515",
+          "#FFF2E3",
+          "#FFD44E"
+        ]
+      },
+      {
+        "id": "07.03",
+        "code": "07.03",
+        "name": "Massa Dourada",
+        "fonts": "Cormorant Garamond + Manrope",
+        "concept": "Pastel artesanal premium feito com ingredientes especiais",
+        "palette": [
+          "#C89442",
+          "#F9F0E1",
+          "#483022",
+          "#22201D"
+        ]
+      },
+      {
+        "id": "07.04",
+        "code": "07.04",
+        "name": "Pastel Pop",
+        "fonts": "Fredoka + Nunito Sans",
+        "concept": "Alimentação divertida, rápida e cheia de personalidade pop art",
+        "palette": [
+          "#F44336",
+          "#FFD028",
+          "#2563EB",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "07.05",
+        "code": "07.05",
+        "name": "Estação Pastel",
+        "fonts": "Sora + Inter",
+        "concept": "Pastelaria urbana contemporânea, confiável e bem estruturada",
+        "palette": [
+          "#203550",
+          "#F3E9D8",
+          "#E7AF41",
+          "#FFFFFF"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hot-dog",
+    "code": "08",
+    "name": "08 — Cachorro-Quente / Hot Dog",
+    "icon": "🌭",
+    "open": false,
+    "models": [
+      {
+        "id": "08.01",
+        "code": "08.01",
+        "name": "Hot Dog Street",
+        "fonts": "Anton + DM Sans",
+        "concept": "Hot dog americano de rua, salsicha grelhada, mostarda e pão macio",
+        "palette": [
+          "#D92B2B",
+          "#FFCC30",
+          "#FFF5E6",
+          "#222222"
+        ]
+      },
+      {
+        "id": "08.02",
+        "code": "08.02",
+        "name": "Dogster",
+        "fonts": "Bricolage Grotesque + Inter",
+        "concept": "Marca jovem e digital com batata palha e molhos generosos",
+        "palette": [
+          "#245BFF",
+          "#FF7D29",
+          "#FFFFFF",
+          "#20242C"
+        ]
+      },
+      {
+        "id": "08.03",
+        "code": "08.03",
+        "name": "New York Dogs",
+        "fonts": "Oswald + Libre Baskerville",
+        "concept": "Delicatessen americana sofisticada servida em bandeja de metal",
+        "palette": [
+          "#191919",
+          "#F5EBDD",
+          "#A52B30",
+          "#CB9E56"
+        ]
+      },
+      {
+        "id": "08.04",
+        "code": "08.04",
+        "name": "Hot Club",
+        "fonts": "Space Grotesk + Archivo",
+        "concept": "Hot dogs criativos e marca urbana com personalidade noturna",
+        "palette": [
+          "#6524A6",
+          "#CCFF3D",
+          "#16131C",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "08.05",
+        "code": "08.05",
+        "name": "Dogão Brasil",
+        "fonts": "Baloo 2 + Montserrat",
+        "concept": "Cachorro-quente brasileiro completo com milho, purê e batata palha",
+        "palette": [
+          "#15834C",
+          "#F7CA26",
+          "#E74636",
+          "#FFFFFF"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "esfiharias-arabe",
+    "code": "09",
+    "name": "09 — Esfiharias & Árabe",
+    "icon": "🧆",
+    "open": false,
+    "models": [
+      {
+        "id": "09.01",
+        "code": "09.01",
+        "name": "Al Medina",
+        "fonts": "Cormorant Garamond + DM Sans",
+        "concept": "Tradição culinária árabe, hospitalidade, homus e esfihas artesanais",
+        "palette": [
+          "#116B54",
+          "#C5A15A",
+          "#F8F1E6",
+          "#0A3B2E"
+        ]
+      },
+      {
+        "id": "09.02",
+        "code": "09.02",
+        "name": "Cedro & Zaatar",
+        "fonts": "Fraunces + Manrope",
+        "concept": "Gastronomia libanesa artesanal e natural sobre pedra clara",
+        "palette": [
+          "#B96A4B",
+          "#66774E",
+          "#F3E5CF",
+          "#483B30"
+        ]
+      },
+      {
+        "id": "09.03",
+        "code": "09.03",
+        "name": "Esfiha Express",
+        "fonts": "Poppins + Inter",
+        "concept": "Esfiha rápida, aberta e quentinha preparada na hora",
+        "palette": [
+          "#D93432",
+          "#FFC63B",
+          "#FFFFFF",
+          "#242424"
+        ]
+      },
+      {
+        "id": "09.04",
+        "code": "09.04",
+        "name": "Souk Street",
+        "fonts": "Bricolage Grotesque + Inter",
+        "concept": "Street food árabe com shawarma cortado e especiarias frescas",
+        "palette": [
+          "#176B9B",
+          "#F58C35",
+          "#F1E5D0",
+          "#262626"
+        ]
+      },
+      {
+        "id": "09.05",
+        "code": "09.05",
+        "name": "Damasco",
+        "fonts": "Playfair Display + Plus Jakarta Sans",
+        "concept": "Restaurante árabe premium com arquitetura refinada do Oriente Médio",
+        "palette": [
+          "#EAD9BB",
+          "#B17D51",
+          "#28463B",
+          "#FFFAF1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "docerias-confeitarias",
+    "code": "10",
+    "name": "10 — Docerias & Confeitarias",
+    "icon": "🧁",
+    "open": false,
+    "models": [
+      {
+        "id": "10.01",
+        "code": "10.01",
+        "name": "Maison Sucré",
+        "fonts": "Cormorant Garamond + Montserrat",
+        "concept": "Pâtisserie francesa de luxo, delicadeza e macarons sobre mármore",
+        "palette": [
+          "#E8C5C7",
+          "#D8B98A",
+          "#FFF9F5",
+          "#513C3D"
+        ]
+      },
+      {
+        "id": "10.02",
+        "code": "10.02",
+        "name": "Doce Encanto",
+        "fonts": "DM Serif Display + Nunito Sans",
+        "concept": "Confeitaria afetiva, romântica, bolo de morango e cupcakes delicados",
+        "palette": [
+          "#F4B9CB",
+          "#FFF3E9",
+          "#C9B6E4",
+          "#6A4546"
+        ]
+      },
+      {
+        "id": "10.03",
+        "code": "10.03",
+        "name": "Sugar Pop",
+        "fonts": "Fredoka + Poppins",
+        "concept": "Doces criativos, donuts coloridos e brigadeiros altamente instagramáveis",
+        "palette": [
+          "#F52B83",
+          "#FFE34A",
+          "#4CA6FF",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "10.04",
+        "code": "10.04",
+        "name": "Cacau Atelier",
+        "fonts": "Playfair Display + Manrope",
+        "concept": "Chocolataria sofisticada, trufas, ganache e iluminação cinematográfica",
+        "palette": [
+          "#33211C",
+          "#C7A168",
+          "#F2E6D7",
+          "#8A5A3D"
+        ]
+      },
+      {
+        "id": "10.05",
+        "code": "10.05",
+        "name": "Baunilha Studio",
+        "fonts": "Plus Jakarta Sans + Fraunces",
+        "concept": "Confeitaria moderna com estética minimalista de boutique",
+        "palette": [
+          "#FAF7F2",
+          "#F0BCA7",
+          "#E7D8C9",
+          "#34302E"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cafeterias",
+    "code": "11",
+    "name": "11 — Cafeterias",
+    "icon": "☕",
+    "open": false,
+    "models": [
+      {
+        "id": "11.01",
+        "code": "11.01",
+        "name": "Coffee Noir",
+        "fonts": "Sora + Cormorant Garamond",
+        "concept": "Cafeteria de especialidade com crema intensa e atmosfera urbana",
+        "palette": [
+          "#171717",
+          "#B87950",
+          "#EDE2D2",
+          "#66452F"
+        ]
+      },
+      {
+        "id": "11.02",
+        "code": "11.02",
+        "name": "Slow Morning",
+        "fonts": "Fraunces + DM Sans",
+        "concept": "Manhã tranquila, latte art, croissant e luz natural acolhedora",
+        "palette": [
+          "#F2E4D2",
+          "#A4B29A",
+          "#FFF9EE",
+          "#6A5244"
+        ]
+      },
+      {
+        "id": "11.03",
+        "code": "11.03",
+        "name": "Urban Roast",
+        "fonts": "Archivo Black + Inter",
+        "concept": "Café urbano industrial com extração profissional e dinamismo",
+        "palette": [
+          "#26292C",
+          "#CB6A36",
+          "#D7D5CE",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "11.04",
+        "code": "11.04",
+        "name": "Café de Origem",
+        "fonts": "Libre Baskerville + Manrope",
+        "concept": "Café especial brasileiro, rastreabilidade e grãos torrados",
+        "palette": [
+          "#65452E",
+          "#4D6045",
+          "#EEE2CC",
+          "#B58A5F"
+        ]
+      },
+      {
+        "id": "11.05",
+        "code": "11.05",
+        "name": "Daily Brew",
+        "fonts": "Space Grotesk + Inter",
+        "concept": "Cafeteria prática, iced latte gelado e integração ao dia a dia",
+        "palette": [
+          "#FFFFFF",
+          "#2554A4",
+          "#F4F1EB",
+          "#23262A"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "padarias",
+    "code": "12",
+    "name": "12 — Padarias",
+    "icon": "🥖",
+    "open": false,
+    "models": [
+      {
+        "id": "12.01",
+        "code": "12.01",
+        "name": "Maison du Pain",
+        "fonts": "Cormorant Garamond + DM Sans",
+        "concept": "Boulangerie artesanal europeia com baguetes e croissants nobres",
+        "palette": [
+          "#F7EBD8",
+          "#BB9458",
+          "#564333",
+          "#292623"
+        ]
+      },
+      {
+        "id": "12.02",
+        "code": "12.02",
+        "name": "Pão da Vila",
+        "fonts": "Fraunces + Nunito Sans",
+        "concept": "Padaria de bairro acolhedora, pão francês quente e café com manteiga",
+        "palette": [
+          "#B86145",
+          "#F0E2CD",
+          "#E9BB58",
+          "#56624D"
+        ]
+      },
+      {
+        "id": "12.03",
+        "code": "12.03",
+        "name": "Fermento Vivo",
+        "fonts": "Libre Baskerville + Manrope",
+        "concept": "Panificação de fermentação natural sourdough com miolo aerado",
+        "palette": [
+          "#626B4D",
+          "#E9DEC7",
+          "#6B5038",
+          "#FAF8F0"
+        ]
+      },
+      {
+        "id": "12.04",
+        "code": "12.04",
+        "name": "Bom Dia Pães",
+        "fonts": "Poppins + Nunito Sans",
+        "concept": "Padaria alegre e familiar com mesa de café completa e fresca",
+        "palette": [
+          "#FFD347",
+          "#2A66B8",
+          "#FFFFFF",
+          "#E7654A"
+        ]
+      },
+      {
+        "id": "12.05",
+        "code": "12.05",
+        "name": "Bread Studio",
+        "fonts": "Inter + Bodoni Moda",
+        "concept": "Padaria boutique contemporânea minimalista sobre pedestal de pedra",
+        "palette": [
+          "#FAFAF7",
+          "#1D1D1B",
+          "#D8C8AE",
+          "#A9A7A1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "churrascarias-espetinhos",
+    "code": "13",
+    "name": "13 — Churrasco & Espetinhos",
+    "icon": "🥩",
+    "open": false,
+    "models": [
+      {
+        "id": "13.01",
+        "code": "13.01",
+        "name": "Brasa Nobre",
+        "fonts": "Oswald + Manrope",
+        "concept": "Churrascaria premium com picanha fatiada e suculência na brasa",
+        "palette": [
+          "#171717",
+          "#B87345",
+          "#493129",
+          "#F1E7D8"
+        ]
+      },
+      {
+        "id": "13.02",
+        "code": "13.02",
+        "name": "Fogo de Chão",
+        "fonts": "Roboto Condensed + DM Sans",
+        "concept": "Churrasco rústico de verdade com força do fogo e carne assada lenta",
+        "palette": [
+          "#24201E",
+          "#B43824",
+          "#D6B89B",
+          "#101010"
+        ]
+      },
+      {
+        "id": "13.03",
+        "code": "13.03",
+        "name": "Espeto Club",
+        "fonts": "Archivo Black + Inter",
+        "concept": "Espetinhos urbanos de carne, frango e linguiça para encontros alegres",
+        "palette": [
+          "#F9C52B",
+          "#202020",
+          "#E87525",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "13.04",
+        "code": "13.04",
+        "name": "Pampa Grill",
+        "fonts": "Roboto Slab + Manrope",
+        "concept": "Tradição gaúcha autêntica com costela desmanchando e couro nobre",
+        "palette": [
+          "#354736",
+          "#8D6243",
+          "#EEE0C9",
+          "#262524"
+        ]
+      },
+      {
+        "id": "13.05",
+        "code": "13.05",
+        "name": "Carvão & Sal",
+        "fonts": "Playfair Display + Plus Jakarta Sans",
+        "concept": "Steakhouse minimalista de alta gastronomia servida em prato escuro",
+        "palette": [
+          "#E8DCCB",
+          "#262522",
+          "#F8F4ED",
+          "#A47D5A"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "frango-assado-galeterias",
+    "code": "14",
+    "name": "14 — Frango Assado & Galeto",
+    "icon": "🍗",
+    "open": false,
+    "models": [
+      {
+        "id": "14.01",
+        "code": "14.01",
+        "name": "Frango Dourado",
+        "fonts": "Poppins + Inter",
+        "concept": "Frango assado inteiro dourado com pele crocante e batatas coradas",
+        "palette": [
+          "#F5BE32",
+          "#C73D2C",
+          "#FFF1D9",
+          "#6C3D22"
+        ]
+      },
+      {
+        "id": "14.02",
+        "code": "14.02",
+        "name": "Galeto da Casa",
+        "fonts": "Fraunces + Nunito Sans",
+        "concept": "Galeteria familiar com polenta frita e salada tradicional",
+        "palette": [
+          "#B9623D",
+          "#F5E6D0",
+          "#6A744A",
+          "#514030"
+        ]
+      },
+      {
+        "id": "14.03",
+        "code": "14.03",
+        "name": "Brasa Chicken",
+        "fonts": "Anton + Inter",
+        "concept": "Frango grelhado na brasa com marcas de fogo e tempero marcante",
+        "palette": [
+          "#202020",
+          "#FF782B",
+          "#FFFFFF",
+          "#D7442F"
+        ]
+      },
+      {
+        "id": "14.04",
+        "code": "14.04",
+        "name": "Golden Roast",
+        "fonts": "Cormorant Garamond + Manrope",
+        "concept": "Rotisserie premium especializada em assados finos com alecrim",
+        "palette": [
+          "#C79B54",
+          "#22201D",
+          "#F0E3CF",
+          "#77543B"
+        ]
+      },
+      {
+        "id": "14.05",
+        "code": "14.05",
+        "name": "Santo Galeto",
+        "fonts": "DM Serif Display + DM Sans",
+        "concept": "Galeteria artesanal boutique com ervas frescas e madeira clara",
+        "palette": [
+          "#24483D",
+          "#EEE1CC",
+          "#B57A4D",
+          "#FFFFFF"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "comida-saudavel-fit",
+    "code": "15",
+    "name": "15 — Saudável & Marmitas Fit",
+    "icon": "🥗",
+    "open": false,
+    "models": [
+      {
+        "id": "15.01",
+        "code": "15.01",
+        "name": "Green Balance",
+        "fonts": "Plus Jakarta Sans + DM Sans",
+        "concept": "Alimentação equilibrada, bowl de quinoa, folhas verdes e grelhados",
+        "palette": [
+          "#91A991",
+          "#FFFFFF",
+          "#F5F6EC",
+          "#303A32"
+        ]
+      },
+      {
+        "id": "15.02",
+        "code": "15.02",
+        "name": "Fuel Kitchen",
+        "fonts": "Space Grotesk + Inter",
+        "concept": "Nutrição esportiva de alta performance e marmitas hiperproteicas",
+        "palette": [
+          "#15191A",
+          "#B9F43A",
+          "#FFFFFF",
+          "#343A3D"
+        ]
+      },
+      {
+        "id": "15.03",
+        "code": "15.03",
+        "name": "Natural Bowl",
+        "fonts": "Fraunces + Nunito Sans",
+        "concept": "Alimentação orgânica em cerâmica artesanal e ingredientes naturais",
+        "palette": [
+          "#F1E6D2",
+          "#778B5F",
+          "#C78D68",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "15.04",
+        "code": "15.04",
+        "name": "Fresh Lab",
+        "fonts": "Manrope + Inter",
+        "concept": "Alimentação saudável moderna com precisão nutricional e saladas frescas",
+        "palette": [
+          "#FFFFFF",
+          "#28B4A4",
+          "#2B5265",
+          "#F1F6F5"
+        ]
+      },
+      {
+        "id": "15.05",
+        "code": "15.05",
+        "name": "Viva Leve",
+        "fonts": "Poppins + DM Sans",
+        "concept": "Saúde prazerosa, frutas selecionadas e bem-estar ensolarado",
+        "palette": [
+          "#F58D78",
+          "#4D9B65",
+          "#FFF5E8",
+          "#F3D96B"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lanchonetes-tradicionais",
+    "code": "16",
+    "name": "16 — Lanchonetes Tradicionais",
+    "icon": "🥪",
+    "open": false,
+    "models": [
+      {
+        "id": "16.01",
+        "code": "16.01",
+        "name": "Lanche & Cia",
+        "fonts": "Montserrat + Inter",
+        "concept": "Lanchonete tradicional, x-salada brasileiro caprichado e batata frita",
+        "palette": [
+          "#D43D33",
+          "#FFFFFF",
+          "#F3C84B",
+          "#292929"
+        ]
+      },
+      {
+        "id": "16.02",
+        "code": "16.02",
+        "name": "Ponto do Lanche",
+        "fonts": "Nunito Sans + Poppins",
+        "concept": "Lanchonete de bairro acessível, sucos naturais e atendimento afetuoso",
+        "palette": [
+          "#2865B1",
+          "#FFCB3A",
+          "#FFFFFF",
+          "#D84B43"
+        ]
+      },
+      {
+        "id": "16.03",
+        "code": "16.03",
+        "name": "Lanche 90",
+        "fonts": "Cooper Black + DM Sans",
+        "concept": "Nostalgia dos anos 90 com x-tudo completo e refrigerante de garrafa",
+        "palette": [
+          "#F8E8CB",
+          "#E87562",
+          "#407B93",
+          "#4A3934"
+        ]
+      },
+      {
+        "id": "16.04",
+        "code": "16.04",
+        "name": "Sanduba Lab",
+        "fonts": "Space Grotesk + Archivo",
+        "concept": "Sanduíches altos em camadas com experimentação urbana contemporânea",
+        "palette": [
+          "#1E1E1E",
+          "#C4F343",
+          "#E5E5E5",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "16.05",
+        "code": "16.05",
+        "name": "Esquina Gourmet",
+        "fonts": "Playfair Display + Manrope",
+        "concept": "Sanduíches artesanais finos servidos com apresentação de bistrô",
+        "palette": [
+          "#294C3F",
+          "#EBDDCA",
+          "#C8A269",
+          "#282824"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "massas-italiana",
+    "code": "17",
+    "name": "17 — Massas & Italiana",
+    "icon": "🍝",
+    "open": false,
+    "models": [
+      {
+        "id": "17.01",
+        "code": "17.01",
+        "name": "Trattoria Roma",
+        "fonts": "Libre Baskerville + DM Sans",
+        "concept": "Tradição italiana, spaghetti ao pomodoro fresco com manjericão e parmesão",
+        "palette": [
+          "#B53E36",
+          "#F5E9D4",
+          "#356447",
+          "#554135"
+        ]
+      },
+      {
+        "id": "17.02",
+        "code": "17.02",
+        "name": "Pasta Nero",
+        "fonts": "Bodoni Moda + Manrope",
+        "concept": "Alta gastronomia italiana noturna com massa fresca e molho trufado",
+        "palette": [
+          "#171717",
+          "#BE9555",
+          "#5E2834",
+          "#F1E9DD"
+        ]
+      },
+      {
+        "id": "17.03",
+        "code": "17.03",
+        "name": "Nonna Mia",
+        "fonts": "Fraunces + Nunito Sans",
+        "concept": "Lasanha artesanal de domingo borbulhando com queijo e molho da nonna",
+        "palette": [
+          "#697A4C",
+          "#B96547",
+          "#F6EADB",
+          "#543D31"
+        ]
+      },
+      {
+        "id": "17.04",
+        "code": "17.04",
+        "name": "Amore Pasta",
+        "fonts": "Bricolage Grotesque + Poppins",
+        "concept": "Massas jovens, saborosas e descomplicadas servidas em caixinhas práticas",
+        "palette": [
+          "#EE735B",
+          "#F8CC52",
+          "#FFF6E6",
+          "#4D865C"
+        ]
+      },
+      {
+        "id": "17.05",
+        "code": "17.05",
+        "name": "Farina Atelier",
+        "fonts": "Cormorant Garamond + Plus Jakarta Sans",
+        "concept": "Ravioli artesanal feito à mão com manteiga de sálvia sobre pedra clara",
+        "palette": [
+          "#FCFAF6",
+          "#743C49",
+          "#D9C7AE",
+          "#39332F"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "comida-chinesa-yakisoba",
+    "code": "18",
+    "name": "18 — Chinesa & Yakisoba",
+    "icon": "🥢",
+    "open": false,
+    "models": [
+      {
+        "id": "18.01",
+        "code": "18.01",
+        "name": "Red Dragon",
+        "fonts": "Noto Serif + Inter",
+        "concept": "Yakisoba tradicional fumegante com legumes crocantes e carne macia",
+        "palette": [
+          "#B5232C",
+          "#D5A34B",
+          "#25201D",
+          "#FFF2DF"
+        ]
+      },
+      {
+        "id": "18.02",
+        "code": "18.02",
+        "name": "Wok Street",
+        "fonts": "Anton + Space Grotesk",
+        "concept": "Noodles salteados no fogo alto da wok com velocidade e sabor defumado",
+        "palette": [
+          "#202020",
+          "#F37C28",
+          "#D9D9D6",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "18.03",
+        "code": "18.03",
+        "name": "Lucky Noodles",
+        "fonts": "Fredoka + DM Sans",
+        "concept": "Culinária asiática divertida e acessível com hashis levantando macarrão",
+        "palette": [
+          "#F9CF38",
+          "#E34D3D",
+          "#3975B9",
+          "#FFF8E8"
+        ]
+      },
+      {
+        "id": "18.04",
+        "code": "18.04",
+        "name": "Jade Kitchen",
+        "fonts": "Cormorant Garamond + Manrope",
+        "concept": "Dumplings delicados no vapor e noodles em louças orientais sofisticadas",
+        "palette": [
+          "#2D796A",
+          "#F5EEE2",
+          "#C8A56E",
+          "#2D302E"
+        ]
+      },
+      {
+        "id": "18.05",
+        "code": "18.05",
+        "name": "Neo Wok",
+        "fonts": "Space Grotesk + Inter",
+        "concept": "Restaurante asiático cyberpunk noturno com caixas estilizadas de delivery",
+        "palette": [
+          "#111F35",
+          "#38D6E8",
+          "#CE4CB6",
+          "#FFFFFF"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "comida-mexicana",
+    "code": "19",
+    "name": "19 — Comida Mexicana",
+    "icon": "🌮",
+    "open": false,
+    "models": [
+      {
+        "id": "19.01",
+        "code": "19.01",
+        "name": "Casa Fiesta",
+        "fonts": "Bricolage Grotesque + DM Sans",
+        "concept": "Tacos festivos com carne desfiada, coentro fresco, cebola e limão",
+        "palette": [
+          "#EE577A",
+          "#F8C83D",
+          "#327D54",
+          "#FFF1DC"
+        ]
+      },
+      {
+        "id": "19.02",
+        "code": "19.02",
+        "name": "Fuego Taco",
+        "fonts": "Anton + Inter",
+        "concept": "Tacos intensos de carne grelhada na chapa com pimentas e salsa ardente",
+        "palette": [
+          "#191919",
+          "#D93629",
+          "#F0782B",
+          "#F2E4CF"
+        ]
+      },
+      {
+        "id": "19.03",
+        "code": "19.03",
+        "name": "La Cantina",
+        "fonts": "Roboto Slab + Nunito Sans",
+        "concept": "Nachos crocantes com guacamole fresca e queijo fundido em cerâmica",
+        "palette": [
+          "#BB664A",
+          "#2E8D8A",
+          "#F6E7CF",
+          "#624335"
+        ]
+      },
+      {
+        "id": "19.04",
+        "code": "19.04",
+        "name": "Taco Pop",
+        "fonts": "Fredoka + Poppins",
+        "concept": "Taqueria moderna, jovem e colorida com sombras de estúdio marcantes",
+        "palette": [
+          "#A477E8",
+          "#FF893A",
+          "#FFD84D",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "19.05",
+        "code": "19.05",
+        "name": "Maíz & Sol",
+        "fonts": "Fraunces + Manrope",
+        "concept": "Tortillas artesanais de milho feitas à mão com recheios nobres e luz solar",
+        "palette": [
+          "#F8EDD8",
+          "#DDAF36",
+          "#757C47",
+          "#A85C42"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "creperias-tapiocarias",
+    "code": "20",
+    "name": "20 — Crepes & Tapiocas",
+    "icon": "🥞",
+    "open": false,
+    "models": [
+      {
+        "id": "20.01",
+        "code": "20.01",
+        "name": "Tapioca Raiz",
+        "fonts": "Fraunces + DM Sans",
+        "concept": "Tapioca brasileira dobrada com queijo coalho e manteiga de garrafa",
+        "palette": [
+          "#F3E5CD",
+          "#578457",
+          "#FFF9ED",
+          "#B77955"
+        ]
+      },
+      {
+        "id": "20.02",
+        "code": "20.02",
+        "name": "Crêpe Paris",
+        "fonts": "Cormorant Garamond + Montserrat",
+        "concept": "Crepe francês fino com morangos, chocolate e açúcar de confeiteiro",
+        "palette": [
+          "#273D5C",
+          "#FFF4E5",
+          "#C9AA79",
+          "#8B4C54"
+        ]
+      },
+      {
+        "id": "20.03",
+        "code": "20.03",
+        "name": "Doce Dobra",
+        "fonts": "DM Serif Display + Nunito Sans",
+        "concept": "Crepes doces com banana fatiada, calda de chocolate e textura suave",
+        "palette": [
+          "#F1B6C5",
+          "#B77C4E",
+          "#FFF5EB",
+          "#60443B"
+        ]
+      },
+      {
+        "id": "20.04",
+        "code": "20.04",
+        "name": "Massa Leve",
+        "fonts": "Plus Jakarta Sans + Inter",
+        "concept": "Tapiocas e crepes funcionais fit com vegetais frescos e queijo branco",
+        "palette": [
+          "#FFFFFF",
+          "#A3B59A",
+          "#F6F2E8",
+          "#52684B"
+        ]
+      },
+      {
+        "id": "20.05",
+        "code": "20.05",
+        "name": "Crepe Lab",
+        "fonts": "Space Grotesk + Archivo",
+        "concept": "Creperia contemporânea urbana com recheios salgados gourmet inovadores",
+        "palette": [
+          "#1F2224",
+          "#F7D23B",
+          "#FFFFFF",
+          "#C9CED0"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "peixarias-frutos-do-mar",
+    "code": "21",
+    "name": "21 — Peixes & Frutos do Mar",
+    "icon": "🦐",
+    "open": false,
+    "models": [
+      {
+        "id": "21.01",
+        "code": "21.01",
+        "name": "Maré Alta",
+        "fonts": "Playfair Display + Manrope",
+        "concept": "Camarões grelhados no ponto certo e peixe fresco em ambiente náutico nobre",
+        "palette": [
+          "#123A57",
+          "#FFFFFF",
+          "#EBDCC6",
+          "#5DA6AA"
+        ]
+      },
+      {
+        "id": "21.02",
+        "code": "21.02",
+        "name": "Costa Fresca",
+        "fonts": "Poppins + DM Sans",
+        "concept": "Frutos do mar tropicais com limão siciliano e clima ensolarado de praia",
+        "palette": [
+          "#36B7B4",
+          "#F1E2C7",
+          "#EC8B73",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "21.03",
+        "code": "21.03",
+        "name": "Porto do Peixe",
+        "fonts": "Roboto Slab + Inter",
+        "concept": "Tradição das peixarias com peixes frescos sobre gelo e ervas naturais",
+        "palette": [
+          "#244D72",
+          "#DB735F",
+          "#F7F0E6",
+          "#B7C2C7"
+        ]
+      },
+      {
+        "id": "21.04",
+        "code": "21.04",
+        "name": "Ostra & Sal",
+        "fonts": "Cormorant Garamond + Plus Jakarta Sans",
+        "concept": "Alta gastronomia marinha com ostras frescas abertas e gelo picado",
+        "palette": [
+          "#F1F0EA",
+          "#597E76",
+          "#303937",
+          "#D6C6AB"
+        ]
+      },
+      {
+        "id": "21.05",
+        "code": "21.05",
+        "name": "Ocean Catch",
+        "fonts": "Sora + Inter",
+        "concept": "Peixaria urbana moderna com salmão fresco em postas e camarões selecionados",
+        "palette": [
+          "#253139",
+          "#2874A6",
+          "#FFFFFF",
+          "#E8F0F4"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bares-petiscos-porcoes",
+    "code": "22",
+    "name": "22 — Bares, Petiscos & Porções",
+    "icon": "🍻",
+    "open": false,
+    "models": [
+      {
+        "id": "22.01",
+        "code": "22.01",
+        "name": "Boteco Raiz",
+        "fonts": "Archivo Black + Nunito Sans",
+        "concept": "Mandioca frita crocante, torresmo sequinho e linguiça acebolada de boteco",
+        "palette": [
+          "#F5C52F",
+          "#C83F35",
+          "#36764A",
+          "#FFF4D9"
+        ]
+      },
+      {
+        "id": "22.02",
+        "code": "22.02",
+        "name": "After Dark",
+        "fonts": "Bodoni Moda + Manrope",
+        "concept": "Lounge bar noturno sofisticado com drinks autorais e petiscos gourmet",
+        "palette": [
+          "#141414",
+          "#CC8D40",
+          "#5B2837",
+          "#E9DBC9"
+        ]
+      },
+      {
+        "id": "22.03",
+        "code": "22.03",
+        "name": "Mesa 12",
+        "fonts": "Fraunces + DM Sans",
+        "concept": "Bar gastronômico boêmio contemporâneo com tábuas de frios e porções quentes",
+        "palette": [
+          "#25483D",
+          "#F2E6D4",
+          "#A9754B",
+          "#292B29"
+        ]
+      },
+      {
+        "id": "22.04",
+        "code": "22.04",
+        "name": "Happy Hour Club",
+        "fonts": "Bricolage Grotesque + Poppins",
+        "concept": "Batata frita com cheddar e bacon, anéis de cebola e drinks festivos",
+        "palette": [
+          "#2C68B8",
+          "#FF8B38",
+          "#FFD458",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "22.05",
+        "code": "22.05",
+        "name": "Petisco & Prosa",
+        "fonts": "Libre Baskerville + Nunito Sans",
+        "concept": "Bolinhos de bacalhau e pastéis artesanais servidos em tábua de madeira rústica",
+        "palette": [
+          "#B36D4D",
+          "#EFE1CD",
+          "#69754D",
+          "#523B30"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "restaurantes-nordestinos",
+    "code": "23",
+    "name": "23 — Comida Nordestina",
+    "icon": "🫔",
+    "open": false,
+    "models": [
+      {
+        "id": "23.01",
+        "code": "23.01",
+        "name": "Raízes do Sertão",
+        "fonts": "Roboto Slab + DM Sans",
+        "concept": "Carne de sol na manteiga de garrafa com macaxeira e baião de dois",
+        "palette": [
+          "#B86141",
+          "#EBD7B6",
+          "#76513A",
+          "#66764A"
+        ]
+      },
+      {
+        "id": "23.02",
+        "code": "23.02",
+        "name": "Mandacaru",
+        "fonts": "Fraunces + Plus Jakarta Sans",
+        "concept": "Escondidinho de carne de sol com queijo coalho gratinado e luz solar",
+        "palette": [
+          "#48754A",
+          "#E7BC42",
+          "#F0E1C6",
+          "#B86B4F"
+        ]
+      },
+      {
+        "id": "23.03",
+        "code": "23.03",
+        "name": "Casa do Baião",
+        "fonts": "Cooper Black + Nunito Sans",
+        "concept": "Baião de dois generoso com feijão de corda, queijo e cheiro-verde",
+        "palette": [
+          "#B94238",
+          "#F7E7CF",
+          "#E2AD42",
+          "#64412E"
+        ]
+      },
+      {
+        "id": "23.04",
+        "code": "23.04",
+        "name": "Sol do Nordeste",
+        "fonts": "Bricolage Grotesque + Inter",
+        "concept": "Moqueca borbulhante na panela de barro, cuscuz e cores solares",
+        "palette": [
+          "#F08A35",
+          "#257AA6",
+          "#F4CA45",
+          "#FFF3DD"
+        ]
+      },
+      {
+        "id": "23.05",
+        "code": "23.05",
+        "name": "Sertão Nobre",
+        "fonts": "Cormorant Garamond + Manrope",
+        "concept": "Alta gastronomia regional nordestina com cortes nobres em cerâmica refinada",
+        "palette": [
+          "#4A3328",
+          "#AD794D",
+          "#E9D7BB",
+          "#24211F"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "salgaderias",
+    "code": "24",
+    "name": "24 — Salgaderias",
+    "icon": "🥐",
+    "open": false,
+    "models": [
+      {
+        "id": "24.01",
+        "code": "24.01",
+        "name": "Salgado de Ouro",
+        "fonts": "Poppins + DM Sans",
+        "concept": "Coxinhas douradas com recheio desfiado e crosta super crocante",
+        "palette": [
+          "#F5C442",
+          "#70442F",
+          "#FFF4DF",
+          "#DF8137"
+        ]
+      },
+      {
+        "id": "24.02",
+        "code": "24.02",
+        "name": "Coxinha Club",
+        "fonts": "Fredoka + Inter",
+        "concept": "Coxinha partida ao meio com requeijão cremoso e massa crocante",
+        "palette": [
+          "#FF7829",
+          "#3269DD",
+          "#FFD94F",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "24.03",
+        "code": "24.03",
+        "name": "Massa & Afeto",
+        "fonts": "Fraunces + Nunito Sans",
+        "concept": "Salgados assados e fritos artesanais para o café da tarde em família",
+        "palette": [
+          "#F6E9D8",
+          "#B87659",
+          "#748064",
+          "#5D453A"
+        ]
+      },
+      {
+        "id": "24.04",
+        "code": "24.04",
+        "name": "Salgado Express",
+        "fonts": "Archivo Black + Inter",
+        "concept": "Bandejas organizadas de mini-coxinhas, quibes e risoles para festas",
+        "palette": [
+          "#DF4034",
+          "#252525",
+          "#FFFFFF",
+          "#F8C83F"
+        ]
+      },
+      {
+        "id": "24.05",
+        "code": "24.05",
+        "name": "Bendita Massa",
+        "fonts": "Playfair Display + Manrope",
+        "concept": "Empadas que derretem na boca e salgados gourmet em louça fina",
+        "palette": [
+          "#2D5141",
+          "#BF9C60",
+          "#EDE2CF",
+          "#FFFFFF"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "poke-havaiano",
+    "code": "25",
+    "name": "25 — Poke & Havaiano",
+    "icon": "🥗",
+    "open": false,
+    "models": [
+      {
+        "id": "25.01",
+        "code": "25.01",
+        "name": "Aloha Bowl",
+        "fonts": "Poppins + DM Sans",
+        "concept": "Poke bowl tropical colorido com salmão fresco, arroz, manga e abacate",
+        "palette": [
+          "#38B8AD",
+          "#F38F78",
+          "#F7D36D",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "25.02",
+        "code": "25.02",
+        "name": "Poke Zen",
+        "fonts": "Plus Jakarta Sans + DM Sans",
+        "concept": "Equilíbrio minimalista com salmão delicado em tigela de cerâmica clara",
+        "palette": [
+          "#FFFFFF",
+          "#A0B59B",
+          "#F1ECE2",
+          "#343A35"
+        ]
+      },
+      {
+        "id": "25.03",
+        "code": "25.03",
+        "name": "Island Fresh",
+        "fonts": "Bricolage Grotesque + Inter",
+        "concept": "Frutas tropicais, vegetais frescos e proteína marinada com toque havaiano",
+        "palette": [
+          "#45945A",
+          "#F3CF58",
+          "#FFF4DE",
+          "#F18370"
+        ]
+      },
+      {
+        "id": "25.04",
+        "code": "25.04",
+        "name": "Pacific Club",
+        "fonts": "Cormorant Garamond + Manrope",
+        "concept": "Resort contemporâneo, atum fresco, gergelim e lifestyle refinado",
+        "palette": [
+          "#21455C",
+          "#EAB49B",
+          "#EDE0CE",
+          "#FFFFFF"
+        ]
+      },
+      {
+        "id": "25.05",
+        "code": "25.05",
+        "name": "Bowl Society",
+        "fonts": "Space Grotesk + Inter",
+        "concept": "Poke urbano moderno com identidade vibrante e ingredientes frescos",
+        "palette": [
+          "#A487E7",
+          "#B9E95D",
+          "#FFFFFF",
+          "#303038"
+        ]
+      }
+    ]
+  }
+];
 
-    let currentNicheId = 'hamburguerias';
     let currentTemplateId = 'H01';
     let currentViewMode = 'desktop';
     let isDesktopSidebarCollapsed = false;
@@ -837,7 +2359,7 @@
       // Disparar postMessage para o iframe
       const iframe = document.getElementById('store-iframe');
       if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.postMessage({ type: 'switchHero', template: id }, '*');
+        iframe.contentWindow.postMessage({ type: 'switchHero', template: id, modelData: foundModel, nicheData: foundNiche }, '*');
       }
     }
 
@@ -887,7 +2409,7 @@
       const iframe = document.getElementById('store-iframe');
       if (iframe) {
         iframe.addEventListener('load', () => {
-          iframe.contentWindow.postMessage({ type: 'switchHero', template: currentTemplateId }, '*');
+          const initModel = NICHES_DATA[0]?.models[0]; const initNiche = NICHES_DATA[0]; iframe.contentWindow.postMessage({ type: 'switchHero', template: currentTemplateId, modelData: initModel, nicheData: initNiche }, '*');
         });
       }
     });
