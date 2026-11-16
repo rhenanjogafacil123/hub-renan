@@ -1,1035 +1,793 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head>
+<html lang="pt-BR">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="color-scheme" content="light dark">
-  <meta name="hub-site-tenant" content="juca_a54163c2">
-  <title>Pizza do Juca | Pizzaria Artesanal em Paciência – RJ</title>
-  <meta property="og:title" content="Pizza do Juca | Pizzaria Artesanal em Paciência – RJ (Desde 2001)">
-  <meta property="og:description" content="Cardápio digital oficial da Pizza do Juca em Paciência, RJ. Peça online pizzas artesanais, broto, média, gigante 45cm, pizzas doces, bordas recheadas e bebidas no WhatsApp.">
-  <meta property="og:image" content="assets/logo_juca.webp">
-  <meta property="og:url" content="https://pizzadojuca.pages.dev">
-  <meta property="og:type" content="restaurant">
-  <meta name="description" content="Cardápio digital da Pizza do Juca: pizzas artesanais, broto, média, gigante 45cm, pizzas doces, bordas recheadas e bebidas. Delivery e retirada em Paciência – RJ.">
-  <link rel="icon" type="image/png" href="assets/logo_juca.png?v=20261110">
-  <link rel="shortcut icon" href="/favicon.ico?v=20261110">
-  <link rel="apple-touch-icon" href="assets/logo_juca.png?v=20261110">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Teixo Hub | Hub de Clientes</title>
+  <meta name="description" content="Central de gestão de todos os clientes, sites, cardápios e painéis da Teixo Assessoria de Crescimento.">
+  <link rel="icon" href="/favicon.ico">
+  <script>
+    // Limpeza de qualquer Service Worker antigo da raiz
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        for (let r of regs) r.unregister();
+      });
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600;1,9..144,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <script src="/painel-delivery/assets/tailwind.js"></script>
-  <!-- Mercado Pago carregado sob demanda apenas no checkout (economiza ~40 MB de RAM inicial) -->
-  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
-          colors: {
-            farinha: '#faf5ec',
-            trigo: '#e8d9be',
-            basilico: '#2f4a32',
-            pomodoro: '#b23a26',
-            torra: '#4e3220',
-            linha: '#dccdb2',
-          },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            serif: ['Fraunces', 'serif'],
-            display: ['Fraunces', 'serif'],
+            mono: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            teixo: {
+              black: '#0f172a',
+              accent: '#f97316',
+              green: '#10b981',
+              blue: '#0284c7',
+            }
           }
         }
       }
     }
   </script>
   <style>
-    @keyframes girar {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes flutuar {
-      0%, 100% { transform: translateY(0px) rotate(var(--giro, 0deg)); }
-      50% { transform: translateY(-14px) rotate(calc(var(--giro, 0deg) + 3deg)); }
-    }
-    @keyframes surgir {
-      from { opacity: 0; transform: translateY(22px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-girar {
-      animation: girar 38s linear infinite;
-    }
-    .animate-flutuar {
-      animation: flutuar 4.2s ease-in-out infinite;
-    }
-    .animate-surgir {
-      animation: surgir 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .padrao-marca {
-      background-image: url('assets/padrao.webp');
-      background-repeat: repeat;
-      background-size: 260px;
-    }
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 8rem;
-    }
-    @media (min-width: 640px) {
-      html {
-        scroll-padding-top: 5.5rem;
-      }
-    }
-    :root {
-      color-scheme: light !important;
-    }
-    body {
-      background-color: #faf5ec;
-      color: #4e3220;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    /* Otimização Crítica de Memória RAM (Corta consumo pela metade em PCs modestos) */
-    .section-lazy {
-      content-visibility: auto;
-      contain-intrinsic-size: 600px;
-    }
-    .product-card-lazy {
-      content-visibility: auto;
-      contain-intrinsic-size: 90px;
-    }
-    @media (min-width: 640px) {
-      .product-card-lazy {
-        contain-intrinsic-size: 300px 420px;
-      }
-    }
-    .gpu-accel {
-      will-change: transform;
-      transform: translateZ(0);
-    }
-    /* Header Fixo com Fundo Sólido Blindado (Evita colisão e sobreposição de texto na rolagem) */
-    #site-header {
-      background-color: #faf5ec;
-      border-bottom: 1px solid #dccdb2;
-      box-shadow: 0 2px 10px rgba(47, 74, 50, 0.06);
-    }
-    /* Barra Lateral de Categorias Mobile — Centralizada Verticalmente no Viewport */
-    #cat-mobile-rail {
-      top: max(136px, calc(50vh - 140px));
-      top: max(136px, calc(50dvh - 140px));
-    }
-    /* Busca Fixa/Sticky no Scroll */
-    #sticky-search-wrapper {
-      top: 68px;
-    }
-    @media (min-width: 640px) {
-      #sticky-search-wrapper {
-        top: 76px;
-      }
-    }
-    /* Barra Lateral de Categorias Mobile — Centralizada Verticalmente no Viewport */
-    #cat-mobile-rail {
-      top: max(136px, calc(50vh - 140px));
-      top: max(136px, calc(50dvh - 140px));
-    }
-    /* Busca Fixa/Sticky no Scroll */
-    #sticky-search-wrapper {
-      top: 68px;
-    }
-    @media (min-width: 640px) {
-      #sticky-search-wrapper {
-        top: 76px;
-      }
-    }
-    /* Cart Drawer & Aba Lateral de Navegação Off-Canvas */
-    #cart-drawer, #nav-sidebar {
-      transform: translateX(100%);
-      visibility: hidden;
-      pointer-events: none;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
-    }
-    #cart-drawer.open, #nav-sidebar.open {
-      transform: translateX(0);
-      visibility: visible;
-      pointer-events: auto;
-    }
-  
-    /* Selo IMAGEM ILUSTRATIVA discreto */
-    .product-card-lazy > div:first-child::after {
-      content: "IMAGEM ILUSTRATIVA";
-      position: absolute;
-      bottom: 6px;
-      right: 6px;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      color: rgba(255, 255, 255, 0.92);
-      font-size: 7px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      padding: 2px 4px;
-      border-radius: 4px;
-      pointer-events: none;
-      z-index: 10;
-      text-transform: uppercase;
-      line-height: 1.1;
-    }
-    @media (min-width: 640px) {
-      .product-card-lazy > div:first-child::after {
-        bottom: 8px;
-        right: 8px;
-        font-size: 8px;
-        padding: 2px 6px;
-      }
-    }
-    .hero-pizza-badge {
-      position: absolute;
-      bottom: 12px;
-      right: 16px;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      color: rgba(255, 255, 255, 0.92);
-      font-size: 8px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      padding: 2px 6px;
-      border-radius: 4px;
-      pointer-events: none;
-      z-index: 25;
-      text-transform: uppercase;
-      line-height: 1.2;
-    }
-
+    /* Estilização suave de scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
-<style>
-#cart-drawer[aria-hidden="false"]{transform:translateX(0);visibility:visible;pointer-events:auto}
-#cart-drawer #cart-items > div{background:#ffffff !important;border:1px solid #e6d9c4 !important;border-radius:22px !important;padding:16px !important;box-shadow:0 2px 10px rgba(78,50,32,0.04)}
-#cart-drawer #cart-items > div strong{color:#2f4a32 !important;font-size:0.9375rem !important;line-height:1.35}
-#cart-drawer #cart-items > div p{color:#6f6457 !important;font-size:0.75rem !important}
-#cart-drawer #cart-items > div span.font-bold{color:#2f4a32 !important;font-weight:800 !important}
-#cart-drawer #cart-items [data-qty]{border-radius:9999px !important;background:#f5ede0 !important;border-color:transparent !important;color:#4e3220 !important;min-width:36px !important;min-height:36px !important;width:36px !important;height:36px !important}
-#cart-drawer #cart-items [data-qty]:hover{background:#e8d9be !important}
-#cart-drawer #btn-receive-delivery,#cart-drawer #btn-receive-pickup{border-radius:9999px !important;padding:0.75rem 1rem !important;font-size:0.75rem !important}
-#cart-drawer #cart-service-fee-row{display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;color:#6f6457}
-#cart-drawer #cart-total-note{font-size:0.6875rem;color:#6f6457;text-align:center}
-#cat-mobile-rail .cat-rail-btn{min-height:44px;border-radius:12px;padding:10px 3px;font-size:10px;font-weight:700;overflow-wrap:anywhere}
-#cat-mobile-rail .cat-rail-btn[aria-pressed="true"]{background:#2f4a32;color:white}
-@media(max-width:639px){#products-grid [data-product]{display:flex;align-items:center;gap:10px;padding:10px}#products-grid [data-product]>div:first-child{order:2;width:78px;height:78px;aspect-ratio:1;flex-shrink:0;padding:0;border-radius:12px}#products-grid [data-product]>div:nth-child(2){order:1;padding:0;flex:1;min-width:0}#products-grid h3{font-size:13px}#products-grid p{font-size:10px}#products-grid [data-product]>div:nth-child(2)>div{margin-top:8px;flex-wrap:wrap;gap:6px}#products-grid strong{font-size:14px}#products-grid [data-product] span{font-size:10px;padding:6px 10px}}
-</style><script src="/assets/storefront.js" defer=""></script><script src="/lojas/juca_a54163c2/custom.js?v=20261111d" defer=""></script><link rel="stylesheet" href="/assets/color-mode.css?v=20261115"><script src="/assets/color-mode.js?v=20261115" data-color-mode-scope="site"></script></head>
-<body class="selection:bg-[#b23a26] selection:text-white">
+</head>
+<body class="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased selection:bg-orange-600 selection:text-white">
+  
+  <!-- BACKDROP OVERLAY DO MENU LATERAL (APENAS MOBILE) -->
+  <div id="hub-sidebar-backdrop" onclick="toggleHubSidebar()" class="lg:hidden fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
-  <!-- ==================== 1. HEADER ==================== -->
-  <header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
-    <div class="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-6 md:py-4">
-      <a href="#topo" class="flex min-w-0 items-center gap-2.5 sm:gap-3">
-        <span class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-[#b23a26] bg-black shadow-sm sm:h-12 sm:w-12 md:h-14 md:w-14">
-          <img src="assets/logo_juca.webp" alt="Pizza do Juca" class="h-full w-full object-cover" onerror="this.onerror=null; this.src='assets/logo.webp';">
-        </span>
-        <span class="min-w-0">
-          <span class="block truncate font-display text-[0.9rem] font-bold leading-tight tracking-[-0.01em] text-[#2f4a32] sm:text-base md:text-lg">
-            Pizza do Juca
-          </span>
-          <span class="hidden text-xs text-[#4e3220]/80 sm:block">
-            Pizzaria artesanal • Desde 2001 • Paciência – RJ
-          </span>
-        </span>
-      </a>
-
-      <div class="flex items-center gap-1.5 sm:gap-2">
-        <!-- Botão Finalizar Pedido no Header -->
-        <button id="btn-open-cart" type="button" aria-label="Finalizar pedido" class="relative inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#eab308] px-2.5 py-2.5 text-[0.78rem] font-extrabold tracking-tight text-[#2f4a32] shadow-[0_4px_16px_rgba(234,179,8,0.40)] transition-all hover:scale-[1.03] hover:bg-[#ca8a04] active:scale-95 sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm">
-          <svg class="h-4 w-4 shrink-0 sm:h-[18px] sm:w-[18px]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-          </svg>
-          <span class="whitespace-nowrap">Finalizar Pedido</span>
-          <span id="cart-counter" class="hidden grid h-5 min-w-5 place-items-center rounded-full bg-[#2f4a32] text-white px-1.5 text-[10px] font-black shadow-xs sm:text-[11px]">
-            0
-          </span>
-        </button>
-
-        <!-- Botão Menu 3 Tracinhos (Abre/Fecha a Aba Lateral em Todas as Telas) -->
-        <button id="btn-toggle-menu" type="button" onclick="toggleNavSidebar()" aria-label="Abrir menu de navegação" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#2f4a32]/10 text-[#2f4a32] transition hover:bg-[#2f4a32]/20 active:scale-95 sm:h-10 sm:w-10 sm:shadow-sm" title="Menu de navegação">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="4" y1="6" x2="20" y2="6"></line>
-            <line x1="4" y1="12" x2="20" y2="12"></line>
-            <line x1="4" y1="18" x2="20" y2="18"></line>
-          </svg>
+  <!-- MENU LATERAL DA ESQUERDA (FIXO NO DESKTOP, GAVETA NO MOBILE) -->
+  <aside id="hub-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-52 max-w-[85vw] lg:max-w-none flex-col justify-between border-r border-slate-200/90 bg-white transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none">
+    
+    <!-- TOPO DO MENU LATERAL -->
+    <div>
+      <div class="flex items-center justify-between border-b border-slate-200/80 p-3 bg-slate-50/80">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="grid h-8 w-8 place-items-center rounded-xl bg-slate-950 text-white font-black shadow-xs group-hover:scale-105 transition">
+            <i data-lucide="layers" class="h-4 w-4 text-orange-500"></i>
+          </div>
+          <div>
+            <div class="text-xs font-black text-slate-950 group-hover:text-orange-600 transition">Teixo Hub</div>
+            <div class="text-[9px] font-semibold text-slate-500">Menu de Operações</div>
+          </div>
+        </a>
+        <button onclick="toggleHubSidebar()" class="lg:hidden rounded-xl p-2 text-slate-400 hover:bg-slate-200/60 hover:text-slate-700 transition" title="Fechar Menu">
+          <i data-lucide="x" class="h-5 w-5"></i>
         </button>
       </div>
-    </div>
-  </header>
 
-  <!-- ==================== 2. CAPA / HERO PALAZZO ==================== -->
-  <section id="topo" class="relative isolate overflow-hidden bg-[#f4ead8] sm:bg-[#e8d9be] pt-[4.75rem] pb-6 sm:pt-24 sm:pb-14 lg:pt-24 lg:pb-16">
-    <!-- Textura de fundo suave e círculo verde basílico -->
-    <div class="padrao-marca pointer-events-none absolute inset-0 opacity-[0.30] sm:opacity-[0.20]"></div>
-    <div class="pointer-events-none absolute top-1/2 -right-[12%] hidden aspect-square w-[62%] -translate-y-1/2 rounded-full bg-[#2f4a32] lg:block shadow-2xl"></div>
-
-    <div class="relative mx-auto grid max-w-7xl gap-6 sm:gap-8 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-8">
-      
-      <!-- Coluna Esquerda: Pizza do Juca Branding, Status, Badges & Botões -->
-      <div class="relative z-10 animate-surgir order-1 lg:order-1">
+      <!-- SEÇÕES DO MENU LATERAL -->
+      <div class="p-2.5 space-y-3.5 overflow-y-auto max-h-[calc(100vh-120px)]">
         
-        <!-- Eyebrow Mobile: Selo de origem entre traços (ref. mobile centralizada) -->
-        <div class="mb-4 flex items-center justify-center gap-3 lg:hidden">
-          <span class="h-px w-10 shrink-0 bg-[#2f4a32]/45 sm:w-16"></span>
-          <span class="whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.18em] text-[#b23a26] sm:text-[11px] sm:tracking-[0.22em]">Desde 2001 • Paciência – RJ</span>
-          <span class="h-px w-10 shrink-0 bg-[#2f4a32]/45 sm:w-16"></span>
+        <!-- 1. HUB -->
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+            <span>1. Hub</span>
+            <span class="size-1.5 rounded-full bg-orange-500"></span>
+          </div>
+          
+          <a href="/" class="flex items-center gap-2 rounded-xl bg-orange-50 border border-orange-200/90 px-2.5 py-2 text-left transition group shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-orange-600 text-white font-black shadow-xs">
+              <i data-lucide="layout-grid" class="h-3.5 w-3.5"></i>
+            </div>
+            <span class="text-xs font-black text-orange-950 group-hover:text-orange-600 transition whitespace-nowrap">Hub de Clientes</span>
+          </a>
         </div>
 
-        <!-- Top Branding & Status Tag -->
-        <div class="mb-3 sm:mb-4 flex flex-wrap items-center gap-2 sm:gap-3 justify-center lg:justify-start">
-          <div class="hidden lg:flex items-center gap-2.5">
-            <span class="grid size-11 sm:size-14 shrink-0 place-items-center overflow-hidden rounded-full border-2 border-[#b23a26] bg-black shadow-md">
-              <img src="assets/logo_juca.webp" alt="Pizza do Juca" class="h-full w-full object-cover" onerror="this.onerror=null; this.src='assets/logo.webp';">
-            </span>
+        <!-- 2. PLANILHA -->
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+            <span>2. Planilha</span>
+            <span class="size-1.5 rounded-full bg-emerald-500"></span>
+          </div>
+
+          <a href="/painel/planilha/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200/80 hover:border-emerald-300 px-2.5 py-2 text-left transition group shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-emerald-600 text-white font-black shadow-xs group-hover:scale-105 transition">
+              <i data-lucide="file-spreadsheet" class="h-3.5 w-3.5"></i>
+            </div>
+            <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition whitespace-nowrap">Planilha de Clientes</span>
+          </a>
+        </div>
+
+        <!-- 3. TEMPLATES / SHOWROOM -->
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+            <span>3. Showroom</span>
+            <span class="size-1.5 rounded-full bg-amber-500"></span>
+          </div>
+
+          <a href="/showroom/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-amber-50 border border-slate-200/80 hover:border-amber-300 px-2.5 py-2 text-left transition group shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-amber-500 text-black font-black shadow-xs group-hover:scale-105 transition">
+              <i data-lucide="sparkles" class="h-3.5 w-3.5"></i>
+            </div>
             <div>
-              <h3 class="font-display text-base sm:text-lg font-bold leading-none text-[#2f4a32]">Pizza do Juca</h3>
-              <span class="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.16em] sm:tracking-[0.20em] text-[#b23a26]">Desde 2001 • Paciência – RJ</span>
+              <span class="text-xs font-bold text-slate-800 group-hover:text-amber-800 transition block">Showroom Hamburguerias</span>
+              <span class="text-[9px] text-zinc-500 font-medium">H01 a H05 (3 Telas)</span>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RODAPÉ DO MENU LATERAL -->
+    <div class="border-t border-slate-200 p-2.5 bg-slate-50 text-xs">
+      <div class="flex items-center justify-between text-slate-500">
+        <span class="font-bold text-[10px]">Teixo Hub</span>
+        <span class="text-[9px] text-emerald-600 flex items-center gap-1 font-bold">
+          <span class="size-1.5 rounded-full bg-emerald-500"></span> Online
+        </span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ==================== CONTAINER PRINCIPAL (À DIREITA DA SIDEBAR FIXA) ==================== -->
+  <div class="lg:pl-52 flex min-h-screen flex-col justify-between">
+
+    <!-- ==================== HEADER SUPERIOR ==================== -->
+    <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
+      <div class="flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        
+        <!-- LADO ESQUERDO: BOTÃO MOBILE E TÍTULO -->
+        <div class="flex items-center gap-3">
+          
+          <!-- BOTÃO MOBILE (APENAS TELAS PEQUENAS) -->
+          <button 
+            id="btn-toggle-hub-sidebar" 
+            type="button" 
+            onclick="toggleHubSidebar()" 
+            title="Abrir Menu Lateral" 
+            class="lg:hidden grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-950 transition active:scale-95 shadow-xs"
+          >
+            <i data-lucide="menu" class="h-5 w-5 text-slate-800"></i>
+          </button>
+
+          <div class="flex items-center gap-3">
+            <div class="lg:hidden grid h-9 w-9 place-items-center rounded-xl bg-slate-950 text-white font-black shadow-xs">
+              <i data-lucide="layers" class="h-4 w-4 text-orange-500"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-sm sm:text-base font-black tracking-tight text-slate-950">Hub de Clientes</span>
+                <span class="rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-emerald-700">Online</span>
+              </div>
+              <div class="text-[11px] font-bold text-slate-500">Central Oficial Teixo • Sites, Cardápios e Painéis</div>
             </div>
           </div>
 
-          <!-- Status Aberto/Fechado com Ponto Verde Pulsante Dinâmico -->
-          <span id="hero-status-pill" class="inline-flex items-center gap-2 rounded-full bg-[#2f4a32]/10 px-4 py-1.5 text-xs font-semibold text-[#2f4a32] shadow-sm sm:bg-[#2f4a32]/10 sm:px-3 sm:py-1 sm:text-xs">
-            <span id="hero-status-dot" class="relative flex size-2">
-              <span class="absolute inline-flex size-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
-              <span class="relative inline-flex size-2 rounded-full bg-emerald-600"></span>
-            </span>
-            <span id="hero-status-text">Aberto agora · Fecha às 02:00</span>
-          </span>
         </div>
 
-        <!-- Headline com Estilo Italiano Palazzo -->
-        <h1 class="mt-1 text-center font-display text-[2.45rem] leading-[1.06] font-bold tracking-[-0.02em] text-[#2f4a32] sm:text-5xl sm:leading-[1.02] lg:text-left lg:text-[clamp(2.6rem,6.8vw,5.4rem)] lg:leading-[0.98] lg:font-semibold lg:tracking-[-0.03em]">
-          Sabor de verdade <em class="font-bold text-[#b23a26] not-italic">do início ao fim.</em>
-        </h1>
-
-        <!-- Traço amarelo à mão sob a headline (ref. mobile) -->
-        <svg class="mx-auto mt-3 block h-3 w-56 text-[#eab308] sm:w-72 lg:hidden" viewBox="0 0 220 14" fill="none" aria-hidden="true">
-          <path d="M2 10.5C42 4.5 86 2.5 130 4.5c30 1.3 60 3.4 86 5.4" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
-        </svg>
-
-        <!-- Descrição -->
-        <p class="mt-2 sm:mt-5 max-w-xl text-xs sm:text-base leading-relaxed text-[#4e3220]/90 sm:text-lg hidden sm:block">
-          Massa artesanal fresca, recheios fartos e mais de 80 opções de pizzas salgadas e doces preparadas com todo carinho em Paciência.
-        </p>
-
-        <!-- Badges de Avaliação, Cidade e Horário (Pizza do Juca Real) -->
-        <div class="mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 sm:gap-x-5 sm:gap-y-2.5 text-xs sm:text-sm font-medium text-[#4e3220] lg:justify-start">
-          <span class="inline-flex items-center gap-1.5 rounded-full bg-[#faf5ec] px-3 py-1.5 text-sm font-bold text-[#b23a26] shadow-sm ring-1 ring-[#dccdb2]/70 sm:bg-[#faf5ec]/90 sm:px-2.5 sm:py-1 sm:text-xs sm:ring-0">
-            <svg class="h-3.5 w-3.5 fill-current text-[#b23a26] sm:h-4 sm:w-4" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-            </svg>
-            4,5 <span class="font-normal text-[#6f6457]">(243)</span>
-          </span>
-          <span class="h-6 w-px bg-[#dccdb2] sm:h-5 lg:hidden" aria-hidden="true"></span>
-          <span class="inline-flex items-center gap-1.5 text-sm sm:gap-1 sm:text-sm">
-            <svg class="h-4 w-4 text-[#7a8450] sm:h-4 sm:w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-            </svg>
-            Paciência, RJ
-          </span>
-          <span class="hidden sm:inline-flex items-center gap-1.5">
-            <svg class="h-4 w-4 text-[#7a8450]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            18h às 02h
-          </span>
-        </div>
-
-
-        <!-- BOTÕES DA CAPA -->
-        <div class="mt-5 flex flex-row items-stretch justify-center gap-2.5 sm:mt-8 sm:items-center sm:gap-3.5 lg:justify-start">
-          <!-- Botão 1: "Ver cardápio" -->
-          <a href="#cardapio" class="group inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-[#eab308] px-5 py-3.5 text-[0.95rem] font-bold text-[#2f4a32] shadow-[0_8px_20px_rgba(202,138,4,0.30)] transition-all hover:scale-[1.02] hover:bg-[#ca8a04] active:scale-95 sm:flex-none sm:gap-3 sm:px-8 sm:py-4 sm:text-base">
-            <span>Ver cardápio</span>
-            <span class="grid size-6 place-items-center rounded-full bg-black/10 text-xs transition-transform group-hover:translate-x-1 sm:size-7 sm:text-sm">
-              →
-            </span>
+        <!-- LADO DIREITO: BOTÃO DA PLANILHA E ATALHOS -->
+        <div class="flex items-center gap-2.5">
+          <a 
+            href="/showroom/" 
+            class="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black px-3.5 py-2 text-xs font-black transition shadow-xs"
+          >
+            <i data-lucide="sparkles" class="h-4 w-4"></i>
+            <span class="hidden sm:inline">Showroom</span> Templates
           </a>
 
-          <!-- Botão 2: "ⓘ Informações" -->
-          <button id="btn-open-info" type="button" class="inline-flex items-center justify-center gap-1.5 rounded-full border-2 border-[#2f4a32]/30 bg-[#faf5ec]/80 px-4 py-3.5 text-[0.8rem] font-bold text-[#2f4a32] shadow-sm transition-all hover:border-[#2f4a32] hover:bg-[#faf5ec] active:scale-95 sm:gap-2.5 sm:px-7 sm:py-3.5 sm:text-base">
-            <svg class="h-4 w-4 text-[#b23a26] sm:h-5 sm:w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span>Informações</span>
-          </button>
+          <a 
+            href="/painel/planilha/" 
+            class="inline-flex items-center gap-2 rounded-xl bg-emerald-50 border border-emerald-200/90 px-3.5 py-2 text-xs font-extrabold text-emerald-800 hover:bg-emerald-100 transition shadow-xs"
+          >
+            <i data-lucide="file-spreadsheet" class="h-4 w-4 text-emerald-600"></i>
+            <span class="hidden sm:inline">Planilha</span>
+          </a>
+
+          <a 
+            href="/hub/" 
+            class="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition"
+          >
+            <i data-lucide="server" class="h-4 w-4 text-slate-500"></i>
+            <span>Deploys VPS</span>
+          </a>
         </div>
 
       </div>
+    </header>
 
-      <!-- Coluna Direita: Assinatura Visual Palazzo (Pizza 360°, Manjericão, Tomates e Selo SVG) -->
-      <div class="relative order-2 lg:order-2 mx-auto mt-2 aspect-square w-[88%] max-w-[26rem] sm:mt-0 sm:w-[82%] sm:max-w-[34rem] lg:w-full lg:max-w-none">
-        
-        <!-- Círculo de fundo verde manjericão em telas menores -->
-        <div class="pointer-events-none absolute top-1/2 left-1/2 aspect-square w-[104%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2f4a32] lg:hidden shadow-xl"></div>
+    <!-- ==================== CONTEÚDO PRINCIPAL ==================== -->
+    <main class="px-4 py-8 sm:px-6 sm:py-8 lg:px-8 w-full flex-1 max-w-7xl mx-auto">
+    
+    <!-- HERO HEADER DO TEIXO HUB -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200/80">
+      <div class="max-w-2xl">
+        <h1 class="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">
+          Hub de Clientes
+        </h1>
+      </div>
 
-        <!-- Manjericão Flutuante (animate-flutuar) -->
-        <img alt="Folhas de manjericão fresco" loading="lazy" decoding="async" class="absolute -top-2 left-0 z-20 w-[24%] animate-flutuar gpu-accel" style="--giro: -20deg;" src="assets/manjericao.webp">
-
-        <!-- Tomates Frescos Flutuantes (animate-flutuar) -->
-        <img alt="Tomates frescos selecionados" loading="lazy" decoding="async" class="absolute right-0 bottom-2 z-20 w-[27%] animate-flutuar gpu-accel" style="--giro: 15deg; animation-delay: -2.5s;" src="assets/tomates.webp">
-
-        <!-- Sombra Estática da Pizza (Zero repintura de GPU por segundo) -->
-        <div class="pointer-events-none absolute inset-[12%] rounded-full bg-black/25 blur-xl"></div>
-
-        <!-- Pizza Artesanal em Rotação Contínua 360° (animate-girar) -->
-        <div class="absolute inset-[4%] animate-girar gpu-accel">
-          <img alt="Pizza artesanal da Pizza do Juca" decoding="async" class="size-full object-contain" src="assets/hero-calabresa-catupiry.webp">
+      <!-- Quick Metrics Strip -->
+      <div class="flex items-center gap-3 self-start md:self-auto shrink-0 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-xs">
+        <div class="px-3 border-r border-slate-100">
+          <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Em Produção</div>
+          <div class="text-base font-black text-slate-900" id="stat-total-clientes">...</div>
         </div>
-
-        <!-- Selo Circular Artesanal Rotativo em SVG com Nota 4,5 Pizza do Juca -->
-        <div class="grid place-items-center absolute bottom-[4%] left-[0%] z-20 size-[32%] min-h-16 min-w-16 sm:size-[28%] sm:min-h-24 sm:min-w-24 rounded-full bg-[#faf5ec] text-[#2f4a32] shadow-xl border border-[#dccdb2]">
-          <svg viewBox="0 0 200 200" class="absolute inset-0 size-full animate-girar [animation-duration:30s]" aria-hidden="true">
-            <defs>
-              <path id="selo-juca" d="M100 100m-76 0a76 76 0 1 1 152 0a76 76 0 1 1 -152 0"></path>
-            </defs>
-            <circle cx="100" cy="100" r="97" fill="none" stroke="currentColor" stroke-width="1.2"></circle>
-            <circle cx="100" cy="100" r="58" fill="none" stroke="currentColor" stroke-width="1"></circle>
-            <text fill="currentColor" font-size="14" font-weight="700" letter-spacing="3" class="uppercase">
-              <textPath href="#selo-juca" textLength="473.5" lengthAdjust="spacing">
-                PIZZA DO JUCA • DESDE 2001 • PACIÊNCIA - RJ • 
-              </textPath>
-            </text>
-          </svg>
-
-          <div class="relative grid size-[52%] place-items-center text-center">
-            <span class="leading-none">
-              <span class="block font-display text-sm sm:text-xl font-bold italic text-[#2f4a32]">4,5</span>
-              <span class="mt-0.5 block text-[8px] sm:text-[10px] font-bold tracking-[0.14em] uppercase text-[#b23a26]">nota</span>
-            </span>
+        <div class="px-3 border-r border-slate-100">
+          <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Já Recebido</div>
+          <div class="text-base font-black text-emerald-600" id="stat-recebido">R$ 150,00</div>
+        </div>
+        <div class="px-3">
+          <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Status Infra</div>
+          <div class="text-base font-black text-emerald-600 text-xs flex items-center gap-1.5" id="stat-infra">
+            <span class="size-2 rounded-full bg-emerald-500"></span> Online
           </div>
         </div>
-
-      </div>
-
-      <!-- Convite de rolagem (apenas mobile) — order-3 garante ficar abaixo da pizza -->
-      <div class="order-3 mt-1 flex flex-col items-center gap-1.5 pb-2 lg:hidden">
-        <span class="text-[9px] font-bold uppercase tracking-[0.28em] text-[#2f4a32]/70">Arraste para baixo</span>
-        <svg class="h-5 w-5 animate-bounce text-[#2f4a32]/70" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"></path>
-        </svg>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== 3. CARDÁPIO PIZZA DO JUCA ==================== -->
-  <section id="cardapio" class="py-5 sm:py-24 max-w-6xl mx-auto px-2.5 sm:px-6">
-    <!-- Campo de Busca Instantâneo (Sticky no Scroll) -->
-    <div id="sticky-search-wrapper" class="sticky top-[68px] sm:top-[76px] z-30 -mx-2.5 px-2.5 py-2 sm:mx-auto sm:px-0 sm:py-0 mb-3 sm:mb-6 max-w-xl bg-[#faf5ec]/95 backdrop-blur-md transition-all border-b border-[#dccdb2]/40 sm:border-b-0">
-      <div class="relative">
-        <svg class="pointer-events-none absolute left-3.5 sm:left-5 top-1/2 h-4 w-4 sm:h-5 sm:w-5 -translate-y-1/2 text-[#7a8450]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
-        <input id="search-input" type="search" oninput="handleSearch(this.value)" placeholder="Buscar sabor ou produto..." aria-label="Buscar no cardápio" class="w-full rounded-full border border-[#dccdb2] bg-[#faf5ec] py-2.5 pl-10 pr-4 sm:py-3.5 sm:pl-14 sm:pr-5 text-xs sm:text-sm text-[#2f4a32] shadow-xs outline-none transition focus:border-[#2f4a32] focus:ring-4 focus:ring-[#2f4a32]/10">
       </div>
     </div>
 
-    <!-- Navegação de Categorias Desktop (Horizontal, visível a partir de sm:) -->
-    <div id="cat-tabs-container" class="no-scrollbar mb-7 hidden sm:flex gap-2 overflow-x-auto pb-2"></div>
-
-    <!-- Aviso de Tamanhos das Pizzas -->
-    
-
-    <!-- Layout Dividido no Mobile: Lateral Esquerda Fixa + Produtos à Direita -->
-    <div class="flex items-start gap-2 sm:gap-6">
-      <!-- BARRA VERTICAL LATERAL DE CATEGORIAS (MOBILE APENAS, FIXA E CENTRALIZADA NO SCROLL) -->
-      <aside id="cat-mobile-rail" style="top: max(136px, calc(50dvh - 140px));" class="w-[66px] shrink-0 sticky z-20 flex sm:hidden flex-col gap-1.5 rounded-2xl border border-[#dccdb2] bg-[#faf5ec]/95 p-1.5 shadow-md backdrop-blur-md max-h-[calc(100vh-145px)] overflow-y-auto no-scrollbar"></aside>
-
-      <!-- Grid de Produtos Renderizados -->
-      <div class="flex-1 min-w-0">
-        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6 pb-24 sm:pb-0"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 6. FOOTER ==================== -->
-  <footer class="border-t border-[#dccdb2] bg-[#faf5ec] py-10 dark:bg-[#1a1412] dark:border-[#382b24]">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <!-- Assinatura Automatech -->
-      <div class="text-center">
-        <p class="flex items-center justify-center gap-2 text-sm text-[#6f6457] dark:text-[#c4b5a2]">
-          <span class="font-mono text-base font-black text-[#b23a26]">&lt;/&gt;</span>
-          <span>Desenvolvido pela <strong class="font-bold text-[#b23a26]">Automatech</strong></span>
+    <!-- BANNER DESTAQUE: SHOWROOM DE TEMPLATES FOOD DELIVERY -->
+    <div class="mt-6 p-5 rounded-2xl bg-gradient-to-r from-slate-950 via-zinc-900 to-amber-950 text-white border border-amber-500/30 shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-400/20 text-amber-300 border border-amber-400/30 mb-2">
+          ⚡ 25 Identidades Visuais · Food Delivery
+        </div>
+        <h3 class="text-lg md:text-xl font-black text-white">Catálogo de Templates & Showrooms Interativos</h3>
+        <p class="text-xs text-zinc-300 mt-1 max-w-2xl leading-relaxed">
+          Modelos profissionais prontos para o lojista escolher. Teste os 5 modelos de Hamburgueria (H01 a H05) com alternância instantânea nos 3 modos de tela oficiais: PC, Mobile 2 (480px) e Mobile 1 (390px).
         </p>
+      </div>
+      <a href="/showroom/" class="shrink-0 px-5 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs flex items-center gap-2 shadow-md hover:scale-105 active:scale-95 transition">
+        <span>Abrir Showroom Hamburguerias</span>
+        <i data-lucide="arrow-right" class="size-4"></i>
+      </a>
+    </div>
 
-        <a href="https://wa.me/555199735892?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Pizza%20do%20Juca%20desenvolvido%20pela%20Automatech%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener noreferrer" class="mx-auto mt-3 flex min-h-[58px] w-full max-w-[340px] items-center justify-center gap-3 rounded-2xl border border-[#25D366] bg-white/70 px-5 py-2.5 text-left transition hover:bg-[#25D366]/10 active:scale-95 dark:bg-[#1a1412] dark:border-[#25D366]/70">
-          <span class="flex h-8 w-8 shrink-0 items-center justify-center text-[#25D366]">
-            <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M20.4 11.6a8.4 8.4 0 0 1-12.5 7.35L3 20.5l1.5-4.75A8.4 8.4 0 1 1 20.4 11.6Z"></path>
-            </svg>
-          </span>
-          <span class="flex min-h-10 flex-col justify-center leading-none">
-            <strong class="block text-base font-extrabold leading-none text-[#2f4a32] dark:text-[#faf5ec]">+55 51 9973-5892</strong>
-            <small class="mt-1 block text-xs leading-none text-[#6f6457] dark:text-[#c4b5a2]">Fale com a Automatech no WhatsApp</small>
-          </span>
-        </a>
+    <!-- BARRA DE FILTROS E BUSCA EM TEMPO REAL -->
+    <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+      
+      <!-- Input de Busca -->
+      <div class="relative flex-1 max-w-md">
+        <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400"></i>
+        <input 
+          type="text" 
+          id="busca-clientes-hub" 
+          placeholder="Buscar cliente por nome, nicho ou contato..." 
+          oninput="filtrarClientesHub()"
+          class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white border border-slate-200 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition shadow-xs"
+        >
+      </div>
+
+      <!-- Filtros Rápidos de Categoria -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0" id="filtros-categoria">
+        <button onclick="filtrarCategoria('todos', this)" class="cat-btn active px-3.5 py-2 rounded-xl text-xs font-extrabold bg-slate-900 text-white transition shadow-xs">
+          Todos os Clientes (<span id="cat-count-todos">0</span>)
+        </button>
+        <button onclick="filtrarCategoria('gastronomia', this)" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition">
+          Gastronomia & Delivery (<span id="cat-count-gastro">0</span>)
+        </button>
+        <button onclick="filtrarCategoria('varejo', this)" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition">
+          Mercados & Varejo (<span id="cat-count-varejo">0</span>)
+        </button>
+        <button onclick="filtrarCategoria('turismo', this)" class="cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition">
+          Serviços & Outros (<span id="cat-count-outros">0</span>)
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ==================== VITRINE DE CLIENTES (GRID DE CARDS DINÂMICOS) ==================== -->
+    <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="grid-clientes-hub">
+      <!-- Cards renderizados dinamicamente pelo JavaScript a partir da fonte única de clientes -->
+    </div>
+
+    <!-- MENSAGEM QUANDO A BUSCA NÃO ENCONTRA NADA -->
+    <div id="no-results-hub" class="hidden my-12 rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-xs">
+      <div class="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-slate-100 text-slate-400 mb-3">
+        <i data-lucide="search-x" class="size-6"></i>
+      </div>
+      <h3 class="text-base font-bold text-slate-900">Nenhum cliente encontrado</h3>
+      <p class="text-xs text-slate-500 mt-1">Tente buscar por outro termo ou selecione "Todos os Clientes".</p>
+    </div>
+
+  </main>
+
+  <!-- ==================== RODAPÉ INSTITUCIONAL ==================== -->
+  <footer class="mt-12 border-t border-slate-200/80 bg-white py-6">
+    <div class="mx-auto flex max-w-7xl flex-col sm:flex-row items-center justify-between gap-3 px-4 text-xs font-medium text-slate-500 sm:px-6">
+      <div class="flex items-center gap-2">
+        <span class="font-black text-slate-900">Teixo Hub</span>
+        <span>•</span>
+        <span>Rio de Janeiro / RJ</span>
+      </div>
+      <div class="flex items-center gap-2 text-slate-400">
+        <span class="text-[11px] text-slate-600">Teixo Hub • VPS Online</span>
+        <span>•</span>
+        <span>Porta 22022</span>
+        <span>•</span>
+        <span>Nginx + SQLite WAL</span>
       </div>
     </div>
   </footer>
 
-  <!-- ==================== MODAL DE INFORMAÇÕES ==================== -->
-  <div id="info-modal" class="hidden fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div onclick="closeInfoModal()" class="absolute inset-0 bg-black/70 backdrop-blur-[2px]"></div>
+  </div> <!-- Fim do container com lg:pl-52 -->
 
-    <div role="dialog" aria-modal="true" aria-labelledby="info-modal-title" class="animate-surgir relative z-10 flex max-h-[92vh] w-full max-w-md flex-col overflow-hidden rounded-t-[28px] sm:rounded-[2rem] border border-[#e7dac5] bg-[#faf2e3] text-[#3a2518] shadow-2xl">
-      <!-- Drag handle no mobile -->
-      <div class="mx-auto mt-3 h-1 w-10 shrink-0 rounded-full bg-[#dccdb2] sm:hidden"></div>
+  <!-- ==================== SCRIPTS INTERATIVOS & SINCRONIZAÇÃO DINÂMICA ==================== -->
+  <script>
+    // Inicializar ícones Lucide
+    lucide.createIcons();
 
-      <!-- Topo compacto -->
-      <div class="flex items-center justify-between gap-4 px-5 pt-3.5 pb-1 sm:px-6 sm:pt-5">
-        <div>
-          <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#7a8450]">Contato e localização</p>
-          <h2 id="info-modal-title" class="mt-0.5 font-display text-xl sm:text-2xl font-bold text-[#2f4a32]">
-            Informações
-          </h2>
-        </div>
+    const STORAGE_KEY = 'teixo_automatech_clientes_v10';
+    const STORAGE_LAST_SYNC = 'teixo_automatech_last_sync_v10';
+    const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/1aRIqEG8HzKYCuxWrVvpW87WOqb7eL5WHjidmgf91lu8/gviz/tq?tqx=out:csv&sheet=Clientes";
 
-        <button type="button" onclick="closeInfoModal()" aria-label="Fechar" class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#efe2cc] text-[#2f4a32] hover:bg-[#e4d2b4] transition">
-          ✕
-        </button>
-      </div>
+    // 13 CLIENTES OFICIAIS COMO FALLBACK ROBUSTO
+    const CLIENTES_INICIAIS = [
+      { id: 'cli-2', nome: 'Pizza do Juca', ramo: 'Pizzaria Artesanal • Paciência, RJ', solucao: 'Site + Painel', contato: 'Juca', fase: 'Em Produção', status: 'producao', setup: 300, setupPago: 150, recorrencia: 150, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-4', nome: 'Moraes Sorveteria', ramo: 'Sorvetes & Açaí • Paciência, RJ', solucao: 'Site + Painel', contato: '@moraessorveteria01', fase: 'Em Produção', status: 'producao', setup: 0, setupPago: 0, recorrencia: 50, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-1', nome: 'Sítio Hostel Natureza', ramo: 'Turismo & Eventos • Guaratiba / RJ', solucao: 'Combo', contato: '@sitiohostelnatureza', fase: 'Em aguardo', status: 'aguardo', setup: 1500, setupPago: 0, recorrencia: 750, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-3', nome: 'Açaí com Resenha', ramo: 'Açaiteria & Lanches', solucao: 'Site + Painel', contato: '@acaicomresenharj', fase: 'Em aguardo', status: 'aguardo', setup: 200, setupPago: 0, recorrencia: 50, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-5', nome: 'Russo Cachorro Quente', ramo: 'Lanchonete & Hot-dog', solucao: 'Site + Painel', contato: '@cacho_rroquentedorusso', fase: 'Em aguardo', status: 'aguardo', setup: 300, setupPago: 0, recorrencia: 150, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-6', nome: 'Maluco do Preço Baixo', ramo: 'Distribuidora & Comércio', solucao: 'Automação + Painel', contato: '@malucodoprecobaixo22', fase: 'Em aguardo', status: 'aguardo', setup: 200, setupPago: 0, recorrencia: 100, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-7', nome: 'SuperMercado Sernor', ramo: 'Supermercado & Varejo', solucao: 'Automação + Painel', contato: '@mercadosernor', fase: 'Em aguardo', status: 'aguardo', setup: 1000, setupPago: 0, recorrencia: 500, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-8', nome: 'Loja de Roupas 1', ramo: 'Moda / Vestuário', solucao: 'Combo', contato: 'Rafael anchieta', fase: 'Em aguardo', status: 'aguardo', setup: 1200, setupPago: 0, recorrencia: 100, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-9', nome: 'Restaurante sem nome', ramo: 'Gastronomia & Delivery', solucao: 'Site + Painel', contato: 'Nem PE', fase: 'Em aguardo', status: 'aguardo', setup: 400, setupPago: 0, recorrencia: 150, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-10', nome: 'Supermercado 2 sem nome', ramo: 'Supermercado & Varejo', solucao: 'Automação + Painel', contato: 'parente larissa', fase: 'Em aguardo', status: 'aguardo', setup: 1500, setupPago: 0, recorrencia: 750, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-11', nome: 'Supermercado 3 sem nome', ramo: 'Supermercado & Varejo', solucao: 'Automação + Painel', contato: 'parente larissa', fase: 'Em aguardo', status: 'aguardo', setup: 1500, setupPago: 0, recorrencia: 750, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-12', nome: 'Loja de Roupas 2', ramo: 'Moda / Vestuário', solucao: 'Combo', contato: 'Roupa cosmos tiago', fase: 'Em aguardo', status: 'aguardo', setup: 1500, setupPago: 0, recorrencia: 750, recorrenciaPaga: 0, comissao2pct: 0 },
+      { id: 'cli-13', nome: 'Supermercado 4', ramo: 'Supermercado & Varejo', solucao: 'Automação + Painel', contato: 'Edimar / Tiago', fase: 'Declinado', status: 'declinado', setup: 0, setupPago: 0, recorrencia: 0, recorrenciaPaga: 0, comissao2pct: 0 }
+    ];
 
-      <!-- Conteúdo rolável -->
-      <div class="overflow-y-auto px-5 pt-3 pb-4 sm:px-6 sm:pb-5">
-        <div class="space-y-3">
-          <!-- Instagram Oficial -->
-          <a href="https://www.instagram.com/pizzadojuca/" target="_blank" rel="noreferrer" class="flex items-center gap-3.5 rounded-[22px] border border-[#efe4d2] bg-[#fffdf9] px-3.5 py-3 shadow-[0_6px_18px_rgba(78,50,32,0.06)] transition hover:-translate-y-0.5 hover:border-[#dcc6a8]">
-            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl text-white shadow-sm" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);">
-              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
-              </svg>
+    let clientesHub = [];
+    let categoriaAtual = 'todos';
+
+    function formatarMoeda(val) {
+      return Number(val || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function parseCSV(text) {
+      const lines = [];
+      let currentLine = [];
+      let currentField = '';
+      let insideQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const nextChar = text[i + 1];
+        if (char === '"') {
+          if (insideQuotes && nextChar === '"') {
+            currentField += '"';
+            i++;
+          } else {
+            insideQuotes = !insideQuotes;
+          }
+        } else if (char === ',' && !insideQuotes) {
+          currentLine.push(currentField);
+          currentField = '';
+        } else if ((char === '\r' || char === '\n') && !insideQuotes) {
+          if (char === '\r' && nextChar === '\n') i++;
+          currentLine.push(currentField);
+          if (currentLine.some(f => f.trim() !== '')) lines.push(currentLine);
+          currentLine = [];
+          currentField = '';
+        } else {
+          currentField += char;
+        }
+      }
+      if (currentField || currentLine.length > 0) {
+        currentLine.push(currentField);
+        if (currentLine.some(f => f.trim() !== '')) lines.push(currentLine);
+      }
+      return lines;
+    }
+
+    function parseNumber(val) {
+      if (typeof val === 'number') return val;
+      if (!val) return 0;
+      const clean = String(val).replace(/R\$/g, '').replace(/\./g, '').replace(/,/g, '.').trim();
+      const num = parseFloat(clean);
+      return isNaN(num) ? 0 : num;
+    }
+
+    function mapearStatus(fase, empresa) {
+      const e = (empresa || '').toLowerCase();
+      if (e.includes('supermercado 4')) return 'declinado';
+      const f = (fase || '').toLowerCase();
+      if (f.includes('produ') || f.includes('fechad')) return 'producao';
+      if (f.includes('declin') || f.includes('rejeit') || f.includes('recus') || f.includes('cancel')) return 'declinado';
+      return 'aguardo';
+    }
+
+    function mapearSolucao(prodRaw) {
+      const p = (prodRaw || '').toLowerCase();
+      if (p.includes('site') && p.includes('automação')) return 'Combo';
+      if (p.includes('automação')) return 'Automação + Painel';
+      return 'Site + Painel';
+    }
+
+    function mapearCategoria(ramo, solucao, nome) {
+      const text = ((ramo || '') + ' ' + (solucao || '') + ' ' + (nome || '')).toLowerCase();
+      if (text.includes('hostel') || text.includes('hotel') || text.includes('pousada') || text.includes('turismo') || text.includes('viagem') || text.includes('imobili')) {
+        return 'turismo';
+      }
+      if (text.includes('pizza') || text.includes('lanch') || text.includes('açaí') || text.includes('acai') || text.includes('sorvet') || text.includes('gastro') || text.includes('restaur') || text.includes('marmit') || text.includes('alimento') || text.includes('cesta') || text.includes('hamburg') || text.includes('hot-dog') || text.includes('cachorro') || text.includes('doce')) {
+        return 'gastronomia';
+      }
+      if (text.includes('mercado') || text.includes('supermercado') || text.includes('varejo') || text.includes('distribuid') || text.includes('roupa') || text.includes('moda') || text.includes('vestu')) {
+        return 'varejo';
+      }
+      return 'turismo';
+    }
+
+    // CARREGAR DADOS (LOCALSTORAGE + BACKGROUND REFRESH DO GOOGLE SHEETS)
+    async function carregarClientesHub() {
+      const salvo = localStorage.getItem(STORAGE_KEY);
+      if (salvo) {
+        try {
+          clientesHub = JSON.parse(salvo);
+          renderizarGridHub();
+        } catch (e) {
+          console.warn('Erro ao ler localStorage do Hub:', e);
+        }
+      } else {
+        clientesHub = [...CLIENTES_INICIAIS];
+        renderizarGridHub();
+      }
+
+      // Background Fetch do Google Sheets
+      try {
+        const response = await fetch(GOOGLE_SHEETS_CSV_URL + '&_t=' + Date.now());
+        if (!response.ok) return;
+
+        const csvText = await response.text();
+        const rows = parseCSV(csvText);
+        const ignoreEmpresas = ['INSTALAÇÃO', 'RECORRÊNCIA MENSAL', 'LOJAS COM COMISSÃO'];
+
+        const parsed = [];
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const empresa = (row[0] || '').replace(/""/g, '').trim();
+          if (!empresa || ignoreEmpresas.some(ign => empresa.toUpperCase().includes(ign))) continue;
+
+          const ramo = (row[1] || '').replace(/""/g, '').trim();
+          const contato = row[3] || '';
+          const fase = row[4] || 'Em aguardo';
+          const status = mapearStatus(fase, empresa);
+          const setup = parseNumber(row[5]);
+          const recorrencia = parseNumber(row[6]);
+
+          const existente = clientesHub.find(c => c.nome.toLowerCase() === empresa.toLowerCase());
+          let setupPago = (row[13] !== undefined && String(row[13]).trim() !== '') ? parseNumber(row[13]) : (existente ? (existente.setupPago || 0) : 0);
+          let recorrenciaPaga = (row[14] !== undefined && String(row[14]).trim() !== '') ? parseNumber(row[14]) : (existente ? (existente.recorrenciaPaga || 0) : 0);
+          let comissao2pct = (row[15] !== undefined && String(row[15]).trim() !== '') ? ((String(row[15]).toUpperCase() === 'TRUE' || parseNumber(row[15]) > 0) ? parseNumber(row[15]) : 0) : (existente ? (existente.comissao2pct || 0) : 0);
+
+          parsed.push({
+            id: existente ? existente.id : ('cli-' + i),
+            nome: empresa,
+            ramo: ramo || (existente ? existente.ramo : 'Gastronomia / Comércio'),
+            solucao: mapearSolucao(row[2]) || (existente ? existente.solucao : 'Site + Painel'),
+            contato: contato || (existente ? existente.contato : ''),
+            fase,
+            status,
+            setup,
+            setupPago,
+            recorrencia,
+            recorrenciaPaga,
+            comissao2pct
+          });
+        }
+
+        if (parsed.length > 0) {
+          clientesHub = parsed;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(clientesHub));
+          renderizarGridHub();
+        }
+      } catch (err) {
+        console.warn('Sync background do Sheets no Hub falhou (usando cache local):', err);
+      }
+    }
+
+    // RENDERIZAR GRID DINÂMICO
+    function renderizarGridHub() {
+      const total = clientesHub.length;
+      const producao = clientesHub.filter(c => c.status === 'producao');
+      let dinheiroJaRecebido = 0;
+
+      clientesHub.forEach(c => {
+        dinheiroJaRecebido += (c.setupPago || 0) + (c.recorrenciaPaga || 0) + (c.comissao2pct || 0);
+      });
+
+      // Atualiza métricas do topo
+      const elStatTotal = document.getElementById('stat-total-clientes');
+      if (elStatTotal) elStatTotal.innerText = `${producao.length}/${total} Lojas`;
+
+      const elStatRecebido = document.getElementById('stat-recebido');
+      if (elStatRecebido) elStatRecebido.innerText = 'R$ ' + formatarMoeda(dinheiroJaRecebido);
+
+      // Atualiza contadores dos filtros
+      let countGastro = 0, countVarejo = 0, countOutros = 0;
+      clientesHub.forEach(c => {
+        const cat = mapearCategoria(c.ramo, c.solucao, c.nome);
+        if (cat === 'gastronomia') countGastro++;
+        else if (cat === 'varejo') countVarejo++;
+        else countOutros++;
+      });
+
+      const elCatTodos = document.getElementById('cat-count-todos');
+      if (elCatTodos) elCatTodos.innerText = total;
+      const elCatGastro = document.getElementById('cat-count-gastro');
+      if (elCatGastro) elCatGastro.innerText = countGastro;
+      const elCatVarejo = document.getElementById('cat-count-varejo');
+      if (elCatVarejo) elCatVarejo.innerText = countVarejo;
+      const elCatOutros = document.getElementById('cat-count-outros');
+      if (elCatOutros) elCatOutros.innerText = countOutros;
+
+      const grid = document.getElementById('grid-clientes-hub');
+      if (!grid) return;
+
+      // Ordenação prioritária: Lojas em Produção sempre aparecem no topo
+      const ordenados = [...clientesHub].sort((a, b) => {
+        if (a.status === 'producao' && b.status !== 'producao') return -1;
+        if (a.status !== 'producao' && b.status === 'producao') return 1;
+        return 0;
+      });
+
+      let html = '';
+
+      ordenados.forEach(c => {
+        const cat = mapearCategoria(c.ramo, c.solucao, c.nome);
+        const buscaStr = `${c.nome} ${c.ramo} ${c.contato} ${c.solucao}`.toLowerCase();
+
+        // Status Badge Oficial
+        let statusBadge = '';
+        if (c.status === 'producao') {
+          statusBadge = `
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/90 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-emerald-800 shrink-0">
+              <span class="size-1.5 rounded-full bg-emerald-500"></span> Em Produção
             </span>
-            <span class="h-8 w-px shrink-0 bg-[#eadfcd]" aria-hidden="true"></span>
-            <span class="min-w-0 flex-1">
-              <span class="block text-[15px] font-extrabold leading-tight text-[#2b1a10]">Instagram Oficial</span>
-              <span class="mt-0.5 block truncate text-xs sm:text-[13px] text-[#6f6457]">@pizzadojuca</span>
+          `;
+        } else if (c.status === 'declinado') {
+          statusBadge = `
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-rose-50 border border-rose-200/90 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-rose-800 shrink-0">
+              <span class="size-1.5 rounded-full bg-rose-500"></span> Declinado
             </span>
-            <span class="shrink-0 rounded-full bg-[#f4e8d3] px-3.5 py-1.5 text-xs font-extrabold text-[#2b1a10]">Seguir &rsaquo;</span>
-          </a>
-
-          <!-- WhatsApp Pedidos -->
-          <a href="https://wa.me/5521973142264?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20Pizza%20do%20Juca." target="_blank" rel="noreferrer" class="flex items-center gap-3.5 rounded-[22px] border border-[#efe4d2] bg-[#fffdf9] px-3.5 py-3 shadow-[0_6px_18px_rgba(78,50,32,0.06)] transition hover:-translate-y-0.5 hover:border-[#dcc6a8]">
-            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#1fa315] text-white shadow-sm">
-              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.044c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"></path>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 1.93.548 3.733 1.503 5.267L2 22l4.87-1.464A9.957 9.957 0 0012 22.034c5.523 0 10-4.484 10-10.017C22 6.484 17.523 2 12 2zm0 18.234c-1.63 0-3.14-.47-4.42-1.28l-.317-.202-2.887.868.877-2.808-.215-.327A8.17 8.17 0 013.8 12.017C3.8 7.502 7.478 3.82 12 3.82c4.522 0 8.2 3.682 8.2 8.197 0 4.515-3.678 8.217-8.2 8.217z"></path>
-              </svg>
+          `;
+        } else {
+          statusBadge = `
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-50 border border-amber-200/90 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-amber-800 shrink-0">
+              <span class="size-1.5 rounded-full bg-amber-500"></span> Em aguardo
             </span>
-            <span class="h-8 w-px shrink-0 bg-[#eadfcd]" aria-hidden="true"></span>
-            <span class="min-w-0 flex-1">
-              <span class="block text-[15px] font-extrabold leading-tight text-[#2b1a10]">WhatsApp Pedidos</span>
-              <span class="mt-0.5 block truncate text-xs sm:text-[13px] text-[#6f6457]">(21) 97314-2264</span>
-            </span>
-            <span class="shrink-0 rounded-full bg-[#1fa315] px-4 py-1.5 text-xs font-extrabold text-white shadow-sm">Abrir &rsaquo;</span>
-          </a>
+          `;
+        }
 
-          <!-- Telefone Fixo -->
-          <a href="tel:+552141011874" class="flex items-center gap-3.5 rounded-[22px] border border-[#efe4d2] bg-[#fffdf9] px-3.5 py-3 shadow-[0_6px_18px_rgba(78,50,32,0.06)] transition hover:-translate-y-0.5 hover:border-[#dcc6a8]">
-            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#b83220] text-white shadow-sm">
-              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
-              </svg>
-            </span>
-            <span class="h-8 w-px shrink-0 bg-[#eadfcd]" aria-hidden="true"></span>
-            <span class="min-w-0 flex-1">
-              <span class="block text-[15px] font-extrabold leading-tight text-[#2b1a10]">Telefone Fixo</span>
-              <span class="mt-0.5 block truncate text-xs sm:text-[13px] text-[#6f6457]">(21) 4101-1874</span>
-            </span>
-            <span class="shrink-0 rounded-full bg-[#f4e8d3] px-3.5 py-1.5 text-xs font-extrabold text-[#2b1a10]">Ligar &rsaquo;</span>
-          </a>
+        // Avatar / Logo
+        let logoHtml = '';
+        if (c.nome.toLowerCase().includes('pizza do juca')) {
+          logoHtml = `
+            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-orange-50 border border-orange-100 p-1">
+              <img src="/pizzadojuca/logo_juca.png" alt="Pizza do Juca" class="h-10 w-10 object-contain" onerror="this.src='/logo.png'">
+            </div>
+          `;
+        } else {
+          const initials = c.nome.split(' ').filter(w => w.length > 0).slice(0, 2).map(w => w[0].toUpperCase()).join('') || 'TC';
+          let bgClass = 'bg-slate-100 border-slate-200 text-slate-700';
+          if (cat === 'gastronomia') bgClass = 'bg-orange-50 border-orange-100 text-orange-700';
+          else if (cat === 'varejo') bgClass = 'bg-indigo-50 border-indigo-100 text-indigo-700';
+          else bgClass = 'bg-teal-50 border-teal-100 text-teal-700';
 
-          <!-- Como chegar Google Maps -->
-          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Avenida+Devanir+Jos%C3%A9+de+Carvalho,+617,+Paci%C3%AAncia,+Rio+de+Janeiro,+RJ" target="_blank" rel="noreferrer" class="flex items-center gap-3.5 rounded-[22px] border border-[#efe4d2] bg-[#fffdf9] px-3.5 py-3 shadow-[0_6px_18px_rgba(78,50,32,0.06)] transition hover:-translate-y-0.5 hover:border-[#dcc6a8]">
-            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[#ece0cc] bg-white shadow-sm">
-              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2C7.589 2 4 5.589 4 9.995c0 5.485 7.156 11.455 7.461 11.705a.834.834 0 001.078 0C12.844 21.45 20 15.48 20 9.995 20 5.589 16.411 2 12 2zm0 12c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z" fill="#ea431f"></path>
-                <circle cx="12" cy="10" r="2.2" fill="#ffffff"></circle>
-              </svg>
-            </span>
-            <span class="h-8 w-px shrink-0 bg-[#eadfcd]" aria-hidden="true"></span>
-            <span class="min-w-0 flex-1">
-              <span class="block text-[15px] font-extrabold leading-tight text-[#2b1a10]">Como chegar</span>
-              <span class="mt-0.5 block text-xs leading-snug text-[#6f6457]">Av. Devanir José de Carvalho, 617<br>Paciência, Rio de Janeiro - RJ</span>
-            </span>
-            <span class="shrink-0 rounded-full bg-[#f4e8d3] px-3.5 py-1.5 text-xs font-extrabold text-[#2b1a10]">Rota &rsaquo;</span>
-          </a>
-        </div>
+          logoHtml = `
+            <div class="grid h-12 w-12 place-items-center rounded-2xl ${bgClass} border font-black text-sm shadow-2xs">
+              ${initials}
+            </div>
+          `;
+        }
 
-        <!-- Linha minimalista Desenvolvido pela Automatech -->
-        <div class="mt-5 flex flex-wrap items-center justify-center gap-2.5 border-t border-[#e5d7c1] pt-4 text-xs sm:text-[13px]">
-          <span class="font-medium text-[#5b4d42]">Desenvolvido pela</span>
-          <a href="https://wa.me/555199735892?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Pizza%20do%20Juca%20desenvolvido%20pela%20Automatech%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer" title="Fale com a Automatech no WhatsApp: +55 51 9973-5892" class="group inline-flex items-center gap-2 rounded-full border border-[#1fa315]/45 bg-[#fffdf9] py-1.5 pl-2 pr-2 font-extrabold text-[#2b1a10] shadow-[0_4px_14px_rgba(31,163,21,0.14)] transition hover:-translate-y-0.5 hover:border-[#1fa315] hover:bg-[#f2fbf1] hover:shadow-[0_6px_18px_rgba(31,163,21,0.22)] active:scale-95">
-            <img src="assets/logo-agencia.png" alt="Automatech" class="h-6 w-6 rounded-full border border-[#166534] bg-[#0f291e] object-cover p-0.5" onerror="this.onerror=null; this.src='assets/logo.png';">
-            <span>Automatech</span>
-            <span class="inline-flex items-center gap-1 rounded-full bg-[#1fa315] px-2.5 py-1 text-[11px] font-bold text-white shadow-xs transition group-hover:brightness-95">
-              <svg class="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.044c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"></path>
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 1.93.548 3.733 1.503 5.267L2 22l4.87-1.464A9.957 9.957 0 0012 22.034c5.523 0 10-4.484 10-10.017C22 6.484 17.523 2 12 2zm0 18.234c-1.63 0-3.14-.47-4.42-1.28l-.317-.202-2.887.868.877-2.808-.215-.327A8.17 8.17 0 013.8 12.017C3.8 7.502 7.478 3.82 12 3.82c4.522 0 8.2 3.682 8.2 8.197 0 4.515-3.678 8.217-8.2 8.217z"></path>
-              </svg>
-              <span>WhatsApp &rsaquo;</span>
-            </span>
-          </a>
-        </div>
-      </div>
+        // Setup Pill
+        let setupPill = '';
+        if (c.setup === 0) {
+          setupPill = `<span class="rounded-md bg-slate-100 text-slate-600 px-2.5 py-1 font-bold" title="Setup Isento">R$ 0 Isento</span>`;
+        } else if (c.setupPago >= c.setup && c.setup > 0) {
+          setupPill = `<span class="rounded-md bg-emerald-100 text-emerald-900 border border-emerald-200 px-2.5 py-1 font-black" title="Setup 100% Pago">R$ ${c.setupPago}/${c.setup} Pago</span>`;
+        } else if (c.setupPago > 0) {
+          setupPill = `<span class="rounded-md bg-amber-100 text-amber-900 border border-amber-200 px-2.5 py-1 font-black" title="Setup Parcial">R$ ${c.setupPago}/${c.setup}</span>`;
+        } else {
+          setupPill = `<span class="rounded-md bg-slate-100 text-slate-700 px-2.5 py-1 font-bold" title="Setup">R$ ${formatarMoeda(c.setup)}</span>`;
+        }
 
-      <p id="store-contact" class="hidden" aria-hidden="true"></p>
-      <!-- Faixa ondulada inferior vermelha e dourada -->
-      <svg viewBox="0 0 400 28" preserveAspectRatio="none" aria-hidden="true" class="block h-5 w-full shrink-0 sm:h-6">
-        <path d="M0,12 Q100,24 200,12 T400,10 L400,28 L0,28 Z" fill="#8f1313"></path>
-        <path d="M0,12 Q100,24 200,12 T400,10" fill="none" stroke="#d99b26" stroke-width="2.5"></path>
-      </svg>
-    </div>
-  </div>
+        // Links de Botão Inteligentes e Sem Duplicações
+        let btnSite = '';
+        let btnPainel = '';
 
-  <!-- ==================== MODAL DE ESCOLHA DE TAMANHO / OPÇÃO ==================== -->
-  <div id="product-modal" class="hidden fixed inset-0 z-[100] flex items-end justify-center p-4 sm:items-center">
-    <div onclick="closeProductModal()" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-    <div role="dialog" aria-modal="true" aria-labelledby="modal-product-name" aria-describedby="modal-product-desc" tabindex="-1" class="animate-surgir relative z-10 w-full max-w-lg max-h-[92vh] flex flex-col rounded-[2rem] border border-[#dccdb2] bg-[#faf5ec] shadow-2xl dark:bg-[#1a1412] dark:border-[#382b24] overflow-hidden">
-      <!-- Modal Header -->
-      <div class="p-5 border-b border-[#dccdb2] flex items-start justify-between gap-4 dark:border-[#382b24]">
-        <div>
-          <span id="modal-category-badge" class="text-xs font-bold uppercase tracking-wider text-[#b23a26]">Pizza</span>
-          <h3 id="modal-product-name" tabindex="-1" class="font-display text-2xl font-bold text-[#2f4a32] dark:text-[#faf5ec]">Nome da Pizza</h3>
-          <p id="modal-product-desc" class="mt-1 text-xs text-[#6f6457] dark:text-[#c4b5a2]">Descrição</p>
-        </div>
-        <button type="button" aria-label="Fechar opções do produto" onclick="closeProductModal()" class="h-9 w-9 rounded-full bg-[#e8d9be] text-[#2f4a32] grid place-items-center font-bold dark:bg-white/10 dark:text-[#faf5ec]">✕</button>
-      </div>
+        if (c.nome.toLowerCase().includes('pizza do juca')) {
+          btnSite = `<a href="/pizzadojuca/" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-orange-600 py-2.5 px-3 text-xs font-black text-white hover:bg-orange-700 transition shadow-xs active:scale-95"><i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Site</span></a>`;
+          btnPainel = `<a href="/pizzadojuca/painel/" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i><span>Painel</span></a>`;
+        } else if (c.nome.toLowerCase().includes('hostel')) {
+          btnSite = `<a href="/sitio-hostel-natureza/" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-teal-600 py-2.5 px-3 text-xs font-black text-white hover:bg-teal-700 transition shadow-xs active:scale-95"><i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Site</span></a>`;
+          btnPainel = `<a href="/sitio-hostel-natureza/painel.html" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i><span>Painel</span></a>`;
+        } else if (c.nome.toLowerCase().includes('moraes')) {
+          btnSite = `<a href="/moraessorveteria/" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-pink-600 py-2.5 px-3 text-xs font-black text-white hover:bg-pink-700 transition shadow-xs active:scale-95"><i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Site</span></a>`;
+          btnPainel = `<a href="/moraessorveteria/painel/" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i><span>Painel</span></a>`;
+        } else if (c.nome.toLowerCase().includes('matago')) {
+          btnSite = `<a href="/matago/" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-red-600 py-2.5 px-3 text-xs font-black text-white hover:bg-red-700 transition shadow-xs active:scale-95"><i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Site</span></a>`;
+          btnPainel = `<a href="/matago/painel/" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i><span>Painel</span></a>`;
+        } else if (c.status === 'producao') {
+          btnSite = `<a href="/cardapio/?c=${c.id}" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-emerald-600 py-2.5 px-3 text-xs font-black text-white hover:bg-emerald-700 transition shadow-xs active:scale-95"><i data-lucide="globe" class="w-3.5 h-3.5"></i><span>Site</span></a>`;
+          btnPainel = `<a href="/painel/planilha/" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i><span>Painel</span></a>`;
+        } else {
+          const contato = (c.contato || '').trim();
+          const numWhats = contato.replace(/\D/g, '');
+          
+          if (contato.startsWith('@')) {
+            const igHandle = contato.replace('@', '');
+            btnSite = `<a href="https://instagram.com/${igHandle}" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl border border-pink-200 bg-pink-50/70 py-2.5 px-3 text-xs font-bold text-pink-700 hover:bg-pink-100 transition shadow-xs active:scale-95"><i data-lucide="instagram" class="w-3.5 h-3.5 text-pink-600"></i><span class="truncate">${contato}</span></a>`;
+          } else if (numWhats.length >= 8) {
+            btnSite = `<a href="https://wa.me/55${numWhats}" target="_blank" class="inline-flex items-center justify-center gap-1.5 rounded-xl border border-emerald-200 bg-emerald-50/70 py-2.5 px-3 text-xs font-bold text-emerald-700 hover:bg-emerald-100 transition shadow-xs active:scale-95"><i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-600"></i><span>WhatsApp</span></a>`;
+          } else if (contato.length > 0) {
+            btnSite = `<a href="/painel/planilha/" class="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 py-2.5 px-3 text-xs font-bold text-slate-700 hover:bg-slate-100 transition shadow-xs active:scale-95"><i data-lucide="user" class="w-3.5 h-3.5 text-slate-500"></i><span class="truncate">${contato}</span></a>`;
+          } else {
+            btnSite = `<a href="/painel/planilha/" class="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white py-2.5 px-3 text-xs font-bold text-slate-600 hover:bg-slate-50 transition shadow-xs active:scale-95"><i data-lucide="eye" class="w-3.5 h-3.5 text-slate-400"></i><span>Detalhes</span></a>`;
+          }
 
-      <!-- Modal Body com Scroll -->
-      <div class="flex-1 overflow-y-auto p-5 space-y-5">
-        <!-- Escolha de Tamanho -->
-        <div>
-          <div class="flex items-center justify-between mb-2.5">
-            <p class="text-xs font-bold uppercase tracking-wider text-[#6f6457] dark:text-[#c4b5a2]">Escolha o tamanho:</p>
-            <span class="text-[10px] bg-[#b23a26]/10 text-[#b23a26] px-2 py-0.5 rounded-full font-bold">Obrigatório</span>
-          </div>
-          <div id="modal-variants-list" class="grid gap-2"></div>
-        </div><div id="product-options" class="space-y-4"></div>
+          btnPainel = `<a href="/painel/planilha/" class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 py-2.5 px-3 text-xs font-black text-white hover:bg-slate-800 transition shadow-xs active:scale-95"><i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-emerald-400"></i><span>Planilha</span></a>`;
+        }
 
-        <!-- Escolha de Sabores (Pizza Inteira ou Meio a Meio) -->
-        <div id="modal-half-section" class="hidden border-t border-[#dccdb2] pt-4 dark:border-[#382b24]">
-          <div class="flex items-center justify-between mb-2">
+        html += `
+          <div class="card-cliente flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-white p-6 shadow-xs hover:-translate-y-1 hover:border-orange-400 hover:shadow-xl transition-all duration-200" data-cat="${cat}" data-busca="${buscaStr}">
             <div>
-              <p class="text-xs font-bold uppercase tracking-wider text-[#6f6457] dark:text-[#c4b5a2]">Quantidade de Sabores:</p>
-            </div>
-            <span id="badge-half-status" class="text-[10px] bg-emerald-100 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 px-2 py-0.5 rounded-full font-bold">2 Sabores Permitido</span>
-          </div>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  ${logoHtml}
+                  <div>
+                    <h2 class="text-base font-black text-slate-950">${c.nome}</h2>
+                    <div class="text-[11px] font-bold text-slate-500">${c.ramo}</div>
+                  </div>
+                </div>
+                ${statusBadge}
+              </div>
 
-          <div class="grid grid-cols-2 gap-2 mb-3">
-            <button type="button" id="btn-flavor-single" onclick="setFlavorMode('single')" class="p-2.5 rounded-xl border text-center transition border-[#2f4a32] bg-[#2f4a32] text-white shadow font-bold text-xs">
-              🍕 1 Sabor Inteiro
-            </button>
-            <button type="button" id="btn-flavor-half" onclick="setFlavorMode('half')" class="p-2.5 rounded-xl border text-center transition border-[#dccdb2] bg-[#faf5ec] text-[#4e3220] font-bold text-xs dark:bg-[#1a1412] dark:border-[#382b24] dark:text-[#faf5ec]">
-              🌓 Meio a Meio (2 Sabores)
-            </button>
-          </div>
-
-          <!-- Seleção do 2º Sabor (aparece quando 'half' está ativo) -->
-          <div id="modal-second-flavor-box" class="hidden p-3.5 rounded-2xl bg-amber-50/80 border border-amber-200 dark:bg-amber-950/20 dark:border-amber-900/40 space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-amber-950 dark:text-amber-200">Escolha o 2º sabor:</span>
-              <span class="text-[10px] text-amber-700 dark:text-amber-400 font-semibold">Preço pelo maior valor</span>
+              <div class="mt-4 flex flex-wrap items-center gap-1.5 text-[10px] font-bold">
+                ${setupPill}
+                <span class="rounded-md bg-blue-50 text-blue-800 px-2.5 py-1 font-bold" title="Recorrência Fixa">R$ ${formatarMoeda(c.recorrencia)}/mês</span>
+                <span class="rounded-md bg-purple-50 text-purple-800 px-2.5 py-1 font-bold" title="Comissão sobre Pedidos">2%</span>
+              </div>
             </div>
-            <select id="modal-second-flavor-select" onchange="onSecondFlavorChange()" class="w-full p-2.5 rounded-xl border border-amber-300 bg-white text-xs font-bold text-slate-800 outline-none focus:border-amber-500 dark:bg-[#1a1412] dark:border-amber-800 dark:text-white">
-            </select>
-            <p id="modal-half-pricing-hint" class="text-[10px] text-amber-800 dark:text-amber-300 italic">
-              * Cobrado pelo sabor de maior valor entre os dois.
+
+            <div class="mt-6 pt-4 border-t border-slate-100">
+              <div class="grid grid-cols-2 gap-2.5">
+                ${btnSite}
+                ${btnPainel}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      // Card Adicionar / Clonar Novo Cliente no final
+      html += `
+        <div class="flex flex-col justify-between rounded-3xl border-2 border-dashed border-slate-300 bg-white/60 p-6 text-center hover:border-orange-500 hover:bg-orange-50/20 transition-all duration-200">
+          <div>
+            <div class="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-orange-100 text-orange-600 mb-4">
+              <i data-lucide="store" class="size-7"></i>
+            </div>
+            <h3 class="text-base font-black text-slate-950">Novo Cliente ou Loja</h3>
+            <p class="mt-2 text-xs leading-relaxed text-slate-500 font-medium">
+              Suba uma nova hamburgueria, pizzaria ou restaurante na VPS em segundos com a matriz validada da Teixo.
             </p>
           </div>
-        </div>
 
-        <!-- Escolha de Borda Recheada Opcional -->
-        <div id="modal-borda-section" class="hidden">
-          <div class="flex items-center justify-between mb-2">
-            <p class="text-xs font-bold uppercase tracking-wider text-[#6f6457] dark:text-[#c4b5a2]">Borda recheada externa:</p>
-            <span class="text-[10px] bg-[#e8d9be] text-[#4e3220] px-2 py-0.5 rounded-full font-semibold dark:bg-white/10 dark:text-[#c4b5a2]">Opcional</span>
-          </div>
-          <div id="modal-borda-list" class="grid grid-cols-3 gap-2"></div>
-        </div>
-
-        <!-- Ingredientes para retirar (O que você quer retirar?) -->
-        <div id="modal-removals-section" class="hidden border-t border-[#dccdb2] pt-4 dark:border-[#382b24]">
-          <div class="flex items-center justify-between mb-2">
-            <div>
-              <p class="text-xs font-bold uppercase tracking-wider text-[#6f6457] dark:text-[#c4b5a2]">O que você quer retirar?</p>
-              <p class="text-[11px] text-[#6f6457] dark:text-[#c4b5a2]">Selecione os ingredientes que você NÃO quer no pedido</p>
-            </div>
-            <span class="text-[10px] bg-red-100 text-red-600 dark:bg-red-950/40 dark:text-red-400 px-2 py-0.5 rounded-full font-semibold">Opcional</span>
-          </div>
-          <div id="modal-removals-list" class="space-y-1.5 mt-2"></div>
-        </div>
-
-        <!-- Observações deste item -->
-        <div class="border-t border-[#dccdb2] pt-4 dark:border-[#382b24]">
-          <p class="text-xs font-bold uppercase tracking-wider text-[#6f6457] dark:text-[#c4b5a2] mb-2">Observações deste item:</p>
-          <textarea id="modal-item-notes" rows="2" placeholder="Ex: sem cebola, bem assada, cortar em 12 fatias..." class="w-full resize-none p-3 rounded-xl border border-[#dccdb2] bg-[#faf5ec] text-xs text-[#2f4a32] outline-none focus:border-[#2f4a32] dark:bg-[#251d18] dark:border-[#382b24] dark:text-[#faf5ec]"></textarea>
-        </div>
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="p-4 border-t border-[#dccdb2] bg-[#f1e7d5]/40 flex items-center justify-between gap-3 dark:border-[#382b24] dark:bg-white/5">
-        <div class="flex items-center rounded-xl border border-[#dccdb2] bg-[#faf5ec] dark:bg-[#1a1412] dark:border-[#382b24]">
-          <button type="button" onclick="changeModalQty(-1)" class="w-10 h-11 text-lg font-bold text-[#2f4a32] dark:text-[#faf5ec]">-</button>
-          <span id="modal-qty-val" class="min-w-7 text-center text-sm font-bold text-[#2f4a32] dark:text-[#faf5ec]">1</span>
-          <button type="button" onclick="changeModalQty(1)" class="w-10 h-11 text-lg font-bold text-[#2f4a32] dark:text-[#faf5ec]">+</button>
-        </div>
-        <button id="modal-submit-btn" onclick="confirmModalAddToCart()" class="flex-1 py-3.5 px-4 rounded-xl bg-[#2f4a32] text-[#faf5ec] font-bold text-sm shadow hover:bg-[#243a26] transition active:scale-95 text-center">Adicionar ao pedido</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== ABA LATERAL DE NAVEGAÇÃO (DRAWER RETRÁTIL) ==================== -->
-  <div id="nav-sidebar-overlay" class="hidden fixed inset-0 z-[90] bg-black/60 transition-opacity" onclick="closeNavSidebar()"></div>
-  <aside id="nav-sidebar" class="fixed top-0 right-0 z-[100] h-full w-full max-w-sm bg-[#faf5ec] border-l border-[#dccdb2] shadow-2xl flex flex-col dark:bg-[#1a1412] dark:border-[#382b24]">
-    <!-- Cabeçalho da Aba Lateral -->
-    <div class="p-5 border-b border-[#dccdb2] flex items-center justify-between dark:border-[#382b24]">
-      <div class="flex items-center gap-3">
-        <span class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-[#b23a26] bg-black shadow-sm">
-          <img src="assets/logo_juca.webp" alt="Pizza do Juca" class="h-full w-full object-cover" onerror="this.onerror=null; this.src='assets/logo.webp';">
-        </span>
-        <div>
-          <span class="block font-display text-base font-bold leading-tight text-[#2f4a32] dark:text-[#faf5ec]">Pizza do Juca</span>
-          <span class="block text-[11px] font-semibold text-[#b23a26] dark:text-[#f87171]">Menu de Navegação</span>
-        </div>
-      </div>
-      <button onclick="closeNavSidebar()" class="h-9 w-9 rounded-full bg-[#e8d9be] text-[#2f4a32] grid place-items-center font-bold hover:bg-[#dccdb2] transition active:scale-95 dark:bg-white/10 dark:text-[#faf5ec]" title="Fechar menu">
-        ✕
-      </button>
-    </div>
-
-    <!-- Links de Navegação da Aba Lateral -->
-    <div class="flex-1 overflow-y-auto p-5 space-y-2.5">
-      <a href="#cardapio" onclick="closeNavSidebar()" class="flex items-center gap-3.5 rounded-2xl px-4 py-3.5 text-sm font-bold text-[#2f4a32] bg-[#e8d9be]/50 hover:bg-[#e8d9be] transition dark:text-[#faf5ec] dark:bg-white/5 dark:hover:bg-white/10">
-        <span class="text-xl">🍕</span>
-        <div class="flex-1">
-          <div class="leading-none">Cardápio Completo</div>
-          <span class="text-[11px] font-normal text-[#6f6457] dark:text-[#c4b5a2]">80 sabores, doces &amp; bebidas</span>
-        </div>
-        <span class="text-xs text-[#2f4a32]/60">→</span>
-      </a>
-
-      <a href="#sobre" onclick="closeNavSidebar()" class="flex items-center gap-3.5 rounded-2xl px-4 py-3.5 text-sm font-bold text-[#2f4a32] hover:bg-[#e8d9be]/50 transition dark:text-[#faf5ec] dark:hover:bg-white/10">
-        <span class="text-xl">📜</span>
-        <div class="flex-1">
-          <div class="leading-none">Sobre a Pizzaria</div>
-          <span class="text-[11px] font-normal text-[#6f6457] dark:text-[#c4b5a2]">Nossa história desde 2001</span>
-        </div>
-        <span class="text-xs text-[#2f4a32]/60">→</span>
-      </a>
-
-      <a href="#contato" onclick="closeNavSidebar()" class="flex items-center gap-3.5 rounded-2xl px-4 py-3.5 text-sm font-bold text-[#2f4a32] hover:bg-[#e8d9be]/50 transition dark:text-[#faf5ec] dark:hover:bg-white/10">
-        <span class="text-xl">🛵</span>
-        <div class="flex-1">
-          <div class="leading-none">Horário &amp; Entrega</div>
-          <span class="text-[11px] font-normal text-[#6f6457] dark:text-[#c4b5a2]">18:00 às 02:00 • Paciência – RJ</span>
-        </div>
-        <span class="text-xs text-[#2f4a32]/60">→</span>
-      </a>
-
-      <a href="https://wa.me/5521973142264?text=Ol%C3%A1%21+Vim+pelo+site+da+Pizza+do+Juca" target="_blank" rel="noreferrer" class="flex items-center gap-3.5 rounded-2xl px-4 py-3.5 text-sm font-bold text-[#2f4a32] hover:bg-[#e8d9be]/50 transition dark:text-[#faf5ec] dark:hover:bg-white/10">
-        <span class="text-xl">💬</span>
-        <div class="flex-1">
-          <div class="leading-none">WhatsApp da Pizzaria</div>
-          <span class="text-[11px] font-normal text-[#6f6457] dark:text-[#c4b5a2]">(21) 97314-2264</span>
-        </div>
-        <span class="text-xs text-[#2f4a32]/60">↗</span>
-      </a>
-
-      <a href="https://www.instagram.com/pizzadojuca/" target="_blank" rel="noreferrer" class="flex items-center gap-3.5 rounded-2xl px-4 py-3.5 text-sm font-bold text-[#b23a26] hover:bg-[#b23a26]/10 transition dark:text-[#f87171]">
-        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-        </svg>
-        <div class="flex-1">
-          <div class="leading-none">Instagram Oficial</div>
-          <span class="text-[11px] font-normal text-[#b23a26]/80 dark:text-[#f87171]/80">@pizzadojuca</span>
-        </div>
-        <span class="text-xs text-[#b23a26]/60">↗</span>
-      </a>
-
-      <div class="pt-4 mt-4 border-t border-[#dccdb2] dark:border-[#382b24]">
-        <a href="painel/" class="flex items-center gap-3 rounded-2xl px-4 py-3 text-xs font-bold text-[#6f6457] hover:bg-[#e8d9be]/50 transition dark:text-[#c4b5a2] dark:hover:bg-white/10">
-          <span>🔒</span>
-          <span>Acesso da Equipe (Painel Juca)</span>
-        </a>
-      </div>
-    </div>
-  </aside>
-
-  <!-- ==================== CARRINHO DRAWER LATERAL ==================== -->
-  <div id="cart-drawer-overlay" class="hidden fixed inset-0 z-[90] bg-black/50 backdrop-blur-sm" onclick="closeCart()"></div>
-  <aside id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" aria-hidden="true" inert="" tabindex="-1" class="fixed top-0 right-0 z-[100] h-full w-full max-w-lg transform translate-x-full transition-transform duration-300 ease-in-out bg-[#faf5ec] border-l border-[#e6d9c4] shadow-2xl flex flex-col">
-    <!-- Header Clean -->
-    <div class="px-5 py-4 bg-white border-b border-[#eadfce] flex items-start justify-between gap-3 flex-shrink-0">
-      <div>
-        <p class="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#b23a26]">Finalizar pedido</p>
-        <h3 id="cart-drawer-title" class="font-display text-[22px] font-bold text-[#2f4a32] leading-tight mt-0.5">Confira seu pedido</h3>
-        <p class="text-xs text-[#6f6457] mt-1">
-          <span id="cart-header-count">0 itens</span> • campos com <span class="text-[#b23a26] font-bold">*</span> são obrigatórios
-        </p>
-      </div>
-      <button type="button" onclick="closeCart()" aria-label="Fechar carrinho" class="h-9 w-9 rounded-full bg-[#f5ede0] text-[#4e3220] grid place-items-center font-bold hover:bg-[#e8d9be] transition shrink-0">
-        ✕
-      </button>
-    </div>
-
-    <div class="flex-1 overflow-y-auto p-5 space-y-4">
-      <!-- Seção Itens do Pedido -->
-      <section>
-        <div class="flex items-center justify-between mb-3">
-          <h4 class="font-display text-base font-bold text-[#2f4a32]">Seu pedido</h4>
-          <span id="cart-items-badge" class="rounded-full bg-[#f5ede0] border border-[#e6d9c4] px-3 py-1 text-[11px] font-bold text-[#4e3220]">0 item(ns)</span>
-        </div>
-        <div id="cart-empty-state" class="rounded-[22px] border border-[#e6d9c4] bg-white text-center py-10 px-4 shadow-[0_2px_10px_rgba(78,50,32,0.04)]">
-          <span class="text-5xl">🍕</span>
-          <p class="mt-4 font-bold text-[#2f4a32]">Seu carrinho está vazio</p>
-          <p class="mt-1 text-xs text-[#6f6457]">Escolha pizzas deliciosas no cardápio!</p>
-        </div>
-        <div id="cart-items" class="space-y-3"></div>
-      </section>
-
-      <!-- UPSELL GASTRONÔMICO / PARA ACOMPANHAR -->
-      
-
-      <!-- 1. Como vai receber? -->
-      <section data-checkout-details="" class="hidden rounded-[22px] border border-[#e6d9c4] bg-white p-4 shadow-[0_2px_10px_rgba(78,50,32,0.04)]">
-        <div class="flex items-start gap-3 mb-3.5">
-          <div class="size-9 rounded-full bg-[#f5ede0] text-[#2f4a32] grid place-items-center shrink-0">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2" fill="currentColor"/><circle cx="15" cy="12" r="2" fill="currentColor"/><circle cx="9" cy="18" r="2" fill="currentColor"/></svg>
-          </div>
-          <div>
-            <h4 class="font-display text-[15px] font-bold text-[#2f4a32]">1. Como vai receber? <span class="text-[#b23a26]">*</span></h4>
-            <p class="text-xs text-[#6f6457]">Escolha entrega ou retirada no local.</p>
+          <div class="mt-6 pt-4 border-t border-slate-200/80 space-y-2">
+            <a href="/painel/planilha/" class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 text-xs font-black text-white hover:bg-orange-600 transition shadow-sm">
+              <i data-lucide="file-spreadsheet" class="size-4"></i>
+              <span>Abrir Planilha de Clientes</span>
+            </a>
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-2.5">
-          <button type="button" id="btn-receive-delivery" onclick="setFulfillment('delivery')" class="py-3 px-4 rounded-full border border-[#2f4a32] bg-[#2f4a32] text-white font-bold text-xs flex items-center justify-center gap-1.5 transition shadow-xs">
-            🛵 Entrega em domicílio
-          </button>
-          <button type="button" id="btn-receive-pickup" onclick="setFulfillment('pickup')" class="py-3 px-4 rounded-full border border-[#dccdb2] bg-[#faf5ec] text-[#4e3220] font-bold text-xs flex items-center justify-center gap-1.5 transition">
-            🏪 Retirada no local
-          </button>
-        </div>
-      </section>
+      `;
 
-      <!-- 2. Dados do cliente -->
-      <section data-checkout-details="" class="hidden rounded-[22px] border border-[#e6d9c4] bg-white p-4 space-y-3.5 shadow-[0_2px_10px_rgba(78,50,32,0.04)]">
-        <div class="flex items-start gap-3">
-          <div class="size-9 rounded-full bg-[#f5ede0] text-[#2f4a32] grid place-items-center shrink-0">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-          </div>
-          <div>
-            <h4 class="font-display text-[15px] font-bold text-[#2f4a32]">2. Dados do cliente</h4>
-            <p class="text-xs text-[#6f6457]">Preencha os dados necessários.</p>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label for="customer-name" class="block text-xs font-bold mb-1.5 text-[#2f4a32]">Nome <span class="text-[#b23a26]">*</span></label>
-            <input id="customer-name" name="customer-name" autocomplete="name" type="text" placeholder="Seu nome" class="w-full px-4 py-2.5 rounded-full border border-[#dccdb2] bg-[#faf5ec] text-xs text-[#2f4a32] placeholder:text-[#8c7e6d] outline-none focus:border-[#2f4a32] focus:bg-white focus:ring-2 focus:ring-[#2f4a32]/15 transition">
-          </div>
-          <div>
-            <label for="customer-phone" class="block text-xs font-bold mb-1.5 text-[#2f4a32]">WhatsApp / Telefone <span class="text-[#b23a26]">*</span></label>
-            <input id="customer-phone" name="customer-phone" autocomplete="tel" type="tel" placeholder="(21) 99999-9999" class="w-full px-4 py-2.5 rounded-full border border-[#dccdb2] bg-[#faf5ec] text-xs text-[#2f4a32] placeholder:text-[#8c7e6d] outline-none focus:border-[#2f4a32] focus:bg-white focus:ring-2 focus:ring-[#2f4a32]/15 transition">
-          </div>
-        </div>
-        <div id="delivery-address-group" class="space-y-3">
-          <div>
-            <label for="customer-address" class="block text-xs font-bold mb-1.5 text-[#2f4a32]">Endereço de entrega <span class="text-[#b23a26]">*</span></label>
-            <div class="relative">
-              <svg class="w-4 h-4 text-[#8c7e6d] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6-5.33-6-10a6 6 0 1112 0c0 4.67-6 10-6 10z"/><circle cx="12" cy="11" r="2.5"/></svg>
-              <input id="customer-address" type="text" placeholder="Rua, número e bairro" class="w-full pl-10 pr-4 py-2.5 rounded-full border border-[#dccdb2] bg-[#faf5ec] text-xs text-[#2f4a32] placeholder:text-[#8c7e6d] outline-none focus:border-[#2f4a32] focus:bg-white transition">
-            </div>
-          </div>
-          <div>
-            <label for="customer-complement" class="block text-xs font-bold mb-1.5 text-[#2f4a32]">Complemento / Referência <span class="text-[#b23a26]">*</span></label>
-            <input id="customer-complement" type="text" placeholder="Ex.: muro branco, portão preto, apto 202..." class="w-full px-4 py-2.5 rounded-full border border-[#dccdb2] bg-[#faf5ec] text-xs text-[#2f4a32] placeholder:text-[#8c7e6d] outline-none focus:border-[#2f4a32] focus:bg-white transition">
-          </div>
-          <label for="delivery-zone" class="block text-xs font-bold text-[#2f4a32]">Área de entrega
-            <select id="delivery-zone" class="mt-1.5 w-full rounded-full border border-[#dccdb2] bg-[#faf5ec] px-4 py-2.5 text-xs font-semibold text-[#2f4a32] outline-none focus:border-[#2f4a32] focus:bg-white transition"></select>
-          </label>
-        </div>
-        <div id="pickup-info-box" class="hidden p-3.5 rounded-2xl bg-[#faf5ec] border border-[#dccdb2]">
-          <p class="text-xs font-bold text-[#2f4a32]">Retirada no balcão:</p>
-          <p class="text-xs text-[#6f6457] mt-0.5">Endereço a informar</p>
-        </div>
-        <details class="group rounded-2xl border border-dashed border-[#dccdb2] bg-[#faf5ec]/60 p-3">
-          <summary class="cursor-pointer text-xs font-semibold text-[#2f4a32] marker:text-[#b23a26]">Adicionar dados opcionais (aniversário, e-mail)</summary>
-          <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-            <div>
-              <label for="customer-birthday" class="block text-xs font-semibold mb-1 text-[#2f4a32]">Data de Aniversário <span class="text-[10px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded-full">🎂 VIP</span></label>
-              <input id="customer-birthday" name="customer-birthday" autocomplete="bday" type="date" class="w-full px-4 py-2.5 rounded-full border border-[#dccdb2] bg-white text-xs text-[#2f4a32] outline-none focus:border-[#2f4a32]">
-            </div>
-          </div>
-          <div class="mt-2.5">
-            <label for="customer-email" class="block text-xs font-semibold mb-1 text-[#2f4a32]">E-mail <span class="text-[11px] font-normal text-[#6f6457]">(opcional)</span></label>
-            <input id="customer-email" name="customer-email" autocomplete="email" type="email" placeholder="seuemail@exemplo.com" class="w-full px-4 py-2.5 rounded-full border border-[#dccdb2] bg-white text-xs text-[#2f4a32] outline-none focus:border-[#2f4a32]">
-          </div>
-        </details>
-      </section>
+      grid.innerHTML = html;
+      lucide.createIcons();
+    }
 
-      <!-- 3. Forma de pagamento -->
-      <section data-checkout-details="" class="hidden rounded-[22px] border border-[#e6d9c4] bg-white p-4 space-y-3 shadow-[0_2px_10px_rgba(78,50,32,0.04)]">
-        <div class="flex items-start gap-3">
-          <div class="size-9 rounded-full bg-[#f5ede0] text-[#2f4a32] grid place-items-center shrink-0">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path stroke-linecap="round" d="M2 10h20"/></svg>
-          </div>
-          <div>
-            <h4 class="font-display text-[15px] font-bold text-[#2f4a32]">3. Forma de pagamento <span class="text-[#b23a26]">*</span></h4>
-            <p class="text-xs text-[#6f6457]">Escolha uma opção.</p>
-          </div>
-        </div>
-        <div id="payment-pills-container" class="hidden grid grid-cols-2 gap-2.5"></div>
-        <label for="payment-method" class="block text-xs font-bold text-[#2f4a32]">Selecionar forma de pagamento
-          <select id="payment-method" class="mt-1.5 w-full rounded-full border border-[#dccdb2] bg-[#faf5ec] px-4 py-2.5 text-xs font-semibold text-[#2f4a32] outline-none focus:border-[#2f4a32] focus:bg-white transition"></select>
-        </label>
-        <div id="troco-wrapper" class="hidden rounded-2xl border border-[#e6d9c4] bg-[#faf5ec] p-3.5 space-y-1.5">
-          <label for="customer-change" class="block text-xs font-bold text-[#2f4a32]">Vai pagar com quanto? <span class="text-[#b23a26]">*</span></label>
-          <input id="customer-change" type="text" inputmode="decimal" placeholder="Ex.: 70,00" class="w-full px-4 py-2.5 rounded-full border border-[#dccdb2] bg-white text-xs text-[#2f4a32] placeholder:text-[#8c7e6d] outline-none focus:border-[#2f4a32]">
-        </div>
-      </section>
+    // Controle do Menu Lateral (Drawer no Mobile)
+    function toggleHubSidebar() {
+      const sidebar = document.getElementById('hub-sidebar');
+      const backdrop = document.getElementById('hub-sidebar-backdrop');
+      if (!sidebar) return;
+      const isClosed = sidebar.classList.contains('-translate-x-full');
 
-      <!-- 4. Observações -->
-      <section data-checkout-details="" class="hidden rounded-[22px] border border-[#e6d9c4] bg-white p-4 space-y-3 shadow-[0_2px_10px_rgba(78,50,32,0.04)]">
-        <div class="flex items-start gap-3">
-          <div class="size-9 rounded-full bg-[#f5ede0] text-[#2f4a32] grid place-items-center shrink-0">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><path stroke-linecap="round" d="M8 9h8M8 13h5"/></svg>
-          </div>
-          <div>
-            <h4 class="font-display text-[15px] font-bold text-[#2f4a32]">4. Observações <span class="text-xs font-sans font-normal text-[#6f6457]">(opcional)</span></h4>
-            <p class="text-xs text-[#6f6457]">Use para detalhes do pedido, retirada ou entrega.</p>
-          </div>
-        </div>
-        <textarea id="order-notes" rows="2" placeholder="Ex.: tocar o interfone, retirar ingrediente, observação extra..." class="w-full resize-none p-3.5 rounded-2xl border border-[#dccdb2] bg-[#faf5ec] text-xs text-[#2f4a32] placeholder:text-[#8c7e6d] outline-none focus:border-[#2f4a32] focus:bg-white transition"></textarea>
-        <label for="order-coupon" class="block text-xs font-bold text-[#2f4a32]">Cupom de desconto <span class="font-normal text-[#6f6457]">(opcional)</span>
-          <input id="order-coupon" placeholder="Digite seu cupom" class="mt-1.5 w-full rounded-full border border-[#dccdb2] bg-[#faf5ec] px-4 py-2.5 text-xs text-[#2f4a32] placeholder:text-[#8c7e6d] outline-none focus:border-[#2f4a32] focus:bg-white transition">
-        </label>
-      </section>
+      if (isClosed) {
+        sidebar.classList.remove('-translate-x-full');
+        if (backdrop) {
+          backdrop.classList.remove('opacity-0', 'pointer-events-none');
+          backdrop.classList.add('opacity-100', 'pointer-events-auto');
+        }
+        document.body.classList.add('overflow-hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        if (backdrop) {
+          backdrop.classList.add('opacity-0', 'pointer-events-none');
+          backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+        }
+        document.body.classList.remove('overflow-hidden');
+      }
+      lucide.createIcons();
+    }
 
-      <div data-checkout-details="" class="hidden">
-        <div id="order-feedback" role="status" aria-live="polite" class="text-xs font-semibold"></div>
-      </div>
-    </div>
+    // Fechar ao pressionar tecla ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const sidebar = document.getElementById('hub-sidebar');
+        if (sidebar && !sidebar.classList.contains('-translate-x-full')) {
+          toggleHubSidebar();
+        }
+      }
+    });
 
-    <!-- Rodapé Checkout -->
-    <div id="cart-footer" class="px-5 py-4 border-t border-[#eadfce] bg-white space-y-2.5 flex-shrink-0">
-      <!-- Painel expansível: Valores do pedido -->
-      <div id="cart-values-panel" class="hidden space-y-2 pb-2.5 border-b border-[#eadfce]">
-        <div class="flex justify-between items-center pb-0.5">
-          <span class="font-display text-sm font-bold text-[#2f4a32]">Valores do pedido</span>
-          <button type="button" id="btn-collapse-values" class="inline-flex items-center gap-1 text-xs font-bold text-[#b23a26] hover:opacity-80 transition">
-            <span>Recolher</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
-          </button>
-        </div>
-        <div class="flex justify-between items-center text-xs">
-          <span class="text-[#6f6457]">Produtos</span>
-          <span id="cart-subtotal" class="font-bold text-[#2f4a32]">R$ 0,00</span>
-        </div>
-        <div id="cart-delivery-fee-row" class="flex justify-between items-center text-xs">
-          <span class="text-[#6f6457]">Frete</span>
-          <span id="cart-delivery-fee" class="font-bold text-[#2f4a32]">A definir</span>
-        </div>
-      </div>
+    // Filtro de Busca em Tempo Real
+    function filtrarClientesHub() {
+      const termo = document.getElementById('busca-clientes-hub').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.card-cliente');
+      let visiveis = 0;
 
-      <!-- Resumo compacto -->
-      <div class="space-y-1">
-        <div class="flex justify-between items-baseline">
-          <span id="cart-total-label" class="text-sm font-bold text-[#4e3220]">Total a confirmar</span>
-          <span id="cart-total" class="font-display text-2xl font-extrabold text-[#2f4a32]">—</span>
-        </div>
-        <div class="flex justify-between items-center gap-2">
-          <p id="cart-total-note" role="status" class="text-[11px] text-[#6f6457] leading-snug">Confira o pedido para confirmar frete e total.</p>
-          <button type="button" id="btn-expand-values" class="shrink-0 inline-flex items-center gap-1 text-xs font-bold text-[#b23a26] hover:opacity-80 transition">
-            <span>Ver valores</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-        </div>
-      </div>
+      cards.forEach(card => {
+        const dados = card.getAttribute('data-busca') || '';
+        const cat = card.getAttribute('data-cat') || '';
+        const matchTermo = dados.includes(termo);
+        const matchCat = (categoriaAtual === 'todos' || cat === categoriaAtual);
 
-      <button type="button" id="btn-checkout-whatsapp" onclick="checkoutWhatsApp()" class="w-full py-3.5 rounded-full bg-[#2f4a32] hover:bg-[#243a26] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition active:scale-[0.99]">Finalizar pedido</button>
-      <button id="confirm-order" type="button" class="hidden w-full py-3.5 rounded-full bg-[#b23a26] hover:bg-[#962f1e] text-white font-bold text-sm shadow-lg transition active:scale-[0.99]" onclick="confirmStorefrontOrder()">Confirmar pedido</button>
-    </div>
-  </aside>
+        if (matchTermo && matchCat) {
+          card.style.display = '';
+          visiveis++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
 
-  <!-- ==================== MODAL SUGESTÃO DO FORNO (UPSELL PRÉ-PAGAMENTO) ==================== -->
-  
+      const noRes = document.getElementById('no-results-hub');
+      if (visiveis === 0) {
+        noRes.classList.remove('hidden');
+      } else {
+        noRes.classList.add('hidden');
+      }
+    }
 
-  <!-- ==================== MODAL DETALHAMENTO DA CONTA & TAXA DE SERVIÇO (ESTILO IFOOD) ==================== -->
-  
+    // Filtros por Categoria de Solução
+    function filtrarCategoria(cat, btn) {
+      categoriaAtual = cat;
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.className = 'cat-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition';
+      });
+      if (btn) {
+        btn.className = 'cat-btn active px-3.5 py-2 rounded-xl text-xs font-extrabold bg-slate-900 text-white transition shadow-xs';
+      }
 
-  <!-- ==================== MODAL PAGAMENTO MERCADO PAGO BRICKS ==================== -->
-  
+      filtrarClientesHub();
+    }
 
-  <!-- MODAL DE SUCESSO & CLUBE DE ANIVERSÁRIO -->
-  <div id="modal-order-success" class="hidden fixed inset-0 z-[120] flex items-center justify-center bg-black/75 p-4 backdrop-blur-md">
-    <div class="w-full max-w-md rounded-[28px] border border-[#dccdb2] bg-[#faf5ec] p-6 shadow-2xl dark:bg-[#1a1412] dark:border-[#382b24] text-center relative overflow-hidden">
-      <div class="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-emerald-100 text-3xl shadow-sm dark:bg-emerald-950/40">
-        🍕
-      </div>
-      <span class="mt-4 inline-block rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-emerald-800 dark:bg-emerald-950/40 dark:border-emerald-800 dark:text-emerald-300">
-        Pedido Confirmado!
-      </span>
-      <h3 class="mt-2 font-display text-2xl font-bold text-[#2f4a32] dark:text-[#faf5ec]">Pedido recebido pela loja</h3>
-      <p id="success-summary-text" class="mt-1 text-xs text-[#6f6457] dark:text-[#c4b5a2] leading-relaxed">
-        Seu pedido foi confirmado e o pizzaiolo já está abrindo sua massa no capricho.
-      </p>
+    // Sincronização automática entre abas: qualquer alteração feita na Planilha atualiza o Hub na hora!
+    window.addEventListener('storage', (e) => {
+      if (e.key === STORAGE_KEY) {
+        carregarClientesHub();
+      }
+    });
 
-      <!-- BOTÃO DE RASTREIO AO VIVO EM TEMPO REAL -->
-      <div class="mt-4">
-        <a id="success-tracking-btn" href="/rastreio/?id=1048" class="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#2f4a32] hover:bg-[#243a26] text-white font-extrabold text-sm py-3.5 shadow-lg shadow-[#2f4a32]/20 transition active:scale-95">Acompanhar pedido</a>
-      </div>
+    window.addEventListener('teixo_data_updated', () => {
+      carregarClientesHub();
+    });
 
-      <!-- CARD DO CLUBE DE ANIVERSÁRIO (10% OFF) -->
-      
-
-      <div class="mt-5">
-        <button type="button" onclick="closeSuccessCelebrationModal()" class="w-full py-3 rounded-xl border border-[#dccdb2] bg-white text-[#2f4a32] font-bold text-xs hover:bg-[#e8d9be]/30 transition dark:bg-[#1a1412] dark:border-[#382b24] dark:text-[#faf5ec]">
-          Continuar no cardápio
-        </button>
-      </div>
-    </div>
-  </div><div id="modal-order-lookup" class="hidden fixed inset-0 z-[110] flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
-    <div class="w-full max-w-lg rounded-[28px] border border-[#dccdb2] bg-[#faf5ec] p-6 shadow-2xl dark:bg-[#1a1412] dark:border-[#382b24] relative max-h-[90vh] flex flex-col">
-      <div class="flex items-center justify-between pb-4 border-b border-[#dccdb2] dark:border-[#382b24]">
-        <div class="flex items-center gap-2.5">
-          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-[#2f4a32] text-white text-lg shadow-sm">🛵</span>
-          <div>
-            <h3 class="font-display text-lg font-bold text-[#2f4a32] dark:text-[#faf5ec]">Acompanhar Pedido</h3>
-            <p class="text-xs text-[#6f6457] dark:text-[#c4b5a2]">Acompanhe os pedidos feitos neste navegador</p>
-          </div>
-        </div>
-        <button type="button" onclick="closeOrderLookupModal()" class="grid h-8 w-8 place-items-center rounded-full bg-black/5 hover:bg-black/10 text-slate-500 hover:text-slate-900 transition dark:bg-white/10 dark:text-[#faf5ec]">✕</button>
-      </div>
-      <div class="pt-4 pb-2 space-y-2">
-        <label class="block text-xs font-bold text-[#2f4a32] dark:text-[#faf5ec]">Digite seu WhatsApp ou CPF cadastrado:</label>
-        <div class="flex gap-2">
-          <input id="lookup-query-input" type="text" placeholder="Ex: (51) 99999-9999 ou CPF" onkeypress="if(event.key==='Enter')performOrderLookup()" class="flex-1 px-4 py-3 rounded-2xl border border-[#dccdb2] bg-white text-sm text-[#2f4a32] outline-none focus:border-[#2f4a32] focus:ring-2 focus:ring-[#2f4a32]/20 dark:bg-[#251d18] dark:border-[#382b24] dark:text-[#faf5ec]">
-          <button type="button" onclick="performOrderLookup()" class="px-5 py-3 rounded-2xl bg-[#2f4a32] hover:bg-[#3d6041] text-white font-bold text-sm transition shadow-sm active:scale-95 flex items-center gap-1.5"><span>🔍</span> Buscar</button>
-        </div>
-        <div id="lookup-feedback" class="hidden text-xs font-semibold p-2 rounded-xl text-center"></div>
-      </div>
-      <div id="lookup-results-container" class="mt-2 flex-1 overflow-y-auto space-y-3 pr-1">
-        <div class="p-6 text-center text-xs text-[#6f6457] dark:text-[#c4b5a2] border border-dashed border-[#dccdb2] rounded-2xl dark:border-[#382b24]">Digite seu telefone ou CPF acima para visualizar o andamento dos seus pedidos.</div>
-      </div>
-    </div>
-  </div><script>
-function toggleNavSidebar(){const sidebar=document.getElementById('nav-sidebar');if(!sidebar)return;if(sidebar.classList.contains('open'))return closeNavSidebar();sidebar.classList.add('open');document.getElementById('nav-sidebar-overlay')?.classList.remove('hidden');document.body.style.overflow='hidden';}
-function closeNavSidebar(){document.getElementById('nav-sidebar')?.classList.remove('open');document.getElementById('nav-sidebar-overlay')?.classList.add('hidden');document.body.style.overflow='';}
-window.addEventListener('scroll',()=>{const header=document.getElementById('site-header');if(header)header.style.boxShadow=window.scrollY>30?'0 4px 20px rgba(47,74,50,.12)':'0 2px 10px rgba(47,74,50,.06)';},{passive:true});
-document.addEventListener('DOMContentLoaded',()=>{
- const rail=document.getElementById('cat-mobile-rail'),tabs=document.getElementById('cat-tabs-container');
- const update=()=>{if(!rail||!tabs)return;rail.replaceChildren(...[...tabs.querySelectorAll('[data-category]')].map(tab=>{const button=document.createElement('button');button.type='button';button.textContent=tab.textContent;button.dataset.category=tab.dataset.category;button.className='cat-rail-btn';button.setAttribute('aria-pressed',String(sf.category===tab.dataset.category));button.onclick=()=>{filterCategory(tab.dataset.category);update();};return button;}));};
- if(tabs)new MutationObserver(update).observe(tabs,{childList:true,attributes:true,subtree:true});update();
- document.querySelectorAll('#nav-sidebar [onclick*="filterCategory"]').forEach(link=>{link.removeAttribute('onclick');link.onclick=()=>{closeNavSidebar();document.getElementById('cardapio')?.scrollIntoView({behavior:'smooth'});};});
-});</script></body></html>
+    document.addEventListener('DOMContentLoaded', () => {
+      carregarClientesHub();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,2613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planilha de Clientes & Controle Comercial | Teixo Hub</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            sheets: {
+              green: '#0f9d58',
+              lightGreen: '#e6f4ea',
+              darkGreen: '#0d8043',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Estilização suave de barras de rolagem */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .toast-anim {
+      animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .drawer-transition {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#f4f6fa] text-slate-950 font-sans antialiased selection:bg-emerald-500 selection:text-white">
+
+  <!-- Toast de Notificações no Canto Inferior Direito -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Aviso para telas muito pequenas -->
+  <div class="grid min-h-screen place-items-center bg-[#f5f7fb] px-5 xl:hidden">
+    <div class="max-w-md rounded-3xl border border-slate-200 bg-white p-7 text-center shadow-xl">
+      <div class="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-emerald-50 text-emerald-600">
+        <i data-lucide="table" class="h-7 w-7"></i>
+      </div>
+      <h1 class="mt-5 text-xl font-extrabold tracking-tight text-slate-950">Planilha Executiva em Tela Cheia</h1>
+      <p class="mt-2 text-sm leading-6 text-slate-500">
+        O painel comercial contém gráficos, tabelas financeiras e visual estilo planilha. Para melhor experiência e visualização de todas as colunas, abra em um computador ou gire a tela.
+      </p>
+      <div class="mt-5 flex flex-col gap-2">
+        <button onclick="document.querySelector('.xl\\:hidden').classList.add('hidden'); document.querySelector('.hidden.min-h-screen.xl\\:block').classList.remove('hidden');" class="rounded-xl bg-emerald-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-emerald-700 shadow-sm">
+          Continuar no Celular mesmo assim
+        </button>
+        <a href="/" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 transition hover:bg-slate-50">
+          Voltar ao Hub
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layout Principal -->
+  <div class="hidden min-h-screen xl:block">
+    
+    <!-- BARRA LATERAL FIXA COM O MESMO MENU IDÊNTICO DO TEIXO HUB -->
+    <aside class="fixed inset-y-0 left-0 z-40 flex w-52 flex-col justify-between border-r border-slate-200/90 bg-white">
+      
+      <!-- TOPO DO MENU LATERAL -->
+      <div>
+        <div class="flex items-center justify-between border-b border-slate-200/80 p-3 bg-slate-50/80">
+          <a href="/" class="flex items-center gap-2 group">
+            <div class="grid h-8 w-8 place-items-center rounded-xl bg-slate-950 text-white font-black shadow-xs group-hover:scale-105 transition">
+              <i data-lucide="layers" class="h-4 w-4 text-orange-500"></i>
+            </div>
+            <div>
+              <div class="text-xs font-black text-slate-950 group-hover:text-orange-600 transition">Teixo Hub</div>
+              <div class="text-[9px] font-semibold text-slate-500">Menu de Operações</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- SEÇÕES DO MENU LATERAL -->
+        <div class="p-2.5 space-y-3.5 overflow-y-auto max-h-[calc(100vh-120px)]">
+          
+          <!-- 1. HUB -->
+          <div>
+            <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+              <span>1. Hub</span>
+              <span class="size-1.5 rounded-full bg-orange-500"></span>
+            </div>
+            
+            <a href="/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-orange-50 border border-slate-200/80 hover:border-orange-200 px-2.5 py-2 text-left transition group shadow-xs">
+              <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-orange-600 text-white font-black shadow-xs group-hover:scale-105 transition">
+                <i data-lucide="layout-grid" class="h-3.5 w-3.5"></i>
+              </div>
+              <span class="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition whitespace-nowrap">Hub de Clientes</span>
+            </a>
+          </div>
+
+          <!-- 2. PLANILHA -->
+          <div>
+            <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+              <span>2. Planilha</span>
+              <span class="size-1.5 rounded-full bg-emerald-500"></span>
+            </div>
+
+            <a href="/painel/planilha/" class="flex items-center gap-2 rounded-xl bg-emerald-50 border border-emerald-300 px-2.5 py-2 text-left transition shadow-xs">
+              <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-emerald-600 text-white font-black shadow-xs">
+                <i data-lucide="file-spreadsheet" class="h-3.5 w-3.5"></i>
+              </div>
+              <span class="text-xs font-black text-emerald-950 whitespace-nowrap">Planilha de Clientes</span>
+            </a>
+          </div>
+
+          <!-- 3. SHOWROOM -->
+          <div>
+            <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+              <span>3. Showroom</span>
+              <span class="size-1.5 rounded-full bg-amber-500"></span>
+            </div>
+
+            <a href="/showroom/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-amber-50 border border-slate-200/80 hover:border-amber-300 px-2.5 py-2 text-left transition group shadow-xs">
+              <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-amber-500 text-black font-black shadow-xs group-hover:scale-105 transition">
+                <i data-lucide="sparkles" class="h-3.5 w-3.5"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-slate-800 group-hover:text-amber-800 transition block">Showroom Templates</span>
+                <span class="text-[9px] text-zinc-500 font-medium">Catálogo 25 Modelos</span>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RODAPÉ DO MENU LATERAL -->
+      <div class="border-t border-slate-200 p-2.5 bg-slate-50 text-xs">
+        <div class="flex items-center justify-between text-slate-500">
+          <span class="font-bold text-[10px]">Teixo Hub</span>
+          <span class="text-[9px] text-emerald-600 flex items-center gap-1 font-bold">
+            <span class="size-1.5 rounded-full bg-emerald-500"></span> Online
+          </span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ÁREA DE CONTEÚDO PRINCIPAL (À DIREITA DA SIDEBAR) -->
+    <div class="pl-52">
+      
+      <!-- HEADER SUPERIOR DO PAINEL -->
+      <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur-md px-6 py-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 text-xs font-semibold text-slate-500">
+            <a href="/" class="hover:text-slate-900 transition flex items-center gap-1.5 font-black text-slate-800">
+              <i data-lucide="layers" class="size-4 text-orange-500"></i>
+              <span>Teixo Hub</span>
+            </a>
+            <i data-lucide="chevron-right" class="size-3 text-slate-400"></i>
+            <span class="text-emerald-700 font-extrabold flex items-center gap-1">
+              <i data-lucide="file-spreadsheet" class="size-3.5 text-emerald-600"></i>
+              <span>Planilha de Clientes</span>
+            </span>
+          </div>
+
+          <!-- Indicador de Status Google Sheets -->
+          <div id="sheets-badge-conexao" class="ml-3 hidden sm:inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 text-[11px] font-bold text-emerald-800">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span id="sheets-badge-label">Google Sheets Automatech Conectado</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <!-- Botão Sincronizar Google Sheets -->
+          <button id="btn-sync-sheets" onclick="sincronizarGoogleSheets()" title="Buscar dados atualizados da planilha do Google Drive" class="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50/80 px-3.5 py-2 text-xs font-extrabold text-emerald-800 hover:bg-emerald-100 transition shadow-xs active:scale-95">
+            <i data-lucide="refresh-cw" id="icon-sync" class="size-3.5 text-emerald-600"></i>
+            <span>Sincronizar Sheets</span>
+          </button>
+
+          <!-- Botão Webhook 2-Way Google Sheets -->
+          <button onclick="abrirModalWebhookSheets()" title="Configurar envio automático de alterações para o Google Sheets" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition shadow-xs active:scale-95">
+            <i data-lucide="link-2" class="size-3.5 text-emerald-600"></i>
+            <span class="hidden md:inline">Webhook Sheets</span>
+          </button>
+
+          <!-- Botão Exportar CSV -->
+          <button onclick="exportarCSV()" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition shadow-xs active:scale-95">
+            <i data-lucide="download" class="size-3.5 text-slate-500"></i>
+            <span>Exportar CSV</span>
+          </button>
+          
+          <!-- Botão Novo Cliente -->
+          <button onclick="abrirModalNovoCliente()" class="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-extrabold text-white hover:bg-emerald-700 transition shadow-md shadow-emerald-600/20 active:scale-95">
+            <i data-lucide="user-plus" class="size-3.5"></i>
+            <span>+ Novo Cliente</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- WRAPPER DA PLANILHA (MOCKUP GOOGLE SHEETS DE ALTA FIDELIDADE) -->
+      <div class="p-6">
+        
+        <!-- CONTAINER PRINCIPAL ESTILO GOOGLE SHEETS -->
+        <div class="rounded-3xl border border-slate-200/90 bg-white shadow-xl shadow-slate-200/50 overflow-hidden">
+          
+          <!-- TOPO DO GOOGLE SHEETS (Ícone verde, Título, Menus e Salvo no Drive) -->
+          <div class="border-b border-slate-200 bg-[#f8fafc] px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+            
+            <div class="flex items-center gap-3.5">
+              <!-- Ícone Google Sheets -->
+              <div class="grid size-10 place-items-center rounded-xl bg-emerald-600 text-white shadow-sm shadow-emerald-600/30">
+                <i data-lucide="file-spreadsheet" class="size-5"></i>
+              </div>
+              
+              <div>
+                <div class="flex items-center gap-2">
+                  <h1 class="text-base font-black tracking-tight text-slate-900">
+                    Automatech / Teixo Clientes
+                  </h1>
+                  <span class="rounded-md bg-emerald-100/80 px-2 py-0.5 text-[10px] font-black uppercase text-emerald-800">
+                    Oficial
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Status de Sincronização -->
+            <div class="flex items-center gap-2 rounded-full bg-slate-100 border border-slate-200/80 px-3 py-1 text-xs font-bold text-slate-600">
+              <span class="size-2 rounded-full bg-emerald-500"></span>
+              <span id="status-sync-text">100% Salvo e Integrado ao Sheets</span>
+            </div>
+
+          </div>
+
+          <!-- ABAS DA PLANILHA (TABS) -->
+          <div class="flex items-center border-b border-slate-200 bg-[#f1f5f9] px-4 gap-1 overflow-x-auto">
+            
+            <button 
+              id="tab-btn-dashboard" 
+              onclick="trocarAba('dashboard')" 
+              class="tab-btn inline-flex items-center gap-2 border-b-2 border-emerald-600 bg-white px-5 py-3 text-xs font-black text-emerald-800 shadow-xs"
+            >
+              <i data-lucide="bar-chart-3" class="size-4 text-emerald-600"></i>
+              <span>Dashboard & Visão Geral</span>
+            </button>
+
+            <button 
+              id="tab-btn-clientes" 
+              onclick="trocarAba('clientes')" 
+              class="tab-btn inline-flex items-center gap-2 border-b-2 border-transparent bg-transparent px-5 py-3 text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition"
+            >
+              <i data-lucide="users" class="size-4 text-slate-500"></i>
+              <span>Clientes (Tabela Original)</span>
+              <span id="badge-total-clientes" class="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-extrabold text-slate-700">13</span>
+            </button>
+
+            <button 
+              id="tab-btn-produtos" 
+              onclick="trocarAba('produtos')" 
+              class="tab-btn inline-flex items-center gap-2 border-b-2 border-transparent bg-transparent px-5 py-3 text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition"
+            >
+              <i data-lucide="package-check" class="size-4 text-slate-500"></i>
+              <span>Produtos & Modelos</span>
+            </button>
+
+          </div>
+
+          <!-- CONTEÚDO DA ABA 1: DASHBOARD & VISÃO GERAL -->
+          <div id="tab-content-dashboard" class="p-8 space-y-10">
+            
+            <!-- CABEÇALHO DO DASHBOARD -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200/80">
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-slate-950">
+                  Controle Comercial & Financeiro — Automatech
+                </h2>
+              </div>
+
+              <!-- Seletor Interativo de Mês / Ciclo Financeiro -->
+              <div class="relative inline-block text-left" id="dropdown-ciclo-container">
+                <button 
+                  id="btn-dropdown-ciclo" 
+                  type="button" 
+                  onclick="toggleDropdownCiclo(event)"
+                  class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white hover:bg-slate-50 px-3.5 py-1.5 text-xs font-bold text-slate-800 shadow-xs transition hover:border-slate-300 active:scale-95 focus:outline-none cursor-pointer"
+                  title="Clique para escolher o mês do ciclo"
+                >
+                  <i data-lucide="calendar" class="size-3.5 text-emerald-600"></i>
+                  <span id="label-ciclo-ativo">Ciclo Outubro / Novembro 2026</span>
+                  <i data-lucide="chevron-down" class="size-3 text-slate-400 transition-transform duration-200" id="icon-chevron-ciclo"></i>
+                </button>
+
+                <!-- Menu Dropdown Flutuante -->
+                <div 
+                  id="menu-dropdown-ciclo" 
+                  class="hidden absolute right-0 z-50 mt-2 w-64 origin-top-right rounded-2xl border border-slate-200 bg-white p-2 shadow-xl ring-1 ring-black/5 focus:outline-none transition-all duration-150"
+                >
+                  <div class="px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-slate-400 border-b border-slate-100 mb-1">
+                    Mês de Referência
+                  </div>
+                  
+                  <div class="space-y-0.5">
+                    <button 
+                      type="button" 
+                      onclick="selecionarCiclo('Novembro 2026')"
+                      class="opcao-ciclo flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition text-left cursor-pointer"
+                    >
+                      <div class="flex items-center gap-2">
+                        <span class="size-2 rounded-full bg-emerald-500"></span>
+                        <span>Novembro 2026</span>
+                      </div>
+                      <span id="check-Novembro" class="text-[10px] text-emerald-600 font-bold"></span>
+                    </button>
+
+                    <button 
+                      type="button" 
+                      onclick="selecionarCiclo('Outubro 2026')"
+                      class="opcao-ciclo flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition text-left cursor-pointer"
+                    >
+                      <div class="flex items-center gap-2">
+                        <span class="size-2 rounded-full bg-blue-500"></span>
+                        <span>Outubro 2026</span>
+                      </div>
+                      <span id="check-Outubro" class="text-[10px] text-emerald-600 font-bold"></span>
+                    </button>
+
+                    <button 
+                      type="button" 
+                      onclick="selecionarCiclo('Ciclo Outubro / Novembro 2026')"
+                      class="opcao-ciclo flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition text-left cursor-pointer"
+                    >
+                      <div class="flex items-center gap-2">
+                        <span class="size-2 rounded-full bg-purple-500"></span>
+                        <span>Outubro / Novembro 2026</span>
+                      </div>
+                      <span id="check-Consolidado" class="text-[10px] text-emerald-600 font-bold">✓</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 1. INDICADORES CHAVE (4 CARDS DINÂMICOS) -->
+            <div>
+              <h3 class="text-xs font-black uppercase tracking-[0.16em] text-slate-500 mb-4 flex items-center gap-2">
+                <span>1. Indicadores Chave</span>
+              </h3>
+
+              <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                
+                <!-- Card 1: Clientes em Produção -->
+                <div onclick="trocarAbaEFiltrar('producao')" class="relative overflow-hidden rounded-2xl border border-emerald-200/90 bg-emerald-50/40 p-5 shadow-xs cursor-pointer hover:border-emerald-300 hover:bg-emerald-50/70 transition group" title="Clique para ver clientes em produção">
+                  <div class="absolute top-0 left-0 right-0 h-1.5 bg-emerald-500"></div>
+                  <div class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-800 flex items-center justify-between">
+                    <span>🏆 Clientes em Produção</span>
+                    <i data-lucide="arrow-up-right" class="size-3.5 text-emerald-600 opacity-0 group-hover:opacity-100 transition"></i>
+                  </div>
+                  <div class="mt-3 flex items-baseline gap-2">
+                    <span class="text-3xl font-black tracking-tight text-emerald-950 font-sans" id="card-metric-clientes">2/13</span>
+                  </div>
+
+                  <!-- Breakdown dinâmico -->
+                  <div class="mt-2.5 flex flex-wrap items-center gap-1.5 text-[10px] font-bold" id="card-metric-clientes-breakdown">
+                    <span class="inline-flex items-center gap-1 rounded-md bg-emerald-100/90 text-emerald-900 px-2 py-0.5 border border-emerald-200">
+                      <span class="size-1.5 rounded-full bg-emerald-600"></span> 2 Em Produção
+                    </span>
+                    <span class="inline-flex items-center gap-1 rounded-md bg-amber-100/90 text-amber-900 px-2 py-0.5 border border-amber-200">
+                      <span class="size-1.5 rounded-full bg-amber-600"></span> 10 Em aguardo
+                    </span>
+                    <span class="inline-flex items-center gap-1 rounded-md bg-rose-100/90 text-rose-900 px-2 py-0.5 border border-rose-200">
+                      <span class="size-1.5 rounded-full bg-rose-600"></span> 1 Declinado
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Card 2: Dinheiro Recebido -->
+                <div onclick="trocarAba('clientes')" class="relative overflow-hidden rounded-2xl border border-blue-200/90 bg-blue-50/40 p-5 shadow-xs cursor-pointer hover:border-blue-300 hover:bg-blue-50/70 transition group" title="Clique para ver tabela de clientes">
+                  <div class="absolute top-0 left-0 right-0 h-1.5 bg-blue-500"></div>
+                  <div class="text-[11px] font-extrabold uppercase tracking-wider text-blue-800 flex items-center justify-between">
+                    <span>💵 Dinheiro Já Recebido</span>
+                    <i data-lucide="arrow-up-right" class="size-3.5 text-blue-600 opacity-0 group-hover:opacity-100 transition"></i>
+                  </div>
+                  <div class="mt-3 text-3xl font-black tracking-tight text-blue-950 font-sans" id="card-metric-recebido">
+                    R$ 150,00
+                  </div>
+                  <div class="mt-1 text-xs font-bold text-blue-700 font-sans" id="card-metric-recebido-sub">
+                    R$ 150,00 de setup recebido
+                  </div>
+                  <div class="mt-3 text-[11px] font-semibold text-slate-500 border-t border-blue-100 pt-2.5 truncate" id="card-metric-recebido-foot">
+                    R$ 9.450,00 de setup a receber no pipeline
+                  </div>
+                </div>
+
+                <!-- Card 3: Recebimento / Mês -->
+                <div onclick="trocarAba('clientes')" class="relative overflow-hidden rounded-2xl border border-purple-200/90 bg-purple-50/40 p-5 shadow-xs cursor-pointer hover:border-purple-300 hover:bg-purple-50/70 transition group" title="Clique para ver tabela de clientes">
+                  <div class="absolute top-0 left-0 right-0 h-1.5 bg-purple-500"></div>
+                  <div class="text-[11px] font-extrabold uppercase tracking-wider text-purple-800 flex items-center justify-between">
+                    <span>📝 Recorrência Ativa</span>
+                    <i data-lucide="arrow-up-right" class="size-3.5 text-purple-600 opacity-0 group-hover:opacity-100 transition"></i>
+                  </div>
+                  <div class="mt-3 text-3xl font-black tracking-tight text-purple-950 font-sans" id="card-metric-mrr">
+                    R$ 0,00 <span class="text-sm font-bold text-purple-700">/mês</span>
+                  </div>
+                  <div class="mt-1 text-xs font-bold text-purple-700 font-sans" id="card-metric-mrr-sub">
+                    R$ 0,00 recebido no ciclo • Cobrança inicia pós-implantação
+                  </div>
+                  <div class="mt-3 text-[11px] font-semibold text-slate-500 border-t border-purple-100 pt-2.5 truncate" id="card-metric-mrr-foot">
+                    R$ 4.250,00/mês potencial total
+                  </div>
+                </div>
+
+                <!-- Card 4: Se Fecharmos Tudo -->
+                <div onclick="trocarAba('clientes')" class="relative overflow-hidden rounded-2xl border border-amber-200/90 bg-amber-50/40 p-5 shadow-xs cursor-pointer hover:border-amber-300 hover:bg-amber-50/70 transition group" title="Clique para ver tabela de clientes">
+                  <div class="absolute top-0 left-0 right-0 h-1.5 bg-amber-500"></div>
+                  <div class="text-[11px] font-extrabold uppercase tracking-wider text-amber-800 flex items-center justify-between">
+                    <span>🚀 Se Fecharmos Tudo</span>
+                    <i data-lucide="arrow-up-right" class="size-3.5 text-amber-600 opacity-0 group-hover:opacity-100 transition"></i>
+                  </div>
+                  <div class="mt-3 text-3xl font-black tracking-tight text-amber-950 font-sans" id="card-metric-potencial">
+                    R$ 13.850,00
+                  </div>
+                  <div class="mt-2.5 space-y-0.5 text-xs font-bold text-amber-800 font-sans" id="card-metric-potencial-sub">
+                    <div>R$ 9.600,00 Setup +</div>
+                    <div>R$ 4.250,00/mês +</div>
+                    <div>13 empresas com 2%</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- 2. MIX DE PRODUTOS: QUANTOS DE AUTOMAÇÃO VS. QUANTOS DE SITE -->
+            <div>
+              <h3 class="text-xs font-black uppercase tracking-[0.16em] text-slate-500 mb-4">
+                2. Mix de Produtos: Quantos de Automação vs. Quantos de Site
+              </h3>
+
+              <!-- Tabela de Mix de Produtos (Largura Total) -->
+              <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
+                <table class="w-full text-left text-xs">
+                  <thead class="border-b border-slate-200 bg-slate-50 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
+                    <tr>
+                      <th class="px-4 py-3.5">Categoria de Solução</th>
+                      <th class="px-3 py-3.5 text-center">Qtd</th>
+                      <th class="px-3 py-3.5 text-center">% Funil</th>
+                      <th class="px-4 py-3.5 text-right">Setup Médio</th>
+                      <th class="px-4 py-3.5 text-right">Recorrência Média</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 text-slate-700" id="tbody-mix-produtos">
+                    <!-- Preenchido dinamicamente via JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 3. CONTROLE FINANCEIRO: QUANTO RECEBEMOS VS. SE FECHARMOS TUDO -->
+            <div>
+              <h3 class="text-xs font-black uppercase tracking-[0.16em] text-slate-500 mb-4">
+                3. Controle Financeiro: Quanto Recebemos vs. Se Fecharmos Tudo
+              </h3>
+
+              <div class="grid gap-6 lg:grid-cols-12 items-start">
+                
+                <!-- Tabela Financeira (7 Colunas) -->
+                <div class="lg:col-span-7 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
+                  <table class="w-full text-left text-xs">
+                    <thead class="border-b border-slate-200 bg-slate-50 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
+                      <tr>
+                        <th class="px-4 py-3.5">Etapa Financeira</th>
+                        <th class="px-3 py-3.5 text-right">Já Recebido</th>
+                        <th class="px-3 py-3.5 text-right font-black text-slate-800">Se Fechar Tudo</th>
+                        <th class="px-3 py-3.5 text-right">A Fechar</th>
+                        <th class="px-3 py-3.5 text-center">% Fechado</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-700" id="tbody-financeiro">
+                      <!-- Preenchido dinamicamente via JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Barras Comparativas de Progresso (5 Colunas) -->
+                <div class="lg:col-span-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-xs space-y-5">
+                  <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                    <span class="text-xs font-black text-slate-800">Comparativo: Já em Caixa vs. Potencial Total</span>
+                  </div>
+
+                  <!-- Barra 1: Setup Inicial -->
+                  <div class="space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold">
+                      <span class="text-slate-600">Setup Inicial</span>
+                      <span class="text-slate-900" id="label-bar-setup">R$ 150 de R$ 9.600</span>
+                    </div>
+                    <div class="h-6 w-full rounded-xl bg-slate-100 flex items-center overflow-hidden shadow-inner border border-slate-200">
+                      <div id="fill-bar-setup" class="h-full bg-blue-600 px-2 flex items-center text-[10px] font-black text-white transition-all duration-500" style="width: 1.6%;">
+                        <span id="text-bar-setup">1,6%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Barra 2: Recorrência Mensal -->
+                  <div class="space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold">
+                      <span class="text-slate-600">Recorrência Mensal Ativa</span>
+                      <span class="text-slate-900" id="label-bar-recorrencia">R$ 0 de R$ 4.250/mês</span>
+                    </div>
+                    <div class="h-6 w-full rounded-xl bg-slate-100 flex items-center overflow-hidden shadow-inner border border-slate-200">
+                      <div id="fill-bar-recorrencia" class="h-full bg-emerald-500 px-2 flex items-center text-[10px] font-black text-white transition-all duration-500" style="width: 0%;">
+                        <span id="text-bar-recorrencia">0,0%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Barra 3: Faturamento Total Mês 1 -->
+                  <div class="space-y-1.5">
+                    <div class="flex justify-between text-xs font-bold">
+                      <span class="text-slate-600">Total em Caixa (Mês Atual)</span>
+                      <span class="text-slate-900" id="label-bar-mes1">R$ 830 de R$ 13.850</span>
+                    </div>
+                    <div class="h-6 w-full rounded-xl bg-slate-100 flex items-center overflow-hidden shadow-inner border border-slate-200">
+                      <div id="fill-bar-mes1" class="h-full bg-amber-500 px-2 flex items-center text-[10px] font-black text-white transition-all duration-500" style="width: 6.0%;">
+                        <span id="text-bar-mes1">6,0%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <!-- CONTEÚDO DA ABA 2: CLIENTES (TABELA ORIGINAL COMPLETA E INTERATIVA) -->
+          <div id="tab-content-clientes" class="hidden p-6 space-y-6">
+            
+            <!-- Barra de Filtros e Busca -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div class="relative w-full sm:w-80">
+                <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400"></i>
+                <input 
+                  type="text" 
+                  id="busca-clientes" 
+                  oninput="filtrarTabelaClientes()" 
+                  placeholder="Buscar por cliente, ramo ou contato..." 
+                  class="w-full rounded-xl border border-slate-200 bg-white pl-10 pr-4 py-2.5 text-xs font-medium text-slate-800 placeholder-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition shadow-xs"
+                />
+              </div>
+
+              <!-- Filtros de Status (Categorias Exatas da Planilha) -->
+              <!-- Filtros de Status Padronizados -->
+              <div class="flex items-center gap-1.5 self-start sm:self-auto overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0" id="container-filtros-status">
+                <button id="filtro-btn-todos" onclick="filtrarStatus('todos')" class="filtro-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white transition">Todos (<span id="count-todos">13</span>)</button>
+                <button id="filtro-btn-producao" onclick="filtrarStatus('producao')" class="filtro-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">🟢 Em Produção (<span id="count-producao">2</span>)</button>
+                <button id="filtro-btn-aguardo" onclick="filtrarStatus('aguardo')" class="filtro-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">🟡 Em aguardo (<span id="count-aguardo">10</span>)</button>
+                <button id="filtro-btn-declinado" onclick="filtrarStatus('declinado')" class="filtro-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">🔴 Declinado (<span id="count-declinado">1</span>)</button>
+              </div>
+            </div>
+
+            <!-- LEGENDA VISUAL SUTIL DAS CORES DE PAGAMENTO -->
+            <div class="flex flex-wrap items-center gap-4 text-[11px] font-semibold text-slate-500 bg-slate-50/80 p-2.5 rounded-xl border border-slate-200/70">
+              <span class="text-slate-700 font-bold flex items-center gap-1">
+                <i data-lucide="info" class="size-3.5 text-slate-400"></i> Legenda de Cobrança:
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                <span class="size-1.5 rounded-full bg-emerald-500"></span> Quitado (100%)
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200/80">
+                <span class="size-1.5 rounded-full bg-amber-500"></span> Parcial (Pago uma parte)
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-rose-50 text-rose-700 border border-rose-200/80">
+                <span class="size-1.5 rounded-full bg-rose-400"></span> Em Aberto (Não pago)
+              </span>
+            </div>
+
+            <!-- TABELA COMPLETA COM OS CLIENTES (INCLUINDO LINHA TOP 00 DE TOTAIS) -->
+            <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
+              <table class="w-full text-left text-xs" id="tabela-clientes-original">
+                <thead class="border-b border-slate-200 bg-slate-50 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
+                  <tr>
+                    <th class="px-4 py-3.5">#</th>
+                    <th class="px-4 py-3.5">Cliente / Negócio</th>
+                    <th class="px-3 py-3.5">Segmento</th>
+                    <th class="px-3 py-3.5">Solução</th>
+                    <th class="px-3 py-3.5 text-center">Setup (Pago / Total)</th>
+                    <th class="px-3 py-3.5 text-center">Recorrência Mês (+ 2%)</th>
+                    <th class="px-3 py-3.5 text-center">Fase / Status</th>
+                    <th class="px-4 py-3.5 text-center">Ações</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 text-slate-700 font-medium" id="tbody-clientes">
+                  <!-- Inserido dinamicamente via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+          <!-- CONTEÚDO DA ABA 3: PRODUTOS & MODELOS -->
+          <div id="tab-content-produtos" class="hidden p-8 space-y-8">
+            <div>
+              <h2 class="text-xl font-black text-slate-900">Catálogo de Soluções da Joint Venture</h2>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-3">
+              
+              <!-- Produto 1: Site + Painel -->
+              <div class="rounded-2xl border border-blue-200 bg-blue-50/30 p-6 flex flex-col justify-between shadow-xs">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 rounded-full bg-blue-100 px-2.5 py-0.5 text-[10px] font-black text-blue-800 uppercase">
+                      Modalidade 1
+                    </div>
+                    <span id="prod-card-count-site" class="inline-flex items-center gap-1 rounded-full bg-blue-50 border border-blue-200 px-2.5 py-0.5 text-xs font-black text-blue-900 shadow-2xs font-sans">
+                      2/5 clientes
+                    </span>
+                  </div>
+                  <h3 class="mt-3 text-lg font-black text-slate-900">Site + Painel</h3>
+                  <p class="mt-2 text-xs leading-relaxed text-slate-600">
+                    Cardápio digital ultrarrápido na VPS, checkout transparente Mercado Pago Bricks, notinhas de cozinha/motoboy e painel de pedidos ao vivo.
+                  </p>
+                  
+                  <div class="mt-5 space-y-2 border-t border-blue-100 pt-4 text-xs font-sans">
+                    <div class="flex justify-between items-center">
+                      <span class="text-slate-500 font-medium">Setup Médio:</span>
+                      <span class="font-black text-slate-900" id="prod-card-setup-site">R$ 240,00</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-slate-500 font-medium">Recorrência Média:</span>
+                      <span class="font-black text-blue-700" id="prod-card-mrr-site">R$ 110,00 + 2%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-blue-100 text-[11px] font-bold text-blue-700">
+                  Ideal para: Lanchonetes, pizzarias e sorveterias locais.
+                </div>
+              </div>
+
+              <!-- Produto 2: Automação + Painel -->
+              <div class="rounded-2xl border border-emerald-200 bg-emerald-50/30 p-6 flex flex-col justify-between shadow-xs">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-2.5 py-0.5 text-[10px] font-black text-emerald-800 uppercase">
+                      Modalidade 2
+                    </div>
+                    <span id="prod-card-count-auto" class="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-xs font-black text-emerald-900 shadow-2xs font-sans">
+                      0/5 clientes
+                    </span>
+                  </div>
+                  <h3 class="mt-3 text-lg font-black text-slate-900">Automação + Painel</h3>
+                  <p class="mt-2 text-xs leading-relaxed text-slate-600">
+                    Robô de WhatsApp inteligente (n8n + Evolution API), recuperação de clientes sumidos, disparo de ofertas e integração com clínicas e distribuidoras.
+                  </p>
+                  
+                  <div class="mt-5 space-y-2 border-t border-emerald-100 pt-4 text-xs font-sans">
+                    <div class="flex justify-between items-center">
+                      <span class="text-slate-500 font-medium">Setup Médio:</span>
+                      <span class="font-black text-slate-900" id="prod-card-setup-auto">R$ 840,00</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-slate-500 font-medium">Recorrência Média:</span>
+                      <span class="font-black text-emerald-700" id="prod-card-mrr-auto">R$ 370,00 + 2%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-emerald-100 text-[11px] font-bold text-emerald-700">
+                  Ideal para: Clínicas médicas, distribuição e serviços de alto ticket.
+                </div>
+              </div>
+
+              <!-- Produto 3: Combo (Site + Automação + Painel) -->
+              <div class="rounded-2xl border border-amber-200 bg-amber-50/30 p-6 flex flex-col justify-between shadow-xs">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-2.5 py-0.5 text-[10px] font-black text-amber-800 uppercase">
+                      Modalidade 3 (Carro-Chefe)
+                    </div>
+                    <span id="prod-card-count-combo" class="inline-flex items-center gap-1 rounded-full bg-amber-50 border border-amber-200 px-2.5 py-0.5 text-xs font-black text-amber-900 shadow-2xs font-sans">
+                      0/3 clientes
+                    </span>
+                  </div>
+                  <h3 class="mt-3 text-lg font-black text-slate-900">Combo (Site + Automação + Painel)</h3>
+                  <p class="mt-2 text-xs leading-relaxed text-slate-600">
+                    A esteira completa: Site próprio + KDS de Cozinha + Despacho de Motoboys + Automação de WhatsApp + Tráfego Pago local + Audiovisual.
+                  </p>
+                  
+                  <div class="mt-5 space-y-2 border-t border-amber-100 pt-4 text-xs font-sans">
+                    <div class="flex justify-between items-center">
+                      <span class="text-slate-500 font-medium">Setup Médio:</span>
+                      <span class="font-black text-slate-900" id="prod-card-setup-combo">R$ 1.400,00</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-slate-500 font-medium">Recorrência Média:</span>
+                      <span class="font-black text-amber-700" id="prod-card-mrr-combo">R$ 533,33 + 2%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-amber-100 text-[11px] font-bold text-amber-700">
+                  Ideal para: Pizzarias de alto giro, hamburguerias e restaurantes estruturados.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- DRAWER LATERAL / MODAL: RAIO-X FINANCEIRO E HISTÓRICO MÊS A MÊS DO CLIENTE -->
+  <div id="drawer-cliente-backdrop" onclick="fecharDrawerCliente()" class="fixed inset-0 z-50 hidden bg-slate-950/50 backdrop-blur-xs transition-opacity"></div>
+  
+  <aside id="drawer-cliente" class="fixed inset-y-0 right-0 z-50 w-full max-w-xl bg-white shadow-2xl flex flex-col justify-between transform translate-x-full drawer-transition">
+    
+    <!-- Topo do Drawer -->
+    <div class="border-b border-slate-200 p-6 bg-slate-50/80 flex items-start justify-between">
+      <div class="flex items-center gap-3.5">
+        <div id="drawer-avatar" class="size-12 rounded-2xl bg-slate-950 text-white grid place-items-center text-base font-black shadow-sm">
+          PJ
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 id="drawer-nome" class="text-lg font-black text-slate-900">Pizza do Juca</h2>
+            <span id="drawer-status-badge" class="rounded-full bg-emerald-100 text-emerald-800 px-2.5 py-0.5 text-[10px] font-black uppercase">Fechado</span>
+          </div>
+          <div class="text-xs text-slate-500 font-medium flex items-center gap-2 mt-0.5">
+            <span id="drawer-ramo">Pizzaria Artesanal</span>
+            <span>•</span>
+            <span id="drawer-solucao" class="font-bold text-blue-600">Site + Painel</span>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="fecharDrawerCliente()" class="rounded-xl p-2 text-slate-400 hover:bg-slate-200/60 hover:text-slate-700 transition">
+        <i data-lucide="x" class="size-5"></i>
+      </button>
+    </div>
+
+    <!-- Conteúdo Scrollável do Drawer -->
+    <div class="flex-1 overflow-y-auto p-6 space-y-6">
+
+      <!-- BANNER DE ALERTA DE COBRANÇA (QUANDO HOUVER PENDÊNCIA) -->
+      <div id="drawer-alerta-pendencia" class="rounded-2xl border border-amber-200 bg-amber-50/70 p-4 text-xs flex items-start gap-3 text-amber-900">
+        <i data-lucide="alert-circle" class="size-4 shrink-0 text-amber-600 mt-0.5"></i>
+        <div class="flex-1">
+          <div class="font-bold text-amber-950">Atenção aos Recebimentos Pendentes</div>
+          <div id="drawer-alerta-texto" class="text-[11px] text-amber-800 mt-0.5">
+            Há R$ 150,00 restantes de Setup e a fatura de Novembro vence em 10/11/2026.
+          </div>
+        </div>
+      </div>
+
+      <!-- CARDS DE CONTROLE DE SETUP E MENSALIDADE DO MÊS ATUAL -->
+      <div class="grid grid-cols-2 gap-4">
+        
+        <!-- Bloco Setup -->
+        <div class="rounded-2xl border border-slate-200/90 bg-white p-4 shadow-2xs space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-extrabold text-slate-500 uppercase tracking-wider text-[10px]">Setup Inicial</span>
+            <span id="drawer-setup-pill" class="px-2 py-0.5 rounded-md text-[10px] font-black bg-amber-50 text-amber-800 border border-amber-200">150/300</span>
+          </div>
+
+          <div>
+            <div class="text-2xl font-black text-slate-900" id="drawer-setup-valor">R$ 300,00</div>
+            <div class="text-[11px] text-slate-500 font-medium mt-0.5 flex justify-between">
+              <span>Pago: <strong class="text-emerald-700" id="drawer-setup-pago">R$ 150,00</strong></span>
+              <span>Falta: <strong class="text-rose-600" id="drawer-setup-falta">R$ 150,00</strong></span>
+            </div>
+          </div>
+
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
+            <span class="text-slate-400">Vencimento:</span>
+            <span class="font-bold text-slate-700" id="drawer-setup-vencimento">15/11/2026</span>
+          </div>
+        </div>
+
+        <!-- Bloco Mensalidade Atual -->
+        <div class="rounded-2xl border border-slate-200/90 bg-white p-4 shadow-2xs space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-extrabold text-slate-500 uppercase tracking-wider text-[10px]">Mês Atual (Out/Nov)</span>
+            <span id="drawer-recorrencia-pill" class="px-2 py-0.5 rounded-md text-[10px] font-black bg-emerald-50 text-emerald-700 border border-emerald-200">150/150</span>
+          </div>
+
+          <div>
+            <div class="text-2xl font-black text-slate-900" id="drawer-recorrencia-valor">R$ 150,00</div>
+            <div class="text-[11px] text-slate-500 font-medium mt-0.5 flex justify-between">
+              <span>Fixo: <strong class="text-slate-800" id="drawer-rec-fixo">R$ 150,00</strong></span>
+              <span>2% Loja: <strong class="text-purple-700" id="drawer-rec-comissao">+ R$ 400,00</strong></span>
+            </div>
+          </div>
+
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
+            <span class="text-slate-400">Todo dia:</span>
+            <span class="font-bold text-slate-700" id="drawer-rec-dia">Dia 10 (Próx: 10/11)</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SEÇÃO HISTÓRICO MÊS A MÊS -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-black uppercase tracking-[0.16em] text-slate-600 flex items-center gap-1.5">
+            <i data-lucide="history" class="size-3.5 text-slate-400"></i>
+            <span>Histórico de Pagamentos Mês a Mês</span>
+          </h3>
+          <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-lg border border-emerald-200">
+            Total Histórico: <span id="drawer-total-historico">R$ 1.540,00</span>
+          </span>
+        </div>
+
+        <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs">
+          <table class="w-full text-left text-xs">
+            <thead class="border-b border-slate-200 bg-slate-50 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
+              <tr>
+                <th class="px-3.5 py-3">Mês Ref.</th>
+                <th class="px-3 py-3 text-right">Fixo</th>
+                <th class="px-3 py-3 text-right">2% Com.</th>
+                <th class="px-3 py-3 text-right">Total Pago</th>
+                <th class="px-3 py-3 text-center">Data / Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700" id="drawer-tbody-historico">
+              <!-- Preenchido via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FORMULÁRIO RÁPIDO PARA REGISTRAR PAGAMENTO -->
+      <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 space-y-3">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-800">
+          <span class="flex items-center gap-1.5">
+            <i data-lucide="plus-circle" class="size-4 text-emerald-600"></i>
+            <span>Lançar Pagamento Recebido</span>
+          </span>
+        </div>
+
+        <form id="form-lancar-pagamento" onsubmit="lancarPagamentoCliente(event)" class="grid grid-cols-3 gap-2.5 text-xs">
+          <div>
+            <label class="block text-[10px] font-bold text-slate-500 mb-1">Destino</label>
+            <select id="lancar-tipo" class="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-bold focus:outline-none focus:border-emerald-500">
+              <option value="setup">Setup</option>
+              <option value="recorrencia" selected>Mensalidade</option>
+              <option value="comissao">Comissão 2%</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold text-slate-500 mb-1">Valor (R$)</label>
+            <input type="number" step="0.01" id="lancar-valor" required placeholder="150" class="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-bold focus:outline-none focus:border-emerald-500" />
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold text-slate-500 mb-1">&nbsp;</label>
+            <button type="submit" class="w-full rounded-xl bg-slate-900 hover:bg-emerald-600 text-white py-1.5 px-3 font-extrabold text-xs transition shadow-xs">
+              Confirmar
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Rodapé de Ações do Drawer -->
+    <div class="border-t border-slate-200 p-4 bg-slate-50 flex items-center justify-between gap-3">
+      <button id="drawer-btn-whatsapp" onclick="enviarCobrancaWhatsApp()" class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 text-xs font-extrabold shadow-sm shadow-emerald-600/30 transition active:scale-95">
+        <i data-lucide="message-circle" class="size-4"></i>
+        <span>Cobrança no WhatsApp</span>
+      </button>
+
+      <div class="flex items-center gap-2">
+        <button id="drawer-btn-editar" onclick="editarClientePeloDrawer()" class="rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 px-3.5 py-2.5 text-xs font-bold transition">
+          <i data-lucide="edit-3" class="size-3.5 inline mr-1"></i>
+          <span>Editar</span>
+        </button>
+        <button onclick="fecharDrawerCliente()" class="rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-600 px-4 py-2.5 text-xs font-bold transition">
+          Fechar
+        </button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MODAL: EDITAR CLIENTE (NO SITE DIRETO) -->
+  <div id="modal-editar-cliente" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-xs grid place-items-center p-4">
+    <div class="w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <div class="size-8 rounded-xl bg-blue-100 text-blue-800 grid place-items-center font-black">
+            <i data-lucide="edit-3" class="size-4"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900">Editar Cliente</h3>
+            <p class="text-[11px] text-slate-400">Altere os dados e o dashboard recalculará automaticamente</p>
+          </div>
+        </div>
+        <button onclick="fecharModalEditarCliente()" class="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 transition">
+          <i data-lucide="x" class="size-4"></i>
+        </button>
+      </div>
+
+      <form id="form-editar-cliente" onsubmit="salvarEdicaoCliente(event)" class="mt-4 space-y-3.5 text-xs">
+        <input type="hidden" id="edit-id" />
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Nome do Estabelecimento / Empresa</label>
+          <input type="text" id="edit-nome" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2 font-medium focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Segmento / Ramo</label>
+            <input type="text" id="edit-ramo" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2 font-medium focus:border-blue-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Solução Teixo</label>
+            <select id="edit-solucao" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium bg-white focus:border-blue-500 focus:outline-none">
+              <option value="Site + Painel">Site + Painel</option>
+              <option value="Automação + Painel">Automação + Painel</option>
+              <option value="Combo">Combo (Site + Automação + Painel)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Contato / WhatsApp / Instagram</label>
+            <input type="text" id="edit-contato" placeholder="@perfil ou WhatsApp" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 font-medium focus:border-blue-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Status Operacional</label>
+            <select id="edit-fase" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium bg-white focus:border-blue-500 focus:outline-none">
+              <option value="Em Produção">🟢 Em Produção</option>
+              <option value="Em aguardo">🟡 Em aguardo</option>
+              <option value="Declinado">🔴 Declinado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-100">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Setup Acordado (R$)</label>
+            <input type="number" step="0.01" id="edit-setup" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 font-medium focus:border-blue-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Setup Já Pago (R$)</label>
+            <input type="number" step="0.01" id="edit-setup-pago" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 font-bold text-emerald-700 focus:border-blue-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2.5 bg-slate-50 p-3 rounded-2xl border border-slate-100">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Mensalidade (R$)</label>
+            <input type="number" step="0.01" id="edit-recorrencia" class="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 font-medium focus:border-blue-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Mensal. Paga (R$)</label>
+            <input type="number" step="0.01" id="edit-recorrencia-paga" class="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 font-bold text-emerald-700 focus:border-blue-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">2% Mês (R$)</label>
+            <input type="number" step="0.01" id="edit-comissao" class="w-full rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 font-medium text-purple-700 focus:border-blue-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+          <button type="button" onclick="fecharModalEditarCliente()" class="rounded-xl border border-slate-200 px-4 py-2 font-bold text-slate-600 hover:bg-slate-50 transition">
+            Cancelar
+          </button>
+          <button type="submit" class="rounded-xl bg-blue-600 px-5 py-2 font-extrabold text-white hover:bg-blue-700 transition shadow-md shadow-blue-600/20">
+            Salvar Alterações
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CADASTRAR NOVO CLIENTE NA PLANILHA -->
+  <div id="modal-novo-cliente" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-xs grid place-items-center p-4">
+    <div class="w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <div class="size-8 rounded-xl bg-emerald-100 text-emerald-800 grid place-items-center font-black">
+            <i data-lucide="user-plus" class="size-4"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900">Adicionar Cliente à Planilha</h3>
+            <p class="text-[11px] text-slate-400">Entra direto no controle comercial e recalcula os cards</p>
+          </div>
+        </div>
+        <button onclick="fecharModalNovoCliente()" class="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 transition">
+          <i data-lucide="x" class="size-4"></i>
+        </button>
+      </div>
+
+      <form id="form-novo-cliente" onsubmit="salvarNovoCliente(event)" class="mt-4 space-y-3.5 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Nome do Estabelecimento / Cliente</label>
+          <input type="text" id="novo-nome" required placeholder="Ex: Hamburgueria do Centro" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 font-medium focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Segmento / Ramo</label>
+            <input type="text" id="novo-segmento" required placeholder="Ex: Pizzaria, Lanchonete, Mercado" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 font-medium focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Tipo de Solução</label>
+            <select id="novo-solucao" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium bg-white focus:border-emerald-500 focus:outline-none">
+              <option value="Site + Painel">Site + Painel</option>
+              <option value="Automação + Painel">Automação + Painel</option>
+              <option value="Combo" selected>Combo (Site + Automação + Painel)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Contato (WhatsApp / Insta)</label>
+            <input type="text" id="novo-contato" placeholder="Ex: @instagram ou telefone" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 font-medium focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Status Operacional</label>
+            <select id="novo-status" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium bg-white focus:border-emerald-500 focus:outline-none">
+              <option value="Em aguardo" selected>🟡 Em aguardo</option>
+              <option value="Em Produção">🟢 Em Produção</option>
+              <option value="Declinado">🔴 Declinado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Setup Inicial (R$)</label>
+            <input type="number" step="0.01" id="novo-setup" placeholder="0" value="0" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 font-medium focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Mensalidade (R$)</label>
+            <input type="number" step="0.01" id="novo-recorrencia" placeholder="150" value="150" class="w-full rounded-xl border border-slate-200 px-3.5 py-2 font-medium focus:border-emerald-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+          <button type="button" onclick="fecharModalNovoCliente()" class="rounded-xl border border-slate-200 px-4 py-2 font-bold text-slate-600 hover:bg-slate-50 transition">
+            Cancelar
+          </button>
+          <button type="submit" class="rounded-xl bg-emerald-600 px-5 py-2 font-extrabold text-white hover:bg-emerald-700 transition shadow-md shadow-emerald-600/20">
+            Salvar na Planilha
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: EDIÇÃO RÁPIDA FINANCEIRA (SETUP OU RECORRÊNCIA) -->
+  <div id="modal-edicao-rapida" class="fixed inset-0 z-50 hidden grid place-items-center bg-slate-950/60 backdrop-blur-xs p-4">
+    <div class="w-full max-w-sm rounded-3xl border border-slate-200 bg-white p-5 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div>
+          <h3 class="text-sm font-black text-slate-900" id="rapida-titulo">Ajustar Valores</h3>
+          <p class="text-[11px] text-slate-500 font-bold" id="rapida-cliente-nome">Cliente</p>
+        </div>
+        <button type="button" onclick="fecharModalEdicaoRapida()" class="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 transition">
+          <i data-lucide="x" class="size-4"></i>
+        </button>
+      </div>
+
+      <form id="form-edicao-rapida" onsubmit="salvarEdicaoRapida(event)" class="mt-4 space-y-3 text-xs">
+        <input type="hidden" id="rapida-id" />
+        <input type="hidden" id="rapida-campo" />
+
+        <div id="rapida-campos-setup">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Setup Acordado Total (R$)</label>
+            <input type="number" step="0.01" id="rapida-setup-total" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-emerald-500 focus:outline-none" />
+          </div>
+          <div class="mt-2.5">
+            <label class="block font-bold text-emerald-800 mb-1">Valor Já Recebido do Setup (R$)</label>
+            <input type="number" step="0.01" id="rapida-setup-pago" class="w-full rounded-xl border border-emerald-300 bg-emerald-50/50 px-3 py-2 font-black text-emerald-900 focus:border-emerald-600 focus:outline-none" />
+          </div>
+        </div>
+
+        <div id="rapida-campos-rec" class="hidden">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Mensalidade Fixa (R$)</label>
+            <input type="number" step="0.01" id="rapida-rec-total" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-purple-500 focus:outline-none" />
+          </div>
+          <div class="mt-2.5">
+            <label class="block font-bold text-purple-800 mb-1">Mensalidade Paga neste Ciclo (R$)</label>
+            <input type="number" step="0.01" id="rapida-rec-paga" class="w-full rounded-xl border border-purple-300 bg-purple-50/50 px-3 py-2 font-black text-purple-900 focus:border-purple-600 focus:outline-none" />
+          </div>
+          <div class="mt-2.5">
+            <label class="block font-bold text-slate-600 mb-1">Comissão 2% apurada (R$)</label>
+            <input type="number" step="0.01" id="rapida-comissao" class="w-full rounded-xl border border-slate-200 px-3 py-2 font-medium focus:border-purple-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+          <button type="button" onclick="fecharModalEdicaoRapida()" class="rounded-xl border border-slate-200 px-3.5 py-2 font-bold text-slate-600 hover:bg-slate-50 transition">
+            Cancelar
+          </button>
+          <button type="submit" class="rounded-xl bg-emerald-600 px-4 py-2 font-black text-white hover:bg-emerald-700 transition shadow-md shadow-emerald-600/20">
+            Salvar & Recalcular
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIGURAR WEBHOOK GOOGLE SHEETS BIDIRECIONAL -->
+  <div id="modal-webhook-sheets" class="fixed inset-0 z-50 hidden grid place-items-center bg-slate-950/40 backdrop-blur-xs p-4">
+    <div class="w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="size-8 rounded-xl bg-emerald-100 text-emerald-800 grid place-items-center font-black">
+            <i data-lucide="link" class="size-4"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900">Sincronização 2-Way Google Sheets</h3>
+            <p class="text-[11px] text-slate-500">Enviar alterações de volta para a planilha do Drive automaticamente</p>
+          </div>
+        </div>
+        <button onclick="fecharModalWebhookSheets()" class="rounded-xl p-1.5 text-slate-400 hover:bg-slate-100 transition">
+          <i data-lucide="x" class="size-4"></i>
+        </button>
+      </div>
+
+      <form onsubmit="salvarConfigWebhookSheets(event)" class="mt-4 space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">URL do Webhook (Google Apps Script Web App)</label>
+          <input 
+            type="url" 
+            id="webhook-sheets-url" 
+            placeholder="https://script.google.com/macros/s/.../exec" 
+            class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 font-medium focus:border-emerald-500 focus:outline-none" 
+          />
+          <p class="text-[11px] text-slate-500 mt-1.5">
+            Ao cadastrar ou editar clientes no painel, os dados são disparados para esta URL e atualizam a planilha oficial.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3.5 space-y-2">
+          <div class="text-[11px] font-black text-slate-800 flex items-center gap-1.5">
+            <i data-lucide="info" class="size-3.5 text-blue-600"></i>
+            <span>Como obter sua URL do Apps Script:</span>
+          </div>
+          <ol class="list-decimal list-inside space-y-1 text-[11px] text-slate-600 font-medium">
+            <li>Abra a planilha no Google Sheets.</li>
+            <li>Vá em <strong>Extensões > Apps Script</strong>.</li>
+            <li>Cole o código pronto de <code>scripts/google-apps-script.js</code>.</li>
+            <li>Clique em <strong>Implantar > Novo app da Web</strong> (Acesso: "Qualquer pessoa").</li>
+            <li>Copie a URL gerada e cole aqui.</li>
+          </ol>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+          <button type="button" onclick="fecharModalWebhookSheets()" class="rounded-xl border border-slate-200 px-4 py-2 font-bold text-slate-600 hover:bg-slate-50 transition">
+            Cancelar
+          </button>
+          <button type="submit" class="rounded-xl bg-emerald-600 px-5 py-2 font-extrabold text-white hover:bg-emerald-700 transition shadow-md shadow-emerald-600/20">
+            Salvar Webhook
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPTS DE NAVEGAÇÃO, INTEGRAÇÃO GOOGLE SHEETS, GESTÃO DE COBRANÇAS E HISTÓRICO MENSAL -->
+  <script>
+    // URL Pública Oficial da Planilha Automatech no Google Sheets
+    const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/1aRIqEG8HzKYCuxWrVvpW87WOqb7eL5WHjidmgf91lu8/gviz/tq?tqx=out:csv&sheet=Clientes";
+    const STORAGE_KEY = "teixo_automatech_clientes_v10";
+    const STORAGE_LAST_SYNC = "teixo_automatech_last_sync";
+
+    // Dataset Inicial Verificado com Controle Financeiro
+    const CLIENTES_INICIAIS = [
+      { 
+        id: 'cli-2', 
+        nome: 'Pizza do Juca', 
+        ramo: 'Lanchonete', 
+        solucao: 'Site + Painel', 
+        contato: 'Juca', 
+        fase: 'Em Produção', 
+        status: 'producao', 
+        setup: 300, 
+        setupPago: 150, 
+        vencimentoSetup: '15/11/2026',
+        recorrencia: 150, 
+        recorrenciaPaga: 0, 
+        comissao2pct: 0, 
+        diaVencimento: 10,
+        proximoVencimento: '10/11/2026',
+        probabilidade: 100,
+        historico: []
+      },
+      { 
+        id: 'cli-4', 
+        nome: 'Moraes Sorveteria', 
+        ramo: 'Lanchonete', 
+        solucao: 'Site + Painel', 
+        contato: '@moraessorveteria01', 
+        fase: 'Em Produção', 
+        status: 'producao', 
+        setup: 0, 
+        setupPago: 0, 
+        vencimentoSetup: 'Isento',
+        recorrencia: 50, 
+        recorrenciaPaga: 0, 
+        comissao2pct: 0, 
+        diaVencimento: 10,
+        proximoVencimento: '10/11/2026',
+        probabilidade: 100,
+        historico: []
+      },
+      { 
+        id: 'cli-6', 
+        nome: 'Maluco do Preço Baixo', 
+        ramo: 'Distribuidora', 
+        solucao: 'Automação + Painel', 
+        contato: '@malucodoprecobaixo22', 
+        fase: 'Em aguardo', 
+        status: 'aguardo', 
+        setup: 200, 
+        setupPago: 0, 
+        recorrencia: 100, 
+        recorrenciaPaga: 0, 
+        comissao2pct: 0, 
+        diaVencimento: 10,
+        proximoVencimento: 'A definir',
+        probabilidade: 30,
+        historico: []
+      },
+      { 
+        id: 'cli-1', 
+        nome: 'Sítio Hostel Natureza', 
+        ramo: 'Turismo e Hospedagem', 
+        solucao: 'Combo', 
+        contato: '@sitiohostelnatureza', 
+        fase: 'Em aguardo', 
+        status: 'aguardo', 
+        setup: 1500, 
+        setupPago: 0, 
+        recorrencia: 750, 
+        recorrenciaPaga: 0, 
+        comissao2pct: 0, 
+        diaVencimento: 10,
+        probabilidade: 80,
+        historico: []
+      },
+      { id: 'cli-3', nome: 'Açaí com Resenha', ramo: 'Açaiteria', solucao: 'Site + Painel', contato: '@acaicomresenharj', fase: 'Em aguardo', status: 'aguardo', setup: 200, setupPago: 0, recorrencia: 50, recorrenciaPaga: 0, comissao2pct: 0, probabilidade: 10, historico: [] },
+      { id: 'cli-5', nome: 'Russo Cachorro Quente', ramo: 'Lanchonete', solucao: 'Site + Painel', contato: '@cacho_rroquentedorusso', fase: 'Em aguardo', status: 'aguardo', setup: 300, setupPago: 0, recorrencia: 150, recorrenciaPaga: 0, comissao2pct: 0, probabilidade: 60, historico: [] },
+      { id: 'cli-7', nome: 'SuperMercado Sernor', ramo: 'Supermercado', solucao: 'Automação + Painel', contato: '@mercadosernor', fase: 'Em aguardo', status: 'aguardo', setup: 1000, setupPago: 0, recorrencia: 500, recorrenciaPaga: 0, comissao2pct: 0, probabilidade: 50, historico: [] },
+      { id: 'cli-8', nome: 'Loja de Roupas 1', ramo: 'Moda / Vestuário', solucao: 'Combo', contato: 'Rafael anchieta', fase: 'Em aguardo', status: 'aguardo', setup: 1200, setupPago: 0, recorrencia: 100, recorrenciaPaga: 0, comissao2pct: 0, probabilidade: 75, historico: [] },
+      { id: 'cli-9', nome: 'Restaurante sem nome', ramo: 'Lanchonete', solucao: 'Site + Painel', contato: 'Nem PE', fase: 'Em aguardo', status: 'aguardo', setup: 400, setupPago: 0, recorrencia: 150, recorrenciaPaga: 0, comissao2pct: 0, probabilidade: 70, historico: [] },
+      { id: 'cli-10', nome: 'Supermercado 2 sem nome', ramo: 'Supermercado', solucao: 'Automação + Painel', contato: 'parente larissa', fase: 'Em aguardo', status: 'aguardo', setup: 1500, setupPago: 0, recorrencia: 750, recorrenciaPaga: 0, comissao2pct: 0, probabilidade: 50, historico: [] },
+      { id: 'cli-11', nome: 'Supermercado 3 sem nome', ramo: 'Supermercado', solucao: 'Automação + Painel', contato: 'parente larissa', fase: 'Em aguardo', status: 'aguardo', setup: 1500, setupPago: 0, recorrencia: 750, recorrenciaPaga: 0, comissao2pct: 0, probabilidade: 50, historico: [] },
+      { id: 'cli-12', nome: 'Loja de Roupas 2', ramo: 'Moda / Vestuário', solucao: 'Combo', contato: 'Roupa cosmos tiago', fase: 'Em aguardo', status: 'aguardo', setup: 1500, setupPago: 0, recorrencia: 750, recorrenciaPaga: 0, comissao2pct: 0, probabilidade: 20, historico: [] },
+      { id: 'cli-13', nome: 'Supermercado 4', ramo: 'SuperMercado', solucao: 'Automação + Painel', contato: 'Edimar / Tiago', fase: 'Declinado', status: 'declinado', setup: 0, setupPago: 0, recorrencia: 0, recorrenciaPaga: 0, comissao2pct: 0, probabilidade: 0, historico: [] }
+    ];
+
+    let clientes = [];
+    let filtroStatusAtual = 'todos';
+    let termoBuscaAtual = '';
+    let clienteAtivoDrawer = null;
+
+    // Notificação Toast
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const bg = type === 'success' ? 'bg-emerald-950 text-emerald-100 border-emerald-700' : 'bg-slate-900 text-white border-slate-700';
+      toast.className = 'toast-anim flex items-center gap-2.5 rounded-2xl border px-4 py-3 text-xs font-bold shadow-xl pointer-events-auto ' + bg;
+      toast.innerHTML = `
+        <span class="size-2 rounded-full ${type === 'success' ? 'bg-emerald-400' : 'bg-blue-400'}"></span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-10px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // Parser CSV Robusto
+    function parseCSV(text) {
+      const lines = [];
+      let currentLine = [];
+      let currentField = '';
+      let insideQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const nextChar = text[i + 1];
+
+        if (char === '"') {
+          if (insideQuotes && nextChar === '"') {
+            currentField += '"';
+            i++;
+          } else {
+            insideQuotes = !insideQuotes;
+          }
+        } else if (char === ',' && !insideQuotes) {
+          currentLine.push(currentField.trim());
+          currentField = '';
+        } else if ((char === '\r' || char === '\n') && !insideQuotes) {
+          if (char === '\r' && nextChar === '\n') i++;
+          currentLine.push(currentField.trim());
+          if (currentLine.some(f => f.length > 0)) lines.push(currentLine);
+          currentLine = [];
+          currentField = '';
+        } else {
+          currentField += char;
+        }
+      }
+      if (currentField.length > 0 || currentLine.length > 0) {
+        currentLine.push(currentField.trim());
+        if (currentLine.some(f => f.length > 0)) lines.push(currentLine);
+      }
+      return lines;
+    }
+
+    function parseNumber(val) {
+      if (!val) return 0;
+      const clean = val.replace(/R\$/g, '').replace(/\+.*$/, '').replace(/%/g, '').trim();
+      if (!clean) return 0;
+      let numStr = clean.replace(/\./g, '').replace(/,/g, '.');
+      const num = parseFloat(numStr);
+      return isNaN(num) ? 0 : num;
+    }
+
+    function mapearStatus(fase, empresa) {
+      const e = (empresa || '').toLowerCase();
+      if (e.includes('supermercado 4')) return 'declinado';
+      const f = (fase || '').toLowerCase();
+      if (f.includes('produ') || f.includes('fechad')) return 'producao';
+      if (f.includes('declin') || f.includes('rejeit') || f.includes('recus') || f.includes('cancel')) return 'declinado';
+      return 'aguardo';
+    }
+
+    function mapearSolucao(prodRaw) {
+      const p = (prodRaw || '').toLowerCase();
+      if (p.includes('site') && p.includes('automação')) return 'Combo';
+      if (p.includes('automação')) return 'Automação + Painel';
+      return 'Site + Painel';
+    }
+
+    // Carregar dados (LocalStorage ou Google Sheets com auto-refresh Stale-While-Revalidate)
+    async function carregarDadosIniciais() {
+      const salvo = localStorage.getItem(STORAGE_KEY);
+      if (salvo) {
+        try {
+          clientes = JSON.parse(salvo);
+          renderizarTudo();
+          const lastSync = localStorage.getItem(STORAGE_LAST_SYNC);
+          if (lastSync) {
+            document.getElementById('status-sync-text').innerText = 'Sincronizado: ' + new Date(lastSync).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+          }
+        } catch (e) {
+          console.warn('Erro ao ler localStorage, buscando do Sheets...', e);
+        }
+      }
+
+      // Sincronização automática em segundo plano a cada abertura (sem travar a tela)
+      sincronizarGoogleSheets(false);
+    }
+
+    // Sincronizar Google Sheets ao vivo
+    async function sincronizarGoogleSheets(isInitial = false) {
+      const icon = document.getElementById('icon-sync');
+      if (icon) icon.classList.add('animate-spin');
+
+      try {
+        const response = await fetch(GOOGLE_SHEETS_CSV_URL + '&_t=' + Date.now());
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+
+        const csvText = await response.text();
+        const rows = parseCSV(csvText);
+        const ignoreEmpresas = ['INSTALAÇÃO', 'RECORRÊNCIA MENSAL', 'LOJAS COM COMISSÃO'];
+
+        const parsedClients = [];
+        for (let i = 1; i < rows.length; i++) {
+          const row = rows[i];
+          const empresa = (row[0] || '').replace(/""/g, '').trim();
+          if (!empresa || ignoreEmpresas.some(ign => empresa.toUpperCase().includes(ign))) continue;
+
+          const ramo = (row[1] || '').replace(/""/g, '').trim();
+          const solucao = mapearSolucao(row[2]);
+          const contato = row[3] || '';
+          const fase = row[4] || 'Em aguardo';
+          const status = mapearStatus(fase, empresa);
+          const setup = parseNumber(row[5]);
+          const recorrencia = parseNumber(row[6]);
+          const prob = parseInt(row[11]) || (status === 'producao' ? 100 : (status === 'aguardo' ? 50 : 0));
+
+          // Valores 100% verídicos vindos diretamente do Google Sheets
+          // Coluna 14 (index 13): "Instalação recebida"
+          // Coluna 15 (index 14): "Recorrência recebida"
+          // Coluna 16 (index 15): "Comissão 2% ativa?"
+          const existente = clientes.find(c => c.nome.toLowerCase() === empresa.toLowerCase());
+          const historico = existente && existente.historico ? existente.historico : [];
+
+          // Se veio preenchido no Google Sheets, usa a fonte da verdade oficial; senão preserva edição local
+          let setupPago = (row[13] !== undefined && String(row[13]).trim() !== '') 
+            ? parseNumber(row[13]) 
+            : (existente ? (existente.setupPago || 0) : 0);
+
+          let recorrenciaPaga = (row[14] !== undefined && String(row[14]).trim() !== '') 
+            ? parseNumber(row[14]) 
+            : (existente ? (existente.recorrenciaPaga || 0) : 0);
+
+          let comissao2pct = (row[15] !== undefined && String(row[15]).trim() !== '') 
+            ? ((String(row[15]).toUpperCase() === 'TRUE' || parseNumber(row[15]) > 0) ? parseNumber(row[15]) : 0) 
+            : (existente ? (existente.comissao2pct || 0) : 0);
+
+          parsedClients.push({
+            id: existente ? existente.id : ('cli-' + i),
+            nome: empresa,
+            ramo: ramo || (existente ? existente.ramo : 'Gastronomia / Comércio'),
+            solucao,
+            contato: contato || (existente ? existente.contato : ''),
+            fase,
+            status,
+            setup,
+            setupPago,
+            vencimentoSetup: '15/11/2026',
+            recorrencia,
+            recorrenciaPaga,
+            comissao2pct,
+            diaVencimento: 10,
+            proximoVencimento: '10/11/2026',
+            probabilidade: prob,
+            historico
+          });
+        }
+
+        if (parsedClients.length > 0) {
+          clientes = parsedClients;
+        } else if (!clientes || clientes.length === 0) {
+          clientes = [...CLIENTES_INICIAIS];
+        }
+
+        salvarLocalStorage();
+        localStorage.setItem(STORAGE_LAST_SYNC, new Date().toISOString());
+        const statusTextEl = document.getElementById('status-sync-text');
+        if (statusTextEl) {
+          statusTextEl.innerText = 'Sheets Sincronizado às ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        }
+        
+        renderizarTudo();
+        if (!isInitial) {
+          showToast(clientes.length + ' clientes sincronizados da planilha Automatech!', 'success');
+        }
+      } catch (err) {
+        console.warn('Falha na sincronização online do Sheets, usando dados locais:', err);
+        if (!clientes || clientes.length === 0) {
+          clientes = [...CLIENTES_INICIAIS];
+          salvarLocalStorage();
+          renderizarTudo();
+        }
+        showToast('Dados carregados da matriz local (' + clientes.length + ' clientes)', 'info');
+      } finally {
+        if (icon) icon.classList.remove('animate-spin');
+      }
+    }
+
+    function salvarLocalStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(clientes));
+      window.dispatchEvent(new CustomEvent('teixo_data_updated', { detail: clientes }));
+    }
+
+    // Ouvinte entre abas: se outra página do Hub ou Planilha mudar os dados, atualiza na hora
+    window.addEventListener('storage', (e) => {
+      if (e.key === STORAGE_KEY && e.newValue) {
+        try {
+          clientes = JSON.parse(e.newValue);
+          renderizarTudo();
+        } catch(err){}
+      }
+    });
+
+    // RENDERIZAR TUDO: RECALCULA O DASHBOARD E ATUALIZA A TABELA
+    function renderizarTudo() {
+      const total = clientes.length;
+      const producao = clientes.filter(c => c.status === 'producao');
+      const aguardo = clientes.filter(c => c.status === 'aguardo');
+      const declinado = clientes.filter(c => c.status === 'declinado');
+
+      // 1. CARDS DE INDICADORES CHAVE
+      document.getElementById('card-metric-clientes').innerText = `${producao.length}/${total}`;
+      const pctEl = document.getElementById('card-metric-clientes-pct');
+      if (pctEl) pctEl.innerText = '';
+
+      const breakdownEl = document.getElementById('card-metric-clientes-breakdown');
+      if (breakdownEl) {
+        breakdownEl.innerHTML = `
+          <span class="inline-flex items-center gap-1 rounded-md bg-emerald-100/90 text-emerald-900 px-2 py-0.5 border border-emerald-200" title="Em Produção">
+            <span class="size-1.5 rounded-full bg-emerald-600"></span> ${producao.length} Em Produção
+          </span>
+          <span class="inline-flex items-center gap-1 rounded-md bg-amber-100/90 text-amber-900 px-2 py-0.5 border border-amber-200" title="Em aguardo">
+            <span class="size-1.5 rounded-full bg-amber-600"></span> ${aguardo.length} Em aguardo
+          </span>
+          <span class="inline-flex items-center gap-1 rounded-md bg-rose-100/90 text-rose-900 px-2 py-0.5 border border-rose-200" title="Declinado">
+            <span class="size-1.5 rounded-full bg-rose-600"></span> ${declinado.length} Declinado
+          </span>
+        `;
+      }
+
+      // Totais Financeiros Reais
+      let setupFechadoTotal = 0;
+      let setupPagoTotal = 0;
+      let mrrFechadoTotal = 0;
+      let mrrPagoTotal = 0;
+      let comissaoTotalApurada = 0;
+
+      let setupGlobalTotal = 0;
+      let mrrGlobalTotal = 0;
+
+      clientes.forEach(c => {
+        setupGlobalTotal += (c.setup || 0);
+        mrrGlobalTotal += (c.recorrencia || 0);
+
+        // Qualquer valor pago registrado para qualquer cliente computa no caixa real
+        setupPagoTotal += (c.setupPago || 0);
+        mrrPagoTotal += (c.recorrenciaPaga || 0);
+        comissaoTotalApurada += (c.comissao2pct || 0);
+
+        if (c.status === 'producao') {
+          setupFechadoTotal += (c.setup || 0);
+          mrrFechadoTotal += (c.recorrencia || 0);
+        }
+      });
+
+      const dinheiroJaRecebido = setupPagoTotal + mrrPagoTotal + comissaoTotalApurada;
+      const potencialTotal = setupGlobalTotal + mrrGlobalTotal;
+
+      document.getElementById('card-metric-recebido').innerText = 'R$ ' + formatarMoeda(dinheiroJaRecebido);
+      document.getElementById('card-metric-recebido-sub').innerText = `R$ ${formatarMoeda(setupPagoTotal)} de setup recebido`;
+      document.getElementById('card-metric-recebido-foot').innerText = `R$ ${formatarMoeda(setupGlobalTotal - setupPagoTotal)} de setup a receber no pipeline`;
+
+      document.getElementById('card-metric-mrr').innerHTML = `R$ ${formatarMoeda(mrrPagoTotal)} <span class="text-sm font-bold text-purple-700">/mês</span>`;
+      document.getElementById('card-metric-mrr-sub').innerText = `R$ ${formatarMoeda(mrrPagoTotal)} recebido no ciclo • Cobrança inicia pós-implantação`;
+
+      document.getElementById('card-metric-potencial').innerText = 'R$ ' + formatarMoeda(potencialTotal);
+      document.getElementById('card-metric-potencial-sub').innerHTML = `
+        <div>R$ ${formatarMoeda(setupGlobalTotal)} Setup +</div>
+        <div>R$ ${formatarMoeda(mrrGlobalTotal)}/mês +</div>
+        <div>${total} empresas com 2%</div>
+      `;
+
+      // 2. MIX DE PRODUTOS
+      const siteClients = clientes.filter(c => c.solucao === 'Site + Painel');
+      const autoClients = clientes.filter(c => c.solucao === 'Automação + Painel');
+      const comboClients = clientes.filter(c => c.solucao === 'Combo');
+
+      const countSite = siteClients.length;
+      const countAuto = autoClients.length;
+      const countCombo = comboClients.length;
+
+      const pctSite = total > 0 ? (countSite / total) * 100 : 0;
+      const pctAuto = total > 0 ? (countAuto / total) * 100 : 0;
+      const pctCombo = total > 0 ? (countCombo / total) * 100 : 0;
+
+      const avgSetupSite = countSite > 0 ? siteClients.reduce((acc, c) => acc + c.setup, 0) / countSite : 0;
+      const avgMrrSite = countSite > 0 ? siteClients.reduce((acc, c) => acc + c.recorrencia, 0) / countSite : 0;
+
+      const avgSetupAuto = countAuto > 0 ? autoClients.reduce((acc, c) => acc + c.setup, 0) / countAuto : 0;
+      const avgMrrAuto = countAuto > 0 ? autoClients.reduce((acc, c) => acc + c.recorrencia, 0) / countAuto : 0;
+
+      const avgSetupCombo = countCombo > 0 ? comboClients.reduce((acc, c) => acc + c.setup, 0) / countCombo : 0;
+      const avgMrrCombo = countCombo > 0 ? comboClients.reduce((acc, c) => acc + c.recorrencia, 0) / countCombo : 0;
+
+      const totalComSite = countSite + countCombo;
+      const pctComSite = total > 0 ? (totalComSite / total) * 100 : 0;
+
+      const totalComAuto = countAuto + countCombo;
+      const pctComAuto = total > 0 ? (totalComAuto / total) * 100 : 0;
+
+      const tbodyMix = document.getElementById('tbody-mix-produtos');
+      tbodyMix.innerHTML = `
+        <tr class="hover:bg-slate-50/70 transition">
+          <td class="px-4 py-3.5 font-bold flex items-center gap-2">
+            <span class="rounded-md bg-blue-100 text-blue-800 px-2 py-0.5 text-[10px] font-black">Site + Painel</span>
+          </td>
+          <td class="px-3 py-3.5 text-center font-black text-slate-900 font-sans">${countSite}</td>
+          <td class="px-3 py-3.5 text-center font-bold text-slate-600 font-sans">${pctSite.toFixed(1).replace('.', ',')}%</td>
+          <td class="px-4 py-3.5 text-right font-bold text-slate-800 font-sans">R$ ${formatarMoeda(avgSetupSite)}</td>
+          <td class="px-4 py-3.5 text-right font-bold text-slate-800 font-sans">R$ ${formatarMoeda(avgMrrSite)} + 2%</td>
+        </tr>
+        <tr class="hover:bg-slate-50/70 transition">
+          <td class="px-4 py-3.5 font-bold flex items-center gap-2">
+            <span class="rounded-md bg-emerald-100 text-emerald-800 px-2 py-0.5 text-[10px] font-black">Automação + Painel</span>
+          </td>
+          <td class="px-3 py-3.5 text-center font-black text-slate-900 font-sans">${countAuto}</td>
+          <td class="px-3 py-3.5 text-center font-bold text-slate-600 font-sans">${pctAuto.toFixed(1).replace('.', ',')}%</td>
+          <td class="px-4 py-3.5 text-right font-bold text-slate-800 font-sans">R$ ${formatarMoeda(avgSetupAuto)}</td>
+          <td class="px-4 py-3.5 text-right font-bold text-slate-800 font-sans">R$ ${formatarMoeda(avgMrrAuto)} + 2%</td>
+        </tr>
+        <tr class="hover:bg-slate-50/70 transition">
+          <td class="px-4 py-3.5 font-bold flex items-center gap-2">
+            <span class="rounded-md bg-amber-100 text-amber-800 px-2 py-0.5 text-[10px] font-black">Combo</span>
+            <span>Site + Automação + Painel</span>
+          </td>
+          <td class="px-3 py-3.5 text-center font-black text-slate-900 font-sans">${countCombo}</td>
+          <td class="px-3 py-3.5 text-center font-bold text-slate-600 font-sans">${pctCombo.toFixed(1).replace('.', ',')}%</td>
+          <td class="px-4 py-3.5 text-right font-bold text-slate-800 font-sans">R$ ${formatarMoeda(avgSetupCombo)}</td>
+          <td class="px-4 py-3.5 text-right font-bold text-slate-800 font-sans">R$ ${formatarMoeda(avgMrrCombo)} + 2%</td>
+        </tr>
+        <tr class="bg-emerald-50/70 font-black text-slate-950 border-t-2 border-emerald-300">
+          <td class="px-4 py-3.5 uppercase text-xs text-emerald-950 font-black">Total</td>
+          <td class="px-3 py-3.5 text-center text-emerald-900 text-sm font-sans">${total}</td>
+          <td class="px-3 py-3.5 text-center text-emerald-900 font-bold font-sans">100,0%</td>
+          <td class="px-4 py-3.5 text-right text-emerald-900 text-sm font-sans">R$ ${formatarMoeda(setupGlobalTotal)}</td>
+          <td class="px-4 py-3.5 text-right text-emerald-900 text-sm font-sans">R$ ${formatarMoeda(mrrGlobalTotal)} <span class="text-xs font-semibold">/mês</span></td>
+        </tr>
+      `;
+
+      // 3. CONTROLE FINANCEIRO & BARRAS COMPARATIVAS
+      const pctFechadoSetup = setupGlobalTotal > 0 ? (setupPagoTotal / setupGlobalTotal) * 100 : 0;
+      const pctFechadoMrr = mrrGlobalTotal > 0 ? (mrrPagoTotal / mrrGlobalTotal) * 100 : 0;
+      const pctFechadoMes1 = potencialTotal > 0 ? (dinheiroJaRecebido / potencialTotal) * 100 : 0;
+
+      const tbodyFin = document.getElementById('tbody-financeiro');
+      tbodyFin.innerHTML = `
+        <tr class="hover:bg-slate-50/70 transition">
+          <td class="px-4 py-3.5 font-bold text-slate-900">Setup / Taxa de Entrada</td>
+          <td class="px-3 py-3.5 text-right font-medium text-emerald-700 font-bold">R$ ${formatarMoeda(setupPagoTotal)}</td>
+          <td class="px-3 py-3.5 text-right font-black text-slate-900">R$ ${formatarMoeda(setupGlobalTotal)}</td>
+          <td class="px-3 py-3.5 text-right font-medium text-slate-600">R$ ${formatarMoeda(setupGlobalTotal - setupPagoTotal)}</td>
+          <td class="px-3 py-3.5 text-center">
+            <span class="rounded-md bg-slate-100 text-slate-700 px-2 py-0.5 text-[10px] font-bold">${pctFechadoSetup.toFixed(1).replace('.', ',')}%</span>
+          </td>
+        </tr>
+        <tr class="hover:bg-slate-50/70 transition">
+          <td class="px-4 py-3.5 font-bold text-slate-900">Recorrência Mensal Fixa</td>
+          <td class="px-3 py-3.5 text-right font-bold text-emerald-600">R$ ${formatarMoeda(mrrPagoTotal)} <span class="text-[10px]">/mês</span></td>
+          <td class="px-3 py-3.5 text-right font-black text-blue-600">R$ ${formatarMoeda(mrrGlobalTotal)} <span class="text-[10px]">/mês</span></td>
+          <td class="px-3 py-3.5 text-right font-medium text-slate-600">R$ ${formatarMoeda(mrrGlobalTotal - mrrPagoTotal)}</td>
+          <td class="px-3 py-3.5 text-center">
+            <span class="rounded-md bg-emerald-100 text-emerald-800 px-2 py-0.5 text-[10px] font-bold">${pctFechadoMrr.toFixed(1).replace('.', ',')}%</span>
+          </td>
+        </tr>
+        <tr class="bg-amber-50/80 font-black border-y border-amber-200">
+          <td class="px-4 py-3.5 uppercase text-[11px] text-amber-950">Total em Caixa (Mês Atual c/ 2% de R$ ${formatarMoeda(comissaoTotalApurada)})</td>
+          <td class="px-3 py-3.5 text-right text-amber-900">R$ ${formatarMoeda(dinheiroJaRecebido)}</td>
+          <td class="px-3 py-3.5 text-right text-amber-950 text-sm">R$ ${formatarMoeda(potencialTotal)}</td>
+          <td class="px-3 py-3.5 text-right text-amber-900">R$ ${formatarMoeda(potencialTotal - dinheiroJaRecebido)}</td>
+          <td class="px-3 py-3.5 text-center">
+            <span class="rounded-md bg-amber-200 text-amber-900 px-2 py-0.5 text-[10px] font-black">${pctFechadoMes1.toFixed(1).replace('.', ',')}%</span>
+          </td>
+        </tr>
+      `;
+
+      // Barras de Progresso
+      document.getElementById('label-bar-setup').innerText = `R$ ${formatarMoeda(setupPagoTotal)} de R$ ${formatarMoeda(setupGlobalTotal)}`;
+      const wSetup = Math.max(Math.min(pctFechadoSetup, 100), 1.5);
+      document.getElementById('fill-bar-setup').style.width = wSetup + '%';
+      document.getElementById('text-bar-setup').innerText = pctFechadoSetup.toFixed(1).replace('.', ',') + '%';
+
+      document.getElementById('label-bar-recorrencia').innerText = `R$ ${formatarMoeda(mrrPagoTotal)} de R$ ${formatarMoeda(mrrGlobalTotal)}/mês`;
+      const wMrr = Math.max(Math.min(pctFechadoMrr, 100), 2);
+      document.getElementById('fill-bar-recorrencia').style.width = wMrr + '%';
+      document.getElementById('text-bar-recorrencia').innerText = pctFechadoMrr.toFixed(1).replace('.', ',') + '%';
+
+      document.getElementById('label-bar-mes1').innerText = `R$ ${formatarMoeda(dinheiroJaRecebido)} de R$ ${formatarMoeda(potencialTotal)}`;
+      const wMes1 = Math.max(Math.min(pctFechadoMes1, 100), 2);
+      document.getElementById('fill-bar-mes1').style.width = wMes1 + '%';
+      document.getElementById('text-bar-mes1').innerText = pctFechadoMes1.toFixed(1).replace('.', ',') + '%';
+
+      // 5. BADGES E CONTADORES
+      const badgeTotal = document.getElementById('badge-total-clientes');
+      if (badgeTotal) badgeTotal.innerText = total;
+      const cTodos = document.getElementById('count-todos');
+      if (cTodos) cTodos.innerText = total;
+      const cProd = document.getElementById('count-producao');
+      if (cProd) cProd.innerText = producao.length;
+      const cAguardo = document.getElementById('count-aguardo');
+      if (cAguardo) cAguardo.innerText = aguardo.length;
+      const cDecl = document.getElementById('count-declinado');
+      if (cDecl) cDecl.innerText = declinado.length;
+
+      // 6. ATUALIZAR CARDS DA ABA PRODUTOS & MODELOS (TICKET MÉDIO E QUANTIDADE DE CLIENTES)
+      const prodSiteCount = siteClients.filter(c => c.status === 'producao').length;
+      const prodAutoCount = autoClients.filter(c => c.status === 'producao').length;
+      const prodComboCount = comboClients.filter(c => c.status === 'producao').length;
+
+      const elSiteCount = document.getElementById('prod-card-count-site');
+      if (elSiteCount) elSiteCount.innerText = `${prodSiteCount}/${countSite} clientes`;
+      const elSiteSetup = document.getElementById('prod-card-setup-site');
+      if (elSiteSetup) elSiteSetup.innerText = `R$ ${formatarMoeda(avgSetupSite)}`;
+      const elSiteMrr = document.getElementById('prod-card-mrr-site');
+      if (elSiteMrr) elSiteMrr.innerText = `R$ ${formatarMoeda(avgMrrSite)} + 2%`;
+
+      const elAutoCount = document.getElementById('prod-card-count-auto');
+      if (elAutoCount) elAutoCount.innerText = `${prodAutoCount}/${countAuto} clientes`;
+      const elAutoSetup = document.getElementById('prod-card-setup-auto');
+      if (elAutoSetup) elAutoSetup.innerText = `R$ ${formatarMoeda(avgSetupAuto)}`;
+      const elAutoMrr = document.getElementById('prod-card-mrr-auto');
+      if (elAutoMrr) elAutoMrr.innerText = `R$ ${formatarMoeda(avgMrrAuto)} + 2%`;
+
+      const elComboCount = document.getElementById('prod-card-count-combo');
+      if (elComboCount) elComboCount.innerText = `${prodComboCount}/${countCombo} clientes`;
+      const elComboSetup = document.getElementById('prod-card-setup-combo');
+      if (elComboSetup) elComboSetup.innerText = `R$ ${formatarMoeda(avgSetupCombo)}`;
+      const elComboMrr = document.getElementById('prod-card-mrr-combo');
+      if (elComboMrr) elComboMrr.innerText = `R$ ${formatarMoeda(avgMrrCombo)} + 2%`;
+
+      // 6. TABELA DE CLIENTES (TAB 2)
+      renderizarTabelaClientes();
+
+      lucide.createIcons();
+    }
+
+    // Renderizar Linhas da Tabela de Clientes com as Cores Suaves, Padrão PAGO/TOTAL e a LINHA TOP 00
+    function renderizarTabelaClientes() {
+      const tbody = document.getElementById('tbody-clientes');
+      tbody.innerHTML = '';
+
+      const filtrados = clientes.filter(c => {
+        const matchStatus = filtroStatusAtual === 'todos' || c.status === filtroStatusAtual;
+        const matchTexto = termoBuscaAtual === '' || 
+          (c.nome && c.nome.toLowerCase().includes(termoBuscaAtual)) ||
+          (c.ramo && c.ramo.toLowerCase().includes(termoBuscaAtual)) ||
+          (c.contato && c.contato.toLowerCase().includes(termoBuscaAtual));
+        return matchStatus && matchTexto;
+      });
+
+      if (filtrados.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center py-8 text-slate-400 font-bold">
+              Nenhum cliente encontrado com os filtros atuais.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      // --- LINHA TOP 00: TOTAIS E CONSOLIDAÇÃO DE TODOS OS NEGÓCIOS ---
+      const totalClientes = filtrados.length;
+
+      // Segmentos distintos
+      const segmentosSet = new Set();
+      filtrados.forEach(c => {
+        if (c.ramo && c.ramo.trim()) segmentosSet.add(c.ramo.trim());
+      });
+      const numSegmentos = segmentosSet.size;
+
+      // Soluções: x combo, y site, z automação
+      const sumCombo = filtrados.filter(c => c.solucao === 'Combo').length;
+      const sumSite = filtrados.filter(c => c.solucao === 'Site + Painel').length;
+      const sumAuto = filtrados.filter(c => c.solucao === 'Automação + Painel').length;
+
+      // Setup: pago / total
+      const sumSetupTotal = filtrados.reduce((acc, c) => acc + (c.setup || 0), 0);
+      const sumSetupPago = filtrados.reduce((acc, c) => acc + (c.setupPago || 0), 0);
+
+      // Recorrência: pago / total + comissão 2% em cinza
+      const sumRecTotal = filtrados.reduce((acc, c) => acc + (c.recorrencia || 0), 0);
+      const sumRecPaga = filtrados.reduce((acc, c) => acc + (c.recorrenciaPaga || 0), 0);
+      const sumComissao = filtrados.reduce((acc, c) => acc + (c.comissao2pct || 0), 0);
+
+      const sumProducao = filtrados.filter(c => c.status === 'producao').length;
+      const sumAbertos = totalClientes - sumProducao;
+
+      // Setup Pill para Linha 00
+      let pillSetup00 = '';
+      if (sumSetupTotal === 0) {
+        pillSetup00 = '<span class="inline-block px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-200/80 text-slate-700">R$ 0</span>';
+      } else if (sumSetupPago >= sumSetupTotal) {
+        pillSetup00 = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-emerald-100/90 text-emerald-800 border border-emerald-300 shadow-2xs"><span class="size-1.5 rounded-full bg-emerald-600"></span>${formatarMoeda(sumSetupPago)} / ${formatarMoeda(sumSetupTotal)}</span>`;
+      } else if (sumSetupPago > 0) {
+        pillSetup00 = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-amber-100/90 text-amber-900 border border-amber-300 shadow-2xs"><span class="size-1.5 rounded-full bg-amber-600"></span>${formatarMoeda(sumSetupPago)} / ${formatarMoeda(sumSetupTotal)}</span>`;
+      } else {
+        pillSetup00 = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-rose-100/90 text-rose-800 border border-rose-300 shadow-2xs"><span class="size-1.5 rounded-full bg-rose-500"></span>0 / ${formatarMoeda(sumSetupTotal)}</span>`;
+      }
+
+      // Recorrência Pill para Linha 00
+      let pillRec00 = '';
+      if (sumRecTotal === 0) {
+        pillRec00 = '<span class="inline-block px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-200/80 text-slate-700">R$ 0</span>';
+      } else if (sumRecPaga >= sumRecTotal) {
+        pillRec00 = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-emerald-100/90 text-emerald-800 border border-emerald-300 shadow-2xs"><span class="size-1.5 rounded-full bg-emerald-600"></span>${formatarMoeda(sumRecPaga)} / ${formatarMoeda(sumRecTotal)}</span>`;
+      } else if (sumRecPaga > 0) {
+        pillRec00 = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-amber-100/90 text-amber-900 border border-amber-300 shadow-2xs"><span class="size-1.5 rounded-full bg-amber-600"></span>${formatarMoeda(sumRecPaga)} / ${formatarMoeda(sumRecTotal)}</span>`;
+      } else {
+        pillRec00 = `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-rose-100/90 text-rose-800 border border-rose-300 shadow-2xs"><span class="size-1.5 rounded-full bg-rose-500"></span>0 / ${formatarMoeda(sumRecTotal)}</span>`;
+      }
+
+      const tr00 = document.createElement('tr');
+      tr00.className = 'bg-[#f1f5f9] border-b-2 border-slate-300/90 font-bold hover:bg-[#e2e8f0]/80 transition cursor-default shadow-xs';
+      tr00.innerHTML = `
+        <td class="px-4 py-3.5">
+          <span class="text-emerald-950 font-black text-xs bg-emerald-200/90 px-2 py-0.5 rounded-md border border-emerald-400/80 shadow-2xs">00</span>
+        </td>
+        <td class="px-4 py-3.5 flex items-center gap-2.5">
+          <div class="size-8 rounded-xl bg-slate-950 text-white grid place-items-center text-xs font-black shadow-xs shrink-0">
+            ∑
+          </div>
+          <div>
+            <div class="text-xs font-black text-slate-950 flex items-center gap-1.5">
+              <span>Total da Carteira</span>
+              <span class="rounded-md bg-emerald-100 text-emerald-900 px-1.5 py-0.2 text-[9px] font-black uppercase">Consolidado</span>
+            </div>
+            <div class="text-[10px] text-slate-500 font-bold">${totalClientes} negócios somados</div>
+          </div>
+        </td>
+        <td class="px-3 py-3.5">
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-extrabold bg-white text-slate-800 border border-slate-200 shadow-2xs">
+            <i data-lucide="layers" class="size-3 text-slate-500"></i>
+            <span>${numSegmentos} Segmentos</span>
+          </span>
+        </td>
+        <td class="px-3 py-3.5">
+          <div class="flex items-center gap-1 text-[10px] font-extrabold">
+            <span class="rounded-md bg-amber-100 text-amber-900 px-1.5 py-0.5">${sumCombo} Combo</span>
+            <span class="rounded-md bg-blue-100 text-blue-900 px-1.5 py-0.5">${sumSite} Site</span>
+            <span class="rounded-md bg-emerald-100 text-emerald-900 px-1.5 py-0.5">${sumAuto} Auto</span>
+          </div>
+        </td>
+        <td class="px-3 py-3.5 text-center">
+          ${pillSetup00}
+        </td>
+        <td class="px-3 py-3.5 text-center">
+          <div class="flex items-center justify-center">
+            ${pillRec00}
+            <span class="ml-1.5 text-[11px] text-slate-500 font-bold" title="Total comissões 2% apuradas: R$ ${formatarMoeda(sumComissao)}">
+              + ${formatarMoeda(sumComissao)}
+            </span>
+          </div>
+        </td>
+        <td class="px-3 py-3.5 text-center">
+          <span class="inline-flex items-center justify-center rounded-full bg-white border border-slate-300 px-3 py-1 text-xs font-black text-slate-900 shadow-xs font-sans" title="${sumProducao} em produção de ${totalClientes} clientes">
+            ${sumProducao}/${totalClientes}
+          </span>
+        </td>
+        <td class="px-4 py-3.5 text-center">
+          <span class="inline-flex items-center gap-1 text-[11px] font-extrabold text-slate-500">
+            <i data-lucide="check-check" class="size-3.5 text-emerald-600"></i>
+            <span>Totais</span>
+          </span>
+        </td>
+      `;
+      tbody.appendChild(tr00);
+
+      // --- LINHAS INDIVIDUAIS DOS CLIENTES (A PARTIR DO # 01) ---
+      filtrados.forEach((c, idx) => {
+        const num = String(idx + 1).padStart(2, '0');
+        const initials = c.nome.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
+
+        const corBadgeSolucao = c.solucao === 'Combo' ? 'bg-amber-100 text-amber-800' : (c.solucao === 'Automação + Painel' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800');
+
+        // Status Dropdown 1-clique Interativo
+        const statusHtml = `
+          <select 
+            onclick="event.stopPropagation()" 
+            onchange="alterarStatusDireto('${c.id}', this.value)" 
+            title="Alterar status deste cliente"
+            class="text-[11px] font-extrabold rounded-full px-2.5 py-1 border transition shadow-2xs cursor-pointer focus:outline-none ${
+              c.status === 'producao' 
+                ? 'bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-emerald-100' 
+                : (c.status === 'aguardo' 
+                    ? 'bg-amber-50 text-amber-900 border-amber-300 hover:bg-amber-100' 
+                    : 'bg-rose-50 text-rose-800 border-rose-300 hover:bg-rose-100')
+            }"
+          >
+            <option value="producao" ${c.status === 'producao' ? 'selected' : ''}>🟢 Em Produção</option>
+            <option value="aguardo" ${c.status === 'aguardo' ? 'selected' : ''}>🟡 Em aguardo</option>
+            <option value="declinado" ${c.status === 'declinado' ? 'selected' : ''}>🔴 Declinado</option>
+          </select>
+        `;
+
+        // Setup Pill com clique para Edição Rápida
+        const setupTotal = c.setup || 0;
+        const setupPago = c.setupPago || 0;
+        let setupHtml = '';
+
+        if (setupTotal === 0) {
+          setupHtml = `
+            <button type="button" onclick="event.stopPropagation(); abrirModalEdicaoRapida('${c.id}', 'setup')" class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-100 text-slate-500 border border-slate-200 hover:bg-slate-200 hover:text-slate-800 transition" title="Clique para editar Setup">
+              R$ 0 (Isento) ✎
+            </button>
+          `;
+        } else if (setupPago >= setupTotal) {
+          setupHtml = `
+            <button type="button" onclick="event.stopPropagation(); abrirModalEdicaoRapida('${c.id}', 'setup')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-emerald-50/90 text-emerald-700 border border-emerald-200/90 hover:bg-emerald-100 hover:border-emerald-300 transition shadow-2xs font-sans" title="Setup quitado: R$ ${setupPago} de R$ ${setupTotal}. Clique para alterar.">
+              <span class="size-1.5 rounded-full bg-emerald-500"></span>
+              ${setupPago}/${setupTotal} ✎
+            </button>
+          `;
+        } else if (setupPago > 0 && setupPago < setupTotal) {
+          setupHtml = `
+            <button type="button" onclick="event.stopPropagation(); abrirModalEdicaoRapida('${c.id}', 'setup')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-amber-50/90 text-amber-800 border border-amber-200/90 hover:bg-amber-100 hover:border-amber-300 transition shadow-2xs font-sans" title="Parcial: R$ ${setupPago} pago de R$ ${setupTotal}. Clique para alterar.">
+              <span class="size-1.5 rounded-full bg-amber-500"></span>
+              ${setupPago}/${setupTotal} ✎
+            </button>
+          `;
+        } else {
+          setupHtml = `
+            <button type="button" onclick="event.stopPropagation(); abrirModalEdicaoRapida('${c.id}', 'setup')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-rose-50/90 text-rose-700 border border-rose-200/90 hover:bg-rose-100 hover:border-rose-300 transition shadow-2xs font-sans" title="Setup em aberto: R$ 0 pago de R$ ${setupTotal}. Clique para registrar pagamento.">
+              <span class="size-1.5 rounded-full bg-rose-400"></span>
+              0/${setupTotal} ✎
+            </button>
+          `;
+        }
+
+        // Recorrência Pill com clique para Edição Rápida
+        const recTotal = c.recorrencia || 0;
+        const recPaga = c.recorrenciaPaga || 0;
+        const comissao2 = c.comissao2pct || 0;
+        let recorrenciaHtml = '';
+
+        if (recTotal === 0) {
+          recorrenciaHtml = `
+            <button type="button" onclick="event.stopPropagation(); abrirModalEdicaoRapida('${c.id}', 'recorrencia')" class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-100 text-slate-500 border border-slate-200 hover:bg-slate-200 transition" title="Clique para editar Mensalidade">
+              R$ 0 ✎
+            </button>
+          `;
+        } else {
+          let recPill = '';
+          if (recPaga >= recTotal) {
+            recPill = `
+              <button type="button" onclick="event.stopPropagation(); abrirModalEdicaoRapida('${c.id}', 'recorrencia')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-emerald-50/90 text-emerald-700 border border-emerald-200/90 hover:bg-emerald-100 hover:border-emerald-300 transition shadow-2xs font-sans" title="Mensalidade paga: R$ ${recPaga} de R$ ${recTotal}. Clique para alterar.">
+                <span class="size-1.5 rounded-full bg-emerald-500"></span>
+                ${recPaga}/${recTotal} ✎
+              </button>
+            `;
+          } else if (recPaga > 0 && recPaga < recTotal) {
+            recPill = `
+              <button type="button" onclick="event.stopPropagation(); abrirModalEdicaoRapida('${c.id}', 'recorrencia')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-amber-50/90 text-amber-800 border border-amber-200/90 hover:bg-amber-100 hover:border-amber-300 transition shadow-2xs font-sans" title="Parcial: R$ ${recPaga} de R$ ${recTotal}. Clique para alterar.">
+                <span class="size-1.5 rounded-full bg-amber-500"></span>
+                ${recPaga}/${recTotal} ✎
+              </button>
+            `;
+          } else {
+            recPill = `
+              <button type="button" onclick="event.stopPropagation(); abrirModalEdicaoRapida('${c.id}', 'recorrencia')" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-black bg-rose-50/90 text-rose-700 border border-rose-200/90 hover:bg-rose-100 hover:border-rose-300 transition shadow-2xs font-sans" title="Mensalidade em aberto. Clique para registrar pagamento.">
+                <span class="size-1.5 rounded-full bg-rose-400"></span>
+                0/${recTotal} ✎
+              </button>
+            `;
+          }
+
+          const comissaoSpan = `
+            <span class="ml-1.5 text-[11px] text-slate-400 font-bold font-sans" title="Comissão de 2% apurada este mês: R$ ${comissao2}">
+              + ${comissao2}
+            </span>
+          `;
+
+          recorrenciaHtml = `<div class="flex items-center justify-center">${recPill}${comissaoSpan}</div>`;
+        }
+
+        const tr = document.createElement('tr');
+        tr.className = 'cliente-row hover:bg-slate-50/90 transition cursor-pointer group';
+        tr.onclick = (e) => {
+          if (!e.target.closest('button') && !e.target.closest('select')) {
+            abrirDrawerCliente(c.id);
+          }
+        };
+
+        tr.innerHTML = `
+          <td class="px-4 py-3.5 text-slate-400 text-[11px] font-sans">${num}</td>
+          <td class="px-4 py-3.5 font-bold text-slate-950 flex items-center gap-2.5">
+            <div class="size-8 rounded-xl bg-slate-100 group-hover:bg-emerald-100 border border-slate-200 group-hover:border-emerald-300 text-slate-800 group-hover:text-emerald-900 grid place-items-center text-xs font-black shrink-0 transition">
+              ${initials}
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-900 group-hover:text-emerald-700 transition flex items-center gap-1.5">
+                <span>${c.nome}</span>
+                <i data-lucide="chevron-right" class="size-3 text-slate-300 group-hover:text-emerald-500 opacity-0 group-hover:opacity-100 transition"></i>
+              </div>
+              <div class="text-[10px] text-slate-400 font-normal">${c.contato || 'Sem contato'}</div>
+            </div>
+          </td>
+          <td class="px-3 py-3.5 text-slate-600 text-xs">${c.ramo}</td>
+          <td class="px-3 py-3.5">
+            <span class="rounded-md ${corBadgeSolucao} px-2 py-0.5 text-[10px] font-black">${c.solucao}</span>
+          </td>
+          <td class="px-3 py-3.5 text-center">${setupHtml}</td>
+          <td class="px-3 py-3.5 text-center">${recorrenciaHtml}</td>
+          <td class="px-3 py-3.5 text-center">${statusHtml}</td>
+          <td class="px-4 py-3.5 text-center">
+            <div class="flex items-center justify-center gap-1.5">
+              <button type="button" onclick="abrirModalEditar('${c.id}')" title="Editar dados completos do cliente" class="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-bold text-slate-700 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200 transition shadow-2xs">
+                <i data-lucide="edit-2" class="size-3 text-blue-600"></i>
+                <span>Editar</span>
+              </button>
+              <button type="button" onclick="excluirCliente('${c.id}')" title="Remover cliente" class="inline-flex items-center rounded-lg border border-slate-200 bg-white p-1.5 text-slate-400 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 transition shadow-2xs">
+                <i data-lucide="trash-2" class="size-3"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function formatarMoeda(val) {
+      return (val || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    // Filtro de Texto
+    function filtrarTabelaClientes() {
+      termoBuscaAtual = document.getElementById('busca-clientes').value.toLowerCase().trim();
+      renderizarTabelaClientes();
+      lucide.createIcons();
+    }
+
+    // Filtro por Status
+    function filtrarStatus(status) {
+      filtroStatusAtual = status;
+      document.querySelectorAll('.filtro-btn').forEach(b => {
+        b.className = 'filtro-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+      });
+      const activeBtn = document.getElementById('filtro-btn-' + status);
+      if (activeBtn) {
+        activeBtn.className = 'filtro-btn active px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-900 text-white transition';
+      }
+      renderizarTabelaClientes();
+      lucide.createIcons();
+    }
+
+    // Troca de Abas estilo Google Sheets com Recálculo Imediato
+    function trocarAba(aba) {
+      const tabs = ['dashboard', 'clientes', 'produtos'];
+      tabs.forEach(t => {
+        const content = document.getElementById('tab-content-' + t);
+        const btn = document.getElementById('tab-btn-' + t);
+        
+        if (t === aba) {
+          content.classList.remove('hidden');
+          btn.className = 'tab-btn inline-flex items-center gap-2 border-b-2 border-emerald-600 bg-white px-5 py-3 text-xs font-black text-emerald-800 shadow-xs';
+        } else {
+          content.classList.add('hidden');
+          btn.className = 'tab-btn inline-flex items-center gap-2 border-b-2 border-transparent bg-transparent px-5 py-3 text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition';
+        }
+      });
+      renderizarTudo();
+      lucide.createIcons();
+    }
+
+    // Atalho: Ir para aba Clientes já filtrando por status
+    function trocarAbaEFiltrar(status) {
+      trocarAba('clientes');
+      filtrarStatus(status);
+    }
+
+    // Alteração Direta de Status pelo Dropdown da Linha
+    function alterarStatusDireto(id, novoStatus) {
+      const cli = clientes.find(c => c.id === id);
+      if (!cli) return;
+      cli.status = novoStatus;
+      if (novoStatus === 'producao') cli.fase = 'Em Produção';
+      else if (novoStatus === 'declinado') cli.fase = 'Declinado';
+      else cli.fase = 'Em aguardo';
+
+      salvarLocalStorage();
+      renderizarTudo();
+      sincronizarClienteParaGoogleSheets(cli);
+      showToast(`Status de "${cli.nome}" alterado para ${cli.fase}! Dashboard recalculado.`, 'success');
+    }
+
+    // Modal de Edição Rápida de Setup e Recorrência
+    function abrirModalEdicaoRapida(id, campo) {
+      const cli = clientes.find(c => c.id === id);
+      if (!cli) return;
+
+      document.getElementById('rapida-id').value = cli.id;
+      document.getElementById('rapida-campo').value = campo;
+      document.getElementById('rapida-cliente-nome').innerText = cli.nome;
+
+      if (campo === 'setup') {
+        document.getElementById('rapida-titulo').innerText = 'Ajustar Setup Financeiro';
+        document.getElementById('rapida-campos-setup').classList.remove('hidden');
+        document.getElementById('rapida-campos-rec').classList.add('hidden');
+        document.getElementById('rapida-setup-total').value = cli.setup || 0;
+        document.getElementById('rapida-setup-pago').value = cli.setupPago || 0;
+      } else {
+        document.getElementById('rapida-titulo').innerText = 'Ajustar Recorrência & Mensalidade';
+        document.getElementById('rapida-campos-setup').classList.add('hidden');
+        document.getElementById('rapida-campos-rec').classList.remove('hidden');
+        document.getElementById('rapida-rec-total').value = cli.recorrencia || 0;
+        document.getElementById('rapida-rec-paga').value = cli.recorrenciaPaga || 0;
+        document.getElementById('rapida-comissao').value = cli.comissao2pct || 0;
+      }
+
+      document.getElementById('modal-edicao-rapida').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function fecharModalEdicaoRapida() {
+      document.getElementById('modal-edicao-rapida').classList.add('hidden');
+    }
+
+    function salvarEdicaoRapida(e) {
+      e.preventDefault();
+      const id = document.getElementById('rapida-id').value;
+      const campo = document.getElementById('rapida-campo').value;
+      const cli = clientes.find(c => c.id === id);
+      if (!cli) return;
+
+      if (campo === 'setup') {
+        cli.setup = parseFloat(document.getElementById('rapida-setup-total').value) || 0;
+        cli.setupPago = parseFloat(document.getElementById('rapida-setup-pago').value) || 0;
+      } else {
+        cli.recorrencia = parseFloat(document.getElementById('rapida-rec-total').value) || 0;
+        cli.recorrenciaPaga = parseFloat(document.getElementById('rapida-rec-paga').value) || 0;
+        cli.comissao2pct = parseFloat(document.getElementById('rapida-comissao').value) || 0;
+      }
+
+      salvarLocalStorage();
+      fecharModalEdicaoRapida();
+      renderizarTudo();
+      sincronizarClienteParaGoogleSheets(cli);
+      showToast(`Valores de "${cli.nome}" atualizados! Dashboard recalculado.`, 'success');
+    }
+
+    // DRAWER LATERAL: RAIO-X FINANCEIRO E HISTÓRICO MÊS A MÊS DO CLIENTE
+    function abrirDrawerCliente(id) {
+      const cli = clientes.find(c => c.id === id);
+      if (!cli) return;
+
+      clienteAtivoDrawer = cli;
+
+      // Cabeçalho
+      const initials = cli.nome.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase();
+      document.getElementById('drawer-avatar').innerText = initials;
+      document.getElementById('drawer-nome').innerText = cli.nome;
+      document.getElementById('drawer-ramo').innerText = cli.ramo;
+      document.getElementById('drawer-solucao').innerText = cli.solucao;
+      const drawerStatusBadge = document.getElementById('drawer-status-badge');
+      if (drawerStatusBadge) {
+        drawerStatusBadge.innerText = cli.fase;
+        if (cli.status === 'producao') {
+          drawerStatusBadge.className = 'px-2.5 py-1 rounded-full text-xs font-black bg-emerald-100 text-emerald-800 border border-emerald-200';
+        } else if (cli.status === 'declinado') {
+          drawerStatusBadge.className = 'px-2.5 py-1 rounded-full text-xs font-black bg-rose-100 text-rose-800 border border-rose-200';
+        } else {
+          drawerStatusBadge.className = 'px-2.5 py-1 rounded-full text-xs font-black bg-amber-100 text-amber-800 border border-amber-200';
+        }
+      }
+
+      // Setup
+      const setupTotal = cli.setup || 0;
+      const setupPago = cli.setupPago || 0;
+      const setupFalta = Math.max(setupTotal - setupPago, 0);
+
+      document.getElementById('drawer-setup-valor').innerText = 'R$ ' + formatarMoeda(setupTotal);
+      document.getElementById('drawer-setup-pago').innerText = 'R$ ' + formatarMoeda(setupPago);
+      document.getElementById('drawer-setup-falta').innerText = 'R$ ' + formatarMoeda(setupFalta);
+      document.getElementById('drawer-setup-vencimento').innerText = cli.vencimentoSetup || '15/11/2026';
+
+      const setupPill = document.getElementById('drawer-setup-pill');
+      if (setupTotal === 0) {
+        setupPill.className = 'px-2 py-0.5 rounded-md text-[10px] font-black bg-slate-100 text-slate-600 border border-slate-200';
+        setupPill.innerText = 'ISENTO';
+      } else if (setupPago >= setupTotal) {
+        setupPill.className = 'px-2 py-0.5 rounded-md text-[10px] font-black bg-emerald-50 text-emerald-700 border border-emerald-200';
+        setupPill.innerText = `${setupPago}/${setupTotal} (QUITADO)`;
+      } else if (setupPago > 0) {
+        setupPill.className = 'px-2 py-0.5 rounded-md text-[10px] font-black bg-amber-50 text-amber-800 border border-amber-200';
+        setupPill.innerText = `${setupPago}/${setupTotal} (PARCIAL)`;
+      } else {
+        setupPill.className = 'px-2 py-0.5 rounded-md text-[10px] font-black bg-rose-50 text-rose-700 border border-rose-200';
+        setupPill.innerText = `0/${setupTotal} (EM ABERTO)`;
+      }
+
+      // Recorrência
+      const recTotal = cli.recorrencia || 0;
+      const recPaga = cli.recorrenciaPaga || 0;
+      const comissao = cli.comissao2pct || 0;
+
+      document.getElementById('drawer-recorrencia-valor').innerText = 'R$ ' + formatarMoeda(recTotal);
+      document.getElementById('drawer-rec-fixo').innerText = 'R$ ' + formatarMoeda(recTotal);
+      document.getElementById('drawer-rec-comissao').innerText = '+ R$ ' + formatarMoeda(comissao);
+      document.getElementById('drawer-rec-dia').innerText = `Dia ${cli.diaVencimento || 10} (Próx: ${cli.proximoVencimento || '10/11'})`;
+
+      const recPill = document.getElementById('drawer-recorrencia-pill');
+      if (recTotal === 0) {
+        recPill.className = 'px-2 py-0.5 rounded-md text-[10px] font-black bg-slate-100 text-slate-600 border border-slate-200';
+        recPill.innerText = 'R$ 0';
+      } else if (recPaga >= recTotal) {
+        recPill.className = 'px-2 py-0.5 rounded-md text-[10px] font-black bg-emerald-50 text-emerald-700 border border-emerald-200';
+        recPill.innerText = `${recPaga}/${recTotal} (PAGO)`;
+      } else {
+        recPill.className = 'px-2 py-0.5 rounded-md text-[10px] font-black bg-rose-50 text-rose-700 border border-rose-200';
+        recPill.innerText = `0/${recTotal} (PENDENTE)`;
+      }
+
+      // Banner de Alerta
+      const alerta = document.getElementById('drawer-alerta-pendencia');
+      const alertaTexto = document.getElementById('drawer-alerta-texto');
+      if (setupFalta > 0 || recPaga < recTotal) {
+        alerta.classList.remove('hidden');
+        let txt = '';
+        if (setupFalta > 0) txt += `Faltam R$ ${formatarMoeda(setupFalta)} de Setup (Vence em ${cli.vencimentoSetup || '15/11/2026'}). `;
+        if (recPaga < recTotal) txt += `Mensalidade deste ciclo em aberto (Vence em ${cli.proximoVencimento || '10/11'}). `;
+        alertaTexto.innerText = txt;
+      } else {
+        alerta.classList.add('hidden');
+      }
+
+      // Histórico Mês a Mês
+      const tbodyHist = document.getElementById('drawer-tbody-historico');
+      tbodyHist.innerHTML = '';
+
+      let totalHist = 0;
+      if (cli.historico && cli.historico.length > 0) {
+        cli.historico.forEach(h => {
+          totalHist += (h.total || 0);
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-slate-50/70 transition';
+          tr.innerHTML = `
+            <td class="px-3.5 py-2.5 font-bold text-slate-900">${h.mes}</td>
+            <td class="px-3 py-2.5 text-right">R$ ${formatarMoeda(h.fixo)}</td>
+            <td class="px-3 py-2.5 text-right text-purple-700 font-bold">+ R$ ${formatarMoeda(h.comissao)}</td>
+            <td class="px-3 py-2.5 text-right font-black text-slate-900">R$ ${formatarMoeda(h.total)}</td>
+            <td class="px-3 py-2.5 text-center">
+              <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[9px] font-black text-emerald-700">
+                <span class="size-1 rounded-full bg-emerald-500"></span> Pago (${h.data})
+              </span>
+            </td>
+          `;
+          tbodyHist.appendChild(tr);
+        });
+      } else {
+        tbodyHist.innerHTML = `
+          <tr>
+            <td colspan="5" class="text-center py-6 text-slate-400 font-medium">
+              Nenhum histórico anterior registrado para este cliente.
+            </td>
+          </tr>
+        `;
+      }
+      document.getElementById('drawer-total-historico').innerText = 'R$ ' + formatarMoeda(totalHist);
+
+      // Abrir Drawer com Animação
+      document.getElementById('drawer-cliente-backdrop').classList.remove('hidden');
+      document.getElementById('drawer-cliente').classList.remove('translate-x-full');
+
+      lucide.createIcons();
+    }
+
+    function fecharDrawerCliente() {
+      document.getElementById('drawer-cliente').classList.add('translate-x-full');
+      setTimeout(() => {
+        document.getElementById('drawer-cliente-backdrop').classList.add('hidden');
+      }, 250);
+      clienteAtivoDrawer = null;
+    }
+
+    // Lançar Pagamento Rápido no Drawer
+    function lancarPagamentoCliente(e) {
+      e.preventDefault();
+      if (!clienteAtivoDrawer) return;
+
+      const tipo = document.getElementById('lancar-tipo').value;
+      const valor = parseFloat(document.getElementById('lancar-valor').value) || 0;
+      if (valor <= 0) return;
+
+      if (tipo === 'setup') {
+        const novoPago = (clienteAtivoDrawer.setupPago || 0) + valor;
+        clienteAtivoDrawer.setupPago = novoPago;
+        if ((clienteAtivoDrawer.setup || 0) < novoPago) {
+          clienteAtivoDrawer.setup = novoPago;
+        }
+      } else if (tipo === 'recorrencia') {
+        const novoPagoRec = (clienteAtivoDrawer.recorrenciaPaga || 0) + valor;
+        clienteAtivoDrawer.recorrenciaPaga = novoPagoRec;
+        if ((clienteAtivoDrawer.recorrencia || 0) < novoPagoRec) {
+          clienteAtivoDrawer.recorrencia = novoPagoRec;
+        }
+      } else if (tipo === 'comissao') {
+        clienteAtivoDrawer.comissao2pct = (clienteAtivoDrawer.comissao2pct || 0) + valor;
+      }
+
+      if (!clienteAtivoDrawer.historico) clienteAtivoDrawer.historico = [];
+      const dataHoje = new Date().toLocaleDateString('pt-BR');
+      clienteAtivoDrawer.historico.unshift({
+        mes: 'Ciclo Out/Nov 2026',
+        fixo: tipo === 'recorrencia' ? valor : 0,
+        comissao: tipo === 'comissao' ? valor : 0,
+        total: valor,
+        data: dataHoje,
+        status: 'pago'
+      });
+
+      salvarLocalStorage();
+      renderizarTudo();
+      abrirDrawerCliente(clienteAtivoDrawer.id);
+      sincronizarClienteParaGoogleSheets(clienteAtivoDrawer);
+      document.getElementById('lancar-valor').value = '';
+
+      showToast(`Pagamento de R$ ${formatarMoeda(valor)} registrado com sucesso!`, 'success');
+    }
+
+    // Cobrança WhatsApp Pré-Formatada
+    function enviarCobrancaWhatsApp() {
+      if (!clienteAtivoDrawer) return;
+      const tel = (clienteAtivoDrawer.contato || '').replace(/\D/g, '');
+      const numWhats = tel.length >= 10 ? (tel.startsWith('55') ? tel : '55' + tel) : '5521995762718';
+
+      const setupFalta = Math.max((clienteAtivoDrawer.setup || 0) - (clienteAtivoDrawer.setupPago || 0), 0);
+      const rec = clienteAtivoDrawer.recorrencia || 0;
+      const comissao = clienteAtivoDrawer.comissao2pct || 0;
+      const totalDevido = setupFalta + rec + comissao;
+
+      let msg = `Olá ${clienteAtivoDrawer.nome}! Tudo bem?\n\nSegue o fechamento financeiro do seu plano com a Teixo:\n`;
+      if (setupFalta > 0) msg += `• Saldo de Setup: R$ ${formatarMoeda(setupFalta)}\n`;
+      if (rec > 0) msg += `• Mensalidade Plataforma: R$ ${formatarMoeda(rec)}\n`;
+      if (comissao > 0) msg += `• 2% sobre Pedidos da Loja: R$ ${formatarMoeda(comissao)}\n`;
+      msg += `\n*Total a Acertar: R$ ${formatarMoeda(totalDevido)}*\n\nVencimento: ${clienteAtivoDrawer.proximoVencimento || '10/11/2026'}\nChave PIX (CNPJ): teixo.pagamentos@gmail.com\n\nQualquer dúvida, estamos à disposição!`;
+
+      const url = 'https://wa.me/' + numWhats + '?text=' + encodeURIComponent(msg);
+      window.open(url, '_blank');
+    }
+
+    function editarClientePeloDrawer() {
+      if (!clienteAtivoDrawer) return;
+      const id = clienteAtivoDrawer.id;
+      fecharDrawerCliente();
+      abrirModalEditar(id);
+    }
+
+    // MODAL DE EDIÇÃO
+    function abrirModalEditar(id) {
+      const cli = clientes.find(c => c.id === id);
+      if (!cli) return;
+
+      document.getElementById('edit-id').value = cli.id;
+      document.getElementById('edit-nome').value = cli.nome;
+      document.getElementById('edit-ramo').value = cli.ramo;
+      document.getElementById('edit-solucao').value = cli.solucao;
+      document.getElementById('edit-contato').value = cli.contato || '';
+      document.getElementById('edit-fase').value = cli.fase || 'Cliente em potencial';
+      
+      document.getElementById('edit-setup').value = cli.setup || 0;
+      document.getElementById('edit-setup-pago').value = cli.setupPago || 0;
+      document.getElementById('edit-recorrencia').value = cli.recorrencia || 0;
+      document.getElementById('edit-recorrencia-paga').value = cli.recorrenciaPaga || 0;
+      document.getElementById('edit-comissao').value = cli.comissao2pct || 0;
+
+      document.getElementById('modal-editar-cliente').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function fecharModalEditarCliente() {
+      document.getElementById('modal-editar-cliente').classList.add('hidden');
+    }
+
+    function salvarEdicaoCliente(e) {
+      e.preventDefault();
+      const id = document.getElementById('edit-id').value;
+      const cli = clientes.find(c => c.id === id);
+      if (!cli) return;
+
+      cli.nome = document.getElementById('edit-nome').value.trim();
+      cli.ramo = document.getElementById('edit-ramo').value.trim();
+      cli.solucao = document.getElementById('edit-solucao').value;
+      cli.contato = document.getElementById('edit-contato').value.trim();
+      cli.fase = document.getElementById('edit-fase').value;
+      cli.status = mapearStatus(cli.fase, cli.nome);
+
+      cli.setup = parseFloat(document.getElementById('edit-setup').value) || 0;
+      cli.setupPago = parseFloat(document.getElementById('edit-setup-pago').value) || 0;
+      cli.recorrencia = parseFloat(document.getElementById('edit-recorrencia').value) || 0;
+      cli.recorrenciaPaga = parseFloat(document.getElementById('edit-recorrencia-paga').value) || 0;
+      cli.comissao2pct = parseFloat(document.getElementById('edit-comissao').value) || 0;
+
+      salvarLocalStorage();
+      fecharModalEditarCliente();
+      renderizarTudo();
+      sincronizarClienteParaGoogleSheets(cli);
+
+      showToast(`Cliente "${cli.nome}" atualizado! Dashboard recalculado.`, 'success');
+    }
+
+    // EXCLUIR CLIENTE
+    function excluirCliente(id) {
+      const cli = clientes.find(c => c.id === id);
+      if (!cli) return;
+
+      if (confirm(`Deseja realmente remover "${cli.nome}" da planilha?`)) {
+        clientes = clientes.filter(c => c.id !== id);
+        salvarLocalStorage();
+        renderizarTudo();
+        showToast(`Cliente "${cli.nome}" removido da planilha.`, 'info');
+      }
+    }
+
+    // MODAL DE NOVO CLIENTE
+    function abrirModalNovoCliente() {
+      document.getElementById('modal-novo-cliente').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function fecharModalNovoCliente() {
+      document.getElementById('modal-novo-cliente').classList.add('hidden');
+    }
+
+    function salvarNovoCliente(e) {
+      e.preventDefault();
+      const nome = document.getElementById('novo-nome').value.trim();
+      const segmento = document.getElementById('novo-segmento').value.trim();
+      const solucao = document.getElementById('novo-solucao').value;
+      const contato = document.getElementById('novo-contato').value.trim();
+      const statusFase = document.getElementById('novo-status').value;
+      const setup = parseFloat(document.getElementById('novo-setup').value) || 0;
+      const recorrencia = parseFloat(document.getElementById('novo-recorrencia').value) || 0;
+
+      const novoCli = {
+        id: 'cli-' + Date.now(),
+        nome,
+        ramo: segmento,
+        solucao,
+        contato,
+        fase: statusFase,
+        status: mapearStatus(statusFase, nome),
+        setup,
+        setupPago: 0,
+        vencimentoSetup: '15/11/2026',
+        recorrencia,
+        recorrenciaPaga: 0,
+        comissao2pct: 0,
+        diaVencimento: 10,
+        proximoVencimento: '10/11/2026',
+        probabilidade: mapearStatus(statusFase, nome) === 'producao' ? 100 : (mapearStatus(statusFase, nome) === 'aguardo' ? 50 : 0),
+        historico: []
+      };
+
+      clientes.unshift(novoCli);
+      salvarLocalStorage();
+      fecharModalNovoCliente();
+      renderizarTudo();
+      trocarAba('clientes');
+      sincronizarClienteParaGoogleSheets(novoCli);
+
+      showToast(`Novo cliente "${nome}" cadastrado com sucesso!`, 'success');
+    }
+
+    // ENVIO AUTOMÁTICO BIDIRECIONAL PARA O GOOGLE SHEETS VIA WEBHOOK
+    async function sincronizarClienteParaGoogleSheets(cli) {
+      const webhookUrl = localStorage.getItem('teixo_sheets_webhook_url');
+      if (!webhookUrl) return;
+
+      try {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'salvar_cliente',
+            cliente: {
+              nome: cli.nome,
+              ramo: cli.ramo,
+              solucao: cli.solucao,
+              contato: cli.contato,
+              fase: cli.fase,
+              setup: cli.setup,
+              setupPago: cli.setupPago,
+              recorrencia: cli.recorrencia,
+              recorrenciaPaga: cli.recorrenciaPaga,
+              comissao2pct: cli.comissao2pct
+            }
+          })
+        });
+        showToast(`Alteração enviada ao Google Sheets!`, 'success');
+      } catch (err) {
+        console.warn('Erro ao enviar alteração para Google Sheets:', err);
+      }
+    }
+
+    function abrirModalWebhookSheets() {
+      const urlAtual = localStorage.getItem('teixo_sheets_webhook_url') || '';
+      const input = document.getElementById('webhook-sheets-url');
+      if (input) input.value = urlAtual;
+      document.getElementById('modal-webhook-sheets').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function fecharModalWebhookSheets() {
+      document.getElementById('modal-webhook-sheets').classList.add('hidden');
+    }
+
+    function salvarConfigWebhookSheets(e) {
+      e.preventDefault();
+      const url = document.getElementById('webhook-sheets-url').value.trim();
+      if (url) {
+        localStorage.setItem('teixo_sheets_webhook_url', url);
+        showToast('Webhook 2-Way do Google Sheets configurado e ativo!', 'success');
+      } else {
+        localStorage.removeItem('teixo_sheets_webhook_url');
+        showToast('Webhook removido (modo somente leitura ativo).', 'info');
+      }
+      fecharModalWebhookSheets();
+    }
+
+    // EXPORTAR CSV DINÂMICO
+    function exportarCSV() {
+      const headers = ['ID', 'Cliente', 'Segmento', 'Solucao', 'Contato', 'Fase', 'Setup Total', 'Setup Pago', 'Recorrencia Fixa', 'Recorrencia Paga', 'Comissao 2pct'];
+      const rows = clientes.map((c, i) => [
+        String(i + 1).padStart(2, '0'),
+        `"${c.nome.replace(/"/g, '""')}"`,
+        `"${c.ramo.replace(/"/g, '""')}"`,
+        `"${c.solucao}"`,
+        `"${(c.contato || '').replace(/"/g, '""')}"`,
+        `"${c.fase}"`,
+        (c.setup || 0).toFixed(2),
+        (c.setupPago || 0).toFixed(2),
+        (c.recorrencia || 0).toFixed(2),
+        (c.recorrenciaPaga || 0).toFixed(2),
+        (c.comissao2pct || 0).toFixed(2)
+      ]);
+
+      const csvContent = "data:text/csv;charset=utf-8," + [headers.join(';')].concat(rows.map(r => r.join(';'))).join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "automatech-clientes-financeiro-" + new Date().toISOString().split('T')[0] + ".csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('Arquivo CSV gerado e baixado!', 'success');
+    }
+
+    // CONTROLE DO SELETOR DE MÊS / CICLO FINANCEIRO
+    function toggleDropdownCiclo(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('menu-dropdown-ciclo');
+      const chevron = document.getElementById('icon-chevron-ciclo');
+      if (!menu) return;
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        if (chevron) chevron.classList.add('rotate-180');
+      } else {
+        menu.classList.add('hidden');
+        if (chevron) chevron.classList.remove('rotate-180');
+      }
+    }
+
+    function fecharDropdownCiclo() {
+      const menu = document.getElementById('menu-dropdown-ciclo');
+      const chevron = document.getElementById('icon-chevron-ciclo');
+      if (menu && !menu.classList.contains('hidden')) {
+        menu.classList.add('hidden');
+        if (chevron) chevron.classList.remove('rotate-180');
+      }
+    }
+
+    function selecionarCiclo(ciclo) {
+      localStorage.setItem('teixo_ciclo_selecionado', ciclo);
+      atualizarVisualCiclo(ciclo);
+      fecharDropdownCiclo();
+      showToast(`Mês selecionado: ${ciclo}`, 'info');
+    }
+
+    function atualizarVisualCiclo(ciclo) {
+      const label = document.getElementById('label-ciclo-ativo');
+      if (label) label.innerText = ciclo;
+
+      const cNov = document.getElementById('check-Novembro');
+      const cOut = document.getElementById('check-Outubro');
+      const cCons = document.getElementById('check-Consolidado');
+
+      if (cNov) cNov.innerText = (ciclo.includes('Novembro') && !ciclo.includes('Outubro')) ? '✓' : '';
+      if (cOut) cOut.innerText = (ciclo.includes('Outubro') && !ciclo.includes('Novembro')) ? '✓' : '';
+      if (cCons) cCons.innerText = (ciclo.includes('Outubro') && ciclo.includes('Novembro')) ? '✓' : '';
+    }
+
+    // Fechar dropdown de ciclo ao clicar fora
+    document.addEventListener('click', (e) => {
+      const container = document.getElementById('dropdown-ciclo-container');
+      if (container && !container.contains(e.target)) {
+        fecharDropdownCiclo();
+      }
+    });
+
+    // Inicialização ao carregar o DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      const cicloSalvo = localStorage.getItem('teixo_ciclo_selecionado') || 'Ciclo Outubro / Novembro 2026';
+      atualizarVisualCiclo(cicloSalvo);
+      carregarDadosIniciais();
+    });
+  </script>
+</body>
+</html>

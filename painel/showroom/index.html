@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Showroom de Templates | Teixo Hub</title>
+  <meta name="description" content="Showroom oficial de identidades visuais e heros modulares para delivery de comida.">
+  <link rel="icon" href="/favicon.ico">
+  
+  <!-- Base Hub Fonts & Template Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Bebas+Neue&family=Oswald:wght@600;700&family=Syne:wght@700;800&family=Righteous&family=Barlow+Condensed:wght@700;800&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            bebas: ['"Bebas Neue"', 'sans-serif'],
+            oswald: ['"Oswald"', 'sans-serif'],
+            syne: ['"Syne"', 'sans-serif'],
+            righteous: ['"Righteous"', 'cursive'],
+            barlow: ['"Barlow Condensed"', 'sans-serif'],
+            inter: ['"Inter"', 'sans-serif'],
+            poppins: ['"Poppins"', 'sans-serif'],
+            outfit: ['"Outfit"', 'sans-serif'],
+            fraunces: ['"Fraunces"', 'serif'],
+          },
+          keyframes: {
+            girar: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' }
+            },
+            fadeSlide: {
+              '0%': { opacity: '0', transform: 'translateY(8px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            }
+          },
+          animation: {
+            'girar-lento': 'girar 35s linear infinite',
+            'fade-slide': 'fadeSlide 0.3s ease-out forwards'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Molduras de Simulação Mobile (Padrão Triplo do Editor Hub Automatech) */
+    .mobile-frame-sm {
+      max-width: 390px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      border-radius: 40px !important;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 0 10px #1e2430 !important;
+      overflow-x: hidden !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .mobile-frame-lg {
+      max-width: 480px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      border-radius: 36px !important;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 0 10px #1e2430 !important;
+      overflow-x: hidden !important;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .trans-all { transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+  </style>
+</head>
+<body class="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased selection:bg-orange-600 selection:text-white">
+
+  <!-- BACKDROP OVERLAY DO MENU LATERAL (APENAS MOBILE) -->
+  <div id="hub-sidebar-backdrop" onclick="toggleHubSidebar()" class="lg:hidden fixed inset-0 z-50 bg-slate-950/50 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- ==================== MENU LATERAL DA ESQUERDA (ESTRUTURA OFICIAL DO TEIXO HUB) ==================== -->
+  <aside id="hub-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-52 max-w-[85vw] lg:max-w-none flex-col justify-between border-r border-slate-200/90 bg-white transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none">
+    
+    <!-- TOPO DO MENU LATERAL -->
+    <div>
+      <div class="flex items-center justify-between border-b border-slate-200/80 p-3 bg-slate-50/80">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="grid h-8 w-8 place-items-center rounded-xl bg-slate-950 text-white font-black shadow-xs group-hover:scale-105 transition">
+            <i data-lucide="layers" class="h-4 w-4 text-orange-500"></i>
+          </div>
+          <div>
+            <div class="text-xs font-black text-slate-950 group-hover:text-orange-600 transition">Teixo Hub</div>
+            <div class="text-[9px] font-semibold text-slate-500">Menu de Operações</div>
+          </div>
+        </a>
+        <button onclick="toggleHubSidebar()" class="lg:hidden rounded-xl p-2 text-slate-400 hover:bg-slate-200/60 hover:text-slate-700 transition" title="Fechar Menu">
+          <i data-lucide="x" class="h-5 w-5"></i>
+        </button>
+      </div>
+
+      <!-- SEÇÕES DO MENU LATERAL (MANTÉM 1. HUB, 2. PLANILHA, 3. SHOWROOM) -->
+      <div class="p-2.5 space-y-3.5 overflow-y-auto max-h-[calc(100vh-120px)]">
+        
+        <!-- 1. HUB -->
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+            <span>1. Hub</span>
+            <span class="size-1.5 rounded-full bg-orange-500"></span>
+          </div>
+          
+          <a href="/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-orange-50 border border-slate-200/80 hover:border-orange-200 px-2.5 py-2 text-left transition group shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-orange-600 text-white font-black shadow-xs group-hover:scale-105 transition">
+              <i data-lucide="layout-grid" class="h-3.5 w-3.5"></i>
+            </div>
+            <span class="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition whitespace-nowrap">Hub de Clientes</span>
+          </a>
+        </div>
+
+        <!-- 2. PLANILHA -->
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+            <span>2. Planilha</span>
+            <span class="size-1.5 rounded-full bg-emerald-500"></span>
+          </div>
+
+          <a href="/painel/planilha/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200/80 hover:border-emerald-300 px-2.5 py-2 text-left transition group shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-emerald-600 text-white font-black shadow-xs group-hover:scale-105 transition">
+              <i data-lucide="file-spreadsheet" class="h-3.5 w-3.5"></i>
+            </div>
+            <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition whitespace-nowrap">Planilha de Clientes</span>
+          </a>
+        </div>
+
+        <!-- 3. SHOWROOM (ABA ATIVA) -->
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-amber-500 flex items-center justify-between">
+            <span>3. Showroom</span>
+            <span class="size-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          </div>
+
+          <a href="/showroom/" class="flex items-center gap-2 rounded-xl bg-amber-50 border border-amber-300 px-2.5 py-2 text-left transition shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-amber-500 text-black font-black shadow-xs">
+              <i data-lucide="sparkles" class="h-3.5 w-3.5"></i>
+            </div>
+            <div>
+              <span class="text-xs font-black text-amber-950 block">Showroom Templates</span>
+              <span class="text-[9px] text-amber-700 font-semibold">Catálogo 25 Modelos</span>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RODAPÉ DO MENU LATERAL -->
+    <div class="border-t border-slate-200 p-2.5 bg-slate-50 text-xs">
+      <div class="flex items-center justify-between text-slate-500">
+        <span class="font-bold text-[10px]">Teixo Hub</span>
+        <span class="text-[9px] text-emerald-600 flex items-center gap-1 font-bold">
+          <span class="size-1.5 rounded-full bg-emerald-500"></span> Online
+        </span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ==================== CONTAINER PRINCIPAL (À DIREITA DA SIDEBAR FIXA) ==================== -->
+  <div class="lg:pl-52 flex min-h-screen flex-col justify-between">
+
+    <!-- ==================== HEADER SUPERIOR DO HUB ==================== -->
+    <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
+      <div class="flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        
+        <!-- LADO ESQUERDO: BOTÃO MOBILE E TÍTULO -->
+        <div class="flex items-center gap-3">
+          <button 
+            type="button" 
+            onclick="toggleHubSidebar()" 
+            title="Abrir Menu Lateral" 
+            class="lg:hidden grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition active:scale-95 shadow-xs"
+          >
+            <i data-lucide="menu" class="h-5 w-5 text-slate-800"></i>
+          </button>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm sm:text-base font-black tracking-tight text-slate-950">Showroom de Templates</span>
+              <span class="rounded-full bg-amber-50 border border-amber-300 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-amber-800">Food Delivery</span>
+            </div>
+            <div class="text-[11px] font-bold text-slate-500">Catálogo de Heros e Identidades Visuais • Padrão Delivery Store</div>
+          </div>
+        </div>
+
+        <!-- LADO DIREITO: ATALHOS -->
+        <div class="flex items-center gap-2.5">
+          <a href="/painel/planilha/" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
+            <i data-lucide="file-spreadsheet" class="h-4 w-4 text-emerald-600"></i>
+            <span class="hidden sm:inline">Planilha</span>
+          </a>
+          <a href="/" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
+            <i data-lucide="layout-grid" class="h-4 w-4 text-orange-500"></i>
+            <span class="hidden sm:inline">Hub de Clientes</span>
+          </a>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ==================== SUB-BARRA DE CONTROLE DO SHOWROOM ==================== -->
+    <div class="sticky top-[57px] z-20 bg-slate-900 text-white border-b border-slate-800 px-4 py-2.5 shadow-md">
+      <div class="max-w-7xl mx-auto flex flex-col xl:flex-row items-center justify-between gap-3">
+        
+        <!-- SELETOR DE TEMPLATES (H01 A H05) -->
+        <div class="flex items-center gap-1.5 overflow-x-auto w-full xl:w-auto scrollbar-none py-0.5">
+          <button onclick="switchTemplate('H01')" id="tab-H01" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-amber-500 text-black border-amber-400 shadow-md">
+            <span>⚡ H01</span>
+            <span class="font-medium">Smash Urban</span>
+          </button>
+          
+          <button onclick="switchTemplate('H02')" id="tab-H02" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-800 text-slate-300 border-white/5 hover:border-white/20 hover:text-white">
+            <span>🪵 H02</span>
+            <span class="font-medium">Vintage Smoke</span>
+          </button>
+          
+          <button onclick="switchTemplate('H03')" id="tab-H03" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-800 text-slate-300 border-white/5 hover:border-white/20 hover:text-white">
+            <span>👑 H03</span>
+            <span class="font-medium">Dark Angus</span>
+          </button>
+          
+          <button onclick="switchTemplate('H04')" id="tab-H04" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-800 text-slate-300 border-white/5 hover:border-white/20 hover:text-white">
+            <span>🥤 H04</span>
+            <span class="font-medium">Retro Diner</span>
+          </button>
+          
+          <button onclick="switchTemplate('H05')" id="tab-H05" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-800 text-slate-300 border-white/5 hover:border-white/20 hover:text-white">
+            <span>🌱 H05</span>
+            <span class="font-medium">Brioche Fresh</span>
+          </button>
+        </div>
+
+        <!-- SELETOR DOS 3 MODOS DE VISUALIZAÇÃO OFICIAIS (PC + MOBILE 2 + MOBILE 1) -->
+        <div class="flex items-center justify-between w-full xl:w-auto gap-3">
+          <div class="flex items-center bg-slate-800 rounded-lg p-0.5 border border-white/10 shrink-0">
+            <button id="btn-view-desktop" onclick="setViewMode('desktop')" title="Visualização PC / Desktop (100% Tela Cheia)" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-amber-500 text-black shadow trans-all flex items-center gap-1.5">
+              <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span class="font-bold">PC</span>
+            </button>
+
+            <button id="btn-view-mobile-lg" onclick="setViewMode('mobile-lg')" title="Visualização Mobile 2: Celular Plus (480px)" class="px-2.5 py-1 text-xs font-semibold rounded-md text-slate-300 hover:text-white trans-all flex items-center gap-1.5">
+              <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              <span>Mobile 2 <span class="text-[10px] text-slate-400 font-mono">(480px)</span></span>
+            </button>
+
+            <button id="btn-view-mobile-sm" onclick="setViewMode('mobile-sm')" title="Visualização Mobile 1: Celular Compacto (390px)" class="px-2.5 py-1 text-xs font-semibold rounded-md text-slate-300 hover:text-white trans-all flex items-center gap-1.5">
+              <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              <span>Mobile 1 <span class="text-[10px] text-slate-400 font-mono">(390px)</span></span>
+            </button>
+          </div>
+
+          <!-- FICHA TÉCNICA RÁPIDA -->
+          <div class="hidden sm:flex items-center gap-2 text-xs bg-slate-950/80 px-3 py-1 rounded-lg border border-white/10">
+            <span id="spec-name" class="font-bold text-white">H01 — Smash Urban</span>
+            <span class="text-slate-600">|</span>
+            <span id="spec-fonts" class="text-amber-400 font-mono">Bebas Neue + Inter</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== ÁREA DE VISUALIZAÇÃO DO SITE (CANVAS SIMULADOR) ==================== -->
+    <main class="flex-1 bg-[#0b0c0e] py-6 px-2 sm:px-4">
+      
+      <div id="store-canvas" class="min-h-screen bg-[#111215] text-[#faf0e6] trans-all overflow-hidden border border-white/5 rounded-2xl shadow-2xl">
+        
+        <!-- ==================== 1. TOPO DA LOJA (INVARIÁVEL - MODELO PIZZA DO JUCA) ==================== -->
+        <header id="site-header" class="bg-[#14151b] border-b border-white/10 px-4 py-3 sticky top-0 z-30">
+          <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="size-10 rounded-full border-2 border-red-600 bg-black flex items-center justify-center text-xl shadow-md">
+                🍔
+              </div>
+              <div>
+                <h1 class="text-sm sm:text-base font-bold text-white flex items-center gap-2 leading-tight">
+                  <span>Burger Store</span>
+                  <span class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Oficial</span>
+                </h1>
+                <div class="flex items-center gap-1.5 text-xs text-slate-400 mt-0.5">
+                  <span class="relative flex size-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full size-2 bg-emerald-500"></span>
+                  </span>
+                  <span>Aberto agora · Fecha às 00:00</span>
+                  <span class="text-slate-600">·</span>
+                  <span>🛵 30-45 min</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botão Sacola -->
+            <button class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-3.5 py-2 rounded-xl text-xs font-semibold border border-white/10 shadow-sm trans-all">
+              <svg class="size-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+              <span class="hidden sm:inline">Sacola</span>
+              <span class="bg-amber-500 text-black font-extrabold px-1.5 py-0.2 rounded-md text-[11px]">0</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- ==================== 2. HERO DINÂMICA (SUBSTITUIÇÃO H01 A H05) ==================== -->
+        <div id="hero-mount" class="trans-all">
+          <!-- Conteúdo gerado via JS -->
+        </div>
+
+        <!-- ==================== 3. CARDÁPIO (INVARIÁVEL - MODELO PIZZA DO JUCA) ==================== -->
+        <section id="cardapio-nav" class="sticky top-[61px] z-20 bg-[#14151b]/95 backdrop-blur-md border-y border-white/5 py-2.5 px-4">
+          <div class="max-w-6xl mx-auto flex items-center gap-2 overflow-x-auto scrollbar-none">
+            <button class="px-4 py-1.5 rounded-full text-xs font-bold bg-amber-500 text-black shrink-0">🔥 Mais Pedidos</button>
+            <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 shrink-0 border border-white/5">🥩 Smashes Especiais</button>
+            <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 shrink-0 border border-white/5">🍔 Linha Artesanal</button>
+            <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 shrink-0 border border-white/5">🍟 Acompanhamentos</button>
+            <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 shrink-0 border border-white/5">🥤 Bebidas & Shakes</button>
+          </div>
+        </section>
+
+        <!-- Grid de Produtos -->
+        <section class="max-w-6xl mx-auto px-4 py-8">
+          <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">🔥 Destaques da Casa</h2>
+            <span class="text-[11px] font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2.5 py-1 rounded-lg">Cardápio Blindado</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- Card 1 -->
+            <article class="bg-[#18191f] border border-white/5 rounded-2xl p-4 flex flex-col justify-between hover:border-white/15 trans-all">
+              <div class="flex gap-4">
+                <div class="flex-1">
+                  <span class="text-[10px] uppercase font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full">Campeão</span>
+                  <h3 class="text-base font-bold text-white mt-1.5">Double Bacon Cheddar</h3>
+                  <p class="text-xs text-slate-400 mt-1 line-clamp-2">Dois burgers 140g prensados na chapa, queijo cheddar inglês derretido, tiras de bacon crocante e maionese defumada.</p>
+                </div>
+                <div class="size-24 rounded-xl overflow-hidden bg-slate-800 shrink-0">
+                  <img src="assets/h01-smash.jpg" alt="Double Bacon Cheddar" class="size-full object-cover">
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-4 mt-3 border-t border-white/5">
+                <span class="text-base font-black text-white">R$ 36,90</span>
+                <button class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs px-3.5 py-2 rounded-xl trans-all">+ Adicionar</button>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="bg-[#18191f] border border-white/5 rounded-2xl p-4 flex flex-col justify-between hover:border-white/15 trans-all">
+              <div class="flex gap-4">
+                <div class="flex-1">
+                  <span class="text-[10px] uppercase font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-full">Smash Clássico</span>
+                  <h3 class="text-base font-bold text-white mt-1.5">Smash Salad Special</h3>
+                  <p class="text-xs text-slate-400 mt-1 line-clamp-2">Burger 120g smash ultrafino com crostinha crocante, queijo prato derretido, alface americana fresca e molho especial.</p>
+                </div>
+                <div class="size-24 rounded-xl overflow-hidden bg-slate-800 shrink-0">
+                  <img src="assets/h05-brioche.jpg" alt="Smash Salad Special" class="size-full object-cover">
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-4 mt-3 border-t border-white/5">
+                <span class="text-base font-black text-white">R$ 29,90</span>
+                <button class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs px-3.5 py-2 rounded-xl trans-all">+ Adicionar</button>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="bg-[#18191f] border border-white/5 rounded-2xl p-4 flex flex-col justify-between hover:border-white/15 trans-all">
+              <div class="flex gap-4">
+                <div class="flex-1">
+                  <span class="text-[10px] uppercase font-bold text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full">Defumado</span>
+                  <h3 class="text-base font-bold text-white mt-1.5">Monster Smoke BBQ</h3>
+                  <p class="text-xs text-slate-400 mt-1 line-clamp-2">Burger 180g angus defumado na lenha, cebola crispy em abundância, queijo gouda maçaricado e molho barbecue rústico.</p>
+                </div>
+                <div class="size-24 rounded-xl overflow-hidden bg-slate-800 shrink-0">
+                  <img src="assets/h02-smoke.jpg" alt="Monster Smoke BBQ" class="size-full object-cover">
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-4 mt-3 border-t border-white/5">
+                <span class="text-base font-black text-white">R$ 42,90</span>
+                <button class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs px-3.5 py-2 rounded-xl trans-all">+ Adicionar</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ==================== 4. RODAPÉ (INVARIÁVEL - ASSINATURA AUTOMATECH) ==================== -->
+        <footer id="store-footer" class="bg-[#0e0f12] border-t border-white/10 pt-8 pb-6 px-4 text-xs text-slate-400">
+          <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+              <p class="font-bold text-white">Atendimento: Terça a Domingo das 18:00 às 00:00</p>
+              <p class="text-[11px] text-slate-500 mt-0.5">Pagamento 100% online seguro via Mercado Pago Bricks (PIX ou Cartão)</p>
+            </div>
+            <a href="https://wa.me/555199735892?text=Ol%C3%A1!%20Vim%20pelo%20delivery%20e%20gostaria%20de%20um%20card%C3%A1pio%20digital" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-white/10 hover:border-emerald-500 text-slate-300 hover:text-white trans-all">
+              <span class="size-2 rounded-full bg-emerald-500"></span>
+              <span>Desenvolvido pela <strong class="text-white">Automatech</strong></span>
+              <span class="text-[10px] text-slate-500 font-mono">(51) 9973-5892</span>
+            </a>
+          </div>
+        </footer>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ==================== MOTOR JAVASCRIPT ==================== -->
+  <script>
+    // CONTROLE DO MENU LATERAL MOBILE
+    function toggleHubSidebar() {
+      const sb = document.getElementById('hub-sidebar');
+      const bd = document.getElementById('hub-sidebar-backdrop');
+      if (!sb || !bd) return;
+      const isOpen = !sb.classList.contains('-translate-x-full');
+      if (isOpen) {
+        sb.classList.add('-translate-x-full');
+        bd.classList.add('opacity-0', 'pointer-events-none');
+      } else {
+        sb.classList.remove('-translate-x-full');
+        bd.classList.remove('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    // DADOS DOS 5 TEMPLATES
+    const TEMPLATES_DATA = {
+      H01: {
+        id: "H01",
+        name: "Smash Urban",
+        ticketFocus: "Giro Rápido (R$ 28 - R$ 45)",
+        badge: "⚡ Prensado na Chapa · Crosta Perfeita",
+        title: "O VERDADEIRO SMASH CROCANTE & SUCULENTO",
+        subtitle: "Carne fresca prensada na chapa fervendo, queijo cheddar derretendo em cascata e nossa maionese secreta no pão brioche tostado.",
+        ctaText: "Pedir Meu Smash Agora",
+        ctaSecondary: "Ver Combos da Noite",
+        microcopy: "🚀 Entrega rápida · Quentinho na sua porta",
+        theme: {
+          primary: "#E63946",
+          accent: "#FFB703",
+          bgHero: "#111114",
+          textHero: "#FFFFFF",
+          textMuted: "#A1A1AA",
+          badgeBg: "rgba(255, 183, 3, 0.14)",
+          badgeText: "#FFB703",
+          badgeBorder: "rgba(255, 183, 3, 0.35)",
+        },
+        typography: {
+          displayClass: "font-bebas text-5xl md:text-7xl lg:text-8xl leading-[0.95] uppercase tracking-wider",
+          displayFont: "Bebas Neue",
+          baseFont: "Inter"
+        },
+        heroImage: "assets/h01-smash.jpg",
+        layoutType: "split-urban"
+      },
+
+      H02: {
+        id: "H02",
+        name: "Vintage Smoke & BBQ",
+        ticketFocus: "Ticket Médio & Defumado (R$ 38 - R$ 56)",
+        badge: "🪵 Defumação Lenta em Lenha · 100% Angus",
+        title: "SABOR DE BRASA VIVA & DEFUMAÇÃO ARTESANAL",
+        subtitle: "Blends selecionados de Angus preparados no ponto correto, bacon rústico caramelizado e molho barbecue artesanal defumado por horas.",
+        ctaText: "Explorar Cardápio da Brasa",
+        ctaSecondary: "Ver Cortes Especiais",
+        microcopy: "🔥 Feito na brasa de verdade · Ingredientes nobres",
+        theme: {
+          primary: "#C85A17",
+          accent: "#F4A261",
+          bgHero: "#181310",
+          textHero: "#FAF0E6",
+          textMuted: "#B8A89A",
+          badgeBg: "rgba(244, 162, 97, 0.14)",
+          badgeText: "#F4A261",
+          badgeBorder: "rgba(244, 162, 97, 0.35)",
+        },
+        typography: {
+          displayClass: "font-oswald text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] uppercase tracking-wide",
+          displayFont: "Oswald",
+          baseFont: "Plus Jakarta Sans"
+        },
+        heroImage: "assets/h02-smoke.jpg",
+        layoutType: "center-monumental"
+      },
+
+      H03: {
+        id: "H03",
+        name: "Dark Black Angus",
+        ticketFocus: "Ticket Alto & Gourmet (R$ 48 - R$ 75)",
+        badge: "👑 Blends Nobres Certificados · Padrão Alta Gastronomia",
+        title: "A ALTA GASTRONOMIA EM FORMA DE BURGER",
+        subtitle: "Cortes nobres moídos diariamente, queijo brie maçaricado, cebola caramelizada e finalização com azeite trufado em pão artesanal de fermentação lenta.",
+        ctaText: "Viver Essa Experiência",
+        ctaSecondary: "Conhecer a Seleção Black",
+        microcopy: "✨ Embalagens térmicas premium · Padrão restaurante em casa",
+        theme: {
+          primary: "#D4AF37",
+          accent: "#E5C158",
+          bgHero: "#0B0B0D",
+          textHero: "#F5F5F7",
+          textMuted: "#9CA3AF",
+          badgeBg: "rgba(212, 175, 55, 0.12)",
+          badgeText: "#E5C158",
+          badgeBorder: "rgba(212, 175, 55, 0.35)",
+        },
+        typography: {
+          displayClass: "font-syne text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1]",
+          displayFont: "Syne",
+          baseFont: "Outfit"
+        },
+        heroImage: "assets/h03-angus.jpg",
+        layoutType: "spotlight-card"
+      },
+
+      H04: {
+        id: "H04",
+        name: "Retro American Diner",
+        ticketFocus: "Combos & Família (R$ 35 - R$ 52)",
+        badge: "🥤 Receita Tradicional Diner · O Clássico que Nunca Erra",
+        title: "O VERDADEIRO AMERICAN BURGER DOS SEUS SONHOS",
+        subtitle: "Cheeseburgers suculentos com muito cheddar derretido, batatas fininhas super crocantes e milkshakes artesanais batidos na hora.",
+        ctaText: "Pedir o Combo Completo",
+        ctaSecondary: "Ver Milkshakes & Sobremesas",
+        microcopy: "🍟 Combo com batata crocante e bebida geladíssima",
+        theme: {
+          primary: "#E63946",
+          accent: "#0096C7",
+          bgHero: "#FFFBF5",
+          textHero: "#1D2D44",
+          textMuted: "#4A5568",
+          badgeBg: "rgba(230, 57, 70, 0.10)",
+          badgeText: "#C1121F",
+          badgeBorder: "rgba(230, 57, 70, 0.25)",
+        },
+        typography: {
+          displayClass: "font-righteous text-3xl md:text-5xl lg:text-6xl leading-[1.15]",
+          displayFont: "Righteous",
+          baseFont: "Poppins"
+        },
+        heroImage: "assets/h04-diner.jpg",
+        layoutType: "retro-banner"
+      },
+
+      H05: {
+        id: "H05",
+        name: "Brioche Gold & Fresh",
+        ticketFocus: "Equilíbrio & Frescor (R$ 32 - R$ 48)",
+        badge: "🌱 Pão Brioche Selado na Manteiga · Carnes Nobres Diárias",
+        title: "SUCULÊNCIA & FRESCOR EM CADA MORDIDA",
+        subtitle: "Pão brioche fofinho dourado na manteiga de garrafa, hambúrguer grelhado no fogo, alface americana estalando de fresca e nosso molho da casa.",
+        ctaText: "Montar Meu Pedido",
+        ctaSecondary: "Conhecer Nossos Ingredientes",
+        microcopy: "🧀 Queijo derretido no ponto exato · Ingredientes frescos do dia",
+        theme: {
+          primary: "#E05A47",
+          accent: "#2A9D8F",
+          bgHero: "#FAF7F2",
+          textHero: "#264653",
+          textMuted: "#4A6B6C",
+          badgeBg: "rgba(42, 157, 143, 0.12)",
+          badgeText: "#1E7268",
+          badgeBorder: "rgba(42, 157, 143, 0.28)",
+        },
+        typography: {
+          displayClass: "font-barlow text-5xl md:text-7xl lg:text-8xl font-extrabold uppercase leading-[0.95]",
+          displayFont: "Barlow Condensed",
+          baseFont: "Plus Jakarta Sans"
+        },
+        heroImage: "assets/h05-brioche.jpg",
+        layoutType: "fresh-split"
+      }
+    };
+
+    function renderHeroHtml(t) {
+      if (t.layoutType === "split-urban") {
+        return `
+          <section class="relative isolate overflow-hidden pt-10 pb-12 lg:py-20 animate-fade-slide" style="background-color: ${t.theme.bgHero}; color: ${t.theme.textHero};">
+            <div class="pointer-events-none absolute -top-40 right-0 size-96 rounded-full blur-[140px] opacity-40" style="background-color: ${t.theme.primary};"></div>
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 flex flex-col items-start">
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-4 border" style="background-color: ${t.theme.badgeBg}; color: ${t.theme.badgeText}; border-color: ${t.theme.badgeBorder};">
+                    <span>${t.badge}</span>
+                  </div>
+                  <h2 class="${t.typography.displayClass} text-white drop-shadow-md">${t.title}</h2>
+                  <p class="mt-4 text-base md:text-lg leading-relaxed max-w-xl" style="color: ${t.theme.textMuted};">${t.subtitle}</p>
+                  <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
+                    <a href="#cardapio-nav" class="px-7 py-3.5 rounded-xl font-bold text-sm text-black shadow-lg text-center trans-all hover:scale-105" style="background-color: ${t.theme.accent};">
+                      ${t.ctaText}
+                    </a>
+                    <a href="#cardapio-nav" class="px-6 py-3.5 rounded-xl font-semibold text-sm border text-center trans-all hover:bg-white/5 text-white/90 border-white/15">
+                      ${t.ctaSecondary}
+                    </a>
+                  </div>
+                  <div class="mt-5 text-xs" style="color: ${t.theme.textMuted};">${t.microcopy}</div>
+                </div>
+                <div class="lg:col-span-5 relative flex justify-center">
+                  <div class="w-full max-w-md aspect-square rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
+                    <img src="${t.heroImage}" alt="${t.name}" class="size-full object-cover group-hover:scale-105 trans-all duration-500">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+      }
+
+      if (t.layoutType === "center-monumental") {
+        return `
+          <section class="relative isolate overflow-hidden pt-12 pb-14 lg:py-20 animate-fade-slide text-center" style="background-color: ${t.theme.bgHero}; color: ${t.theme.textHero};">
+            <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[500px] rounded-full blur-[160px] opacity-35" style="background-color: ${t.theme.primary};"></div>
+            <div class="max-w-4xl mx-auto px-4 relative z-10 flex flex-col items-center">
+              <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 border" style="background-color: ${t.theme.badgeBg}; color: ${t.theme.badgeText}; border-color: ${t.theme.badgeBorder};">
+                <span>${t.badge}</span>
+              </div>
+              <h2 class="${t.typography.displayClass} text-[#FAF0E6] drop-shadow-lg max-w-3xl">${t.title}</h2>
+              <p class="mt-4 text-base md:text-lg leading-relaxed max-w-2xl" style="color: ${t.theme.textMuted};">${t.subtitle}</p>
+              <div class="mt-8 relative w-full max-w-lg aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-amber-900/40">
+                <img src="${t.heroImage}" alt="${t.name}" class="size-full object-cover">
+              </div>
+              <div class="mt-8 flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
+                <a href="#cardapio-nav" class="px-8 py-3.5 rounded-xl font-bold text-sm text-black shadow-lg text-center trans-all hover:scale-105" style="background-color: ${t.theme.accent};">
+                  ${t.ctaText}
+                </a>
+                <a href="#cardapio-nav" class="px-6 py-3.5 rounded-xl font-semibold text-sm border text-center trans-all hover:bg-white/5 text-[#FAF0E6] border-white/15">
+                  ${t.ctaSecondary}
+                </a>
+              </div>
+              <div class="mt-5 text-xs" style="color: ${t.theme.textMuted};">${t.microcopy}</div>
+            </div>
+          </section>
+        `;
+      }
+
+      if (t.layoutType === "spotlight-card") {
+        return `
+          <section class="relative isolate overflow-hidden pt-10 pb-12 lg:py-20 animate-fade-slide" style="background-color: ${t.theme.bgHero}; color: ${t.theme.textHero};">
+            <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 size-[650px] rounded-full blur-[170px] opacity-25" style="background-color: ${t.theme.primary};"></div>
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-6 flex flex-col items-start">
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold mb-5 border tracking-wide" style="background-color: ${t.theme.badgeBg}; color: ${t.theme.badgeText}; border-color: ${t.theme.badgeBorder};">
+                    <span>${t.badge}</span>
+                  </div>
+                  <h2 class="${t.typography.displayClass} text-white tracking-tight">${t.title}</h2>
+                  <p class="mt-5 text-base md:text-lg leading-relaxed" style="color: ${t.theme.textMuted};">${t.subtitle}</p>
+                  <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+                    <a href="#cardapio-nav" class="px-8 py-3.5 rounded-xl font-bold text-sm text-black shadow-xl text-center trans-all hover:scale-105" style="background-color: ${t.theme.primary};">
+                      ${t.ctaText}
+                    </a>
+                    <a href="#cardapio-nav" class="px-6 py-3.5 rounded-xl font-semibold text-sm border text-center trans-all hover:bg-white/5 text-zinc-300 border-white/15">
+                      ${t.ctaSecondary}
+                    </a>
+                  </div>
+                  <div class="mt-5 text-xs" style="color: ${t.theme.textMuted};">${t.microcopy}</div>
+                </div>
+                <div class="lg:col-span-6 relative flex justify-center">
+                  <div class="w-full max-w-lg aspect-square rounded-3xl overflow-hidden shadow-2xl border border-amber-500/20">
+                    <img src="${t.heroImage}" alt="${t.name}" class="size-full object-cover">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+      }
+
+      if (t.layoutType === "retro-banner") {
+        return `
+          <section class="relative isolate overflow-hidden pt-10 pb-12 lg:py-20 animate-fade-slide" style="background-color: ${t.theme.bgHero}; color: ${t.theme.textHero};">
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 flex flex-col items-start">
+                  <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4 border" style="background-color: ${t.theme.badgeBg}; color: ${t.theme.badgeText}; border-color: ${t.theme.badgeBorder};">
+                    <span>${t.badge}</span>
+                  </div>
+                  <h2 class="${t.typography.displayClass} text-[#C1121F]">${t.title}</h2>
+                  <p class="mt-4 text-base md:text-lg leading-relaxed max-w-xl font-medium" style="color: ${t.theme.textMuted};">${t.subtitle}</p>
+                  <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
+                    <a href="#cardapio-nav" class="px-7 py-3.5 rounded-2xl font-bold text-sm text-white shadow-xl text-center trans-all hover:scale-105" style="background-color: ${t.theme.primary};">
+                      ${t.ctaText}
+                    </a>
+                    <a href="#cardapio-nav" class="px-6 py-3.5 rounded-2xl font-bold text-sm border text-center trans-all hover:bg-black/5 text-[#1D2D44] border-black/15">
+                      ${t.ctaSecondary}
+                    </a>
+                  </div>
+                  <div class="mt-5 text-xs font-semibold" style="color: ${t.theme.textMuted};">${t.microcopy}</div>
+                </div>
+                <div class="lg:col-span-5 relative flex justify-center">
+                  <div class="w-full max-w-md aspect-square rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+                    <img src="${t.heroImage}" alt="${t.name}" class="size-full object-cover">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+      }
+
+      if (t.layoutType === "fresh-split") {
+        return `
+          <section class="relative isolate overflow-hidden pt-10 pb-12 lg:py-20 animate-fade-slide" style="background-color: ${t.theme.bgHero}; color: ${t.theme.textHero};">
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 flex flex-col items-start">
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-4 border" style="background-color: ${t.theme.badgeBg}; color: ${t.theme.badgeText}; border-color: ${t.theme.badgeBorder};">
+                    <span>${t.badge}</span>
+                  </div>
+                  <h2 class="${t.typography.displayClass} text-[#264653] tracking-tight">${t.title}</h2>
+                  <p class="mt-4 text-base md:text-lg leading-relaxed max-w-xl font-medium" style="color: ${t.theme.textMuted};">${t.subtitle}</p>
+                  <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto">
+                    <a href="#cardapio-nav" class="px-7 py-3.5 rounded-xl font-bold text-sm text-white shadow-lg text-center trans-all hover:scale-105" style="background-color: ${t.theme.primary};">
+                      ${t.ctaText}
+                    </a>
+                    <a href="#cardapio-nav" class="px-6 py-3.5 rounded-xl font-semibold text-sm border text-center trans-all hover:bg-black/5 text-[#264653] border-black/15">
+                      ${t.ctaSecondary}
+                    </a>
+                  </div>
+                  <div class="mt-5 text-xs font-medium" style="color: ${t.theme.textMuted};">${t.microcopy}</div>
+                </div>
+                <div class="lg:col-span-5 relative flex justify-center">
+                  <div class="w-full max-w-md aspect-square rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+                    <img src="${t.heroImage}" alt="${t.name}" class="size-full object-cover">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        `;
+      }
+    }
+
+    function switchTemplate(id) {
+      if (!TEMPLATES_DATA[id]) return;
+      const t = TEMPLATES_DATA[id];
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-amber-500', 'text-black', 'border-amber-400', 'shadow-md');
+        btn.classList.add('bg-slate-800', 'text-slate-300', 'border-white/5');
+      });
+      const activeBtn = document.getElementById(`tab-${id}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-slate-800', 'text-slate-300', 'border-white/5');
+        activeBtn.classList.add('bg-amber-500', 'text-black', 'border-amber-400', 'shadow-md');
+      }
+
+      document.getElementById('spec-name').textContent = `${t.id} — ${t.name}`;
+      document.getElementById('spec-fonts').textContent = `${t.typography.displayFont} + ${t.typography.baseFont}`;
+
+      document.getElementById('hero-mount').innerHTML = renderHeroHtml(t);
+    }
+
+    function setViewMode(mode) {
+      const canvas = document.getElementById('store-canvas');
+      const btnDesktop = document.getElementById('btn-view-desktop');
+      const btnMobileLg = document.getElementById('btn-view-mobile-lg');
+      const btnMobileSm = document.getElementById('btn-view-mobile-sm');
+
+      [btnDesktop, btnMobileLg, btnMobileSm].forEach(b => {
+        b.classList.remove('bg-amber-500', 'text-black', 'shadow');
+        b.classList.add('text-slate-300');
+      });
+
+      canvas.classList.remove('mobile-frame-sm', 'mobile-frame-lg', 'my-6');
+
+      if (mode === 'mobile-sm') {
+        canvas.classList.add('mobile-frame-sm', 'my-6');
+        btnMobileSm.classList.add('bg-amber-500', 'text-black', 'shadow');
+        btnMobileSm.classList.remove('text-slate-300');
+      } else if (mode === 'mobile-lg') {
+        canvas.classList.add('mobile-frame-lg', 'my-6');
+        btnMobileLg.classList.add('bg-amber-500', 'text-black', 'shadow');
+        btnMobileLg.classList.remove('text-slate-300');
+      } else {
+        btnDesktop.classList.add('bg-amber-500', 'text-black', 'shadow');
+        btnDesktop.classList.remove('text-slate-300');
+      }
+    }
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      switchTemplate('H01');
+    });
+  </script>
+
+</body>
+</html>
