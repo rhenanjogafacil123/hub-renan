@@ -35,14 +35,14 @@
   </script>
 
   <style>
-    /* Molduras de Simulação Mobile (Padrão Oficial do Hub Automatech) */
+    /* Molduras de Simulação Mobile (Padrão 100% Claro e Oficial do Hub) */
     .device-frame-pc {
       width: 100% !important;
       max-width: 100% !important;
       height: 86vh !important;
-      border-radius: 16px !important;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7) !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: 18px !important;
+      box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(226, 232, 240, 0.9) !important;
+      background: #ffffff !important;
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -54,8 +54,8 @@
       margin-left: auto !important;
       margin-right: auto !important;
       border-radius: 38px !important;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 12px #1e2430 !important;
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.22), 0 0 0 10px #1e293b !important;
+      background: #ffffff !important;
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
@@ -67,35 +67,35 @@
       margin-left: auto !important;
       margin-right: auto !important;
       border-radius: 42px !important;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 12px #1e2430 !important;
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.22), 0 0 0 10px #1e293b !important;
+      background: #ffffff !important;
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
     .trans-all { transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
   </style>
 </head>
-<body class="min-h-screen bg-[#0d0f12] text-slate-100 font-sans antialiased selection:bg-orange-600 selection:text-white">
+<body class="min-h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased selection:bg-orange-600 selection:text-white">
 
   <!-- BACKDROP OVERLAY DO MENU LATERAL (APENAS MOBILE) -->
-  <div id="hub-sidebar-backdrop" onclick="toggleHubSidebar()" class="lg:hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"></div>
+  <div id="hub-sidebar-backdrop" onclick="toggleHubSidebar()" class="lg:hidden fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
-  <!-- ==================== MENU LATERAL DA ESQUERDA (ESTRUTURA OFICIAL DO TEIXO HUB) ==================== -->
-  <aside id="hub-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-52 max-w-[85vw] lg:max-w-none flex-col justify-between border-r border-slate-800 bg-[#12151b] transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none">
+  <!-- ==================== MENU LATERAL DA ESQUERDA (ESTRUTURA OFICIAL E 100% CLARA DO TEIXO HUB) ==================== -->
+  <aside id="hub-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-52 max-w-[85vw] lg:max-w-none flex-col justify-between border-r border-slate-200/90 bg-white transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none">
     
     <!-- TOPO DO MENU LATERAL -->
     <div>
-      <div class="flex items-center justify-between border-b border-slate-800 p-3 bg-slate-900/60">
+      <div class="flex items-center justify-between border-b border-slate-200/80 p-3 bg-slate-50/80">
         <a href="/" class="flex items-center gap-2 group">
           <div class="grid h-8 w-8 place-items-center rounded-xl bg-orange-600 text-white font-black shadow-xs group-hover:scale-105 transition">
             <i data-lucide="layers" class="h-4 w-4"></i>
           </div>
           <div>
-            <div class="text-xs font-black text-white group-hover:text-orange-500 transition">Teixo Hub</div>
-            <div class="text-[9px] font-semibold text-slate-400">Menu de Operações</div>
+            <div class="text-xs font-black text-slate-950 group-hover:text-orange-600 transition">Teixo Hub</div>
+            <div class="text-[9px] font-semibold text-slate-500">Menu de Operações</div>
           </div>
         </a>
-        <button onclick="toggleHubSidebar()" class="lg:hidden rounded-xl p-2 text-slate-400 hover:bg-slate-800 hover:text-white transition" title="Fechar Menu">
+        <button onclick="toggleHubSidebar()" class="lg:hidden rounded-xl p-2 text-slate-400 hover:bg-slate-200/60 hover:text-slate-700 transition" title="Fechar Menu">
           <i data-lucide="x" class="h-5 w-5"></i>
         </button>
       </div>
@@ -110,11 +110,11 @@
             <span class="size-1.5 rounded-full bg-orange-500"></span>
           </div>
           
-          <a href="/" class="flex items-center gap-2 rounded-xl bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800 hover:border-slate-700 px-2.5 py-2 text-left transition group shadow-xs">
+          <a href="/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-orange-50 border border-slate-200/80 hover:border-orange-200 px-2.5 py-2 text-left transition group shadow-xs">
             <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-orange-600 text-white font-black shadow-xs group-hover:scale-105 transition">
               <i data-lucide="layout-grid" class="h-3.5 w-3.5"></i>
             </div>
-            <span class="text-xs font-bold text-slate-300 group-hover:text-white transition whitespace-nowrap">Hub de Clientes</span>
+            <span class="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition whitespace-nowrap">Hub de Clientes</span>
           </a>
         </div>
 
@@ -125,28 +125,28 @@
             <span class="size-1.5 rounded-full bg-emerald-500"></span>
           </div>
 
-          <a href="/painel/planilha/" class="flex items-center gap-2 rounded-xl bg-slate-900/40 hover:bg-slate-800/80 border border-slate-800 hover:border-slate-700 px-2.5 py-2 text-left transition group shadow-xs">
+          <a href="/painel/planilha/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200/80 hover:border-emerald-300 px-2.5 py-2 text-left transition group shadow-xs">
             <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-emerald-600 text-white font-black shadow-xs group-hover:scale-105 transition">
               <i data-lucide="file-spreadsheet" class="h-3.5 w-3.5"></i>
             </div>
-            <span class="text-xs font-bold text-slate-300 group-hover:text-white transition whitespace-nowrap">Planilha de Clientes</span>
+            <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition whitespace-nowrap">Planilha de Clientes</span>
           </a>
         </div>
 
-        <!-- 3. SHOWROOM (ABA ATIVA) -->
+        <!-- 3. SHOWROOM (ABA ATIVA - 100% CLARA) -->
         <div>
-          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-amber-400 flex items-center justify-between">
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-amber-600 flex items-center justify-between">
             <span>3. Showroom</span>
-            <span class="size-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+            <span class="size-1.5 rounded-full bg-amber-500 animate-pulse"></span>
           </div>
 
-          <a href="/showroom/" class="flex items-center gap-2 rounded-xl bg-amber-500/10 border border-amber-500/30 px-2.5 py-2 text-left transition shadow-xs">
+          <a href="/showroom/" class="flex items-center gap-2 rounded-xl bg-amber-50 border border-amber-300 px-2.5 py-2 text-left transition shadow-xs">
             <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-amber-500 text-black font-black shadow-xs">
               <i data-lucide="sparkles" class="h-3.5 w-3.5"></i>
             </div>
             <div>
-              <span class="text-xs font-black text-amber-300 block">Showroom Templates</span>
-              <span class="text-[9px] text-amber-400/80 font-semibold">25 Modelos de Delivery</span>
+              <span class="text-xs font-black text-amber-950 block">Showroom Templates</span>
+              <span class="text-[9px] text-amber-700 font-semibold">25 Modelos de Delivery</span>
             </div>
           </a>
         </div>
@@ -155,10 +155,10 @@
     </div>
 
     <!-- RODAPÉ DO MENU LATERAL -->
-    <div class="border-t border-slate-800 p-2.5 bg-slate-900/60 text-xs">
-      <div class="flex items-center justify-between text-slate-400">
+    <div class="border-t border-slate-200 p-2.5 bg-slate-50 text-xs">
+      <div class="flex items-center justify-between text-slate-500">
         <span class="font-bold text-[10px]">Teixo Hub</span>
-        <span class="text-[9px] text-emerald-400 flex items-center gap-1 font-bold">
+        <span class="text-[9px] text-emerald-600 flex items-center gap-1 font-bold">
           <span class="size-1.5 rounded-full bg-emerald-500"></span> Online
         </span>
       </div>
@@ -169,8 +169,8 @@
   <!-- ==================== CONTAINER PRINCIPAL (À DIREITA DA SIDEBAR FIXA) ==================== -->
   <div class="lg:pl-52 flex min-h-screen flex-col justify-between">
 
-    <!-- ==================== HEADER SUPERIOR DO HUB ==================== -->
-    <header class="sticky top-0 z-30 border-b border-slate-800 bg-[#12151b]/95 backdrop-blur-md">
+    <!-- ==================== HEADER SUPERIOR DO HUB (100% CLARO) ==================== -->
+    <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
       <div class="flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         
         <!-- LADO ESQUERDO: BOTÃO MOBILE E TÍTULO -->
@@ -179,32 +179,32 @@
             type="button" 
             onclick="toggleHubSidebar()" 
             title="Abrir Menu Lateral" 
-            class="lg:hidden grid h-10 w-10 place-items-center rounded-2xl border border-slate-800 bg-slate-900 text-slate-300 hover:bg-slate-800 transition active:scale-95 shadow-xs"
+            class="lg:hidden grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition active:scale-95 shadow-xs"
           >
             <i data-lucide="menu" class="h-5 w-5"></i>
           </button>
 
           <div>
             <div class="flex items-center gap-2">
-              <span class="text-sm sm:text-base font-black tracking-tight text-white">Showroom de Templates</span>
-              <span class="rounded-full bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-amber-400">Food Delivery</span>
+              <span class="text-sm sm:text-base font-black tracking-tight text-slate-950">Showroom de Templates</span>
+              <span class="rounded-full bg-amber-50 border border-amber-300 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-amber-800">Food Delivery</span>
             </div>
-            <div class="text-[11px] font-bold text-slate-400">Motor Real Pizza do Juca • Variação Modular Exclusiva da Hero</div>
+            <div class="text-[11px] font-bold text-slate-500">Motor Real Pizza do Juca • Variação Modular Exclusiva da Hero</div>
           </div>
         </div>
 
         <!-- LADO DIREITO: ATALHOS -->
         <div class="flex items-center gap-2.5">
-          <a id="btn-open-store" href="/juca/" target="_blank" class="inline-flex items-center gap-1.5 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs font-bold text-amber-300 hover:bg-amber-500 hover:text-black transition">
-            <i data-lucide="external-link" class="h-3.5 w-3.5"></i>
+          <a id="btn-open-store" href="/juca/?hero=H01" target="_blank" class="inline-flex items-center gap-1.5 rounded-xl border border-amber-300 bg-amber-50 px-3 py-2 text-xs font-black text-amber-900 hover:bg-amber-500 hover:text-black transition shadow-xs">
+            <i data-lucide="external-link" class="h-3.5 w-3.5 text-amber-700"></i>
             <span class="hidden sm:inline">Abrir Loja 100%</span>
           </a>
-          <a href="/painel/planilha/" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-800 bg-slate-900 px-3 py-2 text-xs font-bold text-slate-300 hover:bg-slate-800 transition">
-            <i data-lucide="file-spreadsheet" class="h-4 w-4 text-emerald-500"></i>
+          <a href="/painel/planilha/" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition shadow-xs">
+            <i data-lucide="file-spreadsheet" class="h-4 w-4 text-emerald-600"></i>
             <span class="hidden sm:inline">Planilha</span>
           </a>
-          <a href="/" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-800 bg-slate-900 px-3 py-2 text-xs font-bold text-slate-300 hover:bg-slate-800 transition">
-            <i data-lucide="layout-grid" class="h-4 w-4 text-orange-500"></i>
+          <a href="/" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition shadow-xs">
+            <i data-lucide="layout-grid" class="h-4 w-4 text-orange-600"></i>
             <span class="hidden sm:inline">Hub</span>
           </a>
         </div>
@@ -212,38 +212,38 @@
       </div>
     </header>
 
-    <!-- ==================== SUB-BARRA DE CONTROLE DO SHOWROOM ==================== -->
-    <div class="sticky top-[57px] z-20 bg-[#161a22] text-white border-b border-slate-800 px-3 sm:px-6 py-2.5 shadow-md">
+    <!-- ==================== SUB-BARRA DE CONTROLE DO SHOWROOM (100% CLARA) ==================== -->
+    <div class="sticky top-[57px] z-20 bg-white/95 backdrop-blur-md border-b border-slate-200 px-3 sm:px-6 py-2.5 shadow-xs">
       <div class="max-w-7xl mx-auto flex flex-col xl:flex-row items-center justify-between gap-3">
         
         <!-- SELETOR DE TEMPLATES (P01 + H01 A H05) -->
         <div class="flex items-center gap-1.5 overflow-x-auto w-full xl:w-auto scrollbar-none py-0.5">
-          <button onclick="switchTemplate('P01')" id="tab-P01" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-800 text-slate-300 border-white/5 hover:border-white/20 hover:text-white">
+          <button onclick="switchTemplate('P01')" id="tab-P01" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200 hover:text-slate-900">
             <span>🍕 P01</span>
             <span class="font-medium">Juca Original</span>
           </button>
 
-          <button onclick="switchTemplate('H01')" id="tab-H01" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-amber-500 text-black border-amber-400 shadow-md">
+          <button onclick="switchTemplate('H01')" id="tab-H01" class="tab-btn px-3 py-1.5 text-xs font-black rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-amber-500 text-slate-950 border-amber-400 shadow-sm">
             <span>⚡ H01</span>
-            <span class="font-medium">Smash Urban</span>
+            <span class="font-bold">Smash Urban</span>
           </button>
           
-          <button onclick="switchTemplate('H02')" id="tab-H02" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-800 text-slate-300 border-white/5 hover:border-white/20 hover:text-white">
+          <button onclick="switchTemplate('H02')" id="tab-H02" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200 hover:text-slate-900">
             <span>🪵 H02</span>
             <span class="font-medium">Vintage Smoke</span>
           </button>
           
-          <button onclick="switchTemplate('H03')" id="tab-H03" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-800 text-slate-300 border-white/5 hover:border-white/20 hover:text-white">
+          <button onclick="switchTemplate('H03')" id="tab-H03" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200 hover:text-slate-900">
             <span>👑 H03</span>
             <span class="font-medium">Dark Angus</span>
           </button>
           
-          <button onclick="switchTemplate('H04')" id="tab-H04" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-800 text-slate-300 border-white/5 hover:border-white/20 hover:text-white">
+          <button onclick="switchTemplate('H04')" id="tab-H04" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200 hover:text-slate-900">
             <span>🥤 H04</span>
             <span class="font-medium">Retro Diner</span>
           </button>
           
-          <button onclick="switchTemplate('H05')" id="tab-H05" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-800 text-slate-300 border-white/5 hover:border-white/20 hover:text-white">
+          <button onclick="switchTemplate('H05')" id="tab-H05" class="tab-btn px-3 py-1.5 text-xs font-bold rounded-lg border trans-all flex items-center gap-1.5 whitespace-nowrap bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200 hover:text-slate-900">
             <span>🌱 H05</span>
             <span class="font-medium">Brioche Fresh</span>
           </button>
@@ -251,38 +251,38 @@
 
         <!-- SELETOR DOS 3 MODOS DE VISUALIZAÇÃO OFICIAIS (PC + MOBILE 2 + MOBILE 1) -->
         <div class="flex items-center justify-between w-full xl:w-auto gap-3">
-          <div class="flex items-center bg-slate-900 rounded-lg p-0.5 border border-white/10 shrink-0">
-            <button id="btn-view-desktop" onclick="setViewMode('desktop')" title="Visualização PC / Desktop (100% Tela Cheia)" class="px-2.5 py-1 text-xs font-semibold rounded-md bg-amber-500 text-black shadow trans-all flex items-center gap-1.5">
-              <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <span class="font-bold">PC</span>
+          <div class="flex items-center bg-slate-100 rounded-lg p-0.5 border border-slate-200 shrink-0">
+            <button id="btn-view-desktop" onclick="setViewMode('desktop')" title="Visualização PC / Desktop (100% Tela Cheia)" class="px-2.5 py-1 text-xs font-bold rounded-md bg-white text-slate-950 shadow-xs trans-all flex items-center gap-1.5 border border-slate-200/60">
+              <svg class="size-3.5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span>PC</span>
             </button>
 
-            <button id="btn-view-mobile-lg" onclick="setViewMode('mobile-lg')" title="Visualização Mobile 2: Celular Plus (480px)" class="px-2.5 py-1 text-xs font-semibold rounded-md text-slate-300 hover:text-white trans-all flex items-center gap-1.5">
-              <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <button id="btn-view-mobile-lg" onclick="setViewMode('mobile-lg')" title="Visualização Mobile 2: Celular Plus (480px)" class="px-2.5 py-1 text-xs font-medium rounded-md text-slate-600 hover:text-slate-900 trans-all flex items-center gap-1.5">
+              <svg class="size-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
               <span>Mobile 2 <span class="text-[10px] text-slate-400 font-mono">(480px)</span></span>
             </button>
 
-            <button id="btn-view-mobile-sm" onclick="setViewMode('mobile-sm')" title="Visualização Mobile 1: Celular Compacto (390px)" class="px-2.5 py-1 text-xs font-semibold rounded-md text-slate-300 hover:text-white trans-all flex items-center gap-1.5">
-              <svg class="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <button id="btn-view-mobile-sm" onclick="setViewMode('mobile-sm')" title="Visualização Mobile 1: Celular Compacto (390px)" class="px-2.5 py-1 text-xs font-medium rounded-md text-slate-600 hover:text-slate-900 trans-all flex items-center gap-1.5">
+              <svg class="size-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
               <span>Mobile 1 <span class="text-[10px] text-slate-400 font-mono">(390px)</span></span>
             </button>
           </div>
 
           <!-- FICHA TÉCNICA RÁPIDA -->
-          <div class="hidden sm:flex items-center gap-2 text-xs bg-slate-900 px-3 py-1 rounded-lg border border-white/10">
-            <span id="spec-name" class="font-bold text-white">H01 — Smash Urban</span>
-            <span class="text-slate-600">|</span>
-            <span id="spec-fonts" class="text-amber-400 font-mono">Bebas Neue + Inter</span>
+          <div class="hidden sm:flex items-center gap-2 text-xs bg-slate-50 px-3 py-1 rounded-lg border border-slate-200">
+            <span id="spec-name" class="font-black text-slate-900">H01 — Smash Urban</span>
+            <span class="text-slate-300">|</span>
+            <span id="spec-fonts" class="text-amber-700 font-mono font-semibold">Bebas Neue + Inter</span>
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- ==================== ÁREA DE VISUALIZAÇÃO DO SITE (CANVAS COM O SITE JUCA OFICIAL) ==================== -->
-    <main class="flex-1 bg-[#090a0d] p-3 sm:p-6 flex flex-col items-center justify-start overflow-hidden">
+    <!-- ==================== ÁREA DE VISUALIZAÇÃO DO SITE (CANVAS 100% CLARO) ==================== -->
+    <main class="flex-1 bg-[#f1f5f9] p-3 sm:p-6 flex flex-col items-center justify-start overflow-hidden">
       
-      <div id="simulator-frame" class="device-frame-pc relative overflow-hidden bg-[#14151b]">
+      <div id="simulator-frame" class="device-frame-pc relative overflow-hidden bg-white">
         <!-- Iframe com a loja oficial da Pizza do Juca -->
         <iframe 
           id="store-iframe" 
@@ -329,15 +329,15 @@
       currentTemplate = id;
       const t = TEMPLATES_INFO[id];
 
-      // Atualizar botões de abas
+      // Atualizar botões de abas (estilo claro)
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('bg-amber-500', 'text-black', 'border-amber-400', 'shadow-md');
-        btn.classList.add('bg-slate-800', 'text-slate-300', 'border-white/5');
+        btn.classList.remove('bg-amber-500', 'text-slate-950', 'border-amber-400', 'shadow-sm', 'font-black');
+        btn.classList.add('bg-slate-100', 'text-slate-700', 'border-slate-200/80', 'font-medium');
       });
       const activeBtn = document.getElementById(`tab-${id}`);
       if (activeBtn) {
-        activeBtn.classList.remove('bg-slate-800', 'text-slate-300', 'border-white/5');
-        activeBtn.classList.add('bg-amber-500', 'text-black', 'border-amber-400', 'shadow-md');
+        activeBtn.classList.remove('bg-slate-100', 'text-slate-700', 'border-slate-200/80', 'font-medium');
+        activeBtn.classList.add('bg-amber-500', 'text-slate-950', 'border-amber-400', 'shadow-sm', 'font-black');
       }
 
       // Atualizar ficha técnica
@@ -362,24 +362,24 @@
       const btnMobileSm = document.getElementById('btn-view-mobile-sm');
 
       [btnDesktop, btnMobileLg, btnMobileSm].forEach(b => {
-        b.classList.remove('bg-amber-500', 'text-black', 'shadow');
-        b.classList.add('text-slate-300');
+        b.classList.remove('bg-white', 'text-slate-950', 'font-bold', 'shadow-xs', 'border', 'border-slate-200/60');
+        b.classList.add('text-slate-600', 'font-medium');
       });
 
       frame.classList.remove('device-frame-pc', 'device-frame-mobile-lg', 'device-frame-mobile-sm');
 
       if (mode === 'mobile-sm') {
         frame.classList.add('device-frame-mobile-sm');
-        btnMobileSm.classList.add('bg-amber-500', 'text-black', 'shadow');
-        btnMobileSm.classList.remove('text-slate-300');
+        btnMobileSm.classList.add('bg-white', 'text-slate-950', 'font-bold', 'shadow-xs', 'border', 'border-slate-200/60');
+        btnMobileSm.classList.remove('text-slate-600', 'font-medium');
       } else if (mode === 'mobile-lg') {
         frame.classList.add('device-frame-mobile-lg');
-        btnMobileLg.classList.add('bg-amber-500', 'text-black', 'shadow');
-        btnMobileLg.classList.remove('text-slate-300');
+        btnMobileLg.classList.add('bg-white', 'text-slate-950', 'font-bold', 'shadow-xs', 'border', 'border-slate-200/60');
+        btnMobileLg.classList.remove('text-slate-600', 'font-medium');
       } else {
         frame.classList.add('device-frame-pc');
-        btnDesktop.classList.add('bg-amber-500', 'text-black', 'shadow');
-        btnDesktop.classList.remove('text-slate-300');
+        btnDesktop.classList.add('bg-white', 'text-slate-950', 'font-bold', 'shadow-xs', 'border', 'border-slate-200/60');
+        btnDesktop.classList.remove('text-slate-600', 'font-medium');
       }
     }
 
