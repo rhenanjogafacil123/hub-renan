@@ -1016,7 +1016,7 @@
 
         <!-- LADO DIREITO: ATALHOS -->
         <div class="flex items-center gap-2 shrink-0">
-          <a id="btn-open-store" href="/juca/?hero=H01" target="_blank" class="inline-flex items-center gap-1.5 rounded-xl border border-amber-400 bg-amber-100 hover:bg-amber-500 px-2.5 sm:px-3 py-1.5 text-xs font-black text-amber-950 hover:text-black transition shadow-2xs">
+          <a id="btn-open-store" href="/showroom/hamburguerias?hero=H01" target="_blank" class="inline-flex items-center gap-1.5 rounded-xl border border-amber-400 bg-amber-100 hover:bg-amber-500 px-2.5 sm:px-3 py-1.5 text-xs font-black text-amber-950 hover:text-black transition shadow-2xs">
             <i data-lucide="external-link" class="h-3.5 w-3.5 text-amber-800"></i>
             <span class="hidden md:inline">Abrir Loja 100%</span>
           </a>
@@ -1059,7 +1059,7 @@
         <!-- Iframe com a loja oficial da Pizza do Juca em 16:9 real -->
         <iframe 
           id="store-iframe" 
-          src="/juca/index.html?hero=H01" 
+          src="/showroom/hamburguerias.html?hero=H01" 
           title="Loja Oficial Pizza do Juca em 16:9 Real"
           class="w-full flex-1 border-0 bg-transparent"
           loading="eager"
@@ -3087,12 +3087,16 @@
 
       // Atualizar link externo
       const btnOpen = document.getElementById('btn-open-store');
-      if (btnOpen) btnOpen.href = `/juca/?hero=${id}`;
+      const isHamburguer = /^H0[1-5]$/.test(id);
+      const previewPath = isHamburguer ? "/showroom/hamburguerias.html" : "/juca/index.html";
+      if (btnOpen) btnOpen.href = `${previewPath}?hero=${id}`;
 
       // Disparar postMessage para o iframe
       const iframe = document.getElementById('store-iframe');
       if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.postMessage({ type: 'switchHero', template: id, modelData: foundModel, nicheData: foundNiche }, '*');
+        const currentPath = new URL(iframe.src, location.href).pathname;
+        if (currentPath !== previewPath) iframe.src = `${previewPath}?hero=${id}`;
+        else iframe.contentWindow.postMessage({ type: 'switchHero', template: id, modelData: foundModel, nicheData: foundNiche }, location.origin);
       }
     }
 
@@ -3142,7 +3146,7 @@
       const iframe = document.getElementById('store-iframe');
       if (iframe) {
         iframe.addEventListener('load', () => {
-          const initModel = NICHES_DATA[0]?.models[0]; const initNiche = NICHES_DATA[0]; iframe.contentWindow.postMessage({ type: 'switchHero', template: currentTemplateId, modelData: initModel, nicheData: initNiche }, '*');
+          const initNiche = NICHES_DATA.find(n => n.models.some(m => m.id === currentTemplateId)); const initModel = initNiche?.models.find(m => m.id === currentTemplateId); iframe.contentWindow.postMessage({ type: 'switchHero', template: currentTemplateId, modelData: initModel, nicheData: initNiche }, location.origin);
         });
       }
     });
