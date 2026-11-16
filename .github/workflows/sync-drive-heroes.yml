@@ -1,9 +1,9 @@
 name: Sincronizar Heroes do Google Drive
 
 on:
-  schedule:
-    # Roda a cada 30 minutos na madrugada (03:00 às 11:00 UTC = 00:00 às 08:00 de Brasília)
-    - cron: '*/30 3-11 * * *'
+  # Agendamento temporariamente pausado: concluir as 375 imagens e a auditoria antes da publicacao.
+  # schedule:
+  #   - cron: '*/30 3-11 * * *' # 00:00–08:30 de Brasilia
   workflow_dispatch: # Permite disparar manualmente a qualquer momento pelo GitHub
 
 permissions:
