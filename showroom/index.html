@@ -3050,6 +3050,23 @@
       lucide.createIcons();
     }
 
+    function getSavedModelInfo() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlModel = urlParams.get('model') || urlParams.get('hero') || window.location.hash.replace('#', '');
+        const savedId = urlModel || localStorage.getItem('teixo_active_model_id');
+        if (!savedId) return null;
+
+        for (const n of NICHES_DATA) {
+          const m = n.models.find(x => x.id === savedId || x.code === savedId);
+          if (m) {
+            return { model: m, niche: n };
+          }
+        }
+      } catch (e) {}
+      return null;
+    }
+
     function selectModelFromSidebar(nicheId, modelId) {
       const niche = NICHES_DATA.find(n => n.id === nicheId);
       if (niche) {
@@ -3065,7 +3082,7 @@
       let foundModel = null;
       let foundNiche = null;
       for (const n of NICHES_DATA) {
-        const m = n.models.find(x => x.id === id);
+        const m = n.models.find(x => x.id === id || x.code === id);
         if (m) {
           foundModel = m;
           foundNiche = n;
@@ -3077,9 +3094,21 @@
         currentNicheId = foundNiche.id;
       }
 
+      // Persistir no localStorage e na URL (para F5 e compartilhamento)
+      try {
+        localStorage.setItem('teixo_active_model_id', id);
+        localStorage.setItem('teixo_active_niche_id', currentNicheId);
+        const url = new URL(window.location);
+        url.searchParams.set('model', id);
+        window.history.replaceState({}, '', url);
+      } catch (e) {}
+
       // Atualizar badge no header superior
       if (foundModel) {
-        document.getElementById('active-model-pill').textContent = `${foundModel.code} ${foundModel.name.replace(/^[A-Z0-9]+ — /, '')}`;
+        const pill = document.getElementById('active-model-pill');
+        if (pill) {
+          pill.textContent = `${foundModel.code} ${foundModel.name.replace(/^[0-9.]+\s*—?\s*/, '')}`;
+        }
       }
 
       // Atualizar lista da barra lateral
@@ -3149,13 +3178,71 @@
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
 
+      // Recuperar modelo ativo anterior (F5 ou URL)
+      const saved = getSavedModelInfo();
+      const initialModel = saved ? saved.model : (NICHES_DATA[0]?.models.find(m => m.id === currentTemplateId) || NICHES_DATA[0]?.models[0]);
+      const initialNiche = saved ? saved.niche : NICHES_DATA[0];
+
+      if (saved) {
+        currentTemplateId = initialModel.id;
+        currentNicheId = initialNiche.id;
+        NICHES_DATA.forEach(n => {
+          n.open = (n.id === initialNiche.id);
+        });
+
+        const pill = document.getElementById('active-model-pill');
+        if (pill) {
+          pill.textContent = `${initialModel.code} ${initialModel.name.replace(/^[0-9.]+\s*—?\s*/, '')}`;
+        }
+
+        const isHamburguer = /^H0[1-5]$/.test(initialModel.id);
+        const previewPath = isHamburguer ? "/showroom/hamburguerias.html" : "/juca/index.html";
+
+        const btnOpen = document.getElementById('btn-open-store');
+        if (btnOpen) btnOpen.href = `${previewPath}?hero=${initialModel.id}`;
+
+        const previewAddress = document.getElementById('preview-address');
+        if (previewAddress) previewAddress.textContent = isHamburguer
+          ? 'Showroom · Hamburguerias · ' + initialModel.id
+          : 'https://juca.automatech.tech';
+
+        const iframe = document.getElementById('store-iframe');
+        if (iframe) {
+          iframe.title = isHamburguer
+            ? 'Demonstração de Hamburgueria ' + initialModel.id
+            : 'Loja Oficial Pizza do Juca em 16:9 Real';
+          iframe.src = `${previewPath}?hero=${initialModel.id}`;
+        }
+      }
+
       renderNichesList();
 
       const iframe = document.getElementById('store-iframe');
       if (iframe) {
-        iframe.addEventListener('load', () => {
-          const initNiche = NICHES_DATA.find(n => n.models.some(m => m.id === currentTemplateId)); const initModel = initNiche?.models.find(m => m.id === currentTemplateId); iframe.contentWindow.postMessage({ type: 'switchHero', template: currentTemplateId, modelData: initModel, nicheData: initNiche }, location.origin);
-        });
+        function sendInit() {
+          if (iframe.contentWindow) {
+            iframe.contentWindow.postMessage({
+              type: 'switchHero',
+              template: currentTemplateId,
+              modelData: initialModel,
+              nicheData: initialNiche
+            }, location.origin);
+          }
+        }
+        iframe.addEventListener('load', sendInit);
+        setTimeout(sendInit, 200);
+        setTimeout(sendInit, 600);
+        setTimeout(sendInit, 1200);
+      }
+
+      // Rolar suavemente a barra lateral até o modelo ativo
+      if (saved && saved.niche.id !== 'hamburguerias') {
+        setTimeout(() => {
+          const activeBtn = document.querySelector('#niches-list button.bg-amber-500');
+          if (activeBtn) {
+            activeBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 300);
       }
     });
   </script>
