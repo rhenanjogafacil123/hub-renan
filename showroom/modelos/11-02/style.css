@@ -30,7 +30,7 @@ nav{display:flex;gap:1.196172vw;align-items:center}
 .theme i{width:2.631579vw;height:1.674641vw;border-radius:1.794258vw;background:#392219;position:relative}
 .theme i:after{content:'';position:absolute;right:0.179426vw;top:0.179426vw;width:1.315789vw;height:1.315789vw;background:#edbc69;border-radius:50%}
 .more{width:3.588517vw;font-size:1.435407vw;letter-spacing:0.119617vw;background:#422a20;color:#fff1e0}
-main{position:relative;isolation:isolate;overflow:hidden;min-height:calc(100svh - 6.220096vw);display:flex;flex-direction:column}
+main{position:relative;isolation:isolate;overflow:hidden;min-height:calc(56.25vw - 6.220096vw);display:flex;flex-direction:column}
 .photo{position:absolute;inset:0;z-index:-2;background:url('hero.webp') right center/cover no-repeat}
 .content{padding:2.511962vw 4% 0}
 .hero-brand{margin-bottom:2.511962vw}

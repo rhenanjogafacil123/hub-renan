@@ -31,7 +31,7 @@ nav{display:flex;gap:1.196172vw;align-items:center}
 .theme i{width:2.990431vw;height:1.674641vw;border-radius:1.794258vw;background:#f52b83;position:relative}
 .theme i:after{content:'';position:absolute;right:0.179426vw;top:0.179426vw;width:1.315789vw;height:1.315789vw;background:white;border-radius:50%}
 .more{width:3.588517vw;font-size:1.435407vw;letter-spacing:0.119617vw}
-main{position:relative;isolation:isolate;overflow:hidden;min-height:calc(100svh - 6.220096vw);display:flex;flex-direction:column}
+main{position:relative;isolation:isolate;overflow:hidden;min-height:calc(56.25vw - 6.220096vw);display:flex;flex-direction:column}
 .photo{position:absolute;inset:0;z-index:-2;background:url('hero.webp') right center/cover no-repeat}
 .mobile-donut{display:none}
 .content{padding:1.794258vw 4% 0}
