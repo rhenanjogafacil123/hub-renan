@@ -1304,10 +1304,12 @@ window.HERO_TEMPLATES = {
 
 window.setHeroTemplate = function(templateId, modelData, nicheData) {
   let t = window.HERO_TEMPLATES[templateId];
-  if (!t) {
+  if (!t && typeof buildDynamicHeroTemplate === 'function') {
     t = buildDynamicHeroTemplate(templateId, modelData, nicheData);
   }
-  const t = window.HERO_TEMPLATES[templateId] || window.HERO_TEMPLATES.P01;
+  if (!t) {
+    t = window.HERO_TEMPLATES.P01;
+  }
   const topo = document.getElementById('topo');
   if (!topo) return;
 
