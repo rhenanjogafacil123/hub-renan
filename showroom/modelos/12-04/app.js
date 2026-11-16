@@ -1,0 +1,1 @@
+const d=document.querySelector('dialog');document.querySelectorAll('[data-modal]').forEach(b=>b.onclick=()=>{d.querySelector('h2').textContent=b.dataset.modal;d.showModal()});document.querySelector('#close').onclick=()=>d.close();document.querySelector('#theme').onclick=function(){this.setAttribute('aria-pressed',String(document.body.classList.toggle('light')))};
