@@ -205,7 +205,740 @@
 
         <!-- Lista sanfonada rolável com as 25 pastas compactas -->
         <div id="niches-list" class="flex-1 overflow-y-auto niche-scroll pr-0.5 space-y-1">
-          <!-- Renderizado via JavaScript com tipografia nítida e alto contraste -->
+
+        <div class="rounded-xl border border-amber-400 bg-amber-50/50 shadow-2xs overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('hamburguerias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-950 font-black truncate group-hover:text-amber-800 transition tracking-tight">
+                1. 🍔 Hamburguerias
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-amber-200 text-amber-950">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 rotate-180 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+            <div class="border-t border-slate-200 bg-slate-50 p-1.5 space-y-1">
+              
+                  <button 
+                    type="button" 
+                    onclick="selectModelFromSidebar('hamburguerias', 'H01')" 
+                    class="w-full px-2 py-1.5 rounded-lg text-left flex items-center justify-between transition bg-amber-500 border border-amber-600 text-slate-950 font-black shadow-xs"
+                  >
+                    <div class="flex items-center gap-1.5 min-w-0">
+                      <span class="text-[10px] font-mono font-black px-1 py-0.2 rounded bg-slate-950 text-white shrink-0">
+                        01.01
+                      </span>
+                      <span class="text-[11px] font-black text-slate-950 truncate">
+                        Smash Urban
+                      </span>
+                    </div>
+                    <span class="text-xs font-black text-slate-950 shrink-0 ml-1">✓</span>
+                  </button>
+                
+                  <button 
+                    type="button" 
+                    onclick="selectModelFromSidebar('hamburguerias', 'H02')" 
+                    class="w-full px-2 py-1.5 rounded-lg text-left flex items-center justify-between transition bg-white border border-slate-200 hover:border-amber-400 hover:bg-amber-50/60 text-slate-900 font-extrabold shadow-2xs"
+                  >
+                    <div class="flex items-center gap-1.5 min-w-0">
+                      <span class="text-[10px] font-mono font-black px-1 py-0.2 rounded bg-slate-100 text-slate-900 shrink-0">
+                        01.02
+                      </span>
+                      <span class="text-[11px] font-extrabold text-slate-900 truncate">
+                        Vintage Smoke
+                      </span>
+                    </div>
+                    
+                  </button>
+                
+                  <button 
+                    type="button" 
+                    onclick="selectModelFromSidebar('hamburguerias', 'H03')" 
+                    class="w-full px-2 py-1.5 rounded-lg text-left flex items-center justify-between transition bg-white border border-slate-200 hover:border-amber-400 hover:bg-amber-50/60 text-slate-900 font-extrabold shadow-2xs"
+                  >
+                    <div class="flex items-center gap-1.5 min-w-0">
+                      <span class="text-[10px] font-mono font-black px-1 py-0.2 rounded bg-slate-100 text-slate-900 shrink-0">
+                        01.03
+                      </span>
+                      <span class="text-[11px] font-extrabold text-slate-900 truncate">
+                        Dark Angus
+                      </span>
+                    </div>
+                    
+                  </button>
+                
+                  <button 
+                    type="button" 
+                    onclick="selectModelFromSidebar('hamburguerias', 'H04')" 
+                    class="w-full px-2 py-1.5 rounded-lg text-left flex items-center justify-between transition bg-white border border-slate-200 hover:border-amber-400 hover:bg-amber-50/60 text-slate-900 font-extrabold shadow-2xs"
+                  >
+                    <div class="flex items-center gap-1.5 min-w-0">
+                      <span class="text-[10px] font-mono font-black px-1 py-0.2 rounded bg-slate-100 text-slate-900 shrink-0">
+                        01.04
+                      </span>
+                      <span class="text-[11px] font-extrabold text-slate-900 truncate">
+                        Retro Diner
+                      </span>
+                    </div>
+                    
+                  </button>
+                
+                  <button 
+                    type="button" 
+                    onclick="selectModelFromSidebar('hamburguerias', 'H05')" 
+                    class="w-full px-2 py-1.5 rounded-lg text-left flex items-center justify-between transition bg-white border border-slate-200 hover:border-amber-400 hover:bg-amber-50/60 text-slate-900 font-extrabold shadow-2xs"
+                  >
+                    <div class="flex items-center gap-1.5 min-w-0">
+                      <span class="text-[10px] font-mono font-black px-1 py-0.2 rounded bg-slate-100 text-slate-900 shrink-0">
+                        01.05
+                      </span>
+                      <span class="text-[11px] font-extrabold text-slate-900 truncate">
+                        Brioche Fresh
+                      </span>
+                    </div>
+                    
+                  </button>
+                
+            </div>
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('pizzarias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                2. 🍕 Pizzarias
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('acaiterias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                3. 🍧 Açaiterias
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('sorveterias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                4. 🍦 Sorveterias & Gelaterias
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('japonesa')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                5. 🍣 Comida Japonesa
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('marmitarias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                6. 🍱 Marmitarias e comida caseira
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('pastelarias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                7. 🥟 Pastelarias
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('hot-dog')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                8. 🌭 Cachorro-quente / Hot dog
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('esfiharias-arabe')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                9. 🥙 Esfiharias e comida árabe
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('docerias-confeitarias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                10. 🍰 Docerias e confeitarias
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('cafeterias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                11. ☕ Cafeterias
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('padarias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                12. 🥖 Padarias
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('churrascarias-espetinhos')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                13. 🍖 Churrascarias e espetinhos
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('frango-assado-galeterias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                14. 🍗 Frango assado e galeterias
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('comida-saudavel-fit')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                15. 🥗 Comida saudável / Fit
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('lanchonetes-tradicionais')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                16. 🥪 Lanchonetes tradicionais
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('massas-italiana')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                17. 🍝 Massas / Comida italiana
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('comida-chinesa-yakisoba')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                18. 🥡 Comida chinesa / Yakisoba
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('comida-mexicana')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                19. 🌮 Comida mexicana
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('creperias-tapiocarias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                20. 🫓 Creperias e tapiocarias
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('peixarias-frutos-do-mar')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                21. 🦐 Peixarias e frutos do mar
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('bares-petiscos-porcoes')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                22. 🍻 Bares, petiscos e porções
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('restaurantes-nordestinos')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                23. 🍲 Restaurantes nordestinos
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('salgaderias')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                24. 🥐 Salgaderias
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
+
+        <div class="rounded-xl border border-slate-200 bg-white hover:border-slate-300 overflow-hidden transition-all mb-1">
+          <button 
+            type="button" 
+            onclick="toggleNicheFolder('poke-havaiano')" 
+            class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+          >
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-xs font-black text-slate-900 truncate group-hover:text-amber-800 transition tracking-tight">
+                25. 🥑 Poke e culinária havaiana
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 shrink-0 ml-1">
+              <span class="text-[9px] font-black px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">
+                5
+              </span>
+              <svg class="size-3.5 text-slate-600 transition-transform duration-200 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+          </button>
+
+          
+        </div>
+  
         </div>
 
       </div>
@@ -345,7 +1078,7 @@
   {
     "id": "hamburguerias",
     "code": "01",
-    "name": "01 — Hamburguerias",
+    "name": "1. 🍔 Hamburguerias",
     "icon": "🍔",
     "open": true,
     "models": [
@@ -420,7 +1153,7 @@
   {
     "id": "pizzarias",
     "code": "02",
-    "name": "02 — Pizzarias",
+    "name": "2. 🍕 Pizzarias",
     "icon": "🍕",
     "open": false,
     "models": [
@@ -494,7 +1227,7 @@
   {
     "id": "acaiterias",
     "code": "03",
-    "name": "03 — Açaiterias",
+    "name": "3. 🍧 Açaiterias",
     "icon": "🍧",
     "open": false,
     "models": [
@@ -568,7 +1301,7 @@
   {
     "id": "sorveterias",
     "code": "04",
-    "name": "04 — Sorveterias & Gelaterias",
+    "name": "4. 🍦 Sorveterias & Gelaterias",
     "icon": "🍦",
     "open": false,
     "models": [
@@ -642,7 +1375,7 @@
   {
     "id": "japonesa",
     "code": "05",
-    "name": "05 — Comida Japonesa",
+    "name": "5. 🍣 Comida Japonesa",
     "icon": "🍣",
     "open": false,
     "models": [
@@ -716,7 +1449,7 @@
   {
     "id": "marmitarias",
     "code": "06",
-    "name": "06 — Marmitarias & Caseira",
+    "name": "6. 🍱 Marmitarias e comida caseira",
     "icon": "🍱",
     "open": false,
     "models": [
@@ -790,7 +1523,7 @@
   {
     "id": "pastelarias",
     "code": "07",
-    "name": "07 — Pastelarias",
+    "name": "7. 🥟 Pastelarias",
     "icon": "🥟",
     "open": false,
     "models": [
@@ -864,7 +1597,7 @@
   {
     "id": "hot-dog",
     "code": "08",
-    "name": "08 — Cachorro-Quente / Hot Dog",
+    "name": "8. 🌭 Cachorro-quente / Hot dog",
     "icon": "🌭",
     "open": false,
     "models": [
@@ -938,7 +1671,7 @@
   {
     "id": "esfiharias-arabe",
     "code": "09",
-    "name": "09 — Esfiharias & Árabe",
+    "name": "9. 🥙 Esfiharias e comida árabe",
     "icon": "🧆",
     "open": false,
     "models": [
@@ -1012,7 +1745,7 @@
   {
     "id": "docerias-confeitarias",
     "code": "10",
-    "name": "10 — Docerias & Confeitarias",
+    "name": "10. 🍰 Docerias e confeitarias",
     "icon": "🧁",
     "open": false,
     "models": [
@@ -1086,7 +1819,7 @@
   {
     "id": "cafeterias",
     "code": "11",
-    "name": "11 — Cafeterias",
+    "name": "11. ☕ Cafeterias",
     "icon": "☕",
     "open": false,
     "models": [
@@ -1160,7 +1893,7 @@
   {
     "id": "padarias",
     "code": "12",
-    "name": "12 — Padarias",
+    "name": "12. 🥖 Padarias",
     "icon": "🥖",
     "open": false,
     "models": [
@@ -1234,7 +1967,7 @@
   {
     "id": "churrascarias-espetinhos",
     "code": "13",
-    "name": "13 — Churrasco & Espetinhos",
+    "name": "13. 🍖 Churrascarias e espetinhos",
     "icon": "🥩",
     "open": false,
     "models": [
@@ -1308,7 +2041,7 @@
   {
     "id": "frango-assado-galeterias",
     "code": "14",
-    "name": "14 — Frango Assado & Galeto",
+    "name": "14. 🍗 Frango assado e galeterias",
     "icon": "🍗",
     "open": false,
     "models": [
@@ -1382,7 +2115,7 @@
   {
     "id": "comida-saudavel-fit",
     "code": "15",
-    "name": "15 — Saudável & Marmitas Fit",
+    "name": "15. 🥗 Comida saudável / Fit",
     "icon": "🥗",
     "open": false,
     "models": [
@@ -1456,7 +2189,7 @@
   {
     "id": "lanchonetes-tradicionais",
     "code": "16",
-    "name": "16 — Lanchonetes Tradicionais",
+    "name": "16. 🥪 Lanchonetes tradicionais",
     "icon": "🥪",
     "open": false,
     "models": [
@@ -1530,7 +2263,7 @@
   {
     "id": "massas-italiana",
     "code": "17",
-    "name": "17 — Massas & Italiana",
+    "name": "17. 🍝 Massas / Comida italiana",
     "icon": "🍝",
     "open": false,
     "models": [
@@ -1604,7 +2337,7 @@
   {
     "id": "comida-chinesa-yakisoba",
     "code": "18",
-    "name": "18 — Chinesa & Yakisoba",
+    "name": "18. 🥡 Comida chinesa / Yakisoba",
     "icon": "🥢",
     "open": false,
     "models": [
@@ -1678,7 +2411,7 @@
   {
     "id": "comida-mexicana",
     "code": "19",
-    "name": "19 — Comida Mexicana",
+    "name": "19. 🌮 Comida mexicana",
     "icon": "🌮",
     "open": false,
     "models": [
@@ -1752,7 +2485,7 @@
   {
     "id": "creperias-tapiocarias",
     "code": "20",
-    "name": "20 — Crepes & Tapiocas",
+    "name": "20. 🫓 Creperias e tapiocarias",
     "icon": "🥞",
     "open": false,
     "models": [
@@ -1826,7 +2559,7 @@
   {
     "id": "peixarias-frutos-do-mar",
     "code": "21",
-    "name": "21 — Peixes & Frutos do Mar",
+    "name": "21. 🦐 Peixarias e frutos do mar",
     "icon": "🦐",
     "open": false,
     "models": [
@@ -1900,7 +2633,7 @@
   {
     "id": "bares-petiscos-porcoes",
     "code": "22",
-    "name": "22 — Bares, Petiscos & Porções",
+    "name": "22. 🍻 Bares, petiscos e porções",
     "icon": "🍻",
     "open": false,
     "models": [
@@ -1974,7 +2707,7 @@
   {
     "id": "restaurantes-nordestinos",
     "code": "23",
-    "name": "23 — Comida Nordestina",
+    "name": "23. 🍲 Restaurantes nordestinos",
     "icon": "🫔",
     "open": false,
     "models": [
@@ -2048,7 +2781,7 @@
   {
     "id": "salgaderias",
     "code": "24",
-    "name": "24 — Salgaderias",
+    "name": "24. 🥐 Salgaderias",
     "icon": "🥐",
     "open": false,
     "models": [
@@ -2122,7 +2855,7 @@
   {
     "id": "poke-havaiano",
     "code": "25",
-    "name": "25 — Poke & Havaiano",
+    "name": "25. 🥑 Poke e culinária havaiana",
     "icon": "🥗",
     "open": false,
     "models": [
@@ -2196,6 +2929,7 @@
 ];
 
     let currentTemplateId = 'H01';
+    let currentNicheId = 'hamburguerias';
     let currentViewMode = 'desktop';
     let isDesktopSidebarCollapsed = false;
 
@@ -2268,7 +3002,6 @@
               class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
             >
               <div class="flex items-center gap-1.5 min-w-0">
-                <span class="text-sm shrink-0">${niche.icon}</span>
                 <span class="text-xs font-black ${isCurrentNiche ? 'text-slate-950 font-black' : 'text-slate-900'} truncate group-hover:text-amber-800 transition tracking-tight">
                   ${niche.name}
                 </span>
@@ -2300,7 +3033,7 @@
                           ${m.code.split(' ')[0]}
                         </span>
                         <span class="text-[11px] ${isActive ? 'font-black text-slate-950' : 'font-extrabold text-slate-900'} truncate">
-                          ${m.name.replace(/^[A-Z0-9]+ — /, '')}
+                          ${m.name.replace(/^[0-9.]+\s*—?\s*/, '')}
                         </span>
                       </div>
                       ${isActive ? '<span class="text-xs font-black text-slate-950 shrink-0 ml-1">✓</span>' : ''}
