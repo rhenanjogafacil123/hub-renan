@@ -1,0 +1,58 @@
+name: Sincronizar Heroes do Google Drive
+
+on:
+  schedule:
+    # Roda a cada 30 minutos na madrugada (03:00 às 11:00 UTC = 00:00 às 08:00 de Brasília)
+    - cron: '*/30 3-11 * * *'
+  workflow_dispatch: # Permite disparar manualmente a qualquer momento pelo GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  sync-heroes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar gdown
+        run: pip install gdown
+
+      - name: Baixar Lote de Imagens do Google Drive
+        run: |
+          mkdir -p raw-drive
+          echo "Conectando à pasta do Google Drive..."
+          gdown --folder "https://drive.google.com/drive/folders/1Ob7k1fsppOI2Fcn57_QunUwF8V4MwvMR" -O raw-drive/ --remaining-ok || true
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Organizar Heroes nos Nichos e Modelos
+        run: node scripts/organizar-drive.js
+
+      - name: Limpar pasta temporária raw-drive
+        run: rm -rf raw-drive
+
+      - name: Fazer Commit e Push se houver novas imagens
+        run: |
+          git config --global user.name "Teixo Bot"
+          git config --global user.email "bot@automatech.tech"
+          git add assets/
+          if git diff --staged --quiet; then
+            echo "Nenhuma imagem nova encontrada nesta rodada."
+          else
+            echo "Novas imagens detectadas! Publicando no repositório..."
+            git commit -m "feat(showroom): sincronizar novas imagens de hero do Google Drive [skip ci]"
+            git push origin main
+          fi
