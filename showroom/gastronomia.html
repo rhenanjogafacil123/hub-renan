@@ -4,183 +4,108 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Loja Gastronômica • Showroom Automatech</title>
+  <title>Modelo Gastronômico • Showroom Automatech</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800&family=Bebas+Neue&family=Oswald:wght@600;700&family=Righteous&family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Montserrat:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Space+Grotesk:wght@600;700&family=Poppins:wght@600;700;800&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/showroom/gastronomia.css">
 </head>
 <body>
 
-  <!-- HERO VISUAL OFICIAL (100% IDENTICO AO DESIGN ORIGINAL) -->
-  <section class="hero-wrapper" id="inicio">
-    <picture class="hero-picture">
-      <source id="hero-src-mobile" media="(max-width: 640px)" srcset="/showroom/assets/gastronomia/16.01/mobile.png">
-      <source id="hero-src-tablet" media="(max-width: 1024px)" srcset="/showroom/assets/gastronomia/16.01/tablet.png">
-      <img id="hero-img" src="/showroom/assets/gastronomia/16.01/pc.png" alt="Demonstração Gastronômica" loading="eager">
-    </picture>
-
-    <!-- Hotspots clicáveis posicionados exatamente sobre os botões da imagem -->
-    <div class="hero-hotspots">
-      <!-- Ver cardápio (leva suavemente à seção do cardápio interativo abaixo) -->
-      <a href="#cardapio" class="hotspot-cardapio" title="Ver cardápio completo"></a>
-      
-      <!-- Informações (abre modal oficial da loja) -->
-      <button type="button" class="hotspot-info" data-info title="Abrir informações da loja"></button>
-
-      <!-- Finalizar pedido / Sacola no topo direito -->
-      <button type="button" class="hotspot-cart" data-cart title="Ver sacola"></button>
-
-      <!-- Alternar Tema -->
-      <button type="button" class="hotspot-theme" id="btn-theme-hotspot" title="Alternar tema"></button>
-
-      <!-- Mais opções (...) -->
-      <button type="button" class="hotspot-more" data-info title="Mais detalhes"></button>
-    </div>
-
-    <!-- Barra flutuante de apoio para garantir 100% de usabilidade em qualquer resolução -->
-    <nav class="quick-action-bar" aria-label="Ações rápidas da loja">
-      <a href="#cardapio" class="quick-btn primary">
-        <span>Ver cardápio</span>
-        <span aria-hidden="true">↓</span>
-      </a>
-      <button type="button" class="quick-btn" data-info>
-        <span aria-hidden="true">ⓘ</span>
-        <span>Informações</span>
-      </button>
-      <button type="button" class="quick-btn" data-cart>
-        <span>Sacola (<b id="quick-cart-count">0</b>)</span>
-      </button>
-      <button type="button" class="quick-btn" id="btn-theme-toggle">
-        <span id="theme-label">🌙 Escuro</span>
-      </button>
-    </nav>
-  </section>
-
-  <!-- Banner de Aviso de Modo Demonstração -->
-  <aside class="demo-banner">
-    Showroom Gastronômico Oficial · Demonstração interativa desenvolvida pela <strong>Automatech</strong>
-  </aside>
-
-  <!-- SEÇÃO INTERATIVA DE CARDÁPIO -->
-  <main class="menu-section" id="cardapio">
-    <div class="menu-header">
-      <div class="menu-header-copy">
-        <p id="menu-tag">Cardápio Selecionado</p>
-        <h2 id="menu-title">Faça o seu pedido</h2>
+  <!-- HEADER OFICIAL EM HTML REAL -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark" id="brand-mark" aria-hidden="true"></div>
+      <div class="brand-text">
+        <strong id="topbar-brand"></strong>
+        <small id="topbar-tagline"></small>
       </div>
-      <button type="button" class="btn-open-cart" data-cart>
-        <span>Ver sacola</span>
-        <span id="cart-badge-btn">(0)</span>
-        <span aria-hidden="true">→</span>
+    </div>
+
+    <nav aria-label="Controles">
+      <button class="primary checkout" data-modal="pedido" aria-label="Finalizar pedido demonstrativo">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14l2 14H3L5 7Z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg>
+        <span class="btn-text">Finalizar pedido</span>
       </button>
-    </div>
 
-    <!-- Filtros de Categorias -->
-    <div class="categories-filter" id="categories-container" role="tablist">
-      <!-- Injetado dinamicamente via JS -->
-    </div>
+      <button id="theme" class="theme" aria-label="Alternar tema" aria-pressed="false">
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 15A9 9 0 0 1 9 3a9 9 0 1 0 11 12Z"/></svg>
+        <span class="theme-label">Escuro</span>
+        <i class="switch"></i>
+      </button>
 
-    <!-- Lista de Produtos -->
-    <div class="products-grid" id="products-container">
-      <!-- Injetado dinamicamente via JS -->
+      <button class="more" data-modal="info" aria-label="Mais informações">•••</button>
+    </nav>
+  </header>
+
+  <!-- HERO PRINCIPAL (PRÉVIA DO SITE REAL EM HTML/CSS) -->
+  <main class="hero" id="inicio">
+    <section class="hero-content">
+      <div class="hero-identity">
+        <div class="brand">
+          <div class="mark mini-mark" id="hero-mark" aria-hidden="true"></div>
+          <div class="brand-text">
+            <strong id="hero-brand"></strong>
+            <small id="hero-niche-pill">LOJA DEMONSTRATIVA</small>
+          </div>
+        </div>
+        <span class="status"><i></i>Recebendo pedidos</span>
+      </div>
+
+      <h1 id="hero-title"></h1>
+      <p class="subtitle" id="hero-subtitle"></p>
+
+      <div class="metadata">
+        <span class="rating"><span class="star">★</span><b>4,5</b> <small>(243)</small></span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span id="meta-bairro">Polo Gastronômico</span>
+        </span>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span id="meta-horario">18h às 02h</span>
+        </span>
+      </div>
+
+      <div class="actions">
+        <button class="primary hero-btn" data-modal="cardapio">
+          <span>Ver cardápio</span>
+          <span class="arrow">→</span>
+        </button>
+        <button class="secondary hero-btn" data-modal="info">
+          <span class="info-badge">ⓘ</span>
+          <span>Informações</span>
+        </button>
+      </div>
+
+      <footer class="disclaimer">
+        <span>Modelo demonstrativo • Imagem ilustrativa.</span>
+      </footer>
+    </section>
+
+    <!-- FOTOGRAFIA DO PRATO REAL -->
+    <div class="hero-photo">
+      <div class="photo-card">
+        <img id="dish-img" src="" alt="Prato representativo do modelo" fetchpriority="high">
+      </div>
+      <div class="photo-accent" aria-hidden="true"></div>
     </div>
   </main>
 
-  <!-- RODAPÉ OFICIAL AUTOMATECH -->
-  <footer>
-    <p>
-      <strong id="footer-brand">Delivery Oficial</strong> • Plataforma de delivery próprio com <strong>Taxa de 2%</strong> (Zero mensalidade)
-    </p>
-    <p style="margin-top: 6px;">
-      Tecnologia desenvolvida pela <strong>Automatech</strong>
-    </p>
-    <p style="margin-top: 14px;">
-      <a href="#inicio" style="color: inherit; font-weight: 700; text-decoration: underline;">Voltar ao topo ↑</a>
-    </p>
-  </footer>
-
-  <!-- MODAL DE INFORMAÇÕES (O PRINCIPAL SOLICITADO PELO USUÁRIO) -->
-  <dialog id="info-dialog" aria-labelledby="info-dialog-title">
+  <!-- MODAL / DIALOG OFICIAL -->
+  <dialog id="modal-dialog">
     <div class="dialog-header">
-      <h2 id="info-dialog-title">Informações • Loja Oficial</h2>
-      <button type="button" class="btn-close-dialog" aria-label="Fechar" onclick="document.getElementById('info-dialog').close()">✕</button>
+      <h2 id="dialog-title">Informações</h2>
+      <button type="button" class="btn-close" aria-label="Fechar" onclick="document.getElementById('modal-dialog').close()">✕</button>
     </div>
+    
+    <div id="dialog-content"></div>
 
-    <div class="contact-list">
-      <div class="contact-item">
-        <div class="contact-info">
-          <strong>WhatsApp de Pedidos</strong>
-          <small>Atendimento direto e pedidos rápidos</small>
-        </div>
-        <button type="button" class="btn-contact-action green" data-feedback="WhatsApp de Pedidos: canal direto com a cozinha.">Abrir ›</button>
-      </div>
-
-      <div class="contact-item">
-        <div class="contact-info">
-          <strong>Instagram Oficial</strong>
-          <small>Fotos reais, bastidores e novidades</small>
-        </div>
-        <button type="button" class="btn-contact-action" data-feedback="Instagram: perfil oficial da marca.">Seguir ›</button>
-      </div>
-
-      <div class="contact-item">
-        <div class="contact-info">
-          <strong>Telefone Fixo</strong>
-          <small>Balcão e retiradas no local</small>
-        </div>
-        <button type="button" class="btn-contact-action" data-feedback="Telefone: ligação para o balcão.">Ligar ›</button>
-      </div>
-
-      <div class="contact-item">
-        <div class="contact-info">
-          <strong>Como Chegar / Retirada</strong>
-          <small id="info-address">Polo Gastronômico • Loja Demonstrativa</small>
-        </div>
-        <button type="button" class="btn-contact-action" data-feedback="Rota: abrindo no mapa.">Rota ›</button>
-      </div>
-    </div>
-
-    <div class="credit-box">
+    <div class="dialog-footer">
       <span>Desenvolvido pela <strong>Automatech</strong></span>
-      <button type="button" onclick="window.open('https://wa.me/555199735892', '_blank')">WhatsApp Automatech ›</button>
+      <button type="button" class="btn-whats-automatech" onclick="window.open('https://wa.me/555199735892', '_blank')">WhatsApp Automatech ›</button>
     </div>
-
-    <p id="dialog-feedback" style="font-size: 11px; color: #16a34a; font-weight: 700; text-align: center; margin: 12px 0 0; min-height: 16px;"></p>
   </dialog>
-
-  <!-- MODAL DA SACOLA / CARRINHO -->
-  <dialog id="cart-dialog" aria-labelledby="cart-dialog-title">
-    <div class="dialog-header">
-      <h2 id="cart-dialog-title">Sua Sacola</h2>
-      <button type="button" class="btn-close-dialog" aria-label="Fechar" onclick="document.getElementById('cart-dialog').close()">✕</button>
-    </div>
-
-    <div id="cart-items-list" style="margin-bottom: 16px;">
-      <!-- Itens da sacola -->
-    </div>
-
-    <div class="cart-total-bar">
-      <span>Total</span>
-      <span id="cart-total-value">R$ 0,00</span>
-    </div>
-
-    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px; margin-bottom: 16px; font-size: 12px; color: #475569;">
-      <strong>Forma de recebimento:</strong>
-      <div style="display: flex; gap: 16px; margin-top: 8px;">
-        <label><input type="radio" name="delivery-mode" checked> Entrega</label>
-        <label><input type="radio" name="delivery-mode"> Retirada</label>
-      </div>
-    </div>
-
-    <button type="button" id="btn-submit-cart" style="width: 100%; background: #16a34a; color: #ffffff; border: 0; padding: 14px; border-radius: 9999px; font-size: 14px; font-weight: 800; cursor: pointer;">
-      Concluir Pedido Demonstrativo →
-    </button>
-    <p id="cart-feedback-msg" style="font-size: 12px; color: #16a34a; font-weight: 700; text-align: center; margin: 10px 0 0; min-height: 16px;"></p>
-  </dialog>
-
-  <!-- TOAST FLUTUANTE -->
-  <div class="toast-msg" id="toast">Adicionado à sacola!</div>
 
   <script src="/showroom/catalogo.js"></script>
   <script src="/showroom/gastronomia.js"></script>

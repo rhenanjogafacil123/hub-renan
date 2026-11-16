@@ -1,1505 +1,377 @@
 'use strict';
 
-// Banco de dados completo dos Nichos 16 a 25
-const MODELS_DB = {
-  "16.01": {
-    "code": "16.01",
-    "name": "LANCHE & CIA",
-    "nicheCode": "16",
-    "nicheName": "LANCHONETES TRADICIONAIS",
-    "concept": "lanchonete tradicional, cardápio variado e serviço confiável.",
-    "palette": [
-      "#D43D33",
-      "#FFFFFF",
-      "#F3C84B",
-      "#292929"
-    ],
-    "typography": "Montserrat Bold e Inter."
-  },
-  "16.02": {
-    "code": "16.02",
-    "name": "PONTO DO LANCHE",
-    "nicheCode": "16",
-    "nicheName": "LANCHONETES TRADICIONAIS",
-    "concept": "lanchonete de bairro familiar, acessível e simpática.",
-    "palette": [
-      "#2865B1",
-      "#FFCB3A",
-      "#FFFFFF",
-      "#D84B43"
-    ],
-    "typography": "Nunito Sans e Poppins."
-  },
-  "16.03": {
-    "code": "16.03",
-    "name": "LANCHE 90",
-    "nicheCode": "16",
-    "nicheName": "LANCHONETES TRADICIONAIS",
-    "concept": "nostalgia dos anos 1990 reinterpretada de forma moderna.",
-    "palette": [
-      "#F8E8CB",
-      "#E87562",
-      "#407B93",
-      "#4A3934"
-    ],
-    "typography": "Cooper Black e DM Sans."
-  },
-  "16.04": {
-    "code": "16.04",
-    "name": "SANDUBA LAB",
-    "nicheCode": "16",
-    "nicheName": "LANCHONETES TRADICIONAIS",
-    "concept": "lanches criativos, experimentação e público jovem.",
-    "palette": [
-      "#1E1E1E",
-      "#C4F343",
-      "#E5E5E5",
-      "#FFFFFF"
-    ],
-    "typography": "Space Grotesk e Archivo."
-  },
-  "16.05": {
-    "code": "16.05",
-    "name": "ESQUINA GOURMET",
-    "nicheCode": "16",
-    "nicheName": "LANCHONETES TRADICIONAIS",
-    "concept": "lanchonete artesanal de bairro com experiência premium.",
-    "palette": [
-      "#294C3F",
-      "#EBDDCA",
-      "#C8A269",
-      "#282824"
-    ],
-    "typography": "Playfair Display e Manrope."
-  },
-  "17.01": {
-    "code": "17.01",
-    "name": "TRATTORIA ROMA",
-    "nicheCode": "17",
-    "nicheName": "MASSAS / COMIDA ITALIANA",
-    "concept": "tradição italiana, receitas clássicas e hospitalidade.",
-    "palette": [
-      "#B53E36",
-      "#F5E9D4",
-      "#356447",
-      "#554135"
-    ],
-    "typography": "Libre Baskerville e DM Sans."
-  },
-  "17.02": {
-    "code": "17.02",
-    "name": "PASTA NERO",
-    "nicheCode": "17",
-    "nicheName": "MASSAS / COMIDA ITALIANA",
-    "concept": "restaurante italiano premium de alta gastronomia.",
-    "palette": [
-      "#171717",
-      "#BE9555",
-      "#5E2834",
-      "#F1E9DD"
-    ],
-    "typography": "Bodoni Moda e Manrope."
-  },
-  "17.03": {
-    "code": "17.03",
-    "name": "NONNA MIA",
-    "nicheCode": "17",
-    "nicheName": "MASSAS / COMIDA ITALIANA",
-    "concept": "massas artesanais e cozinha familiar italiana.",
-    "palette": [
-      "#697A4C",
-      "#B96547",
-      "#F6EADB",
-      "#543D31"
-    ],
-    "typography": "Fraunces e Nunito Sans."
-  },
-  "17.04": {
-    "code": "17.04",
-    "name": "AMORE PASTA",
-    "nicheCode": "17",
-    "nicheName": "MASSAS / COMIDA ITALIANA",
-    "concept": "massas modernas, saborosas e descomplicadas.",
-    "palette": [
-      "#EE735B",
-      "#F8CC52",
-      "#FFF6E6",
-      "#4D865C"
-    ],
-    "typography": "Bricolage Grotesque e Poppins."
-  },
-  "17.05": {
-    "code": "17.05",
-    "name": "FARINA ATELIER",
-    "nicheCode": "17",
-    "nicheName": "MASSAS / COMIDA ITALIANA",
-    "concept": "pasta fresca artesanal em uma experiência gastronômica boutique.",
-    "palette": [
-      "#FCFAF6",
-      "#743C49",
-      "#D9C7AE",
-      "#39332F"
-    ],
-    "typography": "Cormorant Garamond e Plus Jakarta Sans."
-  },
-  "18.01": {
-    "code": "18.01",
-    "name": "RED DRAGON",
-    "nicheCode": "18",
-    "nicheName": "COMIDA CHINESA / YAKISOBA",
-    "concept": "culinária chinesa tradicional com presença visual marcante.",
-    "palette": [
-      "#B5232C",
-      "#D5A34B",
-      "#25201D",
-      "#FFF2DF"
-    ],
-    "typography": "Noto Serif e Inter."
-  },
-  "18.02": {
-    "code": "18.02",
-    "name": "WOK STREET",
-    "nicheCode": "18",
-    "nicheName": "COMIDA CHINESA / YAKISOBA",
-    "concept": "wok urbano, movimento e preparo em alta temperatura.",
-    "palette": [
-      "#202020",
-      "#F37C28",
-      "#D9D9D6",
-      "#FFFFFF"
-    ],
-    "typography": "Anton e Space Grotesk."
-  },
-  "18.03": {
-    "code": "18.03",
-    "name": "LUCKY NOODLES",
-    "nicheCode": "18",
-    "nicheName": "COMIDA CHINESA / YAKISOBA",
-    "concept": "culinária asiática divertida, acessível e vibrante.",
-    "palette": [
-      "#F9CF38",
-      "#E34D3D",
-      "#3975B9",
-      "#FFF8E8"
-    ],
-    "typography": "Fredoka e DM Sans."
-  },
-  "18.04": {
-    "code": "18.04",
-    "name": "JADE KITCHEN",
-    "nicheCode": "18",
-    "nicheName": "COMIDA CHINESA / YAKISOBA",
-    "concept": "restaurante oriental contemporâneo e refinado.",
-    "palette": [
-      "#2D796A",
-      "#F5EEE2",
-      "#C8A56E",
-      "#2D302E"
-    ],
-    "typography": "Cormorant Garamond e Manrope."
-  },
-  "18.05": {
-    "code": "18.05",
-    "name": "NEO WOK",
-    "nicheCode": "18",
-    "nicheName": "COMIDA CHINESA / YAKISOBA",
-    "concept": "restaurante asiático futurista e tecnológico.",
-    "palette": [
-      "#111F35",
-      "#38D6E8",
-      "#CE4CB6",
-      "#FFFFFF"
-    ],
-    "typography": "Space Grotesk e Inter."
-  },
-  "19.01": {
-    "code": "19.01",
-    "name": "CASA FIESTA",
-    "nicheCode": "19",
-    "nicheName": "COMIDA MEXICANA",
-    "concept": "restaurante mexicano festivo, caloroso e colorido.",
-    "palette": [
-      "#EE577A",
-      "#F8C83D",
-      "#327D54",
-      "#FFF1DC"
-    ],
-    "typography": "Bricolage Grotesque e DM Sans."
-  },
-  "19.02": {
-    "code": "19.02",
-    "name": "FUEGO TACO",
-    "nicheCode": "19",
-    "nicheName": "COMIDA MEXICANA",
-    "concept": "comida mexicana intensa, apimentada e urbana.",
-    "palette": [
-      "#191919",
-      "#D93629",
-      "#F0782B",
-      "#F2E4CF"
-    ],
-    "typography": "Anton e Inter."
-  },
-  "19.03": {
-    "code": "19.03",
-    "name": "LA CANTINA",
-    "nicheCode": "19",
-    "nicheName": "COMIDA MEXICANA",
-    "concept": "cantina mexicana tradicional com atmosfera artesanal.",
-    "palette": [
-      "#BB664A",
-      "#2E8D8A",
-      "#F6E7CF",
-      "#624335"
-    ],
-    "typography": "Roboto Slab e Nunito Sans."
-  },
-  "19.04": {
-    "code": "19.04",
-    "name": "TACO POP",
-    "nicheCode": "19",
-    "nicheName": "COMIDA MEXICANA",
-    "concept": "taqueria moderna, divertida e jovem.",
-    "palette": [
-      "#A477E8",
-      "#FF893A",
-      "#FFD84D",
-      "#FFFFFF"
-    ],
-    "typography": "Fredoka e Poppins."
-  },
-  "19.05": {
-    "code": "19.05",
-    "name": "MAÍZ & SOL",
-    "nicheCode": "19",
-    "nicheName": "COMIDA MEXICANA",
-    "concept": "gastronomia mexicana artesanal inspirada no milho e na luz solar.",
-    "palette": [
-      "#F8EDD8",
-      "#DDAF36",
-      "#757C47",
-      "#A85C42"
-    ],
-    "typography": "Fraunces e Manrope."
-  },
-  "20.01": {
-    "code": "20.01",
-    "name": "TAPIOCA RAIZ",
-    "nicheCode": "20",
-    "nicheName": "CREPERIAS E TAPIO CARIAS",
-    "concept": "tapiocaria brasileira, natural e artesanal.",
-    "palette": [
-      "#F3E5CD",
-      "#578457",
-      "#FFF9ED",
-      "#B77955"
-    ],
-    "typography": "Fraunces e DM Sans."
-  },
-  "20.02": {
-    "code": "20.02",
-    "name": "CRÊPE PARIS",
-    "nicheCode": "20",
-    "nicheName": "CREPERIAS E TAPIO CARIAS",
-    "concept": "creperia francesa sofisticada e romântica.",
-    "palette": [
-      "#273D5C",
-      "#FFF4E5",
-      "#C9AA79",
-      "#8B4C54"
-    ],
-    "typography": "Cormorant Garamond e Montserrat."
-  },
-  "20.03": {
-    "code": "20.03",
-    "name": "DOCE DOBRA",
-    "nicheCode": "20",
-    "nicheName": "CREPERIAS E TAPIO CARIAS",
-    "concept": "crepes doces criativos e delicados.",
-    "palette": [
-      "#F1B6C5",
-      "#B77C4E",
-      "#FFF5EB",
-      "#60443B"
-    ],
-    "typography": "DM Serif Display e Nunito Sans."
-  },
-  "20.04": {
-    "code": "20.04",
-    "name": "MASSA LEVE",
-    "nicheCode": "20",
-    "nicheName": "CREPERIAS E TAPIO CARIAS",
-    "concept": "tapiocas e crepes leves, naturais e saudáveis.",
-    "palette": [
-      "#FFFFFF",
-      "#A3B59A",
-      "#F6F2E8",
-      "#52684B"
-    ],
-    "typography": "Plus Jakarta Sans e Inter."
-  },
-  "20.05": {
-    "code": "20.05",
-    "name": "CREPE LAB",
-    "nicheCode": "20",
-    "nicheName": "CREPERIAS E TAPIO CARIAS",
-    "concept": "creperia contemporânea com sabores inovadores.",
-    "palette": [
-      "#1F2224",
-      "#F7D23B",
-      "#FFFFFF",
-      "#C9CED0"
-    ],
-    "typography": "Space Grotesk e Archivo."
-  },
-  "21.01": {
-    "code": "21.01",
-    "name": "MARÉ ALTA",
-    "nicheCode": "21",
-    "nicheName": "PEIXARIAS E FRUTOS DO MAR",
-    "concept": "frutos do mar premium e frescor oceânico.",
-    "palette": [
-      "#123A57",
-      "#FFFFFF",
-      "#EBDCC6",
-      "#5DA6AA"
-    ],
-    "typography": "Playfair Display e Manrope."
-  },
-  "21.02": {
-    "code": "21.02",
-    "name": "COSTA FRESCA",
-    "nicheCode": "21",
-    "nicheName": "PEIXARIAS E FRUTOS DO MAR",
-    "concept": "frutos do mar tropicais, leves e ensolarados.",
-    "palette": [
-      "#36B7B4",
-      "#F1E2C7",
-      "#EC8B73",
-      "#FFFFFF"
-    ],
-    "typography": "Poppins e DM Sans."
-  },
-  "21.03": {
-    "code": "21.03",
-    "name": "PORTO DO PEIXE",
-    "nicheCode": "21",
-    "nicheName": "PEIXARIAS E FRUTOS DO MAR",
-    "concept": "tradição de peixaria brasileira e frescor do mercado.",
-    "palette": [
-      "#244D72",
-      "#DB735F",
-      "#F7F0E6",
-      "#B7C2C7"
-    ],
-    "typography": "Roboto Slab e Inter."
-  },
-  "21.04": {
-    "code": "21.04",
-    "name": "OSTRA & SAL",
-    "nicheCode": "21",
-    "nicheName": "PEIXARIAS E FRUTOS DO MAR",
-    "concept": "alta gastronomia marinha, delicadeza e exclusividade.",
-    "palette": [
-      "#F1F0EA",
-      "#597E76",
-      "#303937",
-      "#D6C6AB"
-    ],
-    "typography": "Cormorant Garamond e Plus Jakarta Sans."
-  },
-  "21.05": {
-    "code": "21.05",
-    "name": "OCEAN CATCH",
-    "nicheCode": "21",
-    "nicheName": "PEIXARIAS E FRUTOS DO MAR",
-    "concept": "peixaria urbana moderna com comunicação forte e confiável.",
-    "palette": [
-      "#253139",
-      "#2874A6",
-      "#FFFFFF",
-      "#E8F0F4"
-    ],
-    "typography": "Sora e Inter."
-  },
-  "22.01": {
-    "code": "22.01",
-    "name": "BOTECO RAIZ",
-    "nicheCode": "22",
-    "nicheName": "BARES, PETISCOS E PORÇÕES",
-    "concept": "boteco brasileiro tradicional com energia popular e autêntica.",
-    "palette": [
-      "#F5C52F",
-      "#C83F35",
-      "#36764A",
-      "#FFF4D9"
-    ],
-    "typography": "Archivo Black e Nunito Sans."
-  },
-  "22.02": {
-    "code": "22.02",
-    "name": "AFTER DARK",
-    "nicheCode": "22",
-    "nicheName": "BARES, PETISCOS E PORÇÕES",
-    "concept": "bar noturno sofisticado, drinks e petiscos premium.",
-    "palette": [
-      "#141414",
-      "#CC8D40",
-      "#5B2837",
-      "#E9DBC9"
-    ],
-    "typography": "Bodoni Moda e Manrope."
-  },
-  "22.03": {
-    "code": "22.03",
-    "name": "MESA 12",
-    "nicheCode": "22",
-    "nicheName": "BARES, PETISCOS E PORÇÕES",
-    "concept": "bar gastronômico contemporâneo, encontros e boa conversa.",
-    "palette": [
-      "#25483D",
-      "#F2E6D4",
-      "#A9754B",
-      "#292B29"
-    ],
-    "typography": "Fraunces e DM Sans."
-  },
-  "22.04": {
-    "code": "22.04",
-    "name": "HAPPY HOUR CLUB",
-    "nicheCode": "22",
-    "nicheName": "BARES, PETISCOS E PORÇÕES",
-    "concept": "bar jovem e descontraído para encontros entre amigos.",
-    "palette": [
-      "#2C68B8",
-      "#FF8B38",
-      "#FFD458",
-      "#FFFFFF"
-    ],
-    "typography": "Bricolage Grotesque e Poppins."
-  },
-  "22.05": {
-    "code": "22.05",
-    "name": "PETISCO & PROSA",
-    "nicheCode": "22",
-    "nicheName": "BARES, PETISCOS E PORÇÕES",
-    "concept": "bar afetivo e acolhedor com gastronomia brasileira.",
-    "palette": [
-      "#B36D4D",
-      "#EFE1CD",
-      "#69754D",
-      "#523B30"
-    ],
-    "typography": "Libre Baskerville e Nunito Sans."
-  },
-  "23.01": {
-    "code": "23.01",
-    "name": "RAÍZES DO SERTÃO",
-    "nicheCode": "23",
-    "nicheName": "RESTAURANTES NORDESTINOS",
-    "concept": "gastronomia nordestina tradicional, história e pertencimento.",
-    "palette": [
-      "#B86141",
-      "#EBD7B6",
-      "#76513A",
-      "#66764A"
-    ],
-    "typography": "Roboto Slab e DM Sans."
-  },
-  "23.02": {
-    "code": "23.02",
-    "name": "MANDACARU",
-    "nicheCode": "23",
-    "nicheName": "RESTAURANTES NORDESTINOS",
-    "concept": "Nordeste contemporâneo, natureza, tradição e design.",
-    "palette": [
-      "#48754A",
-      "#E7BC42",
-      "#F0E1C6",
-      "#B86B4F"
-    ],
-    "typography": "Fraunces e Plus Jakarta Sans."
-  },
-  "23.03": {
-    "code": "23.03",
-    "name": "CASA DO BAIÃO",
-    "nicheCode": "23",
-    "nicheName": "RESTAURANTES NORDESTINOS",
-    "concept": "culinária nordestina familiar e generosa.",
-    "palette": [
-      "#B94238",
-      "#F7E7CF",
-      "#E2AD42",
-      "#64412E"
-    ],
-    "typography": "Cooper Black e Nunito Sans."
-  },
-  "23.04": {
-    "code": "23.04",
-    "name": "SOL DO NORDESTE",
-    "nicheCode": "23",
-    "nicheName": "RESTAURANTES NORDESTINOS",
-    "concept": "gastronomia regional vibrante, solar e cultural.",
-    "palette": [
-      "#F08A35",
-      "#257AA6",
-      "#F4CA45",
-      "#FFF3DD"
-    ],
-    "typography": "Bricolage Grotesque e Inter."
-  },
-  "23.05": {
-    "code": "23.05",
-    "name": "SERTÃO NOBRE",
-    "nicheCode": "23",
-    "nicheName": "RESTAURANTES NORDESTINOS",
-    "concept": "alta gastronomia nordestina e ingredientes regionais valorizados.",
-    "palette": [
-      "#4A3328",
-      "#AD794D",
-      "#E9D7BB",
-      "#24211F"
-    ],
-    "typography": "Cormorant Garamond e Manrope."
-  },
-  "24.01": {
-    "code": "24.01",
-    "name": "SALGADO DE OURO",
-    "nicheCode": "24",
-    "nicheName": "SALGADERIAS",
-    "concept": "salgados frescos, dourados e extremamente apetitosos.",
-    "palette": [
-      "#F5C442",
-      "#70442F",
-      "#FFF4DF",
-      "#DF8137"
-    ],
-    "typography": "Poppins e DM Sans."
-  },
-  "24.02": {
-    "code": "24.02",
-    "name": "COXINHA CLUB",
-    "nicheCode": "24",
-    "nicheName": "SALGADERIAS",
-    "concept": "salgaderia jovem, divertida e memorável.",
-    "palette": [
-      "#FF7829",
-      "#3269DD",
-      "#FFD94F",
-      "#FFFFFF"
-    ],
-    "typography": "Fredoka e Inter."
-  },
-  "24.03": {
-    "code": "24.03",
-    "name": "MASSA & AFETO",
-    "nicheCode": "24",
-    "nicheName": "SALGADERIAS",
-    "concept": "salgados artesanais com receitas de família.",
-    "palette": [
-      "#F6E9D8",
-      "#B87659",
-      "#748064",
-      "#5D453A"
-    ],
-    "typography": "Fraunces e Nunito Sans."
-  },
-  "24.04": {
-    "code": "24.04",
-    "name": "SALGADO EXPRESS",
-    "nicheCode": "24",
-    "nicheName": "SALGADERIAS",
-    "concept": "salgados rápidos para qualquer ocasião.",
-    "palette": [
-      "#DF4034",
-      "#252525",
-      "#FFFFFF",
-      "#F8C83F"
-    ],
-    "typography": "Archivo Black e Inter."
-  },
-  "24.05": {
-    "code": "24.05",
-    "name": "BENDITA MASSA",
-    "nicheCode": "24",
-    "nicheName": "SALGADERIAS",
-    "concept": "salgados gourmet e produção artesanal refinada.",
-    "palette": [
-      "#2D5141",
-      "#BF9C60",
-      "#EDE2CF",
-      "#FFFFFF"
-    ],
-    "typography": "Playfair Display e Manrope."
-  },
-  "25.01": {
-    "code": "25.01",
-    "name": "ALOHA BOWL",
-    "nicheCode": "25",
-    "nicheName": "POKE E CULINÁRIA HAVAIANA",
-    "concept": "culinária havaiana tropical, fresca e alegre.",
-    "palette": [
-      "#38B8AD",
-      "#F38F78",
-      "#F7D36D",
-      "#FFFFFF"
-    ],
-    "typography": "Poppins e DM Sans."
-  },
-  "25.02": {
-    "code": "25.02",
-    "name": "POKE ZEN",
-    "nicheCode": "25",
-    "nicheName": "POKE E CULINÁRIA HAVAIANA",
-    "concept": "alimentação leve, equilíbrio e minimalismo.",
-    "palette": [
-      "#FFFFFF",
-      "#A0B59B",
-      "#F1ECE2",
-      "#343A35"
-    ],
-    "typography": "Plus Jakarta Sans e DM Sans."
-  },
-  "25.03": {
-    "code": "25.03",
-    "name": "ISLAND FRESH",
-    "nicheCode": "25",
-    "nicheName": "POKE E CULINÁRIA HAVAIANA",
-    "concept": "frescor tropical, ingredientes naturais e energia.",
-    "palette": [
-      "#45945A",
-      "#F3CF58",
-      "#FFF4DE",
-      "#F18370"
-    ],
-    "typography": "Bricolage Grotesque e Inter."
-  },
-  "25.04": {
-    "code": "25.04",
-    "name": "PACIFIC CLUB",
-    "nicheCode": "25",
-    "nicheName": "POKE E CULINÁRIA HAVAIANA",
-    "concept": "lifestyle havaiano sofisticado e gastronomia premium.",
-    "palette": [
-      "#21455C",
-      "#EAB49B",
-      "#EDE0CE",
-      "#FFFFFF"
-    ],
-    "typography": "Cormorant Garamond e Manrope."
-  },
-  "25.05": {
-    "code": "25.05",
-    "name": "BOWL SOCIETY",
-    "nicheCode": "25",
-    "nicheName": "POKE E CULINÁRIA HAVAIANA",
-    "concept": "poke urbano moderno, jovem e criativo.",
-    "palette": [
-      "#A487E7",
-      "#B9E95D",
-      "#FFFFFF",
-      "#303038"
-    ],
-    "typography": "Space Grotesk e Inter."
-  }
-};
-const NICHE_CATALOG = {
-  "06": {
-    "niche": "Marmitarias e Comida Caseira",
-    "categories": [
-      "Todos",
-      "Marmitas Executivas",
-      "Pratos do Dia",
-      "Bebidas & Sobremesas"
-    ],
-    "products": [
-      {
-        "id": "m1",
-        "category": "Marmitas Executivas",
-        "name": "Marmita Caseira Tradicional",
-        "desc": "Arroz branquinho, feijão carioca com louro, bife acebolado suculento, farofa crocante e salada fresca.",
-        "price": 24.9
-      },
-      {
-        "id": "m2",
-        "category": "Marmitas Executivas",
-        "name": "Frango Grelhado com Legumes ao Vapor",
-        "desc": "Filé de frango marinado em ervas finas, arroz integral, feijão preto e mix de legumes frescos.",
-        "price": 23.5
-      },
-      {
-        "id": "m3",
-        "category": "Pratos do Dia",
-        "name": "Feijoada Completa da Casa",
-        "desc": "Feijoada artesanal com carnes nobres, arroz, couve refogada no alho, torresmo e laranja.",
-        "price": 29.9
-      },
-      {
-        "id": "m4",
-        "category": "Bebidas & Sobremesas",
-        "name": "Pudim de Leite Condensado",
-        "desc": "Fatia generosa com calda de caramelo brilhante e textura aveludada.",
-        "price": 9.9
-      }
-    ]
-  },
-  "16": {
-    "niche": "Lanchonetes Tradicionais",
-    "categories": [
-      "Todos",
-      "Lanches Tradicionais",
-      "Acompanhamentos",
-      "Bebidas"
-    ],
-    "products": [
-      {
-        "id": "p1",
-        "category": "Lanches Tradicionais",
-        "name": "X-Salada Especial da Casa",
-        "desc": "Pão artesanal tostado, hambúrguer bovino 150g, queijo prato derretido, alface fresca, tomate e maionese da casa.",
-        "price": 26.9
-      },
-      {
-        "id": "p2",
-        "category": "Lanches Tradicionais",
-        "name": "X-Tudo Tradicional Completo",
-        "desc": "Hambúrguer, ovo frito, bacon crocante, presunto, queijo, milho, alface e batata palha.",
-        "price": 32.9
-      },
-      {
-        "id": "p3",
-        "category": "Lanches Tradicionais",
-        "name": "Misto Quente na Chapa",
-        "desc": "Pão de forma dourado na manteiga, queijo derretido em dobro e presunto selecionado.",
-        "price": 16.9
-      },
-      {
-        "id": "p4",
-        "category": "Acompanhamentos",
-        "name": "Batatas Fritas Crocantes",
-        "desc": "Porção de batatas sequinhas e crocantes com toque de sal e molho especial.",
-        "price": 18.9
-      },
-      {
-        "id": "p5",
-        "category": "Bebidas",
-        "name": "Suco de Laranja Natural 500ml",
-        "desc": "Feito na hora com laranjas frescas selecionadas e sem adição de água.",
-        "price": 9.9
-      }
-    ]
-  },
-  "17": {
-    "niche": "Massas / Comida Italiana",
-    "categories": [
-      "Todos",
-      "Massas Artesanais",
-      "Clássicos da Nonna",
-      "Sobremesas"
-    ],
-    "products": [
-      {
-        "id": "p1",
-        "category": "Massas Artesanais",
-        "name": "Spaghetti al Pomodoro & Basilico",
-        "desc": "Massa fresca al dente, molho rústico de tomates italianos San Marzano, manjericão fresco e parmesão ralado.",
-        "price": 44.9
-      },
-      {
-        "id": "p2",
-        "category": "Massas Artesanais",
-        "name": "Fettuccine Alfredo Trufado",
-        "desc": "Massa longa ao creme de manteiga especial, queijo Grana Padano e toque refinado de azeite trufado.",
-        "price": 52.9
-      },
-      {
-        "id": "p3",
-        "category": "Clássicos da Nonna",
-        "name": "Lasagna Clássica alla Bolognese",
-        "desc": "Camadas generosas de massa artesanal, ragu bovino cozido lentamente e bechamel cremoso gratinado.",
-        "price": 48.9
-      },
-      {
-        "id": "p4",
-        "category": "Clássicos da Nonna",
-        "name": "Bruschetta Tradizionale",
-        "desc": "Pão italiano rústico tostado no azeite extravirgem, tomates maduros, alho e folhas de manjericão fresco.",
-        "price": 24.9
-      },
-      {
-        "id": "p5",
-        "category": "Sobremesas",
-        "name": "Tiramisù Clássico Italiano",
-        "desc": "Biscoitos savoiardi embebidos em café espresso, cacau em pó e autêntico creme de queijo mascarpone.",
-        "price": 22.9
-      }
-    ]
-  },
-  "18": {
-    "niche": "Comida Chinesa / Yakisoba",
-    "categories": [
-      "Todos",
-      "Yakisoba & Wok",
-      "Pratos Especiais",
-      "Entradas"
-    ],
-    "products": [
-      {
-        "id": "p1",
-        "category": "Yakisoba & Wok",
-        "name": "Yakisoba Especial de Carne & Frango",
-        "desc": "Massa frita crocante, tiras de alcatra, peito de frango, brócolis, couve-flor, cenoura e acelga ao molho shoyu especial.",
-        "price": 38.9
-      },
-      {
-        "id": "p2",
-        "category": "Pratos Especiais",
-        "name": "Frango Xadrez Tradicional",
-        "desc": "Cubos de frango macios salteados no wok com pimentões coloridos, cebola e amendoim torrado crocante.",
-        "price": 36.9
-      },
-      {
-        "id": "p3",
-        "category": "Entradas",
-        "name": "Rolinho Primavera Crocante (2 un)",
-        "desc": "Massa fininha e crocante recheada com carne moída temperada e repolho, servido com molho agridoce.",
-        "price": 14.9
-      },
-      {
-        "id": "p4",
-        "category": "Pratos Especiais",
-        "name": "Arroz Chop Suey Frito",
-        "desc": "Arroz salteado na wok com flocos de ovo, presunto em cubos, cenoura e cebolinha verde fininha.",
-        "price": 26.9
-      },
-      {
-        "id": "p5",
-        "category": "Entradas",
-        "name": "Guioza Suíno ao Vapor (6 un)",
-        "desc": "Recheadas com carne suína temperada, gengibre e acelga, acompanhadas de molho ponzu especial.",
-        "price": 22.9
-      }
-    ]
-  },
-  "19": {
-    "niche": "Comida Mexicana",
-    "categories": [
-      "Todos",
-      "Tacos Artesanais",
-      "Burritos & Quesadillas",
-      "Sobremesas"
-    ],
-    "products": [
-      {
-        "id": "p1",
-        "category": "Tacos Artesanais",
-        "name": "Trio de Tacos de Carne Asada",
-        "desc": "Tortillas de milho crocantes, carne marinada grelhada, cebola picadinha, coentro fresco e fatias de limão.",
-        "price": 36.9
-      },
-      {
-        "id": "p2",
-        "category": "Burritos & Quesadillas",
-        "name": "Burrito Especial Supreme",
-        "desc": "Tortilla gigante de trigo recheada com carne temperada, feijão fradinho, queijo derretido, arroz e sour cream.",
-        "price": 38.9
-      },
-      {
-        "id": "p3",
-        "category": "Burritos & Quesadillas",
-        "name": "Quesadilla de Queijo & Guacamole",
-        "desc": "Tortilla tostada e recheada com blend de queijos derretidos, acompanhada de guacamole fresco e pico de gallo.",
-        "price": 28.9
-      },
-      {
-        "id": "p4",
-        "category": "Tacos Artesanais",
-        "name": "Nachos Supremos com Cheddar",
-        "desc": "Totopos de milho crocantes cobertos com queijo cheddar cremoso, jalapeños, feijão refrito e sour cream.",
-        "price": 34.9
-      },
-      {
-        "id": "p5",
-        "category": "Sobremesas",
-        "name": "Churros com Doce de Leite",
-        "desc": "Churros dourados passados na canela e açúcar com generoso pote de doce de leite artesanal.",
-        "price": 18.9
-      }
-    ]
-  },
-  "20": {
-    "niche": "Creperias e Tapiocarias",
-    "categories": [
-      "Todos",
-      "Tapiocas Salgadas",
-      "Crepes Franceses",
-      "Doces & Especiais"
-    ],
-    "products": [
-      {
-        "id": "p1",
-        "category": "Tapiocas Salgadas",
-        "name": "Tapioca de Carne de Sol com Coalho",
-        "desc": "Massa artesanal hidratada na hora, carne de sol desfiada na manteiga de garrafa e queijo coalho derretido.",
-        "price": 24.9
-      },
-      {
-        "id": "p2",
-        "category": "Tapiocas Salgadas",
-        "name": "Tapioca de Frango com Catupiry",
-        "desc": "Peito de frango desfiado temperado com ervas finas e legítimo requeijão Catupiry cremoso.",
-        "price": 22.9
-      },
-      {
-        "id": "p3",
-        "category": "Crepes Franceses",
-        "name": "Crêpe Parisiense de Queijo & Presunto",
-        "desc": "Massa fininha dourada na chapa com queijo emmental derretido, presunto royale e orégano fresco.",
-        "price": 28.9
-      },
-      {
-        "id": "p4",
-        "category": "Doces & Especiais",
-        "name": "Tapioca Doce de Morango com Nutella",
-        "desc": "Farta camada de Nutella original recheada com morangos frescos fatiados.",
-        "price": 21.9
-      },
-      {
-        "id": "p5",
-        "category": "Doces & Especiais",
-        "name": "Crêpe Doce de Banana Flambada",
-        "desc": "Banana caramelizada na chapa com canela em pó e calda morna de caramelo toffee.",
-        "price": 19.9
-      }
-    ]
-  },
-  "21": {
-    "niche": "Peixarias e Frutos do Mar",
-    "categories": [
-      "Todos",
-      "Frutos do Mar",
-      "Peixes Grelhados",
-      "Porções"
-    ],
-    "products": [
-      {
-        "id": "p1",
-        "category": "Frutos do Mar",
-        "name": "Moqueca Tradicional de Peixe & Camarão",
-        "desc": "Postas de peixe fresco e camarões médios cozidos no azeite de dendê, leite de coco, servida com arroz e pirão.",
-        "price": 68.9
-      },
-      {
-        "id": "p2",
-        "category": "Peixes Grelhados",
-        "name": "Salmão Grelhado com Alcaparras",
-        "desc": "Filé de salmão grelhado na manteiga clarificada com alcaparras, legumes salteados e purê de batata baroa.",
-        "price": 56.9
-      },
-      {
-        "id": "p3",
-        "category": "Porções",
-        "name": "Camarão Empanado Crocante",
-        "desc": "Camarões selecionados empanados na farinha panko crocante com molho tártaro artesanal.",
-        "price": 46.9
-      },
-      {
-        "id": "p4",
-        "category": "Porções",
-        "name": "Isca de Peixe Crocante com Limão",
-        "desc": "Tiras de filé de peixe branco empanadas e douradas com molho rosê e gomos de limão siciliano.",
-        "price": 38.9
-      },
-      {
-        "id": "p5",
-        "category": "Frutos do Mar",
-        "name": "Casquinha de Siri Gratinada",
-        "desc": "Carne de siri temperada com azeite de dendê, leite de coco e gratinada com queijo parmesão no forno.",
-        "price": 22.9
-      }
-    ]
-  },
-  "22": {
-    "niche": "Bares, Petiscos e Porções",
-    "categories": [
-      "Todos",
-      "Petiscos de Boteco",
-      "Porções para Compartilhar",
-      "Bebidas"
-    ],
-    "products": [
-      {
-        "id": "p1",
-        "category": "Petiscos de Boteco",
-        "name": "Torresmo de Rolo Pururucado",
-        "desc": "Panceta suína enrolada, assada lentamente e frita até pururucar, servida com geleia de pimenta e limão.",
-        "price": 38.9
-      },
-      {
-        "id": "p2",
-        "category": "Petiscos de Boteco",
-        "name": "Bolinhos de Costela com Provolone (6 un)",
-        "desc": "Massa de costela bovina desfiada recheada com provolone defumado e maionese de alho negro.",
-        "price": 32.9
-      },
-      {
-        "id": "p3",
-        "category": "Porções para Compartilhar",
-        "name": "Tábua de Picanha Fatiada no Réchaud",
-        "desc": "500g de picanha macia fatiada na chapa com cebola caramelizada, farofa crocante e molho chimichurri.",
-        "price": 64.9
-      },
-      {
-        "id": "p4",
-        "category": "Porções para Compartilhar",
-        "name": "Batata Frita com Cheddar & Bacon",
-        "desc": "Batatas crocantes cobertas com queijo cheddar cremoso fundido e farofa de bacon crocante.",
-        "price": 28.9
-      },
-      {
-        "id": "p5",
-        "category": "Bebidas",
-        "name": "Cerveja Artesanal Puro Malte 600ml",
-        "desc": "Garrafa estupidamente gelada no ponto certo.",
-        "price": 16.9
-      }
-    ]
-  },
-  "23": {
-    "niche": "Restaurantes Nordestinos",
-    "categories": [
-      "Todos",
-      "Pratos do Sertão",
-      "Especiais da Casa",
-      "Sobremesas"
-    ],
-    "products": [
-      {
-        "id": "p1",
-        "category": "Pratos do Sertão",
-        "name": "Baião de Dois Tradicional Completo",
-        "desc": "Arroz, feijão de corda, queijo coalho em cubos, carne seca desfiada, bacon, manteiga de garrafa e coentro.",
-        "price": 42.9
-      },
-      {
-        "id": "p2",
-        "category": "Pratos do Sertão",
-        "name": "Carne de Sol com Aipim na Manteiga",
-        "desc": "Carne de sol maturada e grelhada, aipim cozido macio dourado na manteiga de garrafa com cebola roxa.",
-        "price": 48.9
-      },
-      {
-        "id": "p3",
-        "category": "Especiais da Casa",
-        "name": "Escondidinho de Carne Seca",
-        "desc": "Camadas cremosas de purê de aipim gratinadas com queijo coalho e recheio farto de carne seca desfiada.",
-        "price": 38.9
-      },
-      {
-        "id": "p4",
-        "category": "Especiais da Casa",
-        "name": "Dadinhos de Tapioca com Pimenta (8 un)",
-        "desc": "Dadinhos dourados crocantes por fora e macios por dentro feitos de tapioca e queijo coalho.",
-        "price": 24.9
-      },
-      {
-        "id": "p5",
-        "category": "Sobremesas",
-        "name": "Cartola Pernambucana com Canela",
-        "desc": "Sobremesa típica com banana frita na manteiga, queijo coalho derretido, açúcar e canela.",
-        "price": 18.9
-      }
-    ]
-  },
-  "24": {
-    "niche": "Salgaderias",
-    "categories": [
-      "Todos",
-      "Salgados Fritos",
-      "Salgados de Forno",
-      "Combos & Centos"
-    ],
-    "products": [
-      {
-        "id": "p1",
-        "category": "Salgados Fritos",
-        "name": "Coxinha Cremosa de Frango com Catupiry",
-        "desc": "Massa crocante com caldo de galinha caipira, peito de frango desfiado temperado e requeijão Catupiry.",
-        "price": 8.9
-      },
-      {
-        "id": "p2",
-        "category": "Salgados Fritos",
-        "name": "Kibe Recheado com Catupiry & Hortelã",
-        "desc": "Carne bovina selecionada com trigo para kibe, hortelã fresca e recheio cremoso generoso.",
-        "price": 8.9
-      },
-      {
-        "id": "p3",
-        "category": "Salgados de Forno",
-        "name": "Empada Folhada de Camarão",
-        "desc": "Massa podre que derrete na boca com recheio cremoso de camarões refogados no azeite e cheiro-verde.",
-        "price": 9.9
-      },
-      {
-        "id": "p4",
-        "category": "Salgados de Forno",
-        "name": "Enroladinho de Presunto & Queijo",
-        "desc": "Massa fofa assada no forno com queijo muçarela e presunto de primeira qualidade.",
-        "price": 7.9
-      },
-      {
-        "id": "p5",
-        "category": "Combos & Centos",
-        "name": "Cento de Mini Salgados Sortidos (100 un)",
-        "desc": "100 unidades de coxinhas, kibes, bolinhas de queijo e risoles sequinhos e crocantes para sua festa.",
-        "price": 79.9
-      }
-    ]
-  },
-  "25": {
-    "niche": "Poke e Culinária Havaiana",
-    "categories": [
-      "Todos",
-      "Pokes Especiais",
-      "Bowls Clássicos",
-      "Bebidas Tropicais"
-    ],
-    "products": [
-      {
-        "id": "p1",
-        "category": "Pokes Especiais",
-        "name": "Aloha Salmon Supreme Bowl",
-        "desc": "Base de arroz shari, cubos generosos de salmão fresco marinado, abacate fatiado, manga, pepino, repolho roxo, gergelim e molho tare especial.",
-        "price": 46.9
-      },
-      {
-        "id": "p2",
-        "category": "Pokes Especiais",
-        "name": "Tuna Fresh Hawaiian Poke",
-        "desc": "Base de arroz integral ou folhas, atum fresco em cubos, edamame fresco, cenoura ralada, chips de coco e molho ponzu cítrico.",
-        "price": 48.9
-      },
-      {
-        "id": "p3",
-        "category": "Bowls Clássicos",
-        "name": "Shimeji & Tofu Veggie Bowl",
-        "desc": "Base de arroz shari, cogumelos shimeji salteados no azeite e shoyu, cubos de tofu grelhado, manga, abacate e gergelim.",
-        "price": 38.9
-      },
-      {
-        "id": "p4",
-        "category": "Bowls Clássicos",
-        "name": "Ceviche Tropical de Peixe Branco",
-        "desc": "Cubos de tilápia fresca marinados no suco de limão e laranja, cebola roxa fininha, coentro e milho tostado crocante.",
-        "price": 36.9
-      },
-      {
-        "id": "p5",
-        "category": "Bebidas Tropicais",
-        "name": "Chá Gelado de Hibisco com Frutas Vermelhas",
-        "desc": "Infusão refrescante de hibisco com polpa de frutas vermelhas e folhas de hortelã fresca.",
-        "price": 11.9
-      }
-    ]
-  }
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+// Catálogo Global carregado de catalogo.js
+const CATALOG = Array.isArray(window.SHOWROOM_CATALOG) ? window.SHOWROOM_CATALOG : [];
+
+// Títulos e Subtítulos fiéis às referências do Drive
+const TITLES_DB = {
+  // Nicho 06 (Marmitarias & Comida Caseira)
+  '06.01': ['Comida de casa. Carinho em cada prato.', 'Arroz, feijão e aquele tempero que abraça. Escolha sua marmita.'],
+  '06.02': ['Seu almoço. Completo de verdade.', 'Uma refeição caprichada para acompanhar seu dia.'],
+  '06.03': ['Seu almoço, sem complicação.', 'Escolha sua refeição e siga o seu dia.'],
+  '06.04': ['O sabor que traz boas lembranças.', 'Comida caseira e receitas para acolher o seu dia.'],
+  '06.05': ['Comer bem pode ser simples.', 'Comida caseira, cuidado no preparo e uma pausa para saborear.'],
+
+  // Nicho 16 (Lanchonetes Tradicionais)
+  '16.01': ['Seu lanche, do seu jeito.', 'Escolha seu favorito e complete o pedido.'],
+  '16.02': ['Seu ponto de encontro com o sabor.', 'Escolha seu lanche e faça uma pausa gostosa.'],
+  '16.03': ['O clássico que nunca sai de moda.', 'Nostalgia e sabor artesanal em cada mordida.'],
+  '16.04': ['Experiências que reinventam o lanche.', 'Combinações ousadas e ingredientes selecionados.'],
+  '16.05': ['O toque gourmet na sua esquina.', 'Lanches premium preparados com carinho e técnica.'],
+
+  // Nicho 17 (Massas / Comida Italiana)
+  '17.01': ['Uma pausa com sabor de Itália.', 'Escolha sua massa e traga a trattoria para a mesa.'],
+  '17.02': ['Receitas de família, feitas com alma.', 'Massas frescas, molhos lentos e afeto em cada prato.'],
+  '17.03': ['A arte da pasta artesanal.', 'Tradição italiana com ingredientes nobres e paixão.'],
+  '17.04': ['Clássicos italianos que abraçam.', 'Do pomodoro ao alfredo, o sabor autêntico de Roma.'],
+  '17.05': ['O melhor da cucina mediterrânea.', 'Massas leves, azeites nobres e aromas inesquecíveis.'],
+
+  // Nicho 18 (Comida Chinesa / Yakisoba)
+  '18.01': ['Sabor intenso em cada encontro.', 'Escolha seu prato e descubra sua combinação favorita.'],
+  '18.02': ['O verdadeiro fogo da wok oriental.', 'Yakisobas fumegantes e legumes no ponto perfeito.'],
+  '18.03': ['Tradição imperial na sua mesa.', 'Receitas ancestrais com tempero marcante e equilíbrio.'],
+  '18.04': ['Culinária chinesa viva e aromática.', 'Pratos fartos e molhos agridoces artesanais.'],
+  '18.05': ['Rapidez e sabor na medida certa.', 'O melhor da culinária asiática para seu dia a dia.'],
+
+  // Nicho 19 (Comida Mexicana)
+  '19.01': ['Um convite para celebrar o sabor.', 'Escolha seus tacos e leve mais cor à mesa.'],
+  '19.02': ['Cores vivas e tempero picante na medida.', 'Burritos recheados e guacamole fresco feito na hora.'],
+  '19.03': ['A autêntica fiesta mexicana.', 'Nachos crocantes, queijos fundidos e carnes suculentas.'],
+  '19.04': ['Sabores de Oaxaca e Jalisco.', 'Tacos de rua artesanais com tortillas frescas feitas à mão.'],
+  '19.05': ['Energia e tempero em cada mordida.', 'Quesadillas douradas e salsas especiais da casa.'],
+
+  // Nicho 20 (Creperias e Tapiocarias)
+  '20.01': ['Leveza e sabor que se dobram a você.', 'Tapiocas macias e crepes finos feitos no capricho.'],
+  '20.02': ['Tradição brasileira com recheio generoso.', 'Goma fresca selecionada e queijo coalho tostado na chapa.'],
+  '20.03': ['Crepes franceses de massa finíssima.', 'Receitas doces e salgadas com elegância e equilíbrio.'],
+  '20.04': ['Uma pausa leve para o seu dia.', 'Combinações saudáveis, frescas e deliciosas.'],
+  '20.05': ['Doce ou salgado, o aconchego perfeito.', 'Recheios nobres e finalização com manteiga de garrafa.'],
+
+  // Nicho 21 (Peixarias e Frutos do Mar)
+  '21.01': ['O melhor encontro com o mar.', 'Peixes frescos grelhados e moquecas aromáticas da costa.'],
+  '21.02': ['Frescor direto do porto à sua mesa.', 'Camarões selecionados e frutos do mar preparados na brasa.'],
+  '21.03': ['Tradição praiana com tempero caseiro.', 'Casquinhas de siri, lulas crocantes e peixadas completas.'],
+  '21.04': ['Sabor marítimo em alta gastronomia.', 'Cortes nobres de salmão, robalo e vieiras suculentas.'],
+  '21.05': ['Banquete das águas para compartilhar.', 'Porções fartas de frutos do mar com limão e ervas frescas.'],
+
+  // Nicho 22 (Bares, Petiscos e Porções)
+  '22.01': ['Boa conversa pede bons sabores.', 'Torresmo crocante, bolinhos dourados e petiscos de boteco.'],
+  '22.02': ['O melhor boteco de bairro da cidade.', 'Picanha aperitivo na chapa com queijo e farofa da casa.'],
+  '22.03': ['Petiscos de raiz com cerveja gelada.', 'Pasteizinhos artesanais e clássicos da boemia carioca.'],
+  '22.04': ['Porções fartas para curtir com amigos.', 'Tábua de frios, batatas especiais e tiras de frango empanadas.'],
+  '22.05': ['Sabor de confraternização e alegria.', 'Petiscos de estufa e releituras modernas de comida de bar.'],
+
+  // Nicho 23 (Restaurantes Nordestinos)
+  '23.01': ['Raízes que dão sabor e abraçam.', 'Baião de dois, carne de sol e o melhor tempero do sertão.'],
+  '23.02': ['A fartura da culinária do sertão.', 'Macaxeira frita na manteiga de garrafa e queijo de coalho assado.'],
+  '23.03': ['Tradição nordestina feita com carinho.', 'Escondidinho de carne seca, sarapatel e feijão de corda.'],
+  '23.04': ['Cultura e sabor em cada prato.', 'Paneladas aromáticas, rabada com agrião e farofas crocantes.'],
+  '23.05': ['O aconchego da comida de terra firme.', 'Comida forte, acolhedora e cheia de história e afeto.'],
+
+  // Nicho 24 (Salgaderias)
+  '24.01': ['Pequenos detalhes. Grandes sabores.', 'Coxinhas douradas, empadas derretendo e massas artesanais.'],
+  '24.02': ['Massa crocante por fora, cremosa por dentro.', 'Recheios fartos de frango com catupiry, camarão e queijo.'],
+  '24.03': ['O salgado perfeito a qualquer hora.', 'Kibes recheados, esfihas folhadas e mini-salgados para festa.'],
+  '24.04': ['Salgados artesanais assados e fritos.', 'Receitas de família com padrão de ouro e tempero marcante.'],
+  '24.05': ['A pausa mais gostosa do seu dia.', 'Salgados sempre quentinhos saindo do forno direto pra você.'],
+
+  // Nicho 25 (Poke e Culinária Havaiana)
+  '25.01': ['Um bowl de boas energias.', 'Salmão, frutas e frescor em cada combinação.'],
+  '25.02': ['O sabor tropical do Havaí na sua tigela.', 'Atum fresco marinado, manga, edamame e molho ponzu especial.'],
+  '25.03': ['Cores vivas, saúde e sabor autêntico.', 'Bowls personalizados com arroz japonês e chips de batata doce.'],
+  '25.04': ['Frescor que renova seu dia.', 'Saladas marinadas, abacate fatiado e crocantes de gergelim torrado.'],
+  '25.05': ['A experiência do pacífico na mesa.', 'Receitas tropicais leves, equilibradas e ricas em nutrientes.']
 };
 
+// Cardápios demonstrativos para o modal de Cardápio
+const SAMPLE_MENUS = {
+  '16': [
+    { name: 'X-Salada Especial da Casa', desc: 'Hambúrguer 150g, queijo prato derretido, alface fresca, tomate e maionese artesanal', price: 'R$ 26,90' },
+    { name: 'X-Tudo Tradicional Completo', desc: 'Bovino 150g, bacon crocante, ovo, presunto, queijo, milho e batata palha', price: 'R$ 32,90' },
+    { name: 'Bauru Tradicional no Francês', desc: 'Roastbeef artesanal, queijo derretido, tomate fresco e picles crocante', price: 'R$ 24,90' },
+    { name: 'Batata Rústica da Casa', desc: 'Batatas com alho laminado e alecrim fresco, acompanhadas de maionese verde', price: 'R$ 18,90' }
+  ],
+  '17': [
+    { name: 'Fettuccine Alfredo com Trufas', desc: 'Massa fresca artesanal envolta em creme de parmesão e manteiga de trufas', price: 'R$ 58,00' },
+    { name: 'Lasagna alla Bolognese Tradizionale', desc: 'Camadas generosas de massa artesanal, ragù bovino cozido lentamente e bechamel', price: 'R$ 52,00' },
+    { name: 'Gnocchi ao Pomodoro & Basílico', desc: 'Nhoque de batata macio com molho de tomates San Marzano e manjericão fresco', price: 'R$ 46,00' },
+    { name: 'Cannoli Siciliani Recheados', desc: 'Massa crocante frita recheada com ricota doce, gotas de chocolate e pistache', price: 'R$ 22,00' }
+  ],
+  '18': [
+    { name: 'Yakisoba Especial Tradicional', desc: 'Massa oriental crocante com tiras de carne bovina, frango, legumes frescos e molho shoyu', price: 'R$ 38,90' },
+    { name: 'Frango Xadrez com Castanhas', desc: 'Cubos suculentos de peito de frango salteados com pimentões coloridos e castanha de caju', price: 'R$ 42,00' },
+    { name: 'Rolinho Primavera Crocante (2 un)', desc: 'Massa finíssima recheada com legumes selecionados, servida com molho agridoce', price: 'R$ 16,00' },
+    { name: 'Guioza Artesanal no Vapor (6 un)', desc: 'Pasteizinhos orientais recheados com lombo suíno temperado e cebolinha', price: 'R$ 28,00' }
+  ],
+  '19': [
+    { name: 'Tacos al Pastor Supreme (3 un)', desc: 'Tortillas de milho artesanais, carne de porco marinada em urucum, abacaxi grelhado e coentro', price: 'R$ 36,00' },
+    { name: 'Burrito California Especial', desc: 'Tortilla de trigo recheada com carne assada, guacamole fresco, arroz mexicano e queijo', price: 'R$ 39,90' },
+    { name: 'Quesadilla de Queijo e Jalapeño', desc: 'Massa tostada na chapa com blend de queijos derretidos e fatias de pimenta suave', price: 'R$ 29,00' },
+    { name: 'Nachos Supreme com Guacamole', desc: 'Totopos de milho estaladiços servidos com guacamole, pico de gallo e sour cream', price: 'R$ 34,00' }
+  ],
+  '20': [
+    { name: 'Crepe Francês de Camarão & Catupiry', desc: 'Massa leve e dourada com camarões salteados no alho-poró e catupiry original', price: 'R$ 34,00' },
+    { name: 'Tapioca de Carne Seca com Queijo Coalho', desc: 'Goma hidratada fininha com carne seca desfiada na manteiga de garrafa e queijo tostado', price: 'R$ 24,00' },
+    { name: 'Crepe Doce Nutella com Morango', desc: 'Massa fina recheada com Nutella pura, fatias de morango fresco e raspas de chocolate', price: 'R$ 22,00' },
+    { name: 'Tapioca Fit de Frango com Ricota', desc: 'Frango temperado com ervas, creme de ricota leve e sementes de chia crocantes', price: 'R$ 21,00' }
+  ],
+  '21': [
+    { name: 'Moqueca de Garoupa com Camarão', desc: 'Cozida lentamente no azeite de dendê e leite de coco fresco, acompanhada de arroz e pirão', price: 'R$ 78,00' },
+    { name: 'Filé de Salmão Grelhado na Brasa', desc: 'Posta de salmão fresco com molho de maracujá e risoto cremoso de alho-poró', price: 'R$ 68,00' },
+    { name: 'Camarão Empanado na Farinha Panko (8 un)', desc: 'Camarões rosa crocantes servidos com molho tártaro especial da casa', price: 'R$ 49,00' },
+    { name: 'Casquinha de Siri Gratinada', desc: 'Carne pura de siri temperada com ervas finas e gratinada com queijo parmesão', price: 'R$ 26,00' }
+  ],
+  '22': [
+    { name: 'Torresmo de Rolo Super Crocante', desc: 'Panceta suína enrolada, pururucada na hora, servida com geleia de pimenta e limão', price: 'R$ 36,00' },
+    { name: 'Bolinho de Feijoada Artesanal (6 un)', desc: 'Massa cremosa de feijoada recheada com couve refogada no alho e bacon', price: 'R$ 32,00' },
+    { name: 'Picanha Aperitivo na Chapa', desc: 'Tiras suculentas de picanha com cebola dourada, farofa crocante e molho chimichurri', price: 'R$ 64,00' },
+    { name: 'Dadinhos de Tapioca com Queijo Coalho', desc: 'Cubinhos dourados servidos com melaço de cana artesanal', price: 'R$ 26,00' }
+  ],
+  '23': [
+    { name: 'Baião de Dois Completo do Sertão', desc: 'Feijão de corda, arroz, queijo coalho tostado, carne seca desfiada, bacon e coentro', price: 'R$ 48,00' },
+    { name: 'Carne de Sol com Macaxeira Frita', desc: 'Corte nobre acebolado na manteiga de garrafa, acompanhado de macaxeira macia por dentro', price: 'R$ 56,00' },
+    { name: 'Escondidinho de Carne Seca com Purê de Mandioca', desc: 'Camadas generosas gratinadas com queijo coalho dourado no forno', price: 'R$ 42,00' },
+    { name: 'Cartola Nordestina Tradicional', desc: 'Banana frita na manteiga com queijo de manteiga derretido, açúcar e canela', price: 'R$ 18,00' }
+  ],
+  '24': [
+    { name: 'Coxinha Dourada com Catupiry Real', desc: 'Massa artesanal de caldo de galinha caipira, frango desfiado temperado e catupiry puro', price: 'R$ 9,90' },
+    { name: 'Empada Especial de Camarão Cremoso', desc: 'Massa podre que derrete na boca com recheio farto de camarão bem temperadinho', price: 'R$ 10,50' },
+    { name: 'Kibe Recheado com Queijo e Hortelã', desc: 'Trigo selecionado, carne moída de primeira, hortelã fresca e recheio cremoso', price: 'R$ 9,50' },
+    { name: 'Esfiha Folhada de Carne Bovina', desc: 'Massa folhada levíssima e crocante com recheio árabe de carne e especiarias', price: 'R$ 9,90' }
+  ],
+  '25': [
+    { name: 'Aloha Salmon Supreme Bowl', desc: 'Cubos de salmão fresco, arroz japonês shari, abacate, edamame, manga, pepino e molho ponzu', price: 'R$ 48,00' },
+    { name: 'Tuna Tropical Spicy Bowl', desc: 'Atum fresco em cubos com maionese spicy, cenoura ralada, cebola roxa, nori e gergelim', price: 'R$ 46,00' },
+    { name: 'Rainbow Veggie & Tofu Bowl', desc: 'Tofu marinado no shoyu e gengibre, sunomono, repolho roxo, kani e chips de batata doce', price: 'R$ 38,00' },
+    { name: 'Maui Sunset Fruit Salad Bowl', desc: 'Mix tropical de frutas frescas com chia, granola artesanal e mel de laranjeira', price: 'R$ 24,00' }
+  ]
+};
 
-let currentModelId = '16.01';
-let currentCategory = 'Todos';
-let cart = {};
+let currentModel = null;
 
-const formatMoney = (val) => val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+function luminance(hex) {
+  const c = hex.replace('#', '');
+  return [0, 2, 4]
+    .map(i => parseInt(c.slice(i, i + 2), 16))
+    .reduce((s, x, i) => s + x * [0.2126, 0.7152, 0.0722][i], 0);
+}
 
-function getModelData(code) {
-  if (MODELS_DB[code]) return MODELS_DB[code];
-  if (window.CATALOG && Array.isArray(window.CATALOG)) {
-    const found = window.CATALOG.find(x => x.id === code || x.code === code);
-    if (found) {
-      const nCode = (found.code || code || '16.01').split('.')[0].padStart(2, '0');
-      return {
-        code: found.code || code,
-        name: found.name,
-        nicheCode: nCode,
-        nicheName: found.nicheName || found.niche || 'Gastronomia',
-        concept: found.concept || found.direction || 'Pratos artesanais selecionados e entrega rápida.',
-        palette: found.palette || ['#d97706', '#0f172a', '#ffffff'],
-        typography: found.fonts || 'Inter'
-      };
-    }
-  }
+function contrastInk(hex) {
+  const lum = luminance(hex);
+  return lum > 140 ? '#0f172a' : '#ffffff';
+}
+
+function getModelData(id) {
+  const m = CATALOG.find(x => x.id === id || x.code === id);
+  if (m) return m;
+
+  // Fallback
   return {
-    code: code || '16.01',
+    id: id || '16.01',
+    code: id || '16.01',
     name: 'Delivery Especial',
-    nicheCode: (code || '16.01').split('.')[0].padStart(2, '0'),
-    nicheName: 'Gastronomia',
-    concept: 'Pratos artesanais selecionados e entrega rápida.'
+    nicheName: 'Lanchonetes Tradicionais',
+    palette: ['#D43D33', '#FFFFFF', '#F3C84B', '#292929'],
+    fonts: 'Montserrat Bold e Inter.'
   };
 }
 
-function getNicheCatalog(nicheCode) {
-  if (NICHE_CATALOG[nicheCode]) return NICHE_CATALOG[nicheCode];
-  return NICHE_CATALOG["16"];
-}
+function setModel(id) {
+  const m = getModelData(id);
+  currentModel = m;
+  const code = m.code || m.id;
+  const n = code.split('.')[0].padStart(2, '0');
 
-function setModel(code) {
-  currentModelId = code;
-  const m = getModelData(code);
-  const nCat = getNicheCatalog(m.nicheCode);
+  // 1. Paleta de Cores
+  const colors = (m.palette || []).filter(c => /^#[0-9a-f]{6}$/i.test(c));
+  const p = colors.length ? colors : ['#ffffff', '#0f172a', '#d97706', '#292929'];
+  const sorted = [...p].sort((a, b) => luminance(a) - luminance(b));
 
-  // 1. Atualizar <picture> na Hero para o modelo correspondente
-  const srcMobile = document.getElementById('hero-src-mobile');
-  const srcTablet = document.getElementById('hero-src-tablet');
-  const heroImg = document.getElementById('hero-img');
+  const bg = sorted.at(-1); // Cor mais clara como fundo
+  const ink = luminance(bg) < 140 ? '#ffffff' : sorted[0];
+  const accent = p.find(c => c !== bg && luminance(c) > 60 && luminance(c) < 210) || p[0] || '#d97706';
+  const button = accent;
+  const buttonInk = contrastInk(button);
 
-  if (code.startsWith('06')) {
-    const webpPath = '/showroom/assets/gastronomia/' + code + '.webp';
-    if (srcMobile) srcMobile.srcset = webpPath;
-    if (srcTablet) srcTablet.srcset = webpPath;
-    if (heroImg) {
-      heroImg.src = webpPath;
-      heroImg.alt = m.name + ' • ' + (m.concept || '');
-    }
+  document.body.style.setProperty('--bg', bg);
+  document.body.style.setProperty('--ink', ink);
+  document.body.style.setProperty('--accent', accent);
+  document.body.style.setProperty('--button', button);
+  document.body.style.setProperty('--button-ink', buttonInk);
+
+  // 2. Tipografia
+  const fonts = m.fonts || 'Plus Jakarta Sans';
+  const families = ['Fraunces', 'Montserrat', 'Playfair Display', 'Space Grotesk', 'Poppins', 'Fredoka', 'Bebas Neue', 'Oswald', 'Righteous', 'Plus Jakarta Sans', 'Inter'];
+  const displayFont = families.find(f => fonts.includes(f)) || 'Plus Jakarta Sans';
+  document.body.style.setProperty('--display', `'${displayFont}', sans-serif`);
+
+  // 3. Atualizar Título e Branding
+  document.title = `${m.name} • Showroom Automatech`;
+  $('#topbar-brand').textContent = m.name;
+  $('#topbar-tagline').textContent = (m.nicheName || 'Gastronomia').replace(/^\d+\.\s*/, '').toUpperCase();
+  $('#hero-brand').textContent = m.name;
+
+  // Monograma da Marca
+  const mono = m.name.replace(/[^\p{L}\p{N}\s]/gu, '').split(/\s+/).filter(Boolean).map(x => x[0]).slice(0, 2).join('').toUpperCase() || 'TX';
+  $('#brand-mark').textContent = mono;
+  $('#hero-mark').textContent = mono;
+
+  // 4. Título (H1) e Subtítulo
+  const titles = TITLES_DB[code] || [
+    m.name + '. Sabor e qualidade em cada momento.',
+    m.concept || 'Uma experiência gastronômica artesanal feita para você.'
+  ];
+
+  // Adicionar destaque na última palavra do título
+  const titleWords = titles[0].split(' ');
+  if (titleWords.length > 2) {
+    const lastWord = titleWords.pop();
+    $('#hero-title').innerHTML = `${titleWords.join(' ')} <span class="accent">${lastWord}</span>`;
   } else {
-    const basePath = '/showroom/assets/gastronomia/' + code;
-    if (srcMobile) srcMobile.srcset = basePath + '/mobile.png';
-    if (srcTablet) srcTablet.srcset = basePath + '/tablet.png';
-    if (heroImg) {
-      heroImg.src = basePath + '/pc.png';
-      heroImg.alt = m.name + ' • ' + (m.concept || '');
-    }
+    $('#hero-title').textContent = titles[0];
   }
 
-  // 2. Atualizar títulos e branding
-  document.title = m.name + ' • Showroom Automatech';
-  
-  const menuTag = document.getElementById('menu-tag');
-  if (menuTag) menuTag.textContent = (m.nicheName || nCat.niche).toUpperCase();
+  $('#hero-subtitle').textContent = titles[1];
 
-  const menuTitle = document.getElementById('menu-title');
-  if (menuTitle) menuTitle.textContent = 'Cardápio Oficial • ' + m.name;
+  // 5. Imagem do Prato em #dish-img
+  let dishSrc = '';
+  if (n === '06') {
+    dishSrc = `/showroom/assets/gastronomia/${code}.webp`;
+  } else {
+    dishSrc = `/showroom/assets/gastronomia/${code}.png`;
+  }
 
-  const footerBrand = document.getElementById('footer-brand');
-  if (footerBrand) footerBrand.textContent = m.name;
+  const dishImg = $('#dish-img');
+  dishImg.src = dishSrc;
+  dishImg.alt = `${m.name} • Fotografia do prato`;
 
-  const infoTitle = document.getElementById('info-dialog-title');
-  if (infoTitle) infoTitle.textContent = 'Informações • ' + m.name;
+  // Fallback se a imagem não carregar
+  dishImg.onerror = () => {
+    dishImg.src = `/showroom/assets/gastronomia/16.01.png`;
+  };
 
-  const infoAddress = document.getElementById('info-address');
-  if (infoAddress) infoAddress.textContent = 'Polo Gastronômico • ' + m.name + ' Oficial';
-
-  // 3. Renderizar filtros de categorias
-  currentCategory = 'Todos';
-  renderCategories(nCat.categories);
-
-  // 4. Renderizar produtos
-  renderProducts(nCat.products);
-
-  // 5. Limpar carrinho e feedbacks
-  cart = {};
-  updateCart();
-
-  const dialogFeedback = document.getElementById('dialog-feedback');
-  if (dialogFeedback) dialogFeedback.textContent = '';
+  // Reset Tema Escuro
+  document.body.classList.remove('dark');
+  $('#theme').setAttribute('aria-pressed', 'false');
+  $('.theme-label').textContent = 'Escuro';
 }
 
-function renderCategories(categories) {
-  const container = document.getElementById('categories-container');
-  if (!container) return;
+// Controle de Modais
+function openModal(type) {
+  if (!currentModel) return;
+  const dialog = $('#modal-dialog');
+  const title = $('#dialog-title');
+  const content = $('#dialog-content');
+  const code = currentModel.code || currentModel.id;
+  const n = code.split('.')[0].padStart(2, '0');
 
-  container.innerHTML = categories.map(cat => {
-    const isActive = cat === currentCategory;
-    return `<button type="button" class="filter-btn ${isActive ? 'active' : ''}" data-cat="${cat}">${cat}</button>`;
-  }).join('');
-}
-
-function renderProducts(products) {
-  const container = document.getElementById('products-container');
-  if (!container) return;
-
-  const filtered = currentCategory === 'Todos' ? products : products.filter(p => p.category === currentCategory);
-
-  container.innerHTML = filtered.map(p => {
-    return `
-      <article class="product-card">
-        <div>
-          <span class="product-tag">${p.category}</span>
-          <h3>${p.name}</h3>
-          <p>${p.desc}</p>
-        </div>
-        <div class="product-bottom">
-          <span class="product-price">${formatMoney(p.price)}</span>
-          <button type="button" class="btn-add-cart" data-add="${p.id}" data-name="${p.name}" data-price="${p.price}">
-            Adicionar +
-          </button>
-        </div>
-      </article>
-    `;
-  }).join('');
-}
-
-function updateCart() {
-  const m = getModelData(currentModelId);
-  const nCat = getNicheCatalog(m.nicheCode);
-
-  const totalItems = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
-  const totalPrice = Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
-
-  // Atualizar contadores
-  const quickCount = document.getElementById('quick-cart-count');
-  if (quickCount) quickCount.textContent = totalItems;
-
-  const badgeBtn = document.getElementById('cart-badge-btn');
-  if (badgeBtn) badgeBtn.textContent = `(${totalItems})`;
-
-  const totalVal = document.getElementById('cart-total-value');
-  if (totalVal) totalVal.textContent = formatMoney(totalPrice);
-
-  // Atualizar lista de itens
-  const list = document.getElementById('cart-items-list');
-  if (list) {
-    if (totalItems === 0) {
-      list.innerHTML = '<p style="color: #64748b; font-size: 13px; text-align: center; padding: 20px 0;">Sua sacola está vazia. Escolha um item delicioso no cardápio.</p>';
-    } else {
-      list.innerHTML = Object.values(cart).map(item => {
-        return `
-          <div class="cart-row">
-            <div>
-              <strong style="font-size: 14px;">${item.name}</strong>
-              <div style="font-size: 12px; color: #64748b;">${formatMoney(item.price)} cada</div>
+  if (type === 'cardapio') {
+    title.textContent = `Cardápio • ${currentModel.name}`;
+    const items = SAMPLE_MENUS[n] || SAMPLE_MENUS['16'];
+    content.innerHTML = `
+      <div style="display:flex; flex-direction:column; gap:12px; margin:16px 0;">
+        ${items.map(item => `
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; padding:10px 0; border-bottom:1px solid #f1f5f9;">
+            <div style="flex:1; padding-right:12px;">
+              <strong style="display:block; font-size:14px; color:#0f172a;">${item.name}</strong>
+              <small style="display:block; font-size:11px; color:#64748b; margin-top:2px;">${item.desc}</small>
             </div>
-            <div class="cart-qty">
-              <button type="button" data-delta="-1" data-id="${item.id}">−</button>
-              <span style="font-weight: 800; min-width: 20px; text-align: center;">${item.qty}</span>
-              <button type="button" data-delta="1" data-id="${item.id}">+</button>
-            </div>
+            <strong style="font-size:13px; color:#16a34a; white-space:nowrap;">${item.price}</strong>
           </div>
-        `;
-      }).join('');
-    }
+        `).join('')}
+      </div>
+      <p style="font-size:11px; color:#64748b; text-align:center; margin:10px 0 0;">
+        Apresentação demonstrativa • Sem cobrança ou pedidos reais.
+      </p>
+    `;
+  } else if (type === 'pedido') {
+    title.textContent = `Pedido Demonstrativo`;
+    content.innerHTML = `
+      <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:16px; padding:18px; margin:16px 0; text-align:center;">
+        <span style="font-size:32px; display:block; margin-bottom:8px;">🛍️</span>
+        <strong style="display:block; font-size:16px; color:#0f172a; margin-bottom:4px;">Checkout Transparente Integrado</strong>
+        <p style="font-size:12px; color:#64748b; margin:0;">
+          Na plataforma da <strong>Automatech</strong>, o cliente escolhe os itens, paga online via PIX dinâmico Mercado Pago Bricks, e o pedido é despachado direto para a cozinha e para a rota do motoboy.
+        </p>
+      </div>
+      <button type="button" class="btn-action green" style="width:100%; height:46px; border-radius:9999px;" onclick="document.getElementById('modal-dialog').close()">
+        Entendi, voltar à prévia
+      </button>
+    `;
+  } else {
+    title.textContent = `Informações • ${currentModel.name}`;
+    content.innerHTML = `
+      <div class="contact-list" style="margin:16px 0;">
+        <div class="contact-item">
+          <div class="contact-info">
+            <strong>WhatsApp de Atendimento</strong>
+            <small>Canal direto de pedidos e dúvidas</small>
+          </div>
+          <button type="button" class="btn-action green" onclick="window.open('https://wa.me/555199735892', '_blank')">Abrir ›</button>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-info">
+            <strong>Instagram Oficial</strong>
+            <small>Fotos, novidades e bastidores</small>
+          </div>
+          <button type="button" class="btn-action" onclick="window.open('https://instagram.com', '_blank')">Seguir ›</button>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-info">
+            <strong>Telefone do Balcão</strong>
+            <small>Retiradas e pedidos presenciais</small>
+          </div>
+          <button type="button" class="btn-action">Ligar ›</button>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-info">
+            <strong>Endereço e Retirada</strong>
+            <small>Polo Gastronômico • Loja Oficial</small>
+          </div>
+          <button type="button" class="btn-action">Rota ›</button>
+        </div>
+      </div>
+    `;
   }
 
-  const submitBtn = document.getElementById('btn-submit-cart');
-  if (submitBtn) {
-    submitBtn.disabled = totalItems === 0;
-    submitBtn.style.opacity = totalItems === 0 ? '0.45' : '1';
-  }
+  dialog.showModal();
 }
 
-// Toast
-let toastTimer = null;
-function showToast(text) {
-  const t = document.getElementById('toast');
-  if (!t) return;
-  t.textContent = text;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
-}
-
-// Interatividade Geral
+// Event Listeners
 document.addEventListener('click', e => {
-  // 1. Abrir Modal de Informações
-  if (e.target.closest('[data-info]')) {
-    const dialog = document.getElementById('info-dialog');
-    if (dialog) dialog.showModal();
+  const modalBtn = e.target.closest('[data-modal]');
+  if (modalBtn) {
+    openModal(modalBtn.dataset.modal);
     return;
   }
 
-  // 2. Abrir Modal de Sacola
-  if (e.target.closest('[data-cart]')) {
-    const dialog = document.getElementById('cart-dialog');
-    if (dialog) dialog.showModal();
-    return;
-  }
-
-  // 3. Filtrar Categorias
-  const catBtn = e.target.closest('.filter-btn');
-  if (catBtn && catBtn.dataset.cat) {
-    currentCategory = catBtn.dataset.cat;
-    const m = getModelData(currentModelId);
-    const nCat = getNicheCatalog(m.nicheCode);
-    renderCategories(nCat.categories);
-    renderProducts(nCat.products);
-    return;
-  }
-
-  // 4. Adicionar ao Carrinho
-  const addBtn = e.target.closest('[data-add]');
-  if (addBtn) {
-    const id = addBtn.dataset.add;
-    const name = addBtn.dataset.name;
-    const price = parseFloat(addBtn.dataset.price);
-
-    if (!cart[id]) {
-      cart[id] = { id, name, price, qty: 0 };
-    }
-    cart[id].qty += 1;
-    updateCart();
-    showToast(`${name} adicionado à sacola!`);
-    return;
-  }
-
-  // 5. Alterar Quantidade no Carrinho
-  const qtyBtn = e.target.closest('[data-delta]');
-  if (qtyBtn) {
-    const id = qtyBtn.dataset.id;
-    const delta = parseInt(qtyBtn.dataset.delta, 10);
-    if (cart[id]) {
-      cart[id].qty += delta;
-      if (cart[id].qty <= 0) {
-        delete cart[id];
-      }
-      updateCart();
-    }
-    return;
-  }
-
-  // 6. Botões de Ação de Contato no Modal de Informações
-  const contactBtn = e.target.closest('.btn-contact-action');
-  if (contactBtn && contactBtn.dataset.feedback) {
-    const feedback = document.getElementById('dialog-feedback');
-    if (feedback) feedback.textContent = contactBtn.dataset.feedback;
-    return;
-  }
-
-  // 7. Alternar Tema
-  if (e.target.closest('#btn-theme-toggle') || e.target.closest('#btn-theme-hotspot')) {
-    const isDark = document.body.classList.toggle('alt-theme');
-    const label = document.getElementById('theme-label');
-    if (label) label.textContent = isDark ? '☀️ Claro' : '🌙 Escuro';
-    return;
+  if (e.target.closest('#theme')) {
+    const isDark = document.body.classList.toggle('dark');
+    $('#theme').setAttribute('aria-pressed', String(isDark));
+    $('.theme-label').textContent = isDark ? 'Claro' : 'Escuro';
   }
 });
 
-// Fechar modais ao clicar no backdrop
-['info-dialog', 'cart-dialog'].forEach(id => {
-  const d = document.getElementById(id);
-  if (d) {
-    d.addEventListener('click', e => {
-      const rect = d.getBoundingClientRect();
-      const inDialog = (
-        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
-      );
-      if (!inDialog) d.close();
-    });
-  }
-});
-
-// Concluir Pedido Demonstrativo
-const submitBtn = document.getElementById('btn-submit-cart');
-if (submitBtn) {
-  submitBtn.addEventListener('click', () => {
-    const feedback = document.getElementById('cart-feedback-msg');
-    if (feedback) feedback.textContent = 'Pedido demonstrativo registrado! Nenhum valor foi cobrado.';
-    cart = {};
-    updateCart();
+// Fechar dialog ao clicar fora
+const modalDialog = $('#modal-dialog');
+if (modalDialog) {
+  modalDialog.addEventListener('click', e => {
+    const rect = modalDialog.getBoundingClientRect();
+    const inDialog = (
+      rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+      rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+    );
+    if (!inDialog) modalDialog.close();
   });
 }
 
-// Escutar mensagens do Showroom Pai
+// Escutar mensagens do frame pai
 window.addEventListener('message', e => {
   if (e.data && e.data.type === 'switchHero') {
     const template = e.data.template;
@@ -1508,7 +380,7 @@ window.addEventListener('message', e => {
       const url = new URL(location.href);
       url.searchParams.set('hero', template);
       history.replaceState(null, '', url);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
     }
   }
 });
