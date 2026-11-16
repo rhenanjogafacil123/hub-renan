@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>Showroom de Templates | Teixo Hub</title>
-  <meta name="description" content="Showroom oficial de identidades visuais e heros modulares para delivery e negócios locais.">
+  <meta name="description" content="Showroom oficial de identidades visuais e heros modulares em tela 16:9 e mobile.">
   <link rel="icon" href="/favicon.ico">
   
   <!-- Base Hub Fonts -->
@@ -42,48 +42,53 @@
       text-rendering: optimizeLegibility;
     }
 
-    /* Molduras de Simulação Mobile (Padrão 100% Claro e Oficial do Hub) */
+    /* Moldura Desktop PC 16:9 Real (Ocupa toda a tela a partir do topo-esquerdo) */
     .device-frame-pc {
       width: 100% !important;
-      max-width: 100% !important;
-      height: 86vh !important;
-      border-radius: 18px !important;
-      box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(203, 213, 225, 0.8) !important;
+      height: calc(100vh - 66px) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.15), 0 0 0 1px rgba(203, 213, 225, 0.8) !important;
       background: #ffffff !important;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex !important;
+      flex-direction: column !important;
     }
 
+    /* Moldura Mobile 2 (480px) */
     .device-frame-mobile-lg {
       width: 480px !important;
       max-width: 95vw !important;
-      height: 860px !important;
-      max-height: 86vh !important;
+      height: calc(100vh - 84px) !important;
       margin-left: auto !important;
       margin-right: auto !important;
-      border-radius: 38px !important;
+      border-radius: 36px !important;
       box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.25), 0 0 0 10px #1e293b !important;
       background: #ffffff !important;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex !important;
+      flex-direction: column !important;
     }
     
+    /* Moldura Mobile 1 (390px) */
     .device-frame-mobile-sm {
       width: 390px !important;
       max-width: 95vw !important;
-      height: 844px !important;
-      max-height: 86vh !important;
+      height: calc(100vh - 84px) !important;
       margin-left: auto !important;
       margin-right: auto !important;
-      border-radius: 42px !important;
+      border-radius: 40px !important;
       box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.25), 0 0 0 10px #1e293b !important;
       background: #ffffff !important;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex !important;
+      flex-direction: column !important;
     }
     
     .trans-all { transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
 
     /* Custom thin scrollbar nítida */
     .niche-scroll::-webkit-scrollbar {
-      width: 5px;
+      width: 4px;
     }
     .niche-scroll::-webkit-scrollbar-track {
       background: #f1f5f9;
@@ -103,75 +108,103 @@
   <!-- BACKDROP OVERLAY DO MENU LATERAL (APENAS MOBILE) -->
   <div id="hub-sidebar-backdrop" onclick="toggleHubSidebar()" class="lg:hidden fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
-  <!-- ==================== MENU LATERAL DA ESQUERDA (ALTA LEGIBILIDADE E CONTRASTE) ==================== -->
-  <aside id="hub-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-72 max-w-[85vw] flex-col justify-between border-r border-slate-200/90 bg-white transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none">
+  <!-- ==================== MENU LATERAL COMPACTO W-52 (PADRÃO IDÊNTICO À PLANILHA) ==================== -->
+  <aside id="hub-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-52 max-w-[85vw] flex-col justify-between border-r border-slate-200/90 bg-white transition-all duration-300 ease-in-out shadow-2xl lg:shadow-none">
     
     <!-- TOPO DO MENU LATERAL -->
     <div class="flex flex-col h-full min-h-0">
       
       <!-- Cabeçalho Teixo Hub -->
-      <div class="flex items-center justify-between border-b border-slate-200/80 p-3 bg-slate-50 shrink-0">
-        <a href="/" class="flex items-center gap-2 group">
-          <div class="grid h-8 w-8 place-items-center rounded-xl bg-orange-600 text-white font-black shadow-xs group-hover:scale-105 transition">
-            <i data-lucide="layers" class="h-4 w-4"></i>
+      <div class="flex items-center justify-between border-b border-slate-200/80 p-3 bg-slate-50/80 shrink-0">
+        <a href="/" class="flex items-center gap-2 group min-w-0">
+          <div class="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-slate-950 text-white font-black shadow-xs group-hover:scale-105 transition">
+            <i data-lucide="layers" class="h-4 w-4 text-orange-500"></i>
           </div>
-          <div>
-            <div class="text-xs font-black text-slate-950 group-hover:text-orange-600 transition tracking-tight">Teixo Hub</div>
-            <div class="text-[10px] font-bold text-slate-600">Menu de Operações</div>
+          <div class="min-w-0">
+            <div class="text-xs font-black text-slate-950 group-hover:text-orange-600 transition tracking-tight truncate">Teixo Hub</div>
+            <div class="text-[9px] font-semibold text-slate-500 truncate">Menu de Operações</div>
           </div>
         </a>
-        <button onclick="toggleHubSidebar()" class="lg:hidden rounded-xl p-2 text-slate-500 hover:bg-slate-200 hover:text-slate-900 transition" title="Fechar Menu">
-          <i data-lucide="x" class="h-5 w-5"></i>
+        <button onclick="toggleHubSidebar()" class="lg:hidden rounded-xl p-1.5 text-slate-500 hover:bg-slate-200 hover:text-slate-900 transition" title="Fechar Menu">
+          <i data-lucide="x" class="h-4 w-4"></i>
         </button>
       </div>
 
-      <!-- SEÇÕES FIXAS DO MENU LATERAL (1. HUB, 2. PLANILHA, 3. SHOWROOM) -->
-      <div class="p-2.5 pb-1 space-y-2 shrink-0 border-b border-slate-200/80">
+      <!-- SEÇÕES DO MENU LATERAL (PADRÃO IDÊNTICO À PLANILHA) -->
+      <div class="p-2.5 space-y-3 shrink-0 border-b border-slate-200/80">
         
         <!-- 1. HUB -->
-        <a href="/" class="flex items-center gap-2 rounded-xl bg-white hover:bg-orange-50 border border-slate-200 hover:border-orange-300 px-2.5 py-1.5 text-left transition group shadow-2xs">
-          <div class="grid h-6 w-6 shrink-0 place-items-center rounded-lg bg-orange-600 text-white font-black shadow-xs">
-            <i data-lucide="layout-grid" class="h-3.5 w-3.5"></i>
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+            <span>1. Hub</span>
+            <span class="size-1.5 rounded-full bg-orange-500"></span>
           </div>
-          <span class="text-xs font-extrabold text-slate-900 group-hover:text-orange-600 transition whitespace-nowrap">1. Hub de Clientes</span>
-        </a>
+          
+          <a href="/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-orange-50 border border-slate-200/80 hover:border-orange-200 px-2.5 py-2 text-left transition group shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-orange-600 text-white font-black shadow-xs group-hover:scale-105 transition">
+              <i data-lucide="layout-grid" class="h-3.5 w-3.5"></i>
+            </div>
+            <span class="text-xs font-bold text-slate-800 group-hover:text-orange-600 transition whitespace-nowrap">Hub de Clientes</span>
+          </a>
+        </div>
 
         <!-- 2. PLANILHA -->
-        <a href="/painel/planilha/" class="flex items-center gap-2 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 px-2.5 py-1.5 text-left transition group shadow-2xs">
-          <div class="grid h-6 w-6 shrink-0 place-items-center rounded-lg bg-emerald-600 text-white font-black shadow-xs">
-            <i data-lucide="file-spreadsheet" class="h-3.5 w-3.5"></i>
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+            <span>2. Planilha</span>
+            <span class="size-1.5 rounded-full bg-emerald-500"></span>
           </div>
-          <span class="text-xs font-extrabold text-slate-900 group-hover:text-emerald-700 transition whitespace-nowrap">2. Planilha Comercial</span>
-        </a>
 
-        <!-- 3. SHOWROOM HEADER -->
-        <div class="flex items-center justify-between px-2 pt-1.5 pb-0.5">
-          <div class="flex items-center gap-1.5 text-xs font-black text-slate-950">
-            <i data-lucide="sparkles" class="h-4 w-4 text-amber-600"></i>
-            <span class="tracking-tight">Catálogo de Nichos</span>
+          <a href="/painel/planilha/" class="flex items-center gap-2 rounded-xl bg-slate-50 hover:bg-emerald-50 border border-slate-200/80 hover:border-emerald-200 px-2.5 py-2 text-left transition group shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-emerald-600 text-white font-black shadow-xs">
+              <i data-lucide="file-spreadsheet" class="h-3.5 w-3.5"></i>
+            </div>
+            <span class="text-xs font-bold text-slate-800 group-hover:text-emerald-700 transition whitespace-nowrap">Planilha de Clientes</span>
+          </a>
+        </div>
+
+        <!-- 3. SHOWROOM (ATIVO) -->
+        <div>
+          <div class="px-2 mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 flex items-center justify-between">
+            <span>3. Showroom</span>
+            <span class="size-1.5 rounded-full bg-amber-500"></span>
           </div>
-          <span class="px-2 py-0.5 rounded-full bg-amber-100 border border-amber-300 text-amber-950 text-[10px] font-black uppercase">25 Nichos</span>
+
+          <div class="flex items-center gap-2 rounded-xl bg-amber-50 border border-amber-300 px-2.5 py-2 text-left transition shadow-xs">
+            <div class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-amber-500 text-black font-black shadow-xs">
+              <i data-lucide="sparkles" class="h-3.5 w-3.5"></i>
+            </div>
+            <div class="min-w-0">
+              <span class="text-xs font-black text-amber-950 block truncate">Showroom Templates</span>
+              <span class="text-[9px] text-amber-800 font-semibold">25 Nichos • 125 Modelos</span>
+            </div>
+          </div>
         </div>
 
       </div>
 
-      <!-- ÁREA DE NAVEGAÇÃO LATERAL: 25 PASTAS DE NICHOS (ALTO CONTRASTE) -->
+      <!-- ÁREA DE NAVEGAÇÃO DOS 25 NICHOS (COMPACTA, NÍTIDA E ORGANIZADA) -->
       <div class="flex-1 min-h-0 flex flex-col p-2.5 pt-2">
         
+        <div class="px-1 mb-1.5 flex items-center justify-between">
+          <span class="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">Catálogo de Nichos</span>
+          <span class="text-[9px] font-bold text-amber-900 bg-amber-100 px-1.5 py-0.2 rounded-full border border-amber-200">25 pastas</span>
+        </div>
+
         <!-- Campo de busca rápida de nichos -->
-        <div class="relative mb-2.5 shrink-0">
-          <i data-lucide="search" class="size-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></i>
+        <div class="relative mb-2 shrink-0">
+          <i data-lucide="search" class="size-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
           <input 
             type="text" 
             id="niche-search-input" 
             oninput="filterNiches(this.value)" 
-            placeholder="Buscar entre os 25 nichos..." 
-            class="w-full pl-9 pr-3 py-2 text-xs font-bold bg-white border-2 border-slate-200 hover:border-slate-300 focus:border-amber-500 rounded-xl text-slate-950 placeholder:text-slate-400 placeholder:font-medium focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition shadow-2xs"
+            placeholder="Buscar nicho ou modelo..." 
+            class="w-full pl-8 pr-2.5 py-1.5 text-xs font-bold bg-white border border-slate-200 hover:border-slate-300 focus:border-amber-500 rounded-lg text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:ring-1 focus:ring-amber-500/20 transition shadow-2xs"
           />
         </div>
 
-        <!-- Lista sanfonada rolável com as 25 pastas -->
-        <div id="niches-list" class="flex-1 overflow-y-auto niche-scroll pr-1 space-y-2">
+        <!-- Lista sanfonada rolável com as 25 pastas compactas -->
+        <div id="niches-list" class="flex-1 overflow-y-auto niche-scroll pr-0.5 space-y-1">
           <!-- Renderizado via JavaScript com tipografia nítida e alto contraste -->
         </div>
 
@@ -179,10 +212,10 @@
 
       <!-- RODAPÉ DO MENU LATERAL -->
       <div class="border-t border-slate-200 p-2.5 bg-slate-50 text-xs shrink-0">
-        <div class="flex items-center justify-between text-slate-600">
-          <span class="font-extrabold text-[11px] text-slate-900">25 Pastas • 125 Modelos</span>
-          <span class="text-[10px] text-emerald-700 flex items-center gap-1 font-black">
-            <span class="size-2 rounded-full bg-emerald-500"></span> Online
+        <div class="flex items-center justify-between text-slate-500">
+          <span class="font-bold text-[10px]">Teixo Hub</span>
+          <span class="text-[9px] text-emerald-600 flex items-center gap-1 font-bold">
+            <span class="size-1.5 rounded-full bg-emerald-500"></span> Online
           </span>
         </div>
       </div>
@@ -191,110 +224,121 @@
 
   </aside>
 
-  <!-- ==================== CONTAINER PRINCIPAL (À DIREITA DA SIDEBAR FIXA DE 72) ==================== -->
-  <div class="lg:pl-72 flex min-h-screen flex-col justify-between">
+  <!-- ==================== CONTAINER PRINCIPAL (À DIREITA DA SIDEBAR COMPACTA W-52) ==================== -->
+  <div id="main-content-layout" class="lg:pl-52 flex min-h-screen flex-col justify-between transition-all duration-300">
 
-    <!-- ==================== HEADER SUPERIOR DO HUB (100% CLARO) ==================== -->
-    <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
-      <div class="flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+    <!-- ==================== HEADER PRINCIPAL UNIFICADO (COM CONTROLES 16:9 E ATALHOS) ==================== -->
+    <header class="sticky top-0 z-30 border-b border-slate-200/90 bg-white/95 backdrop-blur-md">
+      <div class="flex items-center justify-between px-3 py-2 sm:px-5">
         
-        <!-- LADO ESQUERDO: BOTÃO MOBILE E TÍTULO -->
-        <div class="flex items-center gap-3">
+        <!-- LADO ESQUERDO: TOGGLE SIDEBAR + TÍTULO + BADGE DO MODELO ATIVO -->
+        <div class="flex items-center gap-2.5 min-w-0">
+          <button 
+            type="button" 
+            onclick="toggleDesktopSidebar()" 
+            title="Expandir/Recolher Barra Lateral" 
+            class="hidden lg:grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-slate-800 transition shadow-2xs shrink-0"
+          >
+            <i id="btn-sidebar-icon" data-lucide="panel-left-close" class="h-4 w-4"></i>
+          </button>
+
           <button 
             type="button" 
             onclick="toggleHubSidebar()" 
             title="Abrir Menu Lateral" 
-            class="lg:hidden grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-white text-slate-800 hover:bg-slate-100 transition active:scale-95 shadow-xs"
+            class="lg:hidden grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-slate-800 hover:bg-slate-100 transition shadow-2xs shrink-0"
           >
-            <i data-lucide="menu" class="h-5 w-5"></i>
+            <i data-lucide="menu" class="h-4 w-4"></i>
           </button>
 
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-sm sm:text-base font-black tracking-tight text-slate-950">Showroom de Templates</span>
-              <span id="active-niche-badge" class="rounded-full bg-amber-100 border border-amber-300 px-2.5 py-0.5 text-[11px] font-black uppercase tracking-wider text-amber-950">Hamburguerias</span>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2 truncate">
+              <span class="text-sm font-black tracking-tight text-slate-950 truncate">Showroom</span>
+              <span id="active-model-pill" class="rounded-lg bg-amber-500 text-slate-950 border border-amber-600 px-2 py-0.5 text-[11px] font-black uppercase tracking-wider shadow-2xs truncate">
+                ⚡ H01 Smash Urban
+              </span>
             </div>
-            <div class="text-[11px] font-bold text-slate-600">Navegue pelas 25 pastas na barra lateral e escolha o modelo</div>
+          </div>
+        </div>
+
+        <!-- CENTRO: SELETOR DOS 3 MODOS DE VISUALIZAÇÃO (PC 16:9 + MOBILE 2 + MOBILE 1) -->
+        <div class="flex items-center gap-2">
+          <div class="flex items-center bg-slate-100 rounded-xl p-0.5 border border-slate-200 shrink-0">
+            <button id="btn-view-desktop" onclick="setViewMode('desktop')" title="Visualização PC Desktop (16:9 Tela Cheia)" class="px-3 py-1.5 text-xs font-black rounded-lg bg-white text-slate-950 shadow-xs trans-all flex items-center gap-1.5 border border-slate-200">
+              <svg class="size-3.5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <span>PC 16:9</span>
+            </button>
+
+            <button id="btn-view-mobile-lg" onclick="setViewMode('mobile-lg')" title="Visualização Mobile 2: Celular Plus (480px)" class="px-2.5 py-1.5 text-xs font-extrabold rounded-lg text-slate-700 hover:text-slate-950 trans-all flex items-center gap-1.5">
+              <svg class="size-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              <span class="hidden sm:inline">Mobile 2</span> <span class="text-[10px] text-slate-500 font-mono font-bold">(480px)</span>
+            </button>
+
+            <button id="btn-view-mobile-sm" onclick="setViewMode('mobile-sm')" title="Visualização Mobile 1: Celular Compacto (390px)" class="px-2.5 py-1.5 text-xs font-extrabold rounded-lg text-slate-700 hover:text-slate-950 trans-all flex items-center gap-1.5">
+              <svg class="size-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              <span class="hidden sm:inline">Mobile 1</span> <span class="text-[10px] text-slate-500 font-mono font-bold">(390px)</span>
+            </button>
           </div>
         </div>
 
         <!-- LADO DIREITO: ATALHOS -->
-        <div class="flex items-center gap-2.5">
-          <a id="btn-open-store" href="/juca/?hero=H01" target="_blank" class="inline-flex items-center gap-1.5 rounded-xl border border-amber-400 bg-amber-100 hover:bg-amber-500 px-3 py-2 text-xs font-black text-amber-950 hover:text-black transition shadow-xs">
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="btn-open-store" href="/juca/?hero=H01" target="_blank" class="inline-flex items-center gap-1.5 rounded-xl border border-amber-400 bg-amber-100 hover:bg-amber-500 px-2.5 sm:px-3 py-1.5 text-xs font-black text-amber-950 hover:text-black transition shadow-2xs">
             <i data-lucide="external-link" class="h-3.5 w-3.5 text-amber-800"></i>
-            <span class="hidden sm:inline">Abrir Loja 100%</span>
+            <span class="hidden md:inline">Abrir Loja 100%</span>
           </a>
-          <a href="/painel/planilha/" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-extrabold text-slate-900 hover:bg-slate-50 transition shadow-xs">
-            <i data-lucide="file-spreadsheet" class="h-4 w-4 text-emerald-600"></i>
-            <span class="hidden sm:inline">Planilha</span>
+          <a href="/painel/planilha/" class="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-extrabold text-slate-900 hover:bg-slate-50 transition shadow-2xs">
+            <i data-lucide="file-spreadsheet" class="h-3.5 w-3.5 text-emerald-600"></i>
+            <span>Planilha</span>
           </a>
-          <a href="/" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-extrabold text-slate-900 hover:bg-slate-50 transition shadow-xs">
-            <i data-lucide="layout-grid" class="h-4 w-4 text-orange-600"></i>
-            <span class="hidden sm:inline">Hub</span>
+          <a href="/" class="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-extrabold text-slate-900 hover:bg-slate-50 transition shadow-2xs">
+            <i data-lucide="layout-grid" class="h-3.5 w-3.5 text-orange-600"></i>
+            <span>Hub</span>
           </a>
         </div>
 
       </div>
     </header>
 
-    <!-- ==================== SUB-BARRA DE CONTROLE DO SHOWROOM (ALTO CONTRASTE) ==================== -->
-    <div class="sticky top-[57px] z-20 bg-white/95 backdrop-blur-md border-b border-slate-200 px-3 sm:px-6 py-2.5 shadow-xs">
-      <div class="max-w-7xl mx-auto flex flex-col xl:flex-row items-center justify-between gap-3">
-        
-        <!-- SELETOR DE TEMPLATES DA PASTA ATIVA -->
-        <div id="models-quick-pills" class="flex items-center gap-2 overflow-x-auto w-full xl:w-auto scrollbar-none py-0.5">
-          <!-- Preenchido dinamicamente com botões de alto contraste -->
-        </div>
-
-        <!-- SELETOR DOS 3 MODOS DE VISUALIZAÇÃO OFICIAIS (PC + MOBILE 2 + MOBILE 1) -->
-        <div class="flex items-center justify-between w-full xl:w-auto gap-3">
-          <div class="flex items-center bg-slate-100 rounded-xl p-1 border border-slate-200 shrink-0">
-            <button id="btn-view-desktop" onclick="setViewMode('desktop')" title="Visualização PC / Desktop (100% Tela Cheia)" class="px-3 py-1.5 text-xs font-black rounded-lg bg-white text-slate-950 shadow-xs trans-all flex items-center gap-1.5 border border-slate-200">
-              <svg class="size-3.5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <span>PC</span>
-            </button>
-
-            <button id="btn-view-mobile-lg" onclick="setViewMode('mobile-lg')" title="Visualização Mobile 2: Celular Plus (480px)" class="px-3 py-1.5 text-xs font-extrabold rounded-lg text-slate-700 hover:text-slate-950 trans-all flex items-center gap-1.5">
-              <svg class="size-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-              <span>Mobile 2 <span class="text-[10px] text-slate-500 font-mono font-bold">(480px)</span></span>
-            </button>
-
-            <button id="btn-view-mobile-sm" onclick="setViewMode('mobile-sm')" title="Visualização Mobile 1: Celular Compacto (390px)" class="px-3 py-1.5 text-xs font-extrabold rounded-lg text-slate-700 hover:text-slate-950 trans-all flex items-center gap-1.5">
-              <svg class="size-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-              <span>Mobile 1 <span class="text-[10px] text-slate-500 font-mono font-bold">(390px)</span></span>
-            </button>
-          </div>
-
-          <!-- FICHA TÉCNICA RÁPIDA -->
-          <div class="hidden sm:flex items-center gap-2 text-xs bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs">
-            <span id="spec-name" class="font-black text-slate-950 text-xs">H01 — Smash Urban</span>
-            <span class="text-slate-300">|</span>
-            <span id="spec-fonts" class="text-amber-800 font-mono font-black text-xs">Bebas Neue + Inter</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ==================== ÁREA DE VISUALIZAÇÃO DO SITE (CANVAS 100% CLARO) ==================== -->
-    <main class="flex-1 bg-[#f1f5f9] p-3 sm:p-6 flex flex-col items-center justify-start overflow-hidden">
+    <!-- ==================== ÁREA DO SIMULADOR (INICIA NO TOPO-ESQUERDO E PREENCHE TODA A TELA 16:9) ==================== -->
+    <main class="flex-1 bg-slate-100 p-2 sm:p-2.5 flex flex-col items-center justify-start overflow-hidden">
       
+      <!-- Container do Monitor 16:9 Desktop ou Celular -->
       <div id="simulator-frame" class="device-frame-pc relative overflow-hidden bg-white">
-        <!-- Iframe com a loja oficial da Pizza do Juca -->
+        
+        <!-- Barra Superior do Monitor / Browser Desktop -->
+        <div id="browser-chrome-bar" class="h-8 bg-slate-100/90 border-b border-slate-200 px-3 flex items-center justify-between shrink-0 select-none">
+          <div class="flex items-center gap-1.5">
+            <span class="size-2.5 rounded-full bg-red-400"></span>
+            <span class="size-2.5 rounded-full bg-amber-400"></span>
+            <span class="size-2.5 rounded-full bg-emerald-400"></span>
+          </div>
+          <div class="flex items-center gap-2 bg-white border border-slate-200 px-3 py-0.5 rounded-md text-[11px] font-bold text-slate-800 shadow-2xs">
+            <i data-lucide="lock" class="size-3 text-emerald-600"></i>
+            <span>https://juca.automatech.tech</span>
+            <span class="text-[9px] text-slate-400 font-mono font-semibold">16:9 Desktop View</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-500 text-xs">
+            <i data-lucide="monitor" class="size-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Iframe com a loja oficial da Pizza do Juca em 16:9 real -->
         <iframe 
           id="store-iframe" 
           src="/juca/index.html?hero=H01" 
-          title="Loja Oficial Pizza do Juca com Hero Dinâmica"
-          class="w-full h-full border-0 bg-transparent"
+          title="Loja Oficial Pizza do Juca em 16:9 Real"
+          class="w-full flex-1 border-0 bg-transparent"
           loading="eager"
         ></iframe>
+
       </div>
 
     </main>
 
   </div>
 
-  <!-- SCRIPT DE CONTROLE DAS 25 PASTAS E DO SHOWROOM (ALTA LEGIBILIDADE) -->
+  <!-- SCRIPT DE CONTROLE DAS 25 PASTAS E DO SHOWROOM 16:9 -->
   <script>
     // As 25 pastas oficiais da operação Teixo
     const NICHES_DATA = [
@@ -303,7 +347,6 @@
         id: 'hamburguerias',
         name: 'Hamburguerias',
         icon: '🍔',
-        badge: '5 modelos',
         open: true,
         models: [
           { id: 'H01', code: '⚡ H01', name: 'Smash Urban', fonts: 'Bebas Neue + Inter', active: true },
@@ -317,7 +360,6 @@
         id: 'pizzarias',
         name: 'Pizzarias',
         icon: '🍕',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'P01', code: '🍕 P01', name: 'Juca Original', fonts: 'Fraunces + Plus Jakarta Sans' },
@@ -331,7 +373,6 @@
         id: 'acaiterias',
         name: 'Açaiterias',
         icon: '🍧',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'A01', code: '🍇 A01', name: 'Tropical Energy', fonts: 'Syne + Plus Jakarta Sans' },
@@ -345,7 +386,6 @@
         id: 'sorveterias',
         name: 'Sorveterias & Gelaterias',
         icon: '🍦',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'G01', code: '🍨 G01', name: 'Gelato Italiano', fonts: 'Fraunces + Inter' },
@@ -359,7 +399,6 @@
         id: 'japonesa',
         name: 'Comida Japonesa',
         icon: '🍣',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'J01', code: '🍱 J01', name: 'Tokyo Zen', fonts: 'Shippori Mincho + Inter' },
@@ -373,9 +412,8 @@
       // Os 20 Nichos Oficiais das Imagens
       {
         id: 'mini-entulhos',
-        name: 'Mini entulhos e caçambas',
+        name: 'Mini entulhos & caçambas',
         icon: '🚚',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'ME01', code: 'ME01', name: 'Disk Caçamba Rápido', fonts: 'Barlow + Inter' },
@@ -389,7 +427,6 @@
         id: 'revenda-veiculos',
         name: 'Revenda de veículos',
         icon: '🚗',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'RV01', code: 'RV01', name: 'Estoque Prime Seminovos', fonts: 'Syne + Inter' },
@@ -401,9 +438,8 @@
       },
       {
         id: 'comercio-personalizado',
-        name: 'Comércio / operação personalizada',
+        name: 'Comércio personalizado',
         icon: '🏪',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'CP01', code: 'CP01', name: 'Catálogo Sob Medida', fonts: 'Plus Jakarta Sans' },
@@ -417,7 +453,6 @@
         id: 'delivery-restaurante',
         name: 'Delivery e restaurante',
         icon: '🍽️',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'DR01', code: 'DR01', name: 'Mesa, Comanda & Balcão', fonts: 'Fraunces + Inter' },
@@ -431,7 +466,6 @@
         id: 'varejo-ecommerce',
         name: 'Varejo e e-commerce',
         icon: '🛍️',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'VE01', code: 'VE01', name: 'Vitrine Fashion & Moda', fonts: 'Syne + Inter' },
@@ -445,7 +479,6 @@
         id: 'prestacao-servicos',
         name: 'Prestação de serviços',
         icon: '🛠️',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'PS01', code: 'PS01', name: 'Orçamento com 1-Toque', fonts: 'Plus Jakarta Sans' },
@@ -459,7 +492,6 @@
         id: 'imobiliaria',
         name: 'Imobiliária',
         icon: '🏢',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'IM01', code: 'IM01', name: 'Imóveis de Alto Padrão', fonts: 'Fraunces + Inter' },
@@ -471,9 +503,8 @@
       },
       {
         id: 'clinica-geral',
-        name: 'Clínica geral e consultórios',
+        name: 'Clínica geral & médicos',
         icon: '🩺',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'CG01', code: 'CG01', name: 'Agendamento Online Integrado', fonts: 'Plus Jakarta Sans' },
@@ -487,7 +518,6 @@
         id: 'estetica-dermatologia',
         name: 'Estética e dermatologia',
         icon: '✨',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'ED01', code: 'ED01', name: 'Glow Facial & Rejuvenescimento', fonts: 'Fraunces + Plus Jakarta Sans' },
@@ -501,7 +531,6 @@
         id: 'odontologia',
         name: 'Odontologia e ortodontia',
         icon: '🦷',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'OD01', code: 'OD01', name: 'Alinhadores Invisíveis', fonts: 'Plus Jakarta Sans' },
@@ -515,7 +544,6 @@
         id: 'pediatria',
         name: 'Pediatria',
         icon: '👶',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'PD01', code: 'PD01', name: 'Puericultura com Acolhimento', fonts: 'Outfit + Plus Jakarta Sans' },
@@ -529,7 +557,6 @@
         id: 'psicologia',
         name: 'Psicologia e psiquiatria',
         icon: '🧠',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'PSI01', code: 'PSI01', name: 'Terapia Cognitivo-Comportamental', fonts: 'Plus Jakarta Sans' },
@@ -543,7 +570,6 @@
         id: 'ortopedia',
         name: 'Ortopedia e fisioterapia',
         icon: '🦴',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'ORT01', code: 'ORT01', name: 'Reabilitação de Coluna', fonts: 'Barlow + Inter' },
@@ -557,7 +583,6 @@
         id: 'oftalmologia',
         name: 'Oftalmologia',
         icon: '👁️',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'OFT01', code: 'OFT01', name: 'Exame de Grau Computadorizado', fonts: 'Plus Jakarta Sans' },
@@ -571,7 +596,6 @@
         id: 'nutricao',
         name: 'Nutrição',
         icon: '🥗',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'NUT01', code: 'NUT01', name: 'Emagrecimento Sem Dietas Malucas', fonts: 'Outfit + Plus Jakarta Sans' },
@@ -583,9 +607,8 @@
       },
       {
         id: 'ginecologia',
-        name: 'Ginecologia e obstetrícia',
+        name: 'Ginecologia & obstetrícia',
         icon: '🌸',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'GIN01', code: 'GIN01', name: 'Pré-Natal & Parto Humanizado', fonts: 'Fraunces + Inter' },
@@ -599,7 +622,6 @@
         id: 'cardiologia',
         name: 'Cardiologia',
         icon: '❤️',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'CAR01', code: 'CAR01', name: 'Checkup Cardiológico Preventivo', fonts: 'Plus Jakarta Sans' },
@@ -613,7 +635,6 @@
         id: 'laboratorio-exames',
         name: 'Laboratório e exames',
         icon: '🔬',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'LAB01', code: 'LAB01', name: 'Resultados Rápidos Online', fonts: 'Plus Jakarta Sans' },
@@ -627,7 +648,6 @@
         id: 'clinica-multidisciplinar',
         name: 'Clínica multidisciplinar',
         icon: '🏥',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'CMD01', code: 'CMD01', name: 'Centro Médico Todas Especialidades', fonts: 'Plus Jakarta Sans' },
@@ -641,11 +661,10 @@
         id: 'clinica-veterinaria',
         name: 'Clínica veterinária',
         icon: '🐾',
-        badge: '5 modelos',
         open: false,
         models: [
           { id: 'VET01', code: 'VET01', name: 'Plantão Veterinário 24 Horas', fonts: 'Plus Jakarta Sans' },
-          { id: 'VET02', code: 'VET02', name: 'Cirurgias & Vacinas para Cães e Gatos', fonts: 'Outfit + Inter' },
+          { id: 'VET02', code: 'VET02', name: 'Cirurgias & Vacinas Cães e Gatos', fonts: 'Outfit + Inter' },
           { id: 'VET03', code: 'VET03', name: 'Banho & Tosa com Estética Pet', fonts: 'Comfortaa + Poppins' },
           { id: 'VET04', code: 'VET04', name: 'Internação & Monitoramento', fonts: 'Inter + Barlow' },
           { id: 'VET05', code: 'VET05', name: 'Pet Center & Farmácia Completa', fonts: 'Syne + Plus Jakarta Sans' }
@@ -655,6 +674,30 @@
 
     let currentNicheId = 'hamburguerias';
     let currentTemplateId = 'H01';
+    let currentViewMode = 'desktop';
+    let isDesktopSidebarCollapsed = false;
+
+    function toggleDesktopSidebar() {
+      const sidebar = document.getElementById('hub-sidebar');
+      const layout = document.getElementById('main-content-layout');
+      const icon = document.getElementById('btn-sidebar-icon');
+      if (!sidebar || !layout) return;
+
+      isDesktopSidebarCollapsed = !isDesktopSidebarCollapsed;
+
+      if (isDesktopSidebarCollapsed) {
+        sidebar.classList.add('-translate-x-full');
+        layout.classList.remove('lg:pl-52');
+        layout.classList.add('lg:pl-0');
+        if (icon) icon.setAttribute('data-lucide', 'panel-left-open');
+      } else {
+        sidebar.classList.remove('-translate-x-full');
+        layout.classList.remove('lg:pl-0');
+        layout.classList.add('lg:pl-52');
+        if (icon) icon.setAttribute('data-lucide', 'panel-left-close');
+      }
+      lucide.createIcons();
+    }
 
     function toggleHubSidebar() {
       const sidebar = document.getElementById('hub-sidebar');
@@ -677,22 +720,6 @@
       renderNichesList();
     }
 
-    function selectNiche(nicheId) {
-      const niche = NICHES_DATA.find(n => n.id === nicheId);
-      if (!niche) return;
-      currentNicheId = nicheId;
-      niche.open = true;
-
-      document.getElementById('active-niche-badge').textContent = niche.name;
-      renderQuickPills(niche);
-
-      if (niche.models && niche.models.length > 0) {
-        switchTemplate(niche.models[0].id);
-      } else {
-        renderNichesList();
-      }
-    }
-
     function renderNichesList(filterTerm = '') {
       const container = document.getElementById('niches-list');
       if (!container) return;
@@ -710,47 +737,47 @@
         const isOpen = niche.open || term.length > 0;
 
         return `
-          <div class="rounded-xl border-2 ${isCurrentNiche ? 'border-amber-400 bg-amber-50/40 shadow-xs ring-1 ring-amber-300/60' : 'border-slate-200 bg-white hover:border-slate-300 shadow-2xs'} overflow-hidden transition-all">
+          <div class="rounded-xl border ${isCurrentNiche ? 'border-amber-400 bg-amber-50/50 shadow-2xs' : 'border-slate-200 bg-white hover:border-slate-300'} overflow-hidden transition-all">
             
-            <!-- Botão da Pasta do Nicho (Texto preto nítido e bold) -->
+            <!-- Botão da Pasta do Nicho -->
             <button 
               type="button" 
               onclick="toggleNicheFolder('${niche.id}')" 
-              class="w-full px-3 py-2.5 flex items-center justify-between text-left hover:bg-slate-50 transition group"
+              class="w-full px-2 py-2 flex items-center justify-between text-left hover:bg-slate-50 transition group"
             >
-              <div class="flex items-center gap-2.5 min-w-0">
-                <span class="text-base shrink-0">${niche.icon}</span>
-                <span class="text-[13px] font-black ${isCurrentNiche ? 'text-slate-950' : 'text-slate-900'} truncate group-hover:text-amber-800 transition tracking-tight">
+              <div class="flex items-center gap-1.5 min-w-0">
+                <span class="text-sm shrink-0">${niche.icon}</span>
+                <span class="text-xs font-black ${isCurrentNiche ? 'text-slate-950 font-black' : 'text-slate-900'} truncate group-hover:text-amber-800 transition tracking-tight">
                   ${niche.name}
                 </span>
               </div>
 
-              <div class="flex items-center gap-2 shrink-0 ml-1.5">
-                <span class="text-[10px] font-black px-2 py-0.5 rounded-full ${isCurrentNiche ? 'bg-amber-200 text-amber-950 border border-amber-300' : 'bg-slate-100 text-slate-800 border border-slate-200'}">
-                  ${niche.models.length} mod
+              <div class="flex items-center gap-1 shrink-0 ml-1">
+                <span class="text-[9px] font-black px-1.5 py-0.2 rounded ${isCurrentNiche ? 'bg-amber-200 text-amber-950' : 'bg-slate-100 text-slate-700'}">
+                  ${niche.models.length}
                 </span>
-                <svg class="size-4 text-slate-600 transition-transform duration-200 ${isOpen ? 'rotate-180 text-slate-950' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="size-3.5 text-slate-600 transition-transform duration-200 ${isOpen ? 'rotate-180 text-slate-950' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
                 </svg>
               </div>
             </button>
 
-            <!-- Sub-lista de modelos da pasta (cards limpos de alto contraste) -->
+            <!-- Sub-lista de modelos da pasta (cards limpos compactos) -->
             ${isOpen ? `
-              <div class="border-t border-slate-200 bg-slate-50/80 p-2 space-y-1.5">
+              <div class="border-t border-slate-200 bg-slate-50 p-1.5 space-y-1">
                 ${niche.models.map(m => {
                   const isActive = m.id === currentTemplateId;
                   return `
                     <button 
                       type="button" 
                       onclick="selectModelFromSidebar('${niche.id}', '${m.id}')" 
-                      class="w-full p-2 rounded-xl text-left flex items-center justify-between transition-all ${isActive ? 'bg-amber-500 border-2 border-amber-600 text-slate-950 font-black shadow-sm ring-1 ring-amber-300' : 'bg-white border border-slate-200 hover:border-amber-400 hover:bg-amber-50/60 text-slate-900 font-extrabold shadow-2xs'}"
+                      class="w-full px-2 py-1.5 rounded-lg text-left flex items-center justify-between transition ${isActive ? 'bg-amber-500 border border-amber-600 text-slate-950 font-black shadow-xs' : 'bg-white border border-slate-200 hover:border-amber-400 hover:bg-amber-50/60 text-slate-900 font-extrabold shadow-2xs'}"
                     >
-                      <div class="flex items-center gap-2 min-w-0">
-                        <span class="text-[11px] font-mono font-black px-1.5 py-0.5 rounded ${isActive ? 'bg-slate-950 text-white' : 'bg-slate-100 text-slate-900 border border-slate-200'} shrink-0">
-                          ${m.code}
+                      <div class="flex items-center gap-1.5 min-w-0">
+                        <span class="text-[10px] font-mono font-black px-1 py-0.2 rounded ${isActive ? 'bg-slate-950 text-white' : 'bg-slate-100 text-slate-900'} shrink-0">
+                          ${m.code.split(' ')[0]}
                         </span>
-                        <span class="text-xs ${isActive ? 'font-black text-slate-950' : 'font-extrabold text-slate-900'} truncate">
+                        <span class="text-[11px] ${isActive ? 'font-black text-slate-950' : 'font-extrabold text-slate-900'} truncate">
                           ${m.name.replace(/^[A-Z0-9]+ — /, '')}
                         </span>
                       </div>
@@ -768,31 +795,10 @@
       lucide.createIcons();
     }
 
-    function renderQuickPills(niche) {
-      const container = document.getElementById('models-quick-pills');
-      if (!container || !niche || !niche.models) return;
-
-      container.innerHTML = niche.models.map(m => {
-        const isActive = m.id === currentTemplateId;
-        return `
-          <button 
-            onclick="switchTemplate('${m.id}')" 
-            id="tab-${m.id}" 
-            class="tab-btn px-3.5 py-2 text-xs rounded-xl border-2 trans-all flex items-center gap-2 whitespace-nowrap ${isActive ? 'bg-amber-500 text-slate-950 border-amber-500 shadow-sm font-black ring-1 ring-amber-300' : 'bg-white text-slate-900 border-slate-200 hover:border-amber-400 hover:bg-slate-50 font-extrabold shadow-2xs'}"
-          >
-            <span class="font-mono text-[11px] font-black ${isActive ? 'bg-slate-950 text-white' : 'bg-slate-100 text-slate-900'} px-1.5 py-0.5 rounded">${m.code}</span>
-            <span class="font-black">${m.name.replace(/^[A-Z0-9]+ — /, '')}</span>
-          </button>
-        `;
-      }).join('');
-    }
-
     function selectModelFromSidebar(nicheId, modelId) {
       const niche = NICHES_DATA.find(n => n.id === nicheId);
       if (niche) {
         currentNicheId = nicheId;
-        document.getElementById('active-niche-badge').textContent = niche.name;
-        renderQuickPills(niche);
       }
       switchTemplate(modelId);
     }
@@ -812,31 +818,17 @@
         }
       }
 
-      if (foundNiche && foundNiche.id !== currentNicheId) {
+      if (foundNiche) {
         currentNicheId = foundNiche.id;
-        document.getElementById('active-niche-badge').textContent = foundNiche.name;
-        renderQuickPills(foundNiche);
       }
 
-      // Atualizar pílulas rápidas
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('bg-amber-500', 'text-slate-950', 'border-amber-500', 'shadow-sm', 'font-black', 'ring-1', 'ring-amber-300');
-        btn.classList.add('bg-white', 'text-slate-900', 'border-slate-200', 'hover:border-amber-400', 'font-extrabold', 'shadow-2xs');
-      });
-      const activeBtn = document.getElementById(`tab-${id}`);
-      if (activeBtn) {
-        activeBtn.classList.remove('bg-white', 'text-slate-900', 'border-slate-200', 'hover:border-amber-400', 'font-extrabold', 'shadow-2xs');
-        activeBtn.classList.add('bg-amber-500', 'text-slate-950', 'border-amber-500', 'shadow-sm', 'font-black', 'ring-1', 'ring-amber-300');
+      // Atualizar badge no header superior
+      if (foundModel) {
+        document.getElementById('active-model-pill').textContent = `${foundModel.code} ${foundModel.name.replace(/^[A-Z0-9]+ — /, '')}`;
       }
 
       // Atualizar lista da barra lateral
       renderNichesList(document.getElementById('niche-search-input')?.value || '');
-
-      // Atualizar ficha técnica
-      if (foundModel) {
-        document.getElementById('spec-name').textContent = `${foundModel.code} — ${foundModel.name}`;
-        document.getElementById('spec-fonts').textContent = foundModel.fonts || 'Plus Jakarta Sans';
-      }
 
       // Atualizar link externo
       const btnOpen = document.getElementById('btn-open-store');
@@ -854,7 +846,9 @@
     }
 
     function setViewMode(mode) {
+      currentViewMode = mode;
       const frame = document.getElementById('simulator-frame');
+      const browserBar = document.getElementById('browser-chrome-bar');
       const btnDesktop = document.getElementById('btn-view-desktop');
       const btnMobileLg = document.getElementById('btn-view-mobile-lg');
       const btnMobileSm = document.getElementById('btn-view-mobile-sm');
@@ -870,14 +864,17 @@
         frame.classList.add('device-frame-mobile-sm');
         btnMobileSm.classList.add('bg-white', 'text-slate-950', 'font-black', 'shadow-xs', 'border', 'border-slate-200');
         btnMobileSm.classList.remove('text-slate-700', 'font-extrabold');
+        if (browserBar) browserBar.style.display = 'none';
       } else if (mode === 'mobile-lg') {
         frame.classList.add('device-frame-mobile-lg');
         btnMobileLg.classList.add('bg-white', 'text-slate-950', 'font-black', 'shadow-xs', 'border', 'border-slate-200');
         btnMobileLg.classList.remove('text-slate-700', 'font-extrabold');
+        if (browserBar) browserBar.style.display = 'none';
       } else {
         frame.classList.add('device-frame-pc');
         btnDesktop.classList.add('bg-white', 'text-slate-950', 'font-black', 'shadow-xs', 'border', 'border-slate-200');
         btnDesktop.classList.remove('text-slate-700', 'font-extrabold');
+        if (browserBar) browserBar.style.display = 'flex';
       }
     }
 
@@ -885,8 +882,6 @@
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
 
-      const initialNiche = NICHES_DATA.find(n => n.id === 'hamburguerias');
-      renderQuickPills(initialNiche);
       renderNichesList();
 
       const iframe = document.getElementById('store-iframe');
