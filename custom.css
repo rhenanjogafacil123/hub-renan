@@ -1,0 +1,125 @@
+/* Personalização visual desta empresa (Pizza do Juca) */
+
+/* Barra de busca fixa limpa (Sticky) — apenas a barra arredondada flutua */
+#sticky-search-wrapper {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 12px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 40 !important;
+  pointer-events: none;
+  padding: 0 !important;
+}
+#sticky-search-wrapper > div {
+  pointer-events: auto;
+}
+#sticky-search-wrapper input {
+  box-shadow: 0 8px 25px rgba(47, 74, 50, 0.12) !important;
+}
+@media (min-width: 640px) {
+  #sticky-search-wrapper {
+    top: 16px !important;
+  }
+}
+
+/* Navegação horizontal de categorias */
+#cat-tabs-container {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cat-btn {
+  transition: all 0.2s ease;
+}
+
+.cat-btn:hover {
+  border-color: #2f4a32;
+  color: #2f4a32;
+}
+
+.cat-btn.active {
+  background-color: #2f4a32 !important;
+  color: #faf5ec !important;
+  border-color: #2f4a32 !important;
+  box-shadow: 0 4px 14px rgba(47, 74, 50, 0.25);
+}
+
+/* Grid de Tamanhos no Modal */
+#modal-variants-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+#modal-variants-list label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.625rem 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  border: 1px solid #dccdb2;
+  background-color: #faf5ec;
+  color: #2f4a32;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#modal-variants-list label:has(input:checked) {
+  background-color: #2f4a32;
+  color: #ffffff;
+  border-color: #2f4a32;
+  box-shadow: 0 4px 12px rgba(47, 74, 50, 0.25);
+}
+
+#modal-variants-list input[type="radio"] {
+  display: none;
+}
+
+/* Selo 'IMAGEM ILUSTRATIVA' discreto em todas as fotos de produtos */
+article .aspect-\[4\/3\]:has(img)::after,
+#sobre .aspect-\[4\/3\]:has(img)::after {
+  content: "IMAGEM ILUSTRATIVA";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 10;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+/* Selo na imagem de destaque Hero */
+.hero-pizza-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 25;
+  text-transform: uppercase;
+  line-height: 1.2;
+}

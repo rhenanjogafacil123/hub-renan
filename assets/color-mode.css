@@ -1,0 +1,78 @@
+/* Light keeps the established palette. Dark uses semantic colors for existing UI. */
+.color-mode-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px;flex-shrink:0;min-width:44px;min-height:44px;padding:8px 10px;border:1px solid #7d897d;border-radius:12px;background:#fff;color:#273f31;cursor:pointer;font:600 12px/1.3 system-ui,sans-serif;white-space:nowrap}
+.color-mode-toggle>svg{width:18px;height:18px;flex-shrink:0}
+.color-mode-track{display:block;width:30px;height:18px;padding:2px;border-radius:20px;background:#617262}
+.color-mode-track>span{display:block;width:14px;height:14px;background:white;border-radius:50%;transition:transform .15s}
+.color-mode-toggle[aria-checked="true"] .color-mode-track{background:#9bdbb4}
+.color-mode-toggle[aria-checked="true"] .color-mode-track>span{transform:translateX(12px);background:#13251a}
+.color-mode-toggle:focus-visible{outline:3px solid #22794d;outline-offset:3px}
+.login-page>.color-mode-toggle{position:absolute;top:16px;right:16px;z-index:5}
+html[data-color-mode-scope="site"] header .color-mode-toggle{padding:8px;min-width:44px}
+html[data-color-mode-scope="site"] main>.color-mode-toggle{float:right;margin:0 0 12px 12px}
+html[data-color-mode="dark"]{--cm-bg:#111b18;--cm-surface:#192722;--cm-raised:#22342c;--cm-ink:#eef4ef;--cm-muted:#b7c8bf;--cm-line:#536b5e;--cm-accent:#a5dfb6;--cm-link:#a5e7cb;background:var(--cm-bg);color:var(--cm-ink)}
+html[data-color-mode="dark"]{color-scheme:dark!important}
+html[data-color-mode="light"]{color-scheme:light!important}
+html[data-color-mode="dark"] .color-mode-toggle{background:var(--cm-surface);color:var(--cm-ink);border-color:var(--cm-line)}
+html[data-color-mode="dark"] .color-mode-toggle:focus-visible{outline-color:var(--cm-accent)}
+html[data-color-mode="dark"] body{background:var(--cm-bg)!important;color:var(--cm-ink)!important}
+
+/* Existing utility classes are shared by the retained storefront and delivery panels. */
+html[data-color-mode="dark"] :is([class~="bg-white"],[class*="bg-white/"],[class~="bg-slate-50"],[class~="bg-slate-100"],[class*="bg-slate-50/"],[class*="bg-slate-100/"],[class~="bg-[#faf5ec]"],[class~="bg-[#f5ede0]"],[class~="bg-[#f4f6fa]"]){background-color:var(--cm-surface)!important}
+html[data-color-mode="dark"] :is([class~="bg-slate-200"],[class*="bg-slate-200/"],[class~="bg-[#e8d9be]"]){background-color:var(--cm-raised)!important}
+html[data-color-mode="dark"] :is([class~="text-slate-950"],[class~="text-slate-900"],[class~="text-slate-800"],[class~="text-slate-700"],[class~="text-[#2f4a32]"],[class~="text-[#4e3220]"]){color:var(--cm-ink)!important}
+html[data-color-mode="dark"] :is([class~="text-slate-600"],[class~="text-slate-500"],[class~="text-slate-400"],[class~="text-[#6f6457]"],[class*="text-[#4e3220]/"],[class~="text-[#8c7e6d]"]){color:var(--cm-muted)!important}
+html[data-color-mode="dark"][data-color-mode-scope="site"] :is([class*="text-[#2f4a32]/"],[class*="text-[#6f6457]/"]){color:var(--cm-muted)!important}
+html[data-color-mode="dark"] :is([class*="border-slate-"],[class*="border-[#dccdb2]"],[class*="border-[#e6d9c4]"],[class*="border-[#eadfce]"]){border-color:var(--cm-line)!important}
+html[data-color-mode="dark"] :is([class~="text-orange-500"],[class~="text-orange-600"],[class~="text-orange-700"],[class~="text-[#b23a26]"]){color:#ffbb99!important}
+html[data-color-mode="dark"] :is([class~="bg-emerald-50"],[class~="bg-green-50"],[class~="bg-emerald-100"],[class~="bg-green-100"]){background-color:#193d2c!important}
+html[data-color-mode="dark"] :is([class~="text-emerald-600"],[class~="text-emerald-700"],[class~="text-emerald-800"],[class~="text-green-700"]){color:#a8e5bc!important}
+html[data-color-mode="dark"] :is([class~="bg-amber-50"],[class~="bg-amber-100"],[class~="bg-orange-50"],[class~="bg-orange-100"]){background-color:#45321b!important}
+html[data-color-mode="dark"] :is([class~="text-amber-600"],[class~="text-amber-700"],[class~="text-amber-800"]){color:#ffdb91!important}
+html[data-color-mode="dark"] :is([class~="bg-red-50"],[class~="bg-red-100"]){background-color:#462429!important}
+html[data-color-mode="dark"] :is([class~="text-red-600"],[class~="text-red-700"]){color:#ffb5b5!important}
+html[data-color-mode="dark"] :is([class~="bg-blue-50"],[class~="bg-blue-100"],[class~="bg-indigo-50"],[class~="bg-indigo-100"]){background-color:#22354c!important}
+html[data-color-mode="dark"] :is([class~="text-blue-600"],[class~="text-blue-700"],[class~="text-indigo-600"],[class~="text-indigo-700"]){color:#b7d6ff!important}
+
+/* Storefront: modals and checkout also need the visitor's theme. */
+html[data-color-mode="dark"][data-color-mode-scope="site"] :is(#site-header,#cart-drawer,#cart-footer,#info-modal [role="dialog"],#product-modal [role="dialog"],#mobile-menu,#nav-sidebar){background-color:var(--cm-surface)!important;color:var(--cm-ink)!important;border-color:var(--cm-line)!important}
+html[data-color-mode="dark"][data-color-mode-scope="site"] :is([class~="bg-[#f4ead8]"],[class~="bg-[#efe2cc]"],[class~="bg-[#f4e8d3]"],[class~="bg-[#faf2e3]"],[class~="bg-[#fffdf9]"],[class~="bg-[#eadfcd]"],[class*="bg-[#faf5ec]/"],[class*="bg-[#f1e7d5]/"],[class*="bg-[#e8d9be]/"]){background-color:var(--cm-surface)!important}
+html[data-color-mode="dark"][data-color-mode-scope="site"] .padrao-marca{background-image:none}
+html[data-color-mode="dark"][data-color-mode-scope="site"] [class~="bg-[#eab308]"]{color:#172b1c!important}
+html[data-color-mode="dark"][data-color-mode-scope="site"] #cart-drawer #cart-items>div{background:var(--cm-bg)!important;border-color:var(--cm-line)!important}
+html[data-color-mode="dark"][data-color-mode-scope="site"] #cart-drawer #cart-items [data-qty]{background:var(--cm-raised)!important;color:var(--cm-ink)!important}
+html[data-color-mode="dark"][data-color-mode-scope="site"] main>article{background:var(--cm-surface)!important;color:var(--cm-ink)!important;border-color:var(--cm-line)!important}
+html[data-color-mode="dark"][data-color-mode-scope="site"] :is(#status,#store-link,#resume-payment){color:var(--cm-link)!important}
+html[data-color-mode="dark"][data-color-mode-scope="site"] :is(input,select,textarea){background-color:var(--cm-bg)!important;color:var(--cm-ink)!important;border-color:var(--cm-line)!important}
+html[data-color-mode="dark"][data-color-mode-scope="site"] input::placeholder,html[data-color-mode="dark"][data-color-mode-scope="site"] textarea::placeholder{color:var(--cm-muted)!important;opacity:1}
+html[data-color-mode="dark"][data-color-mode-scope="site"] .storefront-neighborhoods{color:var(--cm-ink)}
+html[data-color-mode="dark"][data-color-mode-scope="site"] .sf-neighborhood-options{background:var(--cm-bg);border-color:var(--cm-line)}
+html[data-color-mode="dark"][data-color-mode-scope="site"] .sf-neighborhood-option:has(:checked){background:var(--cm-raised);box-shadow:inset 3px 0 var(--cm-accent)}
+html[data-color-mode="dark"][data-color-mode-scope="site"] .sf-neighborhood-option+.sf-neighborhood-option{border-color:var(--cm-line)}
+html[data-color-mode="dark"][data-color-mode-scope="site"] .sf-neighborhood-results{color:var(--cm-muted)}
+html[data-color-mode="dark"][data-color-mode-scope="site"] .storefront-neighborhoods input[type="radio"]{accent-color:var(--cm-accent)}
+html[data-color-mode="dark"][data-color-mode-scope="site"] .storefront-neighborhoods :is(#neighborhood-search:focus-visible,.sf-neighborhood-option:has(input:focus-visible)){outline-color:var(--cm-accent)}
+
+/* Hub and retained client panels: cover semantic components as well as utilities. */
+html[data-color-mode="dark"][data-color-mode-scope="panel"] body{--surface:var(--cm-surface);--line:var(--cm-line);--muted:var(--cm-muted);--brand:#80d4ab;--brand-dark:#a5e7cb;--agency-paper:var(--cm-bg);--agency-surface:var(--cm-surface);--agency-ink:var(--cm-ink);--bg:var(--cm-bg);--text:var(--cm-ink)}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.app-shell,.workspace,.main,.juca-exact,.configuration-page,.login-page.login-client){background:var(--cm-bg)!important;color:var(--cm-ink)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.topbar,.card,.stat,.op-card,.modal,.login-card,.table-scroll,.juca-panel,.juca-menu-card,.configuration-card,.configuration-team,.configuration-neighborhoods,.exact-settings-extra,.exact-account-menu){background:var(--cm-surface)!important;color:var(--cm-ink)!important;border-color:var(--cm-line)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(h1,h2,h3,h4,.login-company h1,.configuration-card-title h2,.configuration-member strong,.configuration-toggle strong,.exact-page-title,.account-name strong,.breadcrumb strong){color:var(--cm-ink)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.muted,.meta,.page-head p,.login-form-description,.login-help p,.login-company-description,.configuration-help,.exact-page-description,.account-name small,td small,small){color:var(--cm-muted)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea,.prompt-editor){background:var(--cm-bg)!important;color:var(--cm-ink)!important;border-color:var(--cm-line)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(input,textarea)::placeholder{color:var(--cm-muted)!important;opacity:1}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(th,td){border-color:var(--cm-line)!important;color:var(--cm-ink)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] th{background:var(--cm-raised)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.btn:not(.primary):not(.danger),.modal-header button,.login-password button){background:var(--cm-raised)!important;color:var(--cm-ink)!important;border-color:var(--cm-line)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.btn.primary,.configuration-primary){background:#27704b!important;color:#fff!important;border-color:#76bb91!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.sidebar,.exact-sidebar){background:#101c17!important;border-color:var(--cm-line)!important;color:var(--cm-ink)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.nav button,.exact-navigation button){color:var(--cm-muted)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.nav button.active,.exact-navigation button[aria-current="page"]){background:#294b37!important;color:#d2f5d9!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.notice,.badge,.configuration-access-tag){background:#22394a;color:#c6e5ff;border-color:#55718b}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.notice.warning,.badge.warn){background:#45351c;color:#ffe1a1;border-color:#887345}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.notice.error,.badge.bad,.btn.danger){background:#48252c!important;color:#ffd0d0!important;border-color:#a6757c!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] :is(.configuration-neighborhoods,.configuration-extra,.configuration-toggle,.configuration-payment){border-color:var(--cm-line)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] body[data-sector="delivery"] .juca-shell.juca-exact :is(#main,.exact-topbar,.exact-sidebar){background:var(--cm-bg)!important;color:var(--cm-ink)!important;border-color:var(--cm-line)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] body[data-sector="delivery"] .juca-shell.juca-exact #main :is(.field input:not([type="checkbox"]):not([type="radio"]),select,textarea){background:var(--cm-bg)!important;color:var(--cm-ink)!important;border-color:var(--cm-line)!important}
+html[data-color-mode="dark"][data-color-mode-scope="panel"] body[data-sector="delivery"] .juca-shell.juca-exact #main :is(.card,.configuration-neighborhoods,.configuration-card,.configuration-team){background:var(--cm-surface)!important;color:var(--cm-ink)!important;border-color:var(--cm-line)!important}
+@media(max-width:650px){.color-mode-toggle{padding:9px;gap:0}.color-mode-toggle .color-mode-label,.color-mode-toggle .color-mode-track{display:none}html[data-color-mode-scope="site"] header #btn-open-cart>span.whitespace-nowrap{display:none}html[data-color-mode-scope="site"] header #btn-open-cart{min-width:44px;min-height:44px}}
+@media(prefers-reduced-motion:reduce){.color-mode-track>span,html[data-color-mode] *{transition:none!important}}

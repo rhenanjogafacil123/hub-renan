@@ -1,0 +1,55 @@
+/* Shared storefront interaction states, including retained tenant templates. */
+#product-modal .storefront-icon-control,
+#cart-drawer .storefront-icon-control,
+#cart-items [data-qty] {
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+#product-modal button:focus-visible,
+#product-modal input:focus-visible,
+#product-modal textarea:focus-visible,
+#cart-drawer button:focus-visible,
+#cart-drawer a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+#modal-product-name:focus { outline: none; }
+#cart-total, #cart-subtotal, #cart-delivery-fee { white-space: nowrap; }
+.storefront-total-note { font-size: 0.8125rem; line-height: 1.5; margin: 0; }
+#cart-footer #order-feedback{font-size:12px;line-height:1.45;margin:0;padding:8px 10px;text-align:left;border-radius:10px}
+#cart-footer #order-feedback[hidden]{display:none!important}
+.storefront-three-modes{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.storefront-three-modes>button{min-width:0;min-height:56px;white-space:normal}
+.storefront-mode-note{display:block;font-size:10px;font-weight:500;margin-top:3px}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-girar, .animate-flutuar { animation: none !important; }
+  .animate-surgir { animation: none !important; opacity: 1; transform: none; }
+  #cart-drawer { transition-duration: 0.01ms; }
+}
+
+/* Text belongs to the image area and never changes the image file. */
+.sf-image-area{position:relative}
+.sf-image-disclaimer{position:absolute;right:8px;bottom:8px;z-index:30;padding:3px 7px;border-radius:5px;background:rgb(255 255 255 / 94%);color:#374151;font:500 10px/1.4 system-ui,sans-serif;letter-spacing:0;pointer-events:none}
+
+#products-grid .sf-image-disclaimer{font-size:9px;right:3px;bottom:3px;padding:2px 3px;max-width:calc(100% - 6px);box-sizing:border-box;white-space:normal}
+
+.storefront-neighborhoods{min-width:0;margin:0;padding:0;border:0;color:#2f4a32;font-size:14px}
+.storefront-neighborhoods legend{padding:0;margin-bottom:12px;font-weight:700}
+.sf-neighborhood-search-label{display:block;margin-bottom:6px;font-size:12px;font-weight:700}
+.storefront-neighborhoods #neighborhood-search{box-sizing:border-box;width:100%;min-height:46px;padding:10px 14px;border:1px solid #7c8573;border-radius:12px;background:#fff;color:#2f4a32;font:inherit;font-size:16px}
+.storefront-neighborhoods #neighborhood-search::placeholder{color:#626858;opacity:1}
+.sf-neighborhood-results{margin:7px 0;font-size:12px;color:#626858}
+.sf-neighborhood-options{max-height:224px;overflow-y:auto;overscroll-behavior:contain;border:1px solid #7c8573;border-radius:12px;background:#fff;scroll-padding:4px}
+.sf-neighborhood-option{display:flex;align-items:center;gap:10px;box-sizing:border-box;min-height:52px;padding:10px 12px;cursor:pointer;line-height:1.4}
+.sf-neighborhood-option+.sf-neighborhood-option{border-top:1px solid #e6e5dd}
+.sf-neighborhood-option:has(:checked){background:#eaf0e5;box-shadow:inset 3px 0 #2f4a32}
+.sf-neighborhood-option input{flex-shrink:0;width:18px;height:18px;margin:0;accent-color:#2f4a32}
+.sf-neighborhood-option span{flex:1;min-width:0;overflow-wrap:anywhere}
+.sf-neighborhood-option strong{flex-shrink:0;font-size:13px;white-space:nowrap}
+.storefront-neighborhoods [hidden]{display:none!important}
+.sf-neighborhood-selected{margin:10px 0 0;font-size:13px;font-weight:700;line-height:1.5}
+.sf-neighborhood-empty{margin:10px 0;font-size:13px;line-height:1.5}
+.storefront-neighborhoods:focus-within .sf-neighborhood-options{border-color:#2f4a32}
+.storefront-neighborhoods #neighborhood-search:focus-visible,.sf-neighborhood-option:has(input:focus-visible){outline:3px solid #2f4a32;outline-offset:2px}
