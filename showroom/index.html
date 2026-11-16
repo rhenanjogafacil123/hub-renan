@@ -3117,7 +3117,7 @@
       const btnOpen = document.getElementById('btn-open-store');
       const isHamburguer = /^H0[1-5]$/.test(id);
       const isPilot = !isHamburguer;
-      const previewPath = isHamburguer ? "/showroom/hamburguerias.html" : "/showroom/gastronomia.html";
+      const previewPath = id === "10.05" ? "/showroom/modelos/10-05/index.html" : id === "H01" ? "/showroom/modelos/01-01/index.html" : isHamburguer ? "/showroom/hamburguerias.html" : "/showroom/gastronomia.html";
       if (btnOpen) btnOpen.href = `${previewPath}?hero=${id}`;
 
       // Identificação da moldura: apenas H01–H05 usam a demonstração isolada.
@@ -3197,7 +3197,7 @@
 
         const isHamburguer = /^H0[1-5]$/.test(initialModel.id);
         const isPilot = !isHamburguer;
-        const previewPath = isHamburguer ? "/showroom/hamburguerias.html" : "/showroom/gastronomia.html";
+        const previewPath = initialModel.id === "10.05" ? "/showroom/modelos/10-05/index.html" : initialModel.id === "H01" ? "/showroom/modelos/01-01/index.html" : isHamburguer ? "/showroom/hamburguerias.html" : "/showroom/gastronomia.html";
 
         const btnOpen = document.getElementById('btn-open-store');
         if (btnOpen) btnOpen.href = `${previewPath}?hero=${initialModel.id}`;
