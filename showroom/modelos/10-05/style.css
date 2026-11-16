@@ -7,3 +7,67 @@
 /* Reference-matched compact mobile rhythm and image emblem scale. */
 .logo{transform:scale(1.5)}
 @media(max-width:700px){header{height:60px}.content{padding-top:16px}.hero-brand{margin-bottom:20px}.hero-brand .logo{height:42px}.subtitle{margin-bottom:12px}.facts{margin-bottom:18px}.facts li,.facts li:first-child{padding:6px 0}.facts svg{width:21px;height:21px}nav .more{width:29px;height:29px}.photo{margin-top:0}h1{font-size:clamp(33px,8.7vw,57px)}}
+
+/* PROPORTIONAL_DESKTOP_936 */
+@media(min-width:701px) and (max-width:1300px){
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:#1c1b18;background:#faf7f2;font-family:'Plus Jakarta Sans',Arial,sans-serif}
+button,a{-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:0.179426vw solid #c95425;outline-offset:0.299043vw}
+a{color:inherit;text-decoration:none}
+.symbols{position:absolute;width:0;height:0}
+svg{width:1.495215vw;height:1.495215vw;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+header{height:5.921053vw;padding:0.598086vw 4%;display:flex;justify-content:space-between;align-items:center;border-bottom:0.059809vw solid #cfc5bc;position:relative;z-index:2;background:#faf7f2}
+.brand{display:flex;align-items:center;gap:0.418660vw}
+.logo{width:5.502392vw;height:4.485646vw;object-fit:contain;flex:none}
+.wordmark{font-size:1.854067vw;font-weight:800;letter-spacing:-0.101675vw;line-height:1.1;white-space:nowrap}
+.wordmark em{color:#e99476;font-style:normal}
+.wordmark small{font-size:0.897129vw;display:block;font-weight:500;letter-spacing:-0.017943vw;margin-top:0.299043vw}
+nav{display:flex;align-items:center;gap:1.315789vw}
+button{display:inline-flex;align-items:center;justify-content:center;gap:0.717703vw;border:0;white-space:nowrap}
+.gold{background:#ffae8c;border:0.059809vw solid #ffae8c;color:#090807;border-radius:5.980861vw;padding:0.956938vw 1.495215vw;font-weight:700}
+.theme{padding:0.777512vw 1.196172vw;border-radius:5.980861vw;background:transparent;border:0.059809vw solid #d8bfa9;color:#131010;font-weight:600}
+.theme i{width:2.272727vw;height:1.435407vw;border-radius:1.196172vw;background:#d3b298;position:relative}
+.theme i:before{content:'';position:absolute;left:0.239234vw;top:0.239234vw;width:0.956938vw;height:0.956938vw;border-radius:50%;background:#fff}
+.more{border:0;border-radius:50%;width:2.870813vw;height:2.870813vw;background:#eedbca;color:#12100e;font-size:1.315789vw;letter-spacing:0.119617vw}
+main{min-height:calc(56.25vw - 5.921053vw);position:relative;isolation:isolate;overflow:hidden}
+.photo{position:absolute;inset:0;z-index:-2;background:url('hero.webp') no-repeat right bottom;background-size:cover}
+.content{padding:3.110048vw 4.5% 4.485646vw;position:relative;z-index:1}
+.hero-brand{margin-bottom:4.126794vw;gap:0.478469vw}
+.hero-brand .wordmark{font-size:1.854067vw}
+.hero-brand .logo{width:5.023923vw;height:4.545455vw}
+.demo{font-size:0.837321vw;font-weight:700;background:#eed8c4;border-radius:5.980861vw;padding:0.598086vw 1.196172vw;margin-left:1.196172vw;white-space:nowrap}
+h1{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:clamp(4.186603vw,6.5vw,6.698565vw);line-height:.96;letter-spacing:-0.239234vw;margin:0 0 2.751196vw;max-width:41.866029vw}
+.subtitle{font-size:clamp(1.136364vw,2.15vw,2.093301vw);margin:0 0 2.930622vw;letter-spacing:-0.059809vw}
+.facts{display:flex;padding:0;list-style:none;margin:0 0 2.990431vw;align-items:center;gap:0;font-size:1.016746vw;font-weight:500}
+.facts li{display:flex;align-items:center;gap:0.837321vw;padding:0 1.375598vw;border-right:0.059809vw solid #bda58c}
+.facts li:first-child{padding-left:0}
+.facts li:last-child{border:0}
+.facts svg{width:1.734450vw;height:1.734450vw}
+.actions{display:flex;gap:1.495215vw}
+.actions button{font-size:1.555024vw;min-height:4.545455vw;padding:0.897129vw 2.033493vw}
+.actions .gold span{font-size:2.033493vw;line-height:1;margin-left:0.478469vw}
+.outline{border:0.059809vw solid #cba889;border-radius:5.980861vw;color:#13120e;background:#faf7f240}
+.outline svg{width:1.734450vw;height:1.734450vw;color:#bc4e18}
+footer{position:absolute;bottom:1.196172vw;right:3%;background:#fffaf1;padding:0.478469vw 1.196172vw;border-radius:1.794258vw;font-size:0.837321vw;z-index:1}
+footer b{margin:0 0.179426vw}
+dialog{border:0.059809vw solid #d3b298;border-radius:1.076555vw;background:#faf7f2;color:#1c1b18;max-width:28.708134vw;width:calc(100% - 2.392344vw);padding:2.272727vw;line-height:1.7}
+dialog::backdrop{background:#33271970;backdrop-filter:blur(0.358852vw)}
+dialog h2{font-family:Fraunces,serif;font-size:2.272727vw;margin:0.598086vw 0}
+dialog small{color:#bd6546;letter-spacing:0.179426vw}
+.close{position:absolute;right:0.837321vw;top:0.418660vw;background:none;color:inherit;font-size:1.794258vw}
+.close-info{margin-top:0.897129vw}
+.dark{color:#f7eee4;background:#241c17}
+.dark header,.dark dialog{background:#241c17;color:#f7eee4}
+.dark .content{background:linear-gradient(90deg,#241c17f0,transparent)}
+.dark .outline{background:#241c17;color:#f7eee4}
+.dark .theme{color:#f7eee4}
+.dark .theme i:before{left:1.076555vw}
+.dark .demo{background:#73523f}
+.dark .photo{filter:brightness(.6)}
+.content{padding-top:3.349282vw}
+.hero-brand{margin-bottom:4.066986vw}
+.logo{transform:scale(1.5)}
+}
