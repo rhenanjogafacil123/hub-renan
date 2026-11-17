@@ -1,0 +1,216 @@
+/* Refinamentos visuais — personalização gourmet e crédito do desenvolvedor */
+
+/* Botão do WhatsApp do desenvolvedor: mais discreto e proporcional */
+.developer-credit{gap:9px!important;padding-top:22px!important}
+.developer-signature{font-size:13px!important}
+.developer-whatsapp{
+  width:min(100%,360px)!important;
+  min-height:68px!important;
+  gap:13px!important;
+  padding:10px 16px!important;
+  border-radius:19px!important;
+  box-shadow:0 10px 26px rgba(60,13,73,.12)!important;
+}
+.developer-whatsapp-icon{
+  width:40px!important;
+  height:40px!important;
+  flex:0 0 40px!important;
+  font-size:20px!important;
+}
+.developer-whatsapp-copy strong{font-size:17px!important;line-height:1.1}
+.developer-whatsapp-copy>span{font-size:11px!important;margin-top:3px}
+
+/* Modal de produto */
+#productModal .modal{
+  background:
+    radial-gradient(circle at 100% 0,rgba(255,197,27,.10),transparent 32%),
+    radial-gradient(circle at 0 100%,rgba(109,22,125,.07),transparent 35%),
+    #fff;
+  border:1px solid rgba(109,22,125,.10);
+}
+#productModal .modal-price{
+  display:inline-flex;
+  align-items:center;
+  min-height:40px;
+  padding:0 14px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#fff5c8,#f6eaf9);
+  border:1px solid rgba(109,22,125,.10);
+  box-shadow:0 7px 18px rgba(65,17,78,.06);
+  font-size:21px;
+}
+
+/* Blocos de complementos / caldas / adicionais */
+#productModal .option-section{
+  position:relative;
+  overflow:hidden;
+  margin-top:15px;
+  padding:18px;
+  border:1px solid rgba(109,22,125,.11);
+  border-radius:22px;
+  background:linear-gradient(145deg,rgba(255,253,247,.98),rgba(255,248,218,.72) 52%,rgba(246,237,249,.68));
+  box-shadow:0 12px 30px rgba(65,17,78,.055);
+}
+#productModal .option-section::after{
+  content:"";
+  position:absolute;
+  width:90px;
+  height:90px;
+  right:-42px;
+  top:-42px;
+  border-radius:50%;
+  background:linear-gradient(145deg,rgba(255,197,27,.22),rgba(109,22,125,.12));
+  pointer-events:none;
+}
+#productModal .option-section h4{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 4px;
+  color:var(--purple-dark);
+  font-family:"Playfair Display",serif;
+  font-size:19px;
+  letter-spacing:-.01em;
+}
+#productModal .option-section h4::before{
+  content:"✦";
+  color:var(--yellow-strong);
+  font-family:"DM Sans",sans-serif;
+  font-size:13px;
+}
+#productModal .option-section:has([data-kind="complement"]) h4::before{content:"🍬";font-size:16px}
+#productModal .option-section:has([data-kind="syrup"]) h4::before{content:"🍯";font-size:16px}
+#productModal .option-section:has([data-kind="extra"]) h4::before{content:"✨";font-size:16px}
+#productModal .option-section>small{
+  position:relative;
+  z-index:1;
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.45;
+  margin-bottom:2px;
+}
+#productModal .option-grid{
+  position:relative;
+  z-index:1;
+  gap:9px;
+  margin-top:14px;
+}
+#productModal .option-choice{
+  min-height:48px;
+  padding:10px 12px;
+  border:1px solid rgba(109,22,125,.10);
+  border-radius:15px;
+  background:rgba(255,255,255,.92);
+  box-shadow:0 4px 12px rgba(65,17,78,.035);
+  transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease;
+}
+#productModal .option-choice:hover{
+  transform:translateY(-1px);
+  border-color:rgba(109,22,125,.28);
+  box-shadow:0 8px 18px rgba(65,17,78,.07);
+}
+#productModal .option-choice:has(input:checked){
+  border-color:rgba(109,22,125,.50);
+  background:linear-gradient(135deg,#fff9df,#f5e9f8);
+  box-shadow:0 0 0 2px rgba(109,22,125,.055),0 8px 20px rgba(65,17,78,.07);
+}
+#productModal .option-choice input{
+  width:17px;
+  height:17px;
+  margin-right:5px;
+  accent-color:var(--purple);
+  vertical-align:-3px;
+}
+#productModal .option-choice>span:last-child{
+  padding:4px 8px;
+  border-radius:999px;
+  background:var(--yellow-soft);
+  color:var(--purple-dark);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.02em;
+}
+#productModal .option-choice:has(input:checked)>span:last-child{
+  background:var(--purple);
+  color:#fff;
+}
+
+/* Observação do produto: bloco gourmet/profissional */
+#productModal .modal-fields{
+  position:relative;
+  margin-top:17px;
+  padding:17px;
+  border-radius:21px;
+  border:1px solid rgba(109,22,125,.12);
+  background:linear-gradient(145deg,#fffdf8,#fff6d8 58%,#f6ebf9);
+  box-shadow:0 11px 28px rgba(65,17,78,.05);
+}
+#productModal .modal-fields::before{
+  content:"✦ Toque final do seu pedido";
+  display:block;
+  margin-bottom:5px;
+  color:var(--purple-dark);
+  font-family:"Playfair Display",serif;
+  font-size:18px;
+  font-weight:800;
+}
+#productModal .modal-fields::after{
+  content:"Conte pra gente algum detalhe especial para preparar seu item do jeitinho que você prefere.";
+  display:block;
+  order:-1;
+  margin:-1px 0 10px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.45;
+}
+#productModal .modal-fields label{
+  display:grid;
+  gap:7px;
+  color:var(--purple-dark);
+  font-size:11px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+#productModal .modal-fields textarea{
+  min-height:94px;
+  resize:vertical;
+  border:1px solid rgba(109,22,125,.13);
+  border-radius:16px;
+  padding:13px 14px;
+  background:rgba(255,255,255,.94);
+  color:var(--ink);
+  font-size:13px;
+  font-weight:500;
+  line-height:1.5;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 5px 14px rgba(65,17,78,.035);
+}
+#productModal .modal-fields textarea::placeholder{color:#9a8d9c;font-weight:400}
+#productModal .modal-fields textarea:focus{
+  border-color:var(--purple);
+  box-shadow:0 0 0 4px rgba(109,22,125,.08),0 7px 18px rgba(65,17,78,.05);
+}
+
+/* Ações no fim do modal */
+#productModal .modal-actions{
+  margin-top:16px;
+  padding-top:15px;
+  border-top:1px solid rgba(109,22,125,.08);
+}
+#productModal .modal-add{
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(109,22,125,.18);
+}
+
+@media(max-width:680px){
+  .developer-whatsapp{width:min(100%,330px)!important;min-height:64px!important;padding:9px 13px!important}
+  .developer-whatsapp-icon{width:38px!important;height:38px!important;flex-basis:38px!important}
+  .developer-whatsapp-copy strong{font-size:16px!important}
+  #productModal .option-section{padding:15px;border-radius:19px}
+  #productModal .option-section h4{font-size:18px}
+  #productModal .modal-fields{padding:15px;border-radius:19px}
+  #productModal .modal-fields::before{font-size:17px}
+}

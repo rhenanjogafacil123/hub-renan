@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#5a1576" />
+  <meta name="description" content="Morais Bebidas e Açaí — monte seu pedido de açaí, picolés, sorvetes e bebidas e finalize pelo WhatsApp." />
+  <title>Morais Bebidas e Açaí | Cardápio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="refinements.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Morais Bebidas e Açaí - início">
+      <img src="assets/logo.webp" alt="Logo Morais Bebidas e Açaí" width="54" height="54" />
+      <span><strong>Morais</strong><small>Bebidas e Açaí</small></span>
+    </a>
+    <a class="mini-cta" href="#cardapio">Ver cardápio</a>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">🍇 Morais Bebidas e Açaí</span>
+        <h1>Seu açaí do seu <span>jeito.</span></h1>
+        <p>Monte o pedido com complementos, caldas e adicionais, confira o total e envie tudo organizado direto para o WhatsApp da loja.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#cardapio">Montar meu pedido</a>
+          <a class="btn btn-ghost" href="https://wa.me/5521976721241?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Morais%20Bebidas%20e%20A%C3%A7a%C3%AD." target="_blank" rel="noopener noreferrer">💬 Falar no WhatsApp</a>
+        </div>
+        <div class="trust-row">
+          <span>🛵 Entregas após as 19:30</span>
+          <span>📍 Rio de Janeiro - RJ</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="blob"></div>
+        <img src="assets/banner.webp" alt="Banner de entregas da Morais Bebidas e Açaí" />
+      </div>
+    </section>
+
+    <section class="quick-info" aria-label="Informações rápidas">
+      <article class="info-card"><div class="icon">🛵</div><div><small>Entrega</small><strong>Após as 19:30</strong></div></article>
+      <article class="info-card"><div class="icon">📍</div><div><small>Região informada</small><strong>Rio de Janeiro - RJ</strong></div></article>
+      <a class="info-card" href="https://wa.me/5521976721241" target="_blank" rel="noopener noreferrer"><div class="icon">💬</div><div><small>WhatsApp</small><strong>(21) 97672-1241</strong></div></a>
+    </section>
+
+    <section class="section intro-section">
+      <div class="section-heading">
+        <div><span class="section-kicker">Cardápio digital</span><h2>Escolha, personalize e peça.</h2></div>
+        <p>Produtos e valores abaixo foram organizados a partir do cardápio da própria loja. O carrinho mantém cada escolha separada para facilitar o atendimento.</p>
+      </div>
+      <div class="feature-grid">
+        <article><span>1</span><strong>Escolha</strong><small>Açaí, picolés, sorvetes ou bebidas.</small></article>
+        <article><span>2</span><strong>Personalize</strong><small>Selecione sabores, complementos e adicionais.</small></article>
+        <article><span>3</span><strong>Finalize</strong><small>Envie o pedido completo pelo WhatsApp.</small></article>
+      </div>
+    </section>
+
+    <section id="cardapio" class="order-section">
+      <div class="order-heading">
+        <span class="section-kicker">Monte seu pedido</span>
+        <h2>O cardápio da Morais.</h2>
+        <p>Selecione uma categoria e adicione seus itens. Em bebidas alcoólicas, a venda é restrita a maiores de 18 anos.</p>
+      </div>
+      <div class="category-tabs" id="categoryTabs" aria-label="Categorias"></div>
+      <div class="order-shell">
+        <div class="menu-panel"><div id="menuList" class="menu-grid"></div></div>
+        <aside class="cart-panel" id="cartPanel">
+          <div class="cart-title-row"><div><span class="cart-kicker">Seu pedido</span><h3>Carrinho <b id="cartCount">0</b></h3></div><span class="cart-total-mini" id="cartTotalMini">R$ 0,00</span></div>
+          <div id="cartItems" class="cart-items"></div>
+          <div id="cartEmpty" class="cart-empty"><span>🛍️</span><strong>Carrinho vazio</strong><small>Escolha um item do cardápio para começar.</small></div>
+          <div class="cart-footer"><div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div><button id="checkoutBtn" class="checkout-btn" type="button" disabled>Finalizar pelo WhatsApp</button></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand"><img src="assets/logo.webp" alt="" width="48" height="48" /><div><strong>Morais Bebidas e Açaí</strong><span>Rio de Janeiro - RJ</span></div></div>
+    <div class="footer-links"><a href="#inicio">Início</a><a href="#cardapio">Cardápio</a></div>
+    <small>Cardápio digital independente para facilitar pedidos pelo WhatsApp.</small>
+    <div class="developer-credit">
+      <div class="developer-signature"><span class="developer-code">&lt;/&gt;</span><span>Desenvolvido por <strong>Rhenan</strong></span><span class="developer-star">✦</span></div>
+      <a class="developer-whatsapp" href="https://wa.me/5521973152056" target="_blank" rel="noopener noreferrer" aria-label="Falar com Rhenan pelo WhatsApp"><span class="developer-whatsapp-icon" aria-hidden="true">◉</span><span class="developer-whatsapp-copy"><strong>(21) 97315-2056</strong><span>Fale comigo no WhatsApp</span></span></a>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="productModal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle"><button class="modal-close" type="button" data-close="productModal" aria-label="Fechar">×</button><div id="productModalContent"></div></div></div>
+  <div class="modal-backdrop" id="checkoutModal" hidden><div class="modal checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle"><button class="modal-close" type="button" data-close="checkoutModal" aria-label="Fechar">×</button><span class="section-kicker">Última etapa</span><h2 id="checkoutTitle">Dados para entrega</h2><p class="modal-lead">Preencha os dados para a mensagem chegar organizada à loja. Nenhuma mensagem é enviada sem você confirmar no WhatsApp.</p><form id="checkoutForm" class="checkout-form"><label>Nome <input name="name" autocomplete="name" required placeholder="Seu nome" /></label><label>Endereço completo <input name="address" autocomplete="street-address" required placeholder="Rua, número e bairro" /></label><label>Complemento / referência <input name="reference" placeholder="Ex.: portão preto, casa dos fundos" /></label><label>Forma de pagamento <input name="payment" required placeholder="Ex.: Pix, dinheiro, cartão" /></label><label>Troco para <input name="change" inputmode="decimal" placeholder="Preencha apenas se precisar de troco" /></label><label>Observações gerais <textarea name="notes" rows="3" placeholder="Alguma informação para a loja?"></textarea></label><div class="checkout-summary"><span>Total do pedido</span><strong id="checkoutTotal">R$ 0,00</strong></div><button class="checkout-btn" type="submit">Abrir pedido no WhatsApp</button></form></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
