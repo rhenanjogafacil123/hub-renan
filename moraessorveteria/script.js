@@ -63,6 +63,9 @@ const productModal = document.getElementById("productModal");
 const checkoutModal = document.getElementById("checkoutModal");
 const productModalContent = document.getElementById("productModalContent");
 const toastEl = document.getElementById("toast");
+const searchInputEl = document.getElementById("searchInput");
+const menuEmptyEl = document.getElementById("menuEmpty");
+let searchTerm = "";
 
 function toast(text){
   toastEl.textContent = text; toastEl.classList.add("show");
@@ -75,17 +78,38 @@ function cartCount(){ return cart.reduce((sum,item)=>sum+item.quantity,0); }
 
 function renderTabs(){
   tabsEl.innerHTML = categories.map(cat=>`<button class="category-tab ${cat.id===activeCategory?'active':''}" type="button" data-category="${cat.id}">${cat.icon} ${cat.name}</button>`).join("");
-  tabsEl.querySelectorAll("[data-category]").forEach(btn=>btn.addEventListener("click",()=>{activeCategory=btn.dataset.category;renderTabs();renderMenu();}));
+  tabsEl.querySelectorAll("[data-category]").forEach(btn=>btn.addEventListener("click",()=>{
+    activeCategory=btn.dataset.category;
+    searchTerm="";if(searchInputEl)searchInputEl.value="";
+    renderTabs();renderMenu();
+  }));
 }
 
 function renderMenu(){
-  const cat = getCategory();
-  menuEl.innerHTML = cat.items.map(item=>`<article class="menu-card">
+  const term = searchTerm.trim().toLowerCase();
+  let entries;
+
+  if(term){
+    entries = [];
+    for(const cat of categories){
+      for(const item of cat.items){
+        const haystack = `${item.name} ${item.description||''} ${(item.variants||[]).map(v=>v.name).join(' ')}`.toLowerCase();
+        if(haystack.includes(term)) entries.push({cat,item});
+      }
+    }
+  } else {
+    const cat = getCategory();
+    entries = cat.items.map(item=>({cat,item}));
+  }
+
+  menuEl.innerHTML = entries.map(({cat,item})=>`<article class="menu-card">
     <div class="menu-card-icon">${cat.icon}</div>
     <h3>${item.name}</h3>
     <p>${item.description}</p>
     <div class="menu-card-bottom"><div class="menu-price"><small>${item.variants?'a partir de':'preço'}</small><strong>${money(item.price)}</strong></div><button class="add-btn" type="button" data-item="${item.id}">Escolher</button></div>
   </article>`).join("");
+
+  if(menuEmptyEl) menuEmptyEl.hidden = entries.length > 0;
   menuEl.querySelectorAll("[data-item]").forEach(btn=>btn.addEventListener("click",()=>openProduct(btn.dataset.item)));
 }
 
@@ -196,5 +220,9 @@ document.getElementById("checkoutForm").addEventListener("submit",e=>{
   const url=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(lines.join("\n"))}`;
   window.open(url,"_blank","noopener,noreferrer");
 });
+
+if(searchInputEl){
+  searchInputEl.addEventListener("input",e=>{searchTerm=e.target.value;renderMenu();});
+}
 
 renderTabs();renderMenu();renderCart();

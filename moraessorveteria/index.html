@@ -1,96 +1,186 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#5a1576" />
-  <meta name="description" content="Morais Bebidas e Açaí — monte seu pedido de açaí, picolés, sorvetes e bebidas e finalize pelo WhatsApp." />
-  <title>Morais Bebidas e Açaí | Cardápio</title>
+  <meta name="theme-color" content="#542661" />
+  <meta name="description" content="Moraes Sorveteria — sorvetes artesanais, açaí no copo, picolés, taças e bebidas. Monte seu pedido e finalize pelo WhatsApp." />
+  <title>Moraes Sorveteria | Sorvetes Artesanais &amp; Açaí</title>
+  <link rel="icon" href="assets/logo-moraes.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="refinements.css" />
 </head>
 <body>
+
+  <!-- ==================== HEADER ==================== -->
   <header class="topbar">
-    <a class="brand" href="#inicio" aria-label="Morais Bebidas e Açaí - início">
-      <img src="assets/logo.webp" alt="Logo Morais Bebidas e Açaí" width="54" height="54" />
-      <span><strong>Morais</strong><small>Bebidas e Açaí</small></span>
+    <a class="brand" href="#inicio" aria-label="Moraes Sorveteria — início">
+      <img src="assets/logo-moraes.png" alt="Moraes Sorveteria" width="52" height="52" />
+      <span><strong>Moraes</strong><small>Sorveteria</small></span>
     </a>
-    <a class="mini-cta" href="#cardapio">Ver cardápio</a>
+    <nav class="topnav">
+      <a href="#cardapio">Cardápio</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a class="mini-cta" href="#cardapio">Peça agora</a>
   </header>
 
   <main>
+    <!-- ==================== HERO ==================== -->
     <section id="inicio" class="hero">
-      <div class="hero-copy">
-        <span class="eyebrow">🍇 Morais Bebidas e Açaí</span>
-        <h1>Seu açaí do seu <span>jeito.</span></h1>
-        <p>Monte o pedido com complementos, caldas e adicionais, confira o total e envie tudo organizado direto para o WhatsApp da loja.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#cardapio">Montar meu pedido</a>
-          <a class="btn btn-ghost" href="https://wa.me/5521976721241?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Morais%20Bebidas%20e%20A%C3%A7a%C3%AD." target="_blank" rel="noopener noreferrer">💬 Falar no WhatsApp</a>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="hero-eyebrow"><i></i>Sorvetes Artesanais<i></i></span>
+          <h1>Seu momento<br />merece um <em>sabor especial.</em></h1>
+          <svg class="hero-flourish" viewBox="0 0 320 20" fill="none" aria-hidden="true">
+            <path d="M2 12C60 2 120 2 168 8c48 6 100 6 150-4" stroke="url(#gold)" stroke-width="2.4" stroke-linecap="round" />
+            <defs>
+              <linearGradient id="gold" x1="0" y1="0" x2="320" y2="0" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#c9a227" /><stop offset=".5" stop-color="#e8cd76" /><stop offset="1" stop-color="#a8801a" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <p>Sorvetes cremosos, sabores irresistíveis e aquele toque de carinho que transforma qualquer momento em uma doce lembrança.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#cardapio">Peça agora <span aria-hidden="true">🛒</span></a>
+            <a class="btn btn-ghost" href="#cardapio">Conheça nossos sabores <span aria-hidden="true">›</span></a>
+          </div>
         </div>
-        <div class="trust-row">
-          <span>🛵 Entregas após as 19:30</span>
-          <span>📍 Rio de Janeiro - RJ</span>
+      </div>
+
+      <div class="hero-dock">
+        <div class="hero-dock-brand">
+          <img src="assets/logo-moraes.png" alt="" width="58" height="58" />
+          <div>
+            <strong>Moraes Sorveteria</strong>
+            <small>Sorvetes • Açaí • Sobremesas</small>
+          </div>
         </div>
-      </div>
-      <div class="hero-visual">
-        <div class="blob"></div>
-        <img src="assets/banner.webp" alt="Banner de entregas da Morais Bebidas e Açaí" />
-      </div>
-    </section>
-
-    <section class="quick-info" aria-label="Informações rápidas">
-      <article class="info-card"><div class="icon">🛵</div><div><small>Entrega</small><strong>Após as 19:30</strong></div></article>
-      <article class="info-card"><div class="icon">📍</div><div><small>Região informada</small><strong>Rio de Janeiro - RJ</strong></div></article>
-      <a class="info-card" href="https://wa.me/5521976721241" target="_blank" rel="noopener noreferrer"><div class="icon">💬</div><div><small>WhatsApp</small><strong>(21) 97672-1241</strong></div></a>
-    </section>
-
-    <section class="section intro-section">
-      <div class="section-heading">
-        <div><span class="section-kicker">Cardápio digital</span><h2>Escolha, personalize e peça.</h2></div>
-        <p>Produtos e valores abaixo foram organizados a partir do cardápio da própria loja. O carrinho mantém cada escolha separada para facilitar o atendimento.</p>
-      </div>
-      <div class="feature-grid">
-        <article><span>1</span><strong>Escolha</strong><small>Açaí, picolés, sorvetes ou bebidas.</small></article>
-        <article><span>2</span><strong>Personalize</strong><small>Selecione sabores, complementos e adicionais.</small></article>
-        <article><span>3</span><strong>Finalize</strong><small>Envie o pedido completo pelo WhatsApp.</small></article>
+        <div class="hero-chips">
+          <span class="chip">🛵 Delivery</span>
+          <span class="chip">🛍️ Retirada</span>
+        </div>
+        <a class="chip chip-cta" href="https://wa.me/5521976721241?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Moraes%20Sorveteria." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
       </div>
     </section>
 
+    <!-- ==================== CARDÁPIO ==================== -->
     <section id="cardapio" class="order-section">
       <div class="order-heading">
-        <span class="section-kicker">Monte seu pedido</span>
-        <h2>O cardápio da Morais.</h2>
-        <p>Selecione uma categoria e adicione seus itens. Em bebidas alcoólicas, a venda é restrita a maiores de 18 anos.</p>
+        <span class="section-kicker">Cardápio Moraes Sorveteria</span>
+        <h2>Escolha o seu pedido</h2>
+        <p>Sorvetes cremosos, açaí no copo, taças e sobremesas deliciosas.</p>
       </div>
+
+      <div class="search-wrap">
+        <span aria-hidden="true">🔍</span>
+        <input id="searchInput" type="search" placeholder="Buscar sabor de sorvete, açaí, picolé..." aria-label="Buscar no cardápio" />
+      </div>
+
       <div class="category-tabs" id="categoryTabs" aria-label="Categorias"></div>
+
       <div class="order-shell">
-        <div class="menu-panel"><div id="menuList" class="menu-grid"></div></div>
+        <div class="menu-panel">
+          <div id="menuList" class="menu-grid"></div>
+          <p id="menuEmpty" class="menu-empty" hidden>Nenhum item encontrado para essa busca.</p>
+        </div>
         <aside class="cart-panel" id="cartPanel">
-          <div class="cart-title-row"><div><span class="cart-kicker">Seu pedido</span><h3>Carrinho <b id="cartCount">0</b></h3></div><span class="cart-total-mini" id="cartTotalMini">R$ 0,00</span></div>
+          <div class="cart-title-row">
+            <div><span class="cart-kicker">Seu pedido</span><h3>Carrinho <b id="cartCount">0</b></h3></div>
+            <span class="cart-total-mini" id="cartTotalMini">R$ 0,00</span>
+          </div>
           <div id="cartItems" class="cart-items"></div>
-          <div id="cartEmpty" class="cart-empty"><span>🛍️</span><strong>Carrinho vazio</strong><small>Escolha um item do cardápio para começar.</small></div>
-          <div class="cart-footer"><div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div><button id="checkoutBtn" class="checkout-btn" type="button" disabled>Finalizar pelo WhatsApp</button></div>
+          <div id="cartEmpty" class="cart-empty"><span>🍨</span><strong>Carrinho vazio</strong><small>Escolha um item do cardápio para começar.</small></div>
+          <div class="cart-footer">
+            <div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
+            <button id="checkoutBtn" class="checkout-btn" type="button" disabled>Finalizar pelo WhatsApp</button>
+          </div>
         </aside>
+      </div>
+    </section>
+
+    <!-- ==================== SOBRE ==================== -->
+    <section id="sobre" class="about-section">
+      <div class="about-inner">
+        <div class="about-copy">
+          <span class="section-kicker kicker-pink">Nossa História</span>
+          <h2>Paixão em cada colherada.</h2>
+          <p>Na Moraes Sorveteria, cada receita é preparada com ingredientes selecionados, frutas frescas e máxima dedicação para refrescar e encantar o seu dia.</p>
+          <p>Sorvetes cremosos, taças generosas e o verdadeiro açaí para você aproveitar no conforto de casa ou em nosso balcão.</p>
+        </div>
+        <div class="about-visual">
+          <img src="assets/hero-fundo-moraes.png" alt="Sorvetes artesanais da Moraes Sorveteria" />
+          <div class="about-badge">
+            <span>Rio de Janeiro / RJ</span>
+            <p>Sorvetes cremosos, açaí no copo e sobremesas especiais.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTATO ==================== -->
+    <section id="contato" class="contact-section">
+      <div class="contact-card">
+        <span class="section-kicker kicker-pink">Faça seu pedido</span>
+        <h2>Pronto para escolher seu sabor?</h2>
+        <p>Confira os valores e as condições antes de confirmar o pedido. Monte seu carrinho e envie tudo organizado direto para o WhatsApp da loja.</p>
+        <div class="contact-meta">
+          <span>📍 Rio de Janeiro / RJ</span>
+          <span>📞 Atendimento via WhatsApp (21) 97672-1241</span>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-gold" href="#cardapio">Montar meu pedido</a>
+          <a class="btn btn-outline-light" href="https://wa.me/5521976721241?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Moraes%20Sorveteria." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- ==================== FOOTER ==================== -->
   <footer>
-    <div class="footer-brand"><img src="assets/logo.webp" alt="" width="48" height="48" /><div><strong>Morais Bebidas e Açaí</strong><span>Rio de Janeiro - RJ</span></div></div>
-    <div class="footer-links"><a href="#inicio">Início</a><a href="#cardapio">Cardápio</a></div>
-    <small>Cardápio digital independente para facilitar pedidos pelo WhatsApp.</small>
+    <div class="footer-brand">
+      <img src="assets/logo-moraes.png" alt="" width="52" height="52" />
+      <div><strong>Moraes Sorveteria</strong><span>Rio de Janeiro - RJ</span></div>
+    </div>
+    <div class="footer-links"><a href="#inicio">Início</a><a href="#cardapio">Cardápio</a><a href="#sobre">Sobre</a></div>
+    <small>Cardápio digital para pedidos pelo WhatsApp. Venda de bebidas alcoólicas proibida para menores de 18 anos.</small>
     <div class="developer-credit">
       <div class="developer-signature"><span class="developer-code">&lt;/&gt;</span><span>Desenvolvido por <strong>Rhenan</strong></span><span class="developer-star">✦</span></div>
       <a class="developer-whatsapp" href="https://wa.me/5521973152056" target="_blank" rel="noopener noreferrer" aria-label="Falar com Rhenan pelo WhatsApp"><span class="developer-whatsapp-icon" aria-hidden="true">◉</span><span class="developer-whatsapp-copy"><strong>(21) 97315-2056</strong><span>Fale comigo no WhatsApp</span></span></a>
     </div>
   </footer>
 
-  <div class="modal-backdrop" id="productModal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle"><button class="modal-close" type="button" data-close="productModal" aria-label="Fechar">×</button><div id="productModalContent"></div></div></div>
-  <div class="modal-backdrop" id="checkoutModal" hidden><div class="modal checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle"><button class="modal-close" type="button" data-close="checkoutModal" aria-label="Fechar">×</button><span class="section-kicker">Última etapa</span><h2 id="checkoutTitle">Dados para entrega</h2><p class="modal-lead">Preencha os dados para a mensagem chegar organizada à loja. Nenhuma mensagem é enviada sem você confirmar no WhatsApp.</p><form id="checkoutForm" class="checkout-form"><label>Nome <input name="name" autocomplete="name" required placeholder="Seu nome" /></label><label>Endereço completo <input name="address" autocomplete="street-address" required placeholder="Rua, número e bairro" /></label><label>Complemento / referência <input name="reference" placeholder="Ex.: portão preto, casa dos fundos" /></label><label>Forma de pagamento <input name="payment" required placeholder="Ex.: Pix, dinheiro, cartão" /></label><label>Troco para <input name="change" inputmode="decimal" placeholder="Preencha apenas se precisar de troco" /></label><label>Observações gerais <textarea name="notes" rows="3" placeholder="Alguma informação para a loja?"></textarea></label><div class="checkout-summary"><span>Total do pedido</span><strong id="checkoutTotal">R$ 0,00</strong></div><button class="checkout-btn" type="submit">Abrir pedido no WhatsApp</button></form></div></div>
+  <!-- ==================== MODAIS ==================== -->
+  <div class="modal-backdrop" id="productModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+      <button class="modal-close" type="button" data-close="productModal" aria-label="Fechar">×</button>
+      <div id="productModalContent"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="checkoutModal" hidden>
+    <div class="modal checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="modal-close" type="button" data-close="checkoutModal" aria-label="Fechar">×</button>
+      <span class="section-kicker">Última etapa</span>
+      <h2 id="checkoutTitle">Dados para entrega</h2>
+      <p class="modal-lead">Preencha os dados para a mensagem chegar organizada à loja. Nenhuma mensagem é enviada sem você confirmar no WhatsApp.</p>
+      <form id="checkoutForm" class="checkout-form">
+        <label>Nome <input name="name" autocomplete="name" required placeholder="Seu nome" /></label>
+        <label>Endereço completo <input name="address" autocomplete="street-address" required placeholder="Rua, número e bairro" /></label>
+        <label>Complemento / referência <input name="reference" placeholder="Ex.: portão preto, casa dos fundos" /></label>
+        <label>Forma de pagamento <input name="payment" required placeholder="Ex.: Pix, dinheiro, cartão" /></label>
+        <label>Troco para <input name="change" inputmode="decimal" placeholder="Preencha apenas se precisar de troco" /></label>
+        <label>Observações gerais <textarea name="notes" rows="3" placeholder="Alguma informação para a loja?"></textarea></label>
+        <div class="checkout-summary"><span>Total do pedido</span><strong id="checkoutTotal">R$ 0,00</strong></div>
+        <button class="checkout-btn" type="submit">Abrir pedido no WhatsApp</button>
+      </form>
+    </div>
+  </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="script.js"></script>
 </body>
